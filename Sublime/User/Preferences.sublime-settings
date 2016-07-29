@@ -1,0 +1,22 @@
+{
+	"caret_style": "blink",
+	"color_scheme": "Packages/User/SublimeLinter/Tomorrow-Night (SL).tmTheme",
+	"font_size": 12,
+	"highlight_line": true,
+	"highlight_modified_tabs": true,
+	"ignored_packages":
+	[
+		"Floobits",
+		"Vintage"
+	],
+	"indent_guide_options":
+	[
+		"draw_normal",
+		"draw_active"
+	],
+	"tab_size": 2,
+	"translate_tabs_to_spaces": true,
+	"vintageous_use_ctrl_keys": true,
+	"wide_caret": true,
+	"word_wrap": "true"
+}
