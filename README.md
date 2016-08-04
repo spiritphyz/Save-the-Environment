@@ -7,7 +7,7 @@ Let's save our settings for a better future.
 * highlight current line and emphasize matching braces
 * use 2 spaces instead of tabs
 
-## Bash
+## Bash Shell
 Be sure to replace or append the .bash_profile file to an existing `/Users/yourusername/.bash_profile`. You can also run `source User/.bash_profile` to activate customizations.
 * use colored output for directories and files
 * add Unicode octopus to prompt to distinguish local shells
