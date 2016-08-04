@@ -5,3 +5,4 @@ Let's save our settings for a better future.
 * use Tomorrow Night theme
 * use Vintageous for vim keybindings
 * highlight current line and emphasize matching braces
+* use 2 spaces instead of tabs
