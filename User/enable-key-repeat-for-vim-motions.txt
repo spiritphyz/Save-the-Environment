@@ -1,0 +1,4 @@
+# For macOS Lion and newer, avoid default behavior of accents for held keys.
+# To make a key repeat a command when holding it down, run this once at the terminal.
+# https://github.com/guillermooo/Vintageous/wiki/Repeat-Motion
+defaults write com.sublimetext.3 ApplePressAndHoldEnabled -bool false
