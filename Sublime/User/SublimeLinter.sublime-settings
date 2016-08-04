@@ -16,9 +16,7 @@
 				"@disable": false,
 				"args":
 				[
-					"--config",
-					"hackreactor"
-				],
+        ],
 				"excludes":
 				[
 				]
