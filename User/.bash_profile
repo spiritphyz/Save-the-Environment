@@ -1,0 +1,48 @@
+# .bash_profile is for interactive login shells
+# .bashrc is for non-login shells (like rsync)
+# or opening new xterms
+#
+# macOS is different than other Unixes in that
+# it always executes bash_profile for new
+# terminal windows, so I'm putting all
+# customizations into bash_profile, even
+# things like colored 'ls' output because
+# i will hardly ever log in remotely to
+# a local laptop or Mac desktop
+
+alias ls='ls -G'
+alias less='less -R'
+alias more='more -R'
+alias ll='ls -al'
+alias llt='ls -alt'
+alias subo='open -a sublime\ text'
+
+# -W to highlight first unread line, +F to follow mode like tail -f
+alias lesswf='less -W +F'
+
+# add homebrew's more modern versions of installed unix utilities
+#export PATH=/usr/local/bin:$PATH
+
+# opt out of homebrew analytics
+# https://github.com/Homebrew/brew/blob/master/share/doc/homebrew/Analytics.md
+#export HOMEBREW_NO_ANALYTICS=1
+
+# add directory colors to OS X shell
+export CLICOLOR=1
+export LSCOLORS=GxFxCxDxBxegedabagaced
+
+# force colored output for 'less' to get color
+export CLICOLOR_FORCE=1
+
+# add unicode octopus to differentiate local prompt
+# http://notes.torrez.org/2013/04/put-a-burger-in-your-shell.html
+export PS1="\w 🐙  "
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Bind Ctrl-R to reverse-search-history
+# http://superuser.com/questions/419670/how-do-i-reload-inputrc-using-a-bash-script
+# bind -f ~/.inputrc
+
+# set window title BEFORE running commands
+# http://stackoverflow.com/questions/5076127/bash-update-terminal-title-by-running-a-second-command
+#trap 'echo -ne "\033]2;$(history 1 | sed "s/^[ ]*[0-9]*[ ]*//g")\007"' DEBUG
