@@ -1,4 +1,4 @@
-# Save the Environment
+# Save the Environment 🌏
 Let's save our settings for a better future.
 
 ## Sublime Text
