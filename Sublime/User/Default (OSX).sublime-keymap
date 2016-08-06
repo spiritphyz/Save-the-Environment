@@ -21,7 +21,7 @@
 		"context": [{"key": "vi_insert_mode_aware"}]
 	},
   {
-    // map ctrl-opt-[ to reindent entire selected block in one step
+    // map ctrl-option-] to reindent entire selection in one step
     // intention is to get keybinding for reindent when Vintageous is disabled
     // reindent entire selected block with '=' is already available in Vintageous
     // http://stackoverflow.com/questions/12182896/reindent-shortcut-in-sublime-text#13029839
