@@ -1,7 +1,7 @@
 [
 	{
-		// https://github.com/guillermooo/Vintageous/issues/1043
-		// how to map ctrl-[ to Esc
+		// map ctrl-[ to Esc as in standard Vim
+    // https://github.com/guillermooo/Vintageous/issues/1043
 		"keys": ["ctrl+["],
 		"command": "press_key",
 		"args": {"key": "<esc>"},
@@ -14,14 +14,26 @@
 		"context": [{"key": "vi_insert_mode_aware"}]
 	},
 	{
+    // map ctrl-c to Esc as in standard Vim
 		"keys": ["ctrl+c"],
 		"command": "_enter_normal_mode",
 		"args": {"mode": "mode_insert"},
 		"context": [{"key": "vi_insert_mode_aware"}]
 	},
+  {
+    // map ctrl-opt-[ to reindent entire selected block in one step
+    // intention is to get keybinding for reindent when Vintageous is disabled
+    // reindent entire selected block with '=' is already available in Vintageous
+    // http://stackoverflow.com/questions/12182896/reindent-shortcut-in-sublime-text#13029839
+    // http://docs.sublimetext.info/en/latest/reference/key_bindings.html
+    "keys": ["ctrl+option+]"],
+    "command": "reindent",
+    "args": {"single_line": false},
+    "context": [{"key": "setting.command_mode", "operand": false}]
+  },
   { 
     // https://github.com/guillermooo/Vintageous/wiki/Using-jj-instead-of-Esc
-    "keys": ["s", "d"],
+    "keys": ["d", "f"],
     "command": "_enter_normal_mode",
     "args": {
         "mode": "mode_insert"
