@@ -3,7 +3,7 @@ Let's save our settings for a better future.
 
 ## Sublime Text
 * use Tomorrow Night theme
-* use Vintageous for vim keybindings
+* use Vintageous for Vim keybindings
 * highlight current line and emphasize matching braces
 * use 2 spaces instead of tabs
 * add snippets for console.log, for loops, and es6-style for loops
