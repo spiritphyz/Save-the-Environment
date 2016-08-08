@@ -1,0 +1,3 @@
+# Disable accidental back navigation while scrolling with trackpad
+# http://apple.stackexchange.com/questions/21236/how-do-i-disable-chromes-two-finger-back-forward-navigation
+defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool FALSE
