@@ -20,6 +20,12 @@
 		"args": {"mode": "mode_insert"},
 		"context": [{"key": "vi_insert_mode_aware"}]
 	},
+    {
+    // map shift-command-n to new view into file
+    // https://forum.sublimetext.com/t/shortcut-for-new-view-into-file/5577
+        "keys": ["shift+command+n"],
+        "command": "clone_file"
+    },
   {
     // map ctrl-option-] to reindent entire selection in one step
     // intention is to get keybinding for reindent when Vintageous is disabled
