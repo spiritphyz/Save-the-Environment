@@ -16,6 +16,10 @@ alias more='more -R'
 alias ll='ls -al'
 alias llt='ls -alt'
 alias subo='open -a sublime\ text'
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gl='git log'
 
 # -W to highlight first unread line, +F to follow mode like tail -f
 alias lesswf='less -W +F'
