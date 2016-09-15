@@ -40,7 +40,8 @@ export CLICOLOR_FORCE=1
 
 # add unicode octopus to differentiate local prompt
 # http://notes.torrez.org/2013/04/put-a-burger-in-your-shell.html
-export PS1="\w 🐙  "
+# export PS1="\w 🐙  "
+export PS1="\W 🐙  "
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # Bind Ctrl-R to reverse-search-history
