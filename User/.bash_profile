@@ -16,7 +16,7 @@ alias more='more -R'
 alias ll='ls -al'
 alias llt='ls -alt'
 alias subo='open -a sublime\ text'
-alias stu='cd /Volume/student'
+alias stu='cd /Volumes/student/'
 
 alias gs='git status'
 alias ga='git add'
