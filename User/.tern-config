@@ -1,3 +1,4 @@
+// Add this to home folder for default Tern settings
 {
   "plugins": {
     "es_modules": {},
