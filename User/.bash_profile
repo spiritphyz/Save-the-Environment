@@ -10,7 +10,7 @@
 # i will hardly ever log in remotely to
 # a local laptop or Mac desktop
 
-alias ls='ls -G'
+alias ls='ls -Gh'
 alias less='less -R'
 alias more='more -R'
 alias ll='ls -al'
