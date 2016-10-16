@@ -14,3 +14,7 @@ Let's save our settings for a better future.
 Be sure to replace or append the .bash_profile file to an existing `/Users/yourusername/.bash_profile`. You can also run `source User/.bash_profile` to activate customizations.
 * use colored output for directories and files
 * add Unicode octopus to prompt to distinguish local shells
+
+## Vim and Tmux
+Customizations for a better JavaScript environment in the terminal
+* auto-complete, linting, and syntax highlighting for React, JSX, and Angular web development
