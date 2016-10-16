@@ -1,14 +1,12 @@
-# .bash_profile is for interactive login shells
-# .bashrc is for non-login shells (like rsync)
-# or opening new xterms
+# '.bash_profile' is for interactive login shells while
+# '.bashrc' is for non-login shells (like rsync) or 
+# opening new xterms wile already logged in interactively.
 #
-# macOS is different than other Unixes in that
-# it always executes bash_profile for new
-# terminal windows, so I'm putting all
-# customizations into bash_profile, even
-# things like colored 'ls' output because
-# i will hardly ever log in remotely to
-# a local laptop or Mac desktop
+# MacOS is different than other Unixes in that it always 
+# executes bash_profile for new terminal windows, so I'm 
+# putting all customizations into bash_profile, even
+# OS-specific things like colored 'ls' output because 
+# I will rarely log in remotely to a local Mac machine.
 
 alias ls='ls -Gh'
 alias less='less -R'
