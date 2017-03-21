@@ -48,7 +48,7 @@ set background=dark
 set ruler
 
 " ignore case while searching
-:set ic
+set ic
 
 " for word wrapping but only insert line breaks when i press Enter
 set wrap
