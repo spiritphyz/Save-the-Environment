@@ -54,3 +54,9 @@ export PS1="\W 🐙  "
 # set window title BEFORE running commands
 # http://stackoverflow.com/questions/5076127/bash-update-terminal-title-by-running-a-second-command
 #trap 'echo -ne "\033]2;$(history 1 | sed "s/^[ ]*[0-9]*[ ]*//g")\007"' DEBUG
+
+# set vim as default editor for Ctrl-x-e advanced editing
+# https://unix.stackexchange.com/questions/73484/how-can-i-set-vi-as-my-default-editor-in-unix
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
