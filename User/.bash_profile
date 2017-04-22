@@ -19,7 +19,10 @@ alias stu='cd /Volumes/student/'
 alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
-alias gl='git log'
+# Make 'git log' show on one line with color
+# https://github.com/holman/dotfiles/blob/master/git/aliases.zsh
+# https://ma.ttias.be/pretty-git-log-in-one-line/
+alias gl='git log --graph --pretty=format:\'%Cred%h%Creset %an: %s - %Creset %C\(yellow\)%d%Creset %Cgreen\(%cr\)%Creset\' --abbrev-commit --date=relative'
 alias gp='git push'
 alias gpom='git push origin master'
 
