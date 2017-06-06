@@ -19,6 +19,7 @@ alias stu='cd /Volumes/student/'
 
 alias gs='git status'
 alias ga='git add'
+alias gd='git diff'
 alias gc='git commit'
 alias gl='git log'
 alias gll='git log --graph --decorate --pretty=oneline --abbrev-commit --all'
