@@ -13,6 +13,7 @@ alias less='less -R'
 alias more='more -R'
 alias ll='ls -al'
 alias llt='ls -alt'
+alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 alias subo='open -a sublime\ text'
 alias stu='cd /Volumes/student/'
 
