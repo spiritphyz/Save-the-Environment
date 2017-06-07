@@ -30,7 +30,7 @@ alias gpom='git push origin master'
 alias lesswf='less -W +F'
 
 # add homebrew's more modern versions of installed unix utilities
-#export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/bin:$PATH
 
 # opt out of homebrew analytics
 # https://github.com/Homebrew/brew/blob/master/share/doc/homebrew/Analytics.md
