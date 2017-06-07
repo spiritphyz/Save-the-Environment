@@ -70,7 +70,8 @@ set t_Co=256
 "colorscheme Tomorrow-Night-Eighties
 "colorscheme distinguished
 "colorscheme base16-oceanicnext
-colorscheme monokai
+"colorscheme monokai
+colorscheme OceanicNext
 " If you are using a font that supports italic, turn on monokai options below:
 " https://github.com/crusoexia/vim-monokai
 "let g:monokai_term_italic = 1
@@ -134,13 +135,12 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/syntastic'
 
 "these are good for re-enabling
-"Plug 'Raimondi/delimitMate'
 Plug 'Valloric/YouCompleteMe'
 Plug 'marijnh/tern_for_vim'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
 Plug 'crusoexia/vim-javascript-lib'
-Plug 'crusoexia/vim-monokai'
+Plug 'mhartington/oceanic-next'
 
 " Group dependencies, vim-snippets depends on ultisnips
 "Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
