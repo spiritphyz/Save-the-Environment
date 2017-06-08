@@ -2,7 +2,7 @@
 Let's save our settings for a better future.
 
 ## Sublime Text
-* use Tomorrow Night theme
+* use [Oceanic Next](https://github.com/voronianski/oceanic-next-color-scheme) for React / JSX syntax highlighting
 * use Vintageous for Vim keybindings
 * highlight current line and emphasize matching braces
 * use 2 spaces instead of tabs
