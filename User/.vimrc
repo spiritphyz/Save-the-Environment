@@ -1,3 +1,8 @@
+" Copy current buffer to system clipboard
+" Instead of using pbcopy/pbpaste
+" http://vim.wikia.com/wiki/Mac_OS_X_clipboard_sharing
+set clipboard=unnamed
+
 " highline current line
 set cursorline
 
