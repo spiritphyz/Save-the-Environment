@@ -15,6 +15,7 @@
 		"draw_active"
 	],
 	"tab_size": 2,
+	"theme": "Soda Dark 3.sublime-theme",
 	"translate_tabs_to_spaces": true,
 	"vintageous_use_ctrl_keys": true,
 	"wide_caret": true,
