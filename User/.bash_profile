@@ -15,8 +15,11 @@ alias ll='ls -al'
 alias llt='ls -alt'
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 alias subo='open -a sublime\ text'
-alias stu='cd /Volumes/student/'
 
+# Work-specific aliases
+#alias cdxx='cd'
+
+# Git-specific aliases
 alias gs='git status'
 alias ga='git add'
 alias gd='git diff'
