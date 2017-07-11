@@ -1,0 +1,6 @@
+<snippet>
+	<content><![CDATA[border="1" ]]></content>
+	<tabTrigger>bbll</tabTrigger>
+	<scope>text.html</scope>
+	<description>border="1"</description>
+</snippet>
