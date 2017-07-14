@@ -23,6 +23,7 @@ alias subo='open -a sublime\ text'
 alias gs='git status'
 alias ga='git add'
 alias gd='git diff'
+alias gdc='git diff --color-words=.' # highlight individual color changes
 alias gc='git commit'
 alias gl='git log'
 alias gll='git log --graph --decorate --pretty=oneline --abbrev-commit --all'
