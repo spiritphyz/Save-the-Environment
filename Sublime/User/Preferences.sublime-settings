@@ -13,7 +13,8 @@
 	[
 		"draw_normal",
 		"draw_active"
-	],
+  ],
+  "scroll_past_end": true,
 	"tab_size": 2,
 	"theme": "Soda Dark 3.sublime-theme",
 	"translate_tabs_to_spaces": true,
