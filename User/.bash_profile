@@ -15,6 +15,7 @@ alias ll='ls -al'
 alias llt='ls -alt'
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 alias subo='open -a sublime\ text'
+alias cdi='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs'
 
 # Work-specific aliases
 #alias cdxx='cd'
