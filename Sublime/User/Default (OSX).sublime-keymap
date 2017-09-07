@@ -20,12 +20,18 @@
 		"args": {"mode": "mode_insert"},
 		"context": [{"key": "vi_insert_mode_aware"}]
 	},
-    {
+  {
+    // make paste auto-indent
+    // http://wesbos.com/5-sublime-text-tweaks-tips/
+    "keys": ["super+v"],
+    "command": "paste_and_indent"
+  },
+  {
     // map shift-command-n to new view into file
     // https://forum.sublimetext.com/t/shortcut-for-new-view-into-file/5577
-        "keys": ["shift+command+n"],
-        "command": "clone_file"
-    },
+      "keys": ["shift+command+n"],
+      "command": "clone_file"
+  },
   {
     // map ctrl-option-] to reindent entire selection in one step
     // intention is to get keybinding for reindent when Vintageous is disabled
@@ -42,7 +48,7 @@
     "keys": ["d", "f"],
     "command": "_enter_normal_mode",
     "args": {
-        "mode": "mode_insert"
+      "mode": "mode_insert"
     },
     "context": [{"key": "vi_insert_mode_aware"}]
   }
