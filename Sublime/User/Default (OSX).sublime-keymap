@@ -1,4 +1,22 @@
 [
+  { 
+    // remap Origami to more closely match Vim panes
+    // https://github.com/SublimeText/Origami/issues/102
+    "keys": ["ctrl+w", "j"],
+    "command": "travel_to_pane",
+    "args": {
+        "direction": "down"
+    }
+  },
+  { 
+    // remap Origami to more closely match Vim panes
+    // https://github.com/SublimeText/Origami/issues/102
+    "keys": ["ctrl+w", "k"],
+    "command": "travel_to_pane",
+    "args": {
+        "direction": "up"
+    }
+  },
 	{
 		// map ctrl-[ to Esc as in standard Vim
     // https://github.com/guillermooo/Vintageous/issues/1043
