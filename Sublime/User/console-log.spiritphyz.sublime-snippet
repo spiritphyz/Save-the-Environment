@@ -1,9 +1,9 @@
 <snippet>
 	<content><![CDATA[
-console.log('🍊 ${1}', ${2});
+console.log('🍊 ${1}: ', ${2})
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>ccll</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
-	<scope>source.js</scope>
+	<scope>source.js meta.group.braces.curly.js meta.group.braces.round.js meta.jsx.js</scope>
 </snippet>
