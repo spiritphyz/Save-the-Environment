@@ -11,11 +11,6 @@ set cursorline
 " http://dougblack.io/words/a-good-vimrc.html
 set lazyredraw
 
-" abbreviations
-" http://vim.wikia.com/wiki/Using_abbreviations
-ab cll console.log(
-ab fll for (var i = 0; i < x.length; i += 1) {}
-
 " enable HTML tag completions
 " use ctrl-x, ctrl-o to complete tag
 " enable auto-complete when HTML file is opened
@@ -25,9 +20,10 @@ ab fll for (var i = 0; i < x.length; i += 1) {}
 
 " below from:
 " http://stackoverflow.com/questions/235839/indent-multiple-lines-quickly-in-vi
-set expandtab			"Use softtabstop spaces instead of tab characters
-set shiftwidth=2	"Indent by 2 spaces when using >>, <<, == etc.
-set softtabstop=2	"Indent by 2 spaces when pressing <TAB>
+set expandtab			" Use softtabstop spaces instead of tab characters
+set shiftwidth=2	" Indent by 2 spaces when using >>, <<, == etc.
+set softtabstop=2	" Indent by 2 spaces when pressing <TAB>
+set ts=2          " Set tabs to be 2 spaces each
 
 set autoindent		"Keep indentation from previous line
 set smartindent		"Automatically inserts indentation in some cases
@@ -36,9 +32,6 @@ set cindent				"Like smartindent, but stricter and more customizable
 " make backspace delete over line breaks
 " http://vim.wikia.com/wiki/Backspace_and_delete_problems
 set backspace=indent,eol,start
-
-" set tabs to be 2 spaces each
-set ts=2
 
 " Use color syntax highlighting
 syntax on
@@ -124,6 +117,11 @@ augroup myvimrc
   au!
   au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
 augroup END
+
+" abbreviations
+" http://vim.wikia.com/wiki/Using_abbreviations
+ab cll console.log(
+ab fll for (var i = 0; i < x.length; i += 1) {}
 
 
 " ------------------------------------------------------------------------------
