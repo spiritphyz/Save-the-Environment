@@ -134,9 +134,6 @@ ab fll for (var i = 0; i < x.length; i += 1) {}
 call plug#begin('~/.vim/plugged')
 
 " Make sure you use single quotes
-Plug 'scrooloose/syntastic'
-Plug 'Valloric/YouCompleteMe'
-Plug 'marijnh/tern_for_vim'
 Plug 'tpope/vim-surround'
 Plug 'sheerun/vim-polyglot'
 Plug 'mxw/vim-jsx'
