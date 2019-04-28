@@ -134,16 +134,12 @@ ab fll for (var i = 0; i < x.length; i += 1) {}
 call plug#begin('~/.vim/plugged')
 
 " Make sure you use single quotes
-"Plug 'junegunn/seoul256.vim'
-"Plug 'junegunn/vim-easy-align'
 Plug 'scrooloose/syntastic'
-
-"these are good for re-enabling
 Plug 'Valloric/YouCompleteMe'
 Plug 'marijnh/tern_for_vim'
+Plug 'tpope/vim-surround'
+Plug 'sheerun/vim-polyglot'
 Plug 'mxw/vim-jsx'
-Plug 'pangloss/vim-javascript'
-Plug 'crusoexia/vim-javascript-lib'
 Plug 'mhartington/oceanic-next'
 
 " Group dependencies, vim-snippets depends on ultisnips
