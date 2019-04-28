@@ -4,6 +4,7 @@
 set clipboard=unnamed
 
 " highline current line
+" 256 color palette needed to avoid ugly underlining
 set cursorline
 
 " faster redraw
@@ -12,9 +13,8 @@ set lazyredraw
 
 " abbreviations
 " http://vim.wikia.com/wiki/Using_abbreviations
-ab ccll console.log(
-ab cclll console.log('');
-ab ffll for (var i = 0; i < x.length; i += 1) {}
+ab cll console.log(
+ab fll for (var i = 0; i < x.length; i += 1) {}
 
 " enable HTML tag completions
 " use ctrl-x, ctrl-o to complete tag
@@ -50,6 +50,7 @@ let g:jsx_ext_required = 0
 " default syntax highlighting is too dark, fix it
 set background=dark
 
+" show cursor position
 set ruler
 
 " ignore case while searching
