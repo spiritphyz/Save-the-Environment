@@ -47,3 +47,6 @@ export PS1="\W 🐙  "
 #export VISUAL=vim
 #export EDITOR="$VISUAL"
 
+# FZF customizations
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
