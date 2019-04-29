@@ -134,74 +134,12 @@ ab fll for (var i = 0; i < x.length; i += 1) {}
 call plug#begin('~/.vim/plugged')
 
 " Make sure you use single quotes
-Plug 'tpope/vim-surround'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'mxw/vim-jsx'
+Plug 'tpope/vim-surround'
 Plug 'mhartington/oceanic-next'
 
-" Group dependencies, vim-snippets depends on ultisnips
-"Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-
-" On-demand loading
-"Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-"Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-" to activate indent guide, press Leader key \ and then ig, but do it fast
-"Plug 'nathanaelkane/vim-indent-guides', { 'for': 'javascript' }
-Plug 'Shutnik/jshint2.vim', { 'for': 'javascript' }
-
-" Using git URL
-"Plug 'https://github.com/junegunn/vim-github-dashboard.git'
-
-" Plugin options
-"'Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
-
-" Plugin outside ~/.vim/plugged with post-update hook
-"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
-
-" Unmanaged plugin (manually installed and updated)
-"Plug '~/my-prototype-plugin'
-
 call plug#end()
-
-" ----------------------------------------------------------------------------
-" syntastic linter settings
-" ----------------------------------------------------------------------------
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 1
-" working with partials to avoid linting errors
-" https://github.com/scrooloose/syntastic/issues/240
-let g:syntastic_html_tidy_ignore_errors = [ '<template> is not recognized!' ]
-" ignore Angular proprietary attributes
-" http://stackoverflow.com/questions/18270355/how-can-i-ignore-angular-directive-lint-errors-with-vim-and-syntastic
-let g:syntastic_html_tidy_ignore_errors=[
-    \'proprietary attribute "ng-',
-    \'proprietary attribute "data',
-    \'proprietary attribute "pdk-'
-    \]
-" better :sign interface symbols
-" http://blog.thomasupton.com/2012/05/syntastic/
-let g:syntastic_error_symbol = '🔸'
-let g:syntastic_warning_symbol = '🔹'
-
-
-" -----------------------------------------------------------------------------
-" more post-changes after plugs are loaded
-" -----------------------------------------------------------------------------
-" turn on OmniCompletion for YouCompleteMe + tern
-" http://vim.wikia.com/wiki/Omni_completion
-" To use omni completion, type <C-X><C-O> while open in Insert mode. 
-" If matching names are found, a pop-up menu opens which can be navigated 
-" using the <C-N> and <C-P> keys.
-filetype plugin on
-set omnifunc=syntaxcomplete#Complete
-
-" only do linting on file save 
-" https://github.com/Shutnik/jshint2.vim
-let jshint2_save = 1
 
