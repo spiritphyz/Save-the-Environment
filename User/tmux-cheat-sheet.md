@@ -8,8 +8,8 @@
 
 # Tmux Panes (splits)
 M is the meta key, which is `alt` on Mac keyboards
-  * C-b %    split into left and right panes
-  * C-b "    split into top and bottom panes
+  * C-b %    split into left and right panes (percent symbol parts are mostly horizontal)
+  * C-b "    split into top and bottom panes (double quote is stacked above single quote)
   * C-b o    jump between panes
   * C-b C-b  swap the location of 2 panes
   
