@@ -1,3 +1,6 @@
+# Tmux Sessions
+  * C-b $  rename current session
+
 # Tmux Windows (tabs)
   * C-b c  create window
   * C-b w  list windows
@@ -20,4 +23,5 @@ M is the meta key, which is `alt` on Mac keyboards
   * C-b M-4  new pane on bottom, split columns on top
 
   * :select-layout tiled  make all splits roughly equal
+
 
