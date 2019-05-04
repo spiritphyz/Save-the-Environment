@@ -92,6 +92,13 @@ set incsearch
 " turn on line numbers
 set number
 
+" FZF settings
+map <C-p> :Files<CR>
+
+" enable lightline
+set laststatus=2
+set noshowmode " turn off extra -- INSERT --
+
 " split a pair of braces to type in the middle with Ctrl-J
 imap <C-j> <CR><Esc>O
 
@@ -141,6 +148,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'mxw/vim-jsx'
 Plug 'tpope/vim-surround'
 Plug 'mhartington/oceanic-next'
+Plug 'itchyny/lightline.vim'
 
 call plug#end()
 
