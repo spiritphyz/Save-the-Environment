@@ -98,6 +98,9 @@ map <C-p> :Files<CR>
 " enable lightline
 set laststatus=2
 set noshowmode " turn off extra -- INSERT --
+let g:lightline = {
+      \ 'colorscheme': 'jellybeans',
+      \ }
 
 " split a pair of braces to type in the middle with Ctrl-J
 imap <C-j> <CR><Esc>O
