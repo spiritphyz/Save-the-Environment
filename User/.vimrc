@@ -148,6 +148,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'mattn/emmet-vim'
 Plug 'mxw/vim-jsx'
 Plug 'tpope/vim-surround'
 Plug 'mhartington/oceanic-next'
