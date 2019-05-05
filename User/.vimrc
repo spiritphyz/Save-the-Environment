@@ -95,6 +95,9 @@ set number
 " FZF settings
 map <C-p> :Files<CR>
 
+" Map Ctrl-O for NERDTree
+map <C-n> :NERDTreeToggle<CR>
+
 " enable lightline
 set laststatus=2
 set noshowmode " turn off extra -- INSERT --
@@ -153,6 +156,7 @@ Plug 'mxw/vim-jsx'
 Plug 'tpope/vim-surround'
 Plug 'mhartington/oceanic-next'
 Plug 'itchyny/lightline.vim'
+Plug 'scrooloose/nerdtree'
 
 call plug#end()
 
