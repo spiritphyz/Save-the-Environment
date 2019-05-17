@@ -24,4 +24,10 @@ M is the meta key, which is `alt` on Mac keyboards
 
   * :select-layout tiled  make all splits roughly equal
 
-
+# Tmux copy and paste
+| Sequence                           | Description        |
+|:-------------------------------    |:------------------ |
+| `(click and drag to select text)`  | copy selected text to Tmux clipboard |
+| `C-b p`                            | paste highlighted text |
+| `(shift-click and drag)`  | copy selected text to iTerm clipboard |
+| `Cmd-v`  | paste text from iTerm clipboard |
