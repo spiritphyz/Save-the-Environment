@@ -1,5 +1,7 @@
 # Tmux Sessions
   * C-b $  rename current session
+  * C-b )  switch to next session
+  * C-b (  switch to previous session
 
 # Tmux Windows (tabs)
   * C-b c  create window
@@ -10,7 +12,10 @@
   * C-b &  kill window
 
 # Tmux Panes (splits)
-M is the meta key, which is `alt` on Mac keyboards
+M is the meta key, which is `option` on Mac keyboards.
+
+`C-b M-1` means to "press control-b, then press option-1".
+
   * C-b %    split into left and right panes (percent symbol parts are mostly horizontal)
   * C-b "    split into top and bottom panes (double quote is stacked above single quote)
   * C-b o    jump between panes
@@ -25,9 +30,11 @@ M is the meta key, which is `alt` on Mac keyboards
   * :select-layout tiled  make all splits roughly equal
 
 # Tmux copy and paste
-| Sequence                           | Description        |
-|:-------------------------------    |:------------------ |
-| `(click and drag to select text)`  | copy selected text to Tmux clipboard |
-| `C-b p`                            | paste highlighted text |
-| `(option-click and drag)`  | copy selected text to iTerm clipboard |
-| `Cmd-v`  | paste text from iTerm clipboard |
+`C-b p` means to "press control-b, then press p".
+
+| Sequence                           | Description                           |
+|:-------------------------------    |:------------------------------------- |
+| `(click and drag to select text)`  | copy selected text to Tmux clipboard  |
+| `C-b p`                            | paste highlighted text                |
+| `(option-click and drag)`          | copy selected text to iTerm clipboard |
+| `Cmd-v`                            | paste text from iTerm clipboard       |
