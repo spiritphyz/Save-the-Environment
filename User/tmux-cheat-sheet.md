@@ -37,7 +37,7 @@ M is the meta key, which is `option` on Mac keyboards.
 | Sequence                           | Description                                  |
 |:---------------------------------- |:-------------------------------------------- |
 | `(click and drag to select text)`  | copy selected text to Tmux clipboard         |
-| `C-b p`                            | paste highlighted text                       |
+| `C-b p`                            | paste text from Tmux clipboard               |
 | `(option-click and drag)`          | copy selected text to iTerm clipboard        |
 | `Cmd-v`                            | paste text from iTerm clipboard              |
 | `C-b [`                            | enter Copy Mode, use vi keys to move around  |
