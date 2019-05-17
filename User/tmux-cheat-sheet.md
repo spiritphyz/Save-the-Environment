@@ -20,7 +20,9 @@ M is the meta key, which is `option` on Mac keyboards.
   * C-b "    split into top and bottom panes (double quote is stacked above single quote)
   * C-b o    jump between panes
   * C-b C-b  swap the location of 2 panes
-  
+  * C-b }    move current pane to right
+  * C-b {    move current pane to left
+ 
   * C-b M-1  split columns, equal width
   * C-b M-2  stack vertically, equal height
   * C-b M-3  main pane on top, column splits on bottom
@@ -32,9 +34,12 @@ M is the meta key, which is `option` on Mac keyboards.
 # Tmux copy and paste
 `C-b p` means to "press control-b, then press p".
 
-| Sequence                           | Description                           |
-|:-------------------------------    |:------------------------------------- |
-| `(click and drag to select text)`  | copy selected text to Tmux clipboard  |
-| `C-b p`                            | paste highlighted text                |
-| `(option-click and drag)`          | copy selected text to iTerm clipboard |
-| `Cmd-v`                            | paste text from iTerm clipboard       |
+| Sequence                           | Description                                  |
+|:---------------------------------- |:-------------------------------------------- |
+| `(click and drag to select text)`  | copy selected text to Tmux clipboard         |
+| `C-b p`                            | paste highlighted text                       |
+| `(option-click and drag)`          | copy selected text to iTerm clipboard        |
+| `Cmd-v`                            | paste text from iTerm clipboard              |
+| `C-b [`                            | enter Copy Mode, use vi keys to move around  |
+| `y` on selection in Copy Mode      | yank selection to Tmux clipboard             |
+| `(enter key)` in Copy Mode         | exit Copy Mode                               |
