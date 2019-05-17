@@ -29,5 +29,5 @@ M is the meta key, which is `alt` on Mac keyboards
 |:-------------------------------    |:------------------ |
 | `(click and drag to select text)`  | copy selected text to Tmux clipboard |
 | `C-b p`                            | paste highlighted text |
-| `(shift-click and drag)`  | copy selected text to iTerm clipboard |
+| `(option-click and drag)`  | copy selected text to iTerm clipboard |
 | `Cmd-v`  | paste text from iTerm clipboard |
