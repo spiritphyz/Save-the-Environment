@@ -144,7 +144,10 @@ Plug 'mattn/emmet-vim'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
 Plug 'crusoexia/vim-javascript-lib'
+Plug 'tpope/vim-surround'
 Plug 'joshdick/onedark.vim'
+Plug 'itchyny/lightline.vim'
+Plug 'scrooloose/nerdtree'
 
 call plug#end()
 
