@@ -65,22 +65,11 @@ set wrapmargin=0
 " for existing files, keep textwidths but don't let vim automatically reformat when typing on lines
 set formatoptions+=1
 
-" enable 256 color palette for vim-distinguished theme
+" enable 256 color palette
 set t_Co=256
 
 " use cool color scheme
-" for tommorrow-night themes, i like the bright version
-"colorscheme Tomorrow-Night
-"colorscheme Tomorrow-Night-Bright
-"colorscheme Tomorrow-Night-Eighties
-"colorscheme distinguished
-"colorscheme base16-oceanicnext
-"colorscheme monokai
-colorscheme OceanicNext
-" If you are using a font that supports italic, turn on monokai options below:
-" https://github.com/crusoexia/vim-monokai
-"let g:monokai_term_italic = 1
-"let g:monokai_gui_italic = 1
+colorscheme onedark
 
 " clear search highlighting by pressing Enter
 nnoremap <CR> :noh<CR><CR>
@@ -145,7 +134,7 @@ Plug 'marijnh/tern_for_vim'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
 Plug 'crusoexia/vim-javascript-lib'
-Plug 'mhartington/oceanic-next'
+Plug 'joshdick/onedark.vim'
 
 " Group dependencies, vim-snippets depends on ultisnips
 "Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
