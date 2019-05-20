@@ -64,18 +64,7 @@ set ic
 set t_Co=256
 
 " use cool color scheme
-" for tommorrow-night themes, i like the bright version
-"colorscheme Tomorrow-Night
-"colorscheme Tomorrow-Night-Bright
-"colorscheme Tomorrow-Night-Eighties
-"colorscheme distinguished
-"colorscheme base16-oceanicnext
-"colorscheme monokai
-colorscheme OceanicNext
-" If you are using a font that supports italic, turn on monokai options below:
-" https://github.com/crusoexia/vim-monokai
-"let g:monokai_term_italic = 1
-"let g:monokai_gui_italic = 1
+colorscheme onedark
 
 " clear search highlighting by pressing Enter
 nnoremap <CR> :noh<CR><CR>
@@ -153,10 +142,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'mattn/emmet-vim'
 Plug 'mxw/vim-jsx'
-Plug 'tpope/vim-surround'
-Plug 'mhartington/oceanic-next'
-Plug 'itchyny/lightline.vim'
-Plug 'scrooloose/nerdtree'
+Plug 'pangloss/vim-javascript'
+Plug 'crusoexia/vim-javascript-lib'
+Plug 'joshdick/onedark.vim'
 
 call plug#end()
 
