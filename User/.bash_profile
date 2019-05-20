@@ -8,28 +8,9 @@
 # OS-specific things like colored 'ls' output because 
 # I will rarely log in remotely to a local Mac machine.
 
-alias ls='ls -Gh'
-alias less='less -R'
-alias more='more -R'
-alias ll='ls -al'
-alias llt='ls -alt'
-alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
-alias subo='open -a sublime\ text'
-alias cdi='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs'
-
-# Work-specific aliases
-#alias cdxx='cd'
-
-# Git-specific aliases
-alias gs='git status'
-alias ga='git add'
-alias gd='git diff'
-alias gdc='git diff --color-words=.' # highlight individual color changes
-alias gc='git commit'
-alias gl='git log'
-alias gll='git log --graph --decorate --pretty=oneline --abbrev-commit --all'
-alias gp='git push'
-alias gpom='git push origin master'
+if [ -f ~/.bash_aliases ]; then
+  . ~/.bash_aliases
+fi
 
 # -W to highlight first unread line, +F to follow mode like tail -f
 alias lesswf='less -W +F'
@@ -52,7 +33,6 @@ export CLICOLOR_FORCE=1
 # http://notes.torrez.org/2013/04/put-a-burger-in-your-shell.html
 # export PS1="\w 🐙  "
 export PS1="\W 🐙  "
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # Bind Ctrl-R to reverse-search-history
 # http://superuser.com/questions/419670/how-do-i-reload-inputrc-using-a-bash-script
@@ -64,6 +44,9 @@ export PS1="\W 🐙  "
 
 # set vim as default editor for Ctrl-x-e advanced editing
 # https://unix.stackexchange.com/questions/73484/how-can-i-set-vi-as-my-default-editor-in-unix
-export VISUAL=vim
-export EDITOR="$VISUAL"
+#export VISUAL=vim
+#export EDITOR="$VISUAL"
+
+# FZF customizations
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
