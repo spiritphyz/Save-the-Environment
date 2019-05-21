@@ -1,8 +1,8 @@
 # Vim Buffers (files)
   * :ls    list buffers
   * :bd#   buffer destroy (:bd2 deletes buffer 2)
-  * :o     open a file in same directory that you started Vim
-  * :e     edit a file from any starting directory using file browser or FZF (ctrl-P)
+  * :e     edit a file in same directory that you started Vim
+  * :o     open a file from any starting directory using file browser or FZF (ctrl-P)
   * C-g    show current filename
 
 # Vim Windows (split panes)
@@ -11,6 +11,7 @@
   * ctrl-w |            zoom column split
   * ctrl-w _            zoom stack split
   * ctrl-w =            restore splits equally
+  * ctrl-w o or :on     cancel split pane (make it the "only" split)
 
   * ctrl-w l            focus on left split
   * ctrl-w h            focus on right split
