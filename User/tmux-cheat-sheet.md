@@ -29,6 +29,11 @@ M is the meta key, which is `option` on Mac keyboards.
   * C-b M-4  main pane on left, stack remaining splits
   * C-b M-4  new pane on bottom, split columns on top
 
+  * resize-pane -L 10   resize current pane left by 10 cells
+  * resize-pane -R 10   resize current pane right by 10 cells
+  * resize-pane -U      resize current pane up
+  * resize-pane -D      resize current pane down
+
   * :select-layout tiled  make all splits roughly equal
 
 # Tmux copy and paste

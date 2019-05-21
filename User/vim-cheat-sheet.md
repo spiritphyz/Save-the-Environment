@@ -17,10 +17,5 @@
   * ctrl-w j    move to bottom split
   * ctrl-w k    move to top split
 
-  * resize-pane -L 10   resize current pane left by 10 cells
-  * resize-pane -R 10   resize current pane right by 10 cells
-  * resize-pane -U      resize current pane up
-  * resize-pane -D      resize current pane down
-
 # Reload .vimrc file while editing it inside Vim
   * :so %
