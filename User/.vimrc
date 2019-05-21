@@ -1,3 +1,11 @@
+" Use Unicode characters. Has to be at the top of the file.
+" The order of these commands is important.
+if has('multi_byte')
+  set encoding=utf-8
+  scriptencoding utf-8
+  setglobal fileencodings=utf-8
+endif
+
 " Copy current buffer to system clipboard
 " Instead of using pbcopy/pbpaste
 " http://vim.wikia.com/wiki/Mac_OS_X_clipboard_sharing
@@ -118,6 +126,7 @@ let g:lightline#bufferline#show_number  = 1
 let g:lightline#bufferline#shorten_path = 1
 let g:lightline#bufferline#unnamed      = '[No Name]'
 let g:lightline#bufferline#unicode_symbols = 0
+let g:lightline#bufferline#enable_devicons = 1
 let g:lightline#bufferline#min_buffer_count = 2
 let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
 
@@ -175,6 +184,7 @@ Plug 'tpope/vim-surround'
 Plug 'joshdick/onedark.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdtree'
+Plug 'ryanoasis/vim-devicons' " should be loaded as last plugin
 
 call plug#end()
 
