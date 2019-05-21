@@ -118,6 +118,7 @@ let g:lightline#bufferline#show_number  = 1
 let g:lightline#bufferline#shorten_path = 1
 let g:lightline#bufferline#unnamed      = '[No Name]'
 let g:lightline#bufferline#unicode_symbols = 0
+let g:lightline#bufferline#min_buffer_count = 2
 let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
 
 " Split a pair of braces to type in the middle with Ctrl-J
