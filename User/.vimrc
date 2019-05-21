@@ -90,9 +90,39 @@ map <C-n> :NERDTreeToggle<CR>
 " enable lightline
 set laststatus=2
 set noshowmode " turn off extra -- INSERT --
+
+" lightline-ale settings
+let g:lightline = {}
+
+" change colors to be darker for status bar and tab bar
 let g:lightline = {
-      \ 'colorscheme': 'jellybeans',
+      \ 'colorscheme': 'darcula',
       \ }
+
+let g:lightline.component_expand = {
+      \  'buffers': 'lightline#bufferline#buffers',
+      \  'linter_checking': 'lightline#ale#checking',
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors',
+      \  'linter_ok': 'lightline#ale#ok',
+      \ }
+
+let g:lightline.component_type = {
+      \     'buffers': 'tabsel', 
+      \     'linter_checking': 'left',
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error',
+      \     'linter_ok': 'left',
+      \ }
+
+" lightline-bufferline settings
+set showtabline=2
+let g:lightline#bufferline#show_number  = 1
+let g:lightline#bufferline#shorten_path = 1
+let g:lightline#bufferline#unnamed      = '[No Name]'
+let g:lightline#bufferline#unicode_symbols = 0
+let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
+
 
 " split a pair of braces to type in the middle with Ctrl-J
 imap <C-j> <CR><Esc>O
