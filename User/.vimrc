@@ -84,17 +84,14 @@ set number
 " FZF settings
 map <C-p> :Files<CR>
 
-" Map Ctrl-O for NERDTree
+" Map Ctrl-n for NERDTree
 map <C-n> :NERDTreeToggle<CR>
 
 " enable lightline
 set laststatus=2
 set noshowmode " turn off extra -- INSERT --
 
-" lightline-ale settings
-let g:lightline = {}
-
-" change colors to be darker for status bar and tab bar
+" Change colors to be darker for status bar and tab bar
 let g:lightline = {
       \ 'colorscheme': 'darcula',
       \ }
@@ -115,7 +112,7 @@ let g:lightline.component_type = {
       \     'linter_ok': 'left',
       \ }
 
-" lightline-bufferline settings
+" Lightline-bufferline settings
 set showtabline=2
 let g:lightline#bufferline#show_number  = 1
 let g:lightline#bufferline#shorten_path = 1
@@ -123,16 +120,15 @@ let g:lightline#bufferline#unnamed      = '[No Name]'
 let g:lightline#bufferline#unicode_symbols = 0
 let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
 
-
-" split a pair of braces to type in the middle with Ctrl-J
+" Split a pair of braces to type in the middle with Ctrl-J
 imap <C-j> <CR><Esc>O
 
-" map Ctrl-J to insert blank line after, Shift-J before
+" Map Ctrl-J to insert blank line after, Shift-J before
 " http://superuser.com/questions/607163/inserting-a-blank-line-in-vim
 map <C-k> o<Esc>
 map <S-k> O<Esc>
 
-" stop auto coment insertion due to file type detection
+" Stop auto coment insertion due to file type detection
 " http://vim.wikia.com/wiki/Disable_automatic_comment_insertion
 " (this doesn't work, don't know why)
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -144,14 +140,14 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 "au FileType js setlocal fo-=c fo-=r fo-=o
 au FileType * setlocal fo-=c fo-=r fo-=o
 
-" watch for changes in .vimrc and auto reload
+" Watch for changes in .vimrc and auto reload
 " http://superuser.com/questions/132029/how-do-you-reload-your-vimrc-file-without-restarting-vim
 augroup myvimrc
   au!
   au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
 augroup END
 
-" abbreviations
+" Abbreviations
 " http://vim.wikia.com/wiki/Using_abbreviations
 ab cll console.log(
 ab fll for (var i = 0; i < x.length; i += 1) {}
