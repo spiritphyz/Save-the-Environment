@@ -11,6 +11,12 @@ endif
 " http://vim.wikia.com/wiki/Mac_OS_X_clipboard_sharing
 set clipboard=unnamed
 
+" Turn off spell-checking, causes underlining in Markdown files
+set nospell
+
+" Disable Polyglot Markdown, interferes with vim-markdown
+let g:polyglot_disabled = ['markdown']
+
 " highline current line
 " 256 color palette needed to avoid ugly underlining
 set cursorline
@@ -176,6 +182,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'gabrielelana/vim-markdown'
 Plug 'mattn/emmet-vim'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
