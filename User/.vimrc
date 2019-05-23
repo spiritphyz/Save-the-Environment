@@ -11,9 +11,6 @@ endif
 " http://vim.wikia.com/wiki/Mac_OS_X_clipboard_sharing
 set clipboard=unnamed
 
-" Turn off spell-checking, causes underlining in Markdown files
-set nospell
-
 " Disable Polyglot Markdown, interferes with vim-markdown
 let g:polyglot_disabled = ['markdown']
 
@@ -135,6 +132,9 @@ let g:lightline#bufferline#unicode_symbols = 0
 let g:lightline#bufferline#enable_devicons = 1
 let g:lightline#bufferline#min_buffer_count = 2
 let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
+
+" vim-markdown settings
+let g:markdown_enable_spell_checking = 0
 
 " Split a pair of braces to type in the middle with Ctrl-J
 imap <C-j> <CR><Esc>O
