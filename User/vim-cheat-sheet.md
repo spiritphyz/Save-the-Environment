@@ -26,7 +26,7 @@
   * :res -5             resize height shorter by 5 units
 
   * ctrl-w >            resize width wider by 1 unit
-  * ctrl-w <            resize width wider by 1 unit
+  * ctrl-w <            resize width thinner by 1 unit
   * :vert res +5        resize width wider by 5 units
   * :vert res -5        resize width thinner by 5 units
 
