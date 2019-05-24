@@ -22,7 +22,7 @@ set cursorline
 " http://dougblack.io/words/a-good-vimrc.html
 set lazyredraw
 
-" tabs
+" Tab key behavior
 set expandtab " use spaces instead of tabs
 set smarttab
 set shiftwidth=2
