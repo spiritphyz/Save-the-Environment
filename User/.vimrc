@@ -22,23 +22,16 @@ set cursorline
 " http://dougblack.io/words/a-good-vimrc.html
 set lazyredraw
 
-" Tab behavior
-" http://stackoverflow.com/questions/235839/indent-multiple-lines-quickly-in-vi
-set expandtab			" Use softtabstop spaces instead of tab characters
-set shiftwidth=2	" Indent by 2 spaces when using >>, <<, == etc.
-set softtabstop=2	" Indent by 2 spaces when pressing <TAB>
-set ts=2          " Set tabs to be 2 spaces each
+" tabs
+set expandtab " use spaces instead of tabs
+set smarttab
+set shiftwidth=2
+set tabstop=2
+set ai " auto indent
+set si " smart indent
 
-set autoindent		"Keep indentation from previous line
-set smartindent		"Automatically inserts indentation in some cases
-set cindent				"Like smartindent, but stricter and more customizable
-
-" Word wrapping, but only insert line breaks when I press Enter
-set wrap
-set linebreak
-set nolist " list disables linebreak
-set textwidth=0
-set wrapmargin=0
+" for word wrapping but only insert line breaks when I press Enter
+set wrap " wrap lines
 
 " for existing files, keep textwidths but don't let vim automatically reformat when typing on lines
 set formatoptions+=1
