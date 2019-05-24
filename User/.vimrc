@@ -114,6 +114,7 @@ let g:lightline.component_type = {
 
 " Lightline-bufferline settings
 set showtabline=2
+let g:lightline#bufferline#filename_modifier = ':t' " only filename, no path
 let g:lightline#bufferline#show_number  = 1
 let g:lightline#bufferline#shorten_path = 1
 let g:lightline#bufferline#unnamed      = '[No Name]'
