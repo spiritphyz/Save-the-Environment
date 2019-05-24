@@ -58,10 +58,6 @@ set backspace=indent,eol,start
 " Use color syntax highlighting
 syntax on
 
-" enable JSX syntax highlighting
-" http://stackoverflow.com/questions/34578154/how-to-add-react-jsx-as-javascript-file-type-in-vim-and-enable-eslinting-auto-c
-let g:jsx_ext_required = 0
-
 " default syntax highlighting is too dark, fix it
 set background=dark
 
@@ -184,7 +180,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'gabrielelana/vim-markdown'
 Plug 'mattn/emmet-vim'
-Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
 Plug 'crusoexia/vim-javascript-lib'
 Plug 'tpope/vim-surround'
