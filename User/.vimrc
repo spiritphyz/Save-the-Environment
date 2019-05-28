@@ -11,6 +11,9 @@ endif
 " http://vim.wikia.com/wiki/Mac_OS_X_clipboard_sharing
 set clipboard=unnamed
 
+" Use spacebar as leader key instead of default '\'
+let mapleader="\<Space>"
+
 " Disable Polyglot Markdown, interferes with vim-markdown
 let g:polyglot_disabled = ['markdown']
 
