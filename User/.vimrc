@@ -82,7 +82,12 @@ set incsearch
 set number
 
 " FZF settings
-map <C-p> :Files<CR>
+" Ctrl-p: fuzzy search open buffer names
+" Ctrl-e: fuzzy search files in same folder at vim start
+" Ctrl-g: Ripgrep inside files
+map <C-p> :Buffers<CR>
+map <C-e> :Files<CR>
+map <C-g> :Ag<CR>
 
 " Map Ctrl-n for NERDTree
 map <C-n> :NERDTreeToggle<CR>
