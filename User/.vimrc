@@ -42,6 +42,9 @@ set cursorline
 " http://dougblack.io/words/a-good-vimrc.html
 set lazyredraw
 
+" More characters will be sent to screen for redrawing
+set ttyfast
+
 " Tab key behavior
 set expandtab " use spaces instead of tabs
 set smarttab
