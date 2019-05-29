@@ -45,6 +45,12 @@ set lazyredraw
 " More characters will be sent to screen for redrawing
 set ttyfast
 
+" Turn on cusotm wait time for keypress
+set ttimeout
+
+" Make keypress wait period shorter
+set ttimeoutlen=70
+
 " Tab key behavior
 set expandtab " use spaces instead of tabs
 set smarttab
