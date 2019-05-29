@@ -126,6 +126,9 @@ set incsearch
 " turn on line numbers
 set number
 
+" Disable auto comments on new lines
+set formatoptions-=cro
+
 " FZF settings
 " Ctrl-p: fuzzy search open buffer names
 " Ctrl-e: fuzzy search files in same folder at vim start
@@ -183,18 +186,6 @@ imap <C-j> <CR><Esc>O
 " http://superuser.com/questions/607163/inserting-a-blank-line-in-vim
 map <C-k> o<Esc>
 map <S-k> O<Esc>
-
-" Stop auto coment insertion due to file type detection
-" http://vim.wikia.com/wiki/Disable_automatic_comment_insertion
-" (this doesn't work, don't know why)
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
-" disable all auto comments that cause first-line comment to spoil pasted text
-" http://vi.stackexchange.com/questions/1983/how-can-i-get-vim-to-stop-putting-comments-in-front-of-new-lines
-"autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-"au FileType js setlocal comments-=:// comments+=f://
-"au FileType js setlocal fo-=c fo-=r fo-=o
-au FileType * setlocal fo-=c fo-=r fo-=o
 
 " Watch for changes in .vimrc and auto reload
 " http://superuser.com/questions/132029/how-do-you-reload-your-vimrc-file-without-restarting-vim
