@@ -133,6 +133,9 @@ set formatoptions-=cro
 au VimEnter,WinEnter,BufWinEnter,FocusGained,CmdwinEnter * set cul
 au WinLeave,FocusLost,CmdwinLeave * set nocul
 
+" Remove trailing whitespace on save
+autocmd! BufWritePre * :%s/\s\+$//e
+
 " FZF settings
 " Ctrl-p: fuzzy search open buffer names
 " Ctrl-e: fuzzy search files in same folder at vim start
