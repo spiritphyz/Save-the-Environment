@@ -129,6 +129,10 @@ set number
 " Disable auto comments on new lines
 set formatoptions-=cro
 
+" Remove the current line highlight in unfocused windows
+au VimEnter,WinEnter,BufWinEnter,FocusGained,CmdwinEnter * set cul
+au WinLeave,FocusLost,CmdwinLeave * set nocul
+
 " FZF settings
 " Ctrl-p: fuzzy search open buffer names
 " Ctrl-e: fuzzy search files in same folder at vim start
