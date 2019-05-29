@@ -20,6 +20,9 @@ nnoremap <leader>w :w<cr>
 "Shortcut to replace word under cursor using leader"
 nnoremap <leader>c :%s/\<<c-r><c-w>//g<left><left>
 
+"Use shift-Enter to add blank line below w/o Insert mode
+nmap <leader><Enter> o<Esc>k
+
 "Autoclose braces
 inoremap ( ()<Left>
 inoremap { {}<Left>
