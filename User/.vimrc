@@ -23,6 +23,9 @@ nnoremap <leader>c :%s/\<<c-r><c-w>//g<left><left>
 "Use shift-Enter to add blank line below w/o Insert mode
 nmap <leader><Enter> o<Esc>k
 
+" Toggle show hidden characters
+nnoremap <silent> <leader>h :set nolist!<cr>
+
 "Autoclose braces
 inoremap ( ()<Left>
 inoremap { {}<Left>
@@ -55,8 +58,8 @@ set formatoptions+=1
 
 " Turn on OmniCompletion for tag completion in insert mode
 " http://vim.wikia.com/wiki/Omni_completion
-" To use omni completion, type <C-X><C-O> while open in Insert mode. 
-" If matching names are found, a pop-up menu opens which can be navigated 
+" To use omni completion, type <C-X><C-O> while open in Insert mode.
+" If matching names are found, a pop-up menu opens which can be navigated
 " using the <C-N> and <C-P> keys.
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
@@ -127,7 +130,7 @@ let g:lightline.component_expand = {
       \ }
 
 let g:lightline.component_type = {
-      \     'buffers': 'tabsel', 
+      \     'buffers': 'tabsel',
       \     'linter_checking': 'left',
       \     'linter_warnings': 'warning',
       \     'linter_errors': 'error',
