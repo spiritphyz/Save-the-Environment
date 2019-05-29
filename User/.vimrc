@@ -54,6 +54,13 @@ set ttimeoutlen=70
 " Turn off swap files
 set noswapfile
 
+" Better menu completion in command mode
+set wildmenu
+set wildmode=longest:full,full
+
+" Show incomplete commands
+set showcmd
+
 " Tab key behavior
 set expandtab " use spaces instead of tabs
 set smarttab
