@@ -51,6 +51,9 @@ set ttimeout
 " Make keypress wait period shorter
 set ttimeoutlen=70
 
+" Turn off swap files
+set noswapfile
+
 " Tab key behavior
 set expandtab " use spaces instead of tabs
 set smarttab
