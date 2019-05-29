@@ -100,7 +100,10 @@ set background=dark
 set ruler
 
 " ignore case while searching
-set ic
+set ignorecase
+
+" Don't ignore case unless already has one capital letter
+set smartcase
 
 " enable 256 color palette for vim-distinguished theme
 set t_Co=256
