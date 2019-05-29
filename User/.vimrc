@@ -58,6 +58,9 @@ set noswapfile
 set wildmenu
 set wildmode=longest:full,full
 
+" Always show 2 lines above/below the cursor
+set scrolloff=2
+
 " Show incomplete commands
 set showcmd
 
