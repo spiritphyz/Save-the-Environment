@@ -20,6 +20,11 @@ nnoremap <leader>w :w<cr>
 "Shortcut to replace word under cursor using leader"
 nnoremap <leader>c :%s/\<<c-r><c-w>//g<left><left>
 
+"Autoclose braces
+inoremap ( ()<Left>
+inoremap { {}<Left>
+inoremap [ []<Left>
+
 " Disable Polyglot Markdown, interferes with vim-markdown
 let g:polyglot_disabled = ['markdown']
 
