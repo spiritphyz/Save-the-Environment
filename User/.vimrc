@@ -14,6 +14,9 @@ set clipboard=unnamed
 " Use spacebar as leader key instead of default '\'
 let mapleader="\<Space>"
 
+"Shortcut for saving file using leader
+nnoremap <leader>w :w<cr>
+
 " Disable Polyglot Markdown, interferes with vim-markdown
 let g:polyglot_disabled = ['markdown']
 
