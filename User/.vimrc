@@ -27,8 +27,8 @@ nnoremap <leader>c :%s/\<<c-r><c-w>//g<left><left>
 nnoremap <silent> <leader>h :set nolist!<cr>
 
 " Insert empty line without entering insert mode
-nnoremap <Leader>o o<Esc>
-nnoremap <Leader>O O<Esc>
+nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
+nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
 
 "Autoclose braces
 "This interferes with pasting in JSON files with quotes
