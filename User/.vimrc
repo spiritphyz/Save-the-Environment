@@ -17,19 +17,24 @@ let mapleader="\<Space>"
 "Shortcut for saving file using leader
 nnoremap <leader>w :w<cr>
 
-"Shortcut to replace word under cursor using leader"
-nnoremap <leader>c :%s/\<<c-r><c-w>//g<left><left>
+"Shortcut for quitting using leader
+nnoremap <leader>q :q<cr>
 
-"Use shift-Enter to add blank line below w/o Insert mode
-nmap <leader><Enter> o<Esc>k
+"Shortcut to replace word under cursor using leader
+nnoremap <leader>c :%s/\<<c-r><c-w>//g<left><left>
 
 " Toggle show hidden characters
 nnoremap <silent> <leader>h :set nolist!<cr>
 
+" Insert empty line without entering insert mode
+nnoremap <Leader>o o<Esc>
+nnoremap <Leader>O O<Esc>
+
 "Autoclose braces
-inoremap ( ()<Left>
-inoremap { {}<Left>
-inoremap [ []<Left>
+"This interferes with pasting in JSON files with quotes
+"inoremap ( ()<Left>
+"inoremap { {}<Left>
+"inoremap [ []<Left>
 
 " highline current line
 " 256 color palette needed to avoid ugly underlining
