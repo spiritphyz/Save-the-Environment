@@ -31,9 +31,6 @@ inoremap ( ()<Left>
 inoremap { {}<Left>
 inoremap [ []<Left>
 
-" Disable Polyglot Markdown, interferes with vim-markdown
-let g:polyglot_disabled = ['markdown']
-
 " highline current line
 " 256 color palette needed to avoid ugly underlining
 set cursorline
@@ -184,7 +181,10 @@ let g:lightline#bufferline#min_buffer_count = 2
 let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
 
 " vim-markdown settings
+let g:vim_markdown_folding_disabled = 1
 let g:markdown_enable_spell_checking = 0
+let g:polyglot_disabled = ['md', 'markdown'] " disable Polyglot Markdown
+let g:vim_markdown_fenced_languages = ['bash=sh', 'c', 'css', 'go', 'html', 'javascript', 'python', 'ruby', 'scss']
 
 " Split a pair of braces to type in the middle with Ctrl-J
 imap <C-j> <CR><Esc>O
