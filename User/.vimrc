@@ -185,7 +185,8 @@ let g:vim_markdown_folding_disabled = 1
 let g:markdown_enable_spell_checking = 0
 let g:polyglot_disabled = ['md', 'markdown'] " interferes with vim-markdown
 let g:vim_markdown_fenced_languages = ['bash=sh', 'c', 'css', 'go', 'html', 'javascript', 'python', 'ruby', 'scss']
-let g:vim_markdown_frontmatter = 1 " format JSON opening, closing symbols
+let g:vim_markdown_frontmatter = 1           " highlight YAML front matter
+let g:vim_markdown_json_frontmatter = 1      " highlight JSON front matter
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_new_list_item_indent = 2
 
@@ -223,7 +224,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
-Plug 'godlygeek/tabular'
+Plug 'godlygeek/tabular'         " allows table formatting in Markdown
+Plug 'elzr/vim-json'             " for front matter highlighting
 Plug 'plasticboy/vim-markdown'
 Plug 'mattn/emmet-vim'
 Plug 'pangloss/vim-javascript'
