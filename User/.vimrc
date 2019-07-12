@@ -194,6 +194,8 @@ let g:vim_markdown_frontmatter = 1           " highlight YAML front matter
 let g:vim_markdown_json_frontmatter = 1      " highlight JSON front matter
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_new_list_item_indent = 2
+autocmd FileType markdown highlight htmlH1 cterm=none ctermfg=70
+autocmd BufNewFile,BufRead *.md set filetype=markdown
 
 " Split a pair of braces to type in the middle with Ctrl-J
 imap <C-j> <CR><Esc>O
