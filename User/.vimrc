@@ -57,10 +57,10 @@ set ttimeoutlen=70
 " updatecount (200 keystrokes) and updatetime
 " (4 seconds) are fine
 set swapfile
-set directory^=~/.vim/swap//
+ set directory^=~/.vim/swap//
 
 " protect against crash-during-write
-set writebackup
+ set writebackup
 " but do not persist backup after successful write
 set nobackup
 " use rename-and-write-new method whenever safe
@@ -73,8 +73,8 @@ if has("patch-8.1.0251")
 end
 
 " persist the undo tree for each file
-set undofile
-set undodir^=~/.vim/undo//
+  set undofile
+  set undodir^=~/.vim/undo//
 
 " Better menu completion in command mode
 set wildmenu
@@ -131,7 +131,7 @@ set smartcase
 set t_Co=256
 
 " use cool color scheme
-colorscheme onedark
+colorscheme one
 
 " clear search highlighting by pressing Enter
 nnoremap <CR> :noh<CR><CR>
@@ -203,7 +203,7 @@ let g:lightline#bufferline#unnamed      = '[No Name]'
 let g:lightline#bufferline#unicode_symbols = 0
 let g:lightline#bufferline#enable_devicons = 1
 let g:lightline#bufferline#min_buffer_count = 2
-let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
+let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']]}
 
 " vim-markdown settings
 let g:vim_markdown_folding_disabled = 1
@@ -258,8 +258,9 @@ Plug 'mattn/emmet-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'crusoexia/vim-javascript-lib'
 Plug 'tpope/vim-surround'
-Plug 'joshdick/onedark.vim'
+Plug 'rakr/vim-one'
 Plug 'itchyny/lightline.vim'
+Plug 'mengelbrecht/lightline-bufferline'
 Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons' " should be loaded as last plugin
 
