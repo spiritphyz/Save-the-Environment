@@ -1,9 +1,11 @@
 # Vim Buffers (files)
-  * :ls    list buffers
-  * :bd#   buffer destroy (:bd2 deletes buffer 2)
-  * :e     edit a file in same directory that you started Vim
-  * :o     open a file from any starting directory using file browser or FZF (ctrl-P)
-  * C-g    show current filename
+  * :ls       list buffers
+  * :b1       switch to buffer 1
+  * :bu frag  switch to buffer by searching fragment of name
+  * :bd#      buffer destroy (:bd2 deletes buffer 2)
+  * :e        edit a file in same directory that you started Vim
+  * :o        open a file from any starting directory using file browser or               FZF (ctrl-P)
+  * C-g       show current filename
 
 # Vim Windows (split panes)
   * ctrl-w v or :vsp    split into columns
@@ -19,7 +21,7 @@
   * ctrl-w k            focus on top split
 
   * ctrl-w R            swap top/bottom or left/right split
-      
+
   * ctrl-w -            resize height shorter by 1 unit
   * ctrl-w +            resize height taller by 1 unit
   * :res +5             resize height taller by 5 units
@@ -32,3 +34,12 @@
 
 # Reload .vimrc file while editing it inside Vim
   * :so %
+
+# Vim marks
+  * m1                  set mark named "1"
+  * '1                  jump to mark named "1"
+  * mH                  set capitalized mark named "H"
+  * :bH                 jump to named buffer across any open buffers,
+                        useful if you set "H" for Header file, "C" for
+                        a source file, "M" for Makefile
+
