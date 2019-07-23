@@ -57,10 +57,10 @@ set ttimeoutlen=70
 " updatecount (200 keystrokes) and updatetime
 " (4 seconds) are fine
 set swapfile
- set directory^=~/.vim/swap//
+set directory^=~/.vim/swap//
 
 " protect against crash-during-write
- set writebackup
+set writebackup
 " but do not persist backup after successful write
 set nobackup
 " use rename-and-write-new method whenever safe
@@ -73,8 +73,8 @@ if has("patch-8.1.0251")
 end
 
 " persist the undo tree for each file
-  set undofile
-  set undodir^=~/.vim/undo//
+set undofile
+set undodir^=~/.vim/undo//
 
 " Better menu completion in command mode
 set wildmenu
@@ -161,10 +161,10 @@ autocmd! BufWritePre * :%s/\s\+$//e
 " FZF settings
 " Ctrl-p: fuzzy search open buffer names
 " Ctrl-e: fuzzy search files in same folder at vim start
-" Ctrl-g: Ripgrep inside files
+" Ctrl-i: Ripgrep inside files
 map <C-p> :Buffers<CR>
 map <C-e> :Files<CR>
-map <C-g> :Ag<CR>
+map <C-i> :Ag<CR>
 
 " Map Ctrl-n for NERDTree
 map <C-n> :NERDTreeToggle<CR>
