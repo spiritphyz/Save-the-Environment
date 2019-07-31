@@ -251,6 +251,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'fatih/vim-go'
 Plug 'godlygeek/tabular'         " allows table formatting in Markdown
 Plug 'elzr/vim-json'             " for front matter highlighting
 Plug 'plasticboy/vim-markdown'
