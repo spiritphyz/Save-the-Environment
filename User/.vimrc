@@ -36,6 +36,11 @@ nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1
 "inoremap { {}<Left>
 "inoremap [ []<Left>
 
+" Reload file after disk change, notify
+autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
+autocmd FileChangedShellPost *
+  \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
+
 " highline current line
 " 256 color palette needed to avoid ugly underlining
 set cursorline
