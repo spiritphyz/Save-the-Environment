@@ -137,6 +137,7 @@ set t_Co=256
 
 " use cool color scheme
 colorscheme one
+call one#highlight('Visual', 'ffffff', 'e06c75', 'none')
 
 " clear search highlighting by pressing Enter
 nnoremap <CR> :noh<CR><CR>
