@@ -14,21 +14,26 @@ set clipboard=unnamed
 " Use spacebar as leader key instead of default '\'
 let mapleader="\<Space>"
 
-"Shortcut for saving file using leader
+" Save file using leader
 nnoremap <leader>w :w<cr>
 
-"Shortcut for quitting using leader
+" Quit using leader
 nnoremap <leader>q :q<cr>
 
-"Shortcut to replace word under cursor using leader
+" Replace word under cursor using leader
 nnoremap <leader>c :%s/\<<c-r><c-w>//g<left><left>
 
-" Toggle show hidden characters
+" Toggle show hidden characters with leader
 nnoremap <silent> <leader>h :set nolist!<cr>
 
-" Insert empty line without entering insert mode
+" Insert empty line without entering insert mode with leader
 nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
 nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
+
+" Switch to next, previous, and delete buffer
+nnoremap <leader>n :bn<cr>
+nnoremap <leader>p :bp<cr>
+nnoremap <leader>d :bd<cr>
 
 "Autoclose braces
 "This interferes with pasting in JSON files with quotes
@@ -64,16 +69,15 @@ set ttimeoutlen=70
 set swapfile
  set directory^=~/.vim/swap//
 
-" protect against crash-during-write
+" Protect against crash-during-write
  set writebackup
 " but do not persist backup after successful write
 set nobackup
-" use rename-and-write-new method whenever safe
+" Use rename-and-write-new method whenever safe
 set backupcopy=auto
-" patch required to honor double slash at end
+" Patch required to honor double slash at end
 if has("patch-8.1.0251")
-  " consolidate the writebackups -- not a big
-  " deal either way, since they usually get deleted
+  " consolidate the writebackups
   set backupdir^=~/.vim/backup//
 end
 
