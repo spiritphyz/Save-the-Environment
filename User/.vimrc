@@ -27,8 +27,8 @@ nnoremap <leader>c :%s/\<<c-r><c-w>//g<left><left>
 nnoremap <silent> <leader>h :set nolist!<cr>
 
 " Insert empty line without entering insert mode with leader
-nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
-nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
+nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<cr>
+nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<cr>
 
 " Switch to next, previous, and delete buffer
 nnoremap <leader>n :bn<cr>
