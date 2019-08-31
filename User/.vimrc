@@ -36,10 +36,13 @@ nnoremap <leader>p :bp<cr>
 nnoremap <leader>d :bd<cr>
 
 "Autoclose braces
-"This interferes with pasting in JSON files with quotes
-"inoremap ( ()<Left>
-"inoremap { {}<Left>
-"inoremap [ []<Left>
+inoremap ( ()<Left>
+inoremap { {}<Left>
+inoremap [ []<Left>
+
+" Use F2 key to enable paste mode before pasting in large amount of text
+" to avoid auto-formatting. Press F2 again to exit paste mode.
+set pastetoggle=<F2>
 
 " Reload file after disk change, notify
 autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
@@ -54,10 +57,14 @@ set cursorline
 " http://dougblack.io/words/a-good-vimrc.html
 set lazyredraw
 
+" Hide buffers instead of closing them.
+" Allows faster buffer switching, allows unsaved changes
+set hidden
+
 " More characters will be sent to screen for redrawing
 set ttyfast
 
-" Turn on cusotm wait time for keypress
+" Turn on custom wait time for keypress
 set ttimeout
 
 " Make keypress wait period shorter
