@@ -53,6 +53,8 @@ bind -r r source-file ~/.tmux.conf
 
 # Customize status bar and border colors
 set -g status-bg colour250
-set -g pane-border-fg colour250
-set -g pane-active-border-fg colour13
+# set -g pane-border-fg colour250 # for Tmux < 2.8 (Linux)
+set -g pane-border-style fg=colour250 # For Tmux 2.8+ (macos, homeberw))
+# set -g pane-active-border-fg colour13 # for Tmux < 2.8 (Linux)
+set -g pane-active-border-style fg=colour13 # For Tmux 2.8+ (macos, homeberw))
 
