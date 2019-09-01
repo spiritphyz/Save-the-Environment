@@ -46,7 +46,8 @@ unbind p
 bind p paste-buffer
 # The following 2 lines are for Tmux 2.8+ and macOS
 bind-key -T copy-mode-vi v send-keys -X begin-selection
-bind-key -T copy-mode-vi y send-keys -X copy-pipe "reattach-to-user-namespace pbcopy"
+bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy"
+bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy"
 
 # Use prefix-r to reload tmux config
 bind -r r source-file ~/.tmux.conf
