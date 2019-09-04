@@ -40,8 +40,8 @@ bind -n M-K resize-pane -U 5
 bind -r L resize-pane -R 5
 bind -n M-L resize-pane -R 5
 
-# Zoom with Alt-z
-bind -n M-z resize-pane -Z
+# Zoom with Alt-m
+bind -n M-m resize-pane -Z
 
 # Use vi mode for navigation in scrollback view (copy mode)
 set-window-option -g mode-keys vi
