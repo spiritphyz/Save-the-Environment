@@ -187,6 +187,19 @@ map <C-i> :Ag<CR>
 " Map Ctrl-n for NERDTree
 map <C-n> :NERDTreeToggle<CR>
 
+" Prettier plugin settings
+nmap <Leader>pr <Plug>(Prettier)      " <leader>pr to run Prettier
+let g:prettier#exec_cmd_async = 1     " make :Prettier be async
+let g:prettier#config#semi = 'false'  " don't use semicolons
+let g:prettier#config#single_quote = 'true'     " prefer single quotes
+let g:prettier#config#bracket_spacing = 'false' " no space between brackets
+let g:prettier#config#jsx_bracket_same_line = 'true' " put > on single line
+let g:prettier#config#arrow_parens = 'always'
+let g:prettier#config#trailing_comma = 'all'
+let g:prettier#config#parser = 'flow'
+let g:prettier#config#prose_wrap = 'preserve'
+let g:prettier#config#html_whitespace_sensitivity = 'css'
+
 " enable lightline
 set laststatus=2
 set noshowmode " turn off extra -- INSERT --
@@ -280,6 +293,7 @@ Plug 'tpope/vim-surround'
 Plug 'rakr/vim-one'
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
+Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons' " should be loaded as last plugin
 
