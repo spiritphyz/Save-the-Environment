@@ -35,6 +35,11 @@
 # Reload .vimrc file while editing it inside Vim
   * :so %
 
+# Code folding
+zo                      open fold ('z' looks like a folded piece of paper))
+zc                      close fold
+za                      toggle fold
+
 # Vim marks
   * m1                  set mark named "1"
   * '1                  jump to mark named "1"
