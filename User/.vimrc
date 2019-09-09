@@ -49,10 +49,6 @@ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checkti
 autocmd FileChangedShellPost *
   \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 
-" highline current line
-" 256 color palette needed to avoid ugly underlining
-set cursorline
-
 " faster redraw
 " http://dougblack.io/words/a-good-vimrc.html
 set lazyredraw
