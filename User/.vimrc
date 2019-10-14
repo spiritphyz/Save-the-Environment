@@ -36,9 +36,9 @@ nnoremap <leader>p :bp<cr>
 nnoremap <leader>d :bd<cr>
 
 "Autoclose braces
-inoremap ( ()<Left>
-inoremap { {}<Left>
-inoremap [ []<Left>
+"inoremap ( ()<Left>
+"inoremap { {}<Left>
+"inoremap [ []<Left>
 
 " Use F2 key to enable paste mode before pasting in large amount of text
 " to avoid auto-formatting. Press F2 again to exit paste mode.
