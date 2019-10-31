@@ -11,6 +11,7 @@
 # Vim Windows (split panes)
   * ctrl-w v or :vsp    split into columns
   * ctrl-w s or :sp     split into stacks
+  * ctrl-w c            close current window (pane)
   * ctrl-w |            zoom column split
   * ctrl-w _            zoom stack split
   * ctrl-w =            restore splits equally
