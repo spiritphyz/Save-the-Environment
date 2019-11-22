@@ -65,4 +65,5 @@
   * :pwd                print working directory
   * :s/foo/bar/g        for curr line, replace foo w/ bar for all occurences on line
   * :%s/foo/bar         for all lines, replace foo w/ bar
+  * :set syntax=html    set syntax highlighting for current buffer
 
