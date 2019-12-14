@@ -101,6 +101,7 @@ set showcmd
 " Tab key behavior
 set expandtab " use spaces instead of tabs
 set smarttab
+set softtabstop=2 " # of spaces that counts as a tab during editing ops
 set shiftwidth=2
 set tabstop=2
 set ai " auto indent
