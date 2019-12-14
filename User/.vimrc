@@ -266,8 +266,12 @@ ab cll console.log(
 ab fll for (var i = 0; i < x.length; i += 1) {}
 
 
+" ============================================================================ "
+" ===                           PLUGIN SETUP                               === "
+" ============================================================================ "
+"
 " ------------------------------------------------------------------------------
-" Vim-Plug plugin manager, fast parallel updates
+" Vim-Plug is the plugin manager to allow fast parallel updates
 " https://github.com/junegunn/vim-plug
 "
 " List plugins with ':PlugStatus'
