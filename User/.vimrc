@@ -177,9 +177,9 @@ autocmd! BufWritePre * :%s/\s\+$//e
 " Ctrl-p: fuzzy search open buffer names
 " Ctrl-e: fuzzy search files in same folder at vim start
 " Ctrl-i: Ripgrep inside files
-map <C-p> :Buffers<CR>
-map <C-e> :Files<CR>
-map <C-i> :Ag<CR>
+"map <C-p> :Buffers<CR>
+"map <C-e> :Files<CR>
+"map <C-i> :Ag<CR>
 
 " Map Ctrl-n for NERDTree
 map <C-n> :NERDTreeToggle<CR>
@@ -274,14 +274,14 @@ ab fll for (var i = 0; i < x.length; i += 1) {}
 " Vim-Plug is the plugin manager to allow fast parallel updates
 " https://github.com/junegunn/vim-plug
 "
-" List plugins with ':PlugStatus'
 " Install updates with ':PlugInstall'
+" List plugins with ':PlugStatus'
 " ------------------------------------------------------------------------------
 call plug#begin('~/.vim/plugged')
 
 " Make sure you use single quotes
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+"Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'fatih/vim-go'
 Plug 'godlygeek/tabular'         " allows table formatting in Markdown
