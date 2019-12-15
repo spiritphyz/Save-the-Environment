@@ -282,6 +282,17 @@ call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 "Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 "Plug 'junegunn/fzf.vim'
+"
+" Denite install requirements:
+" -- Vim 8 compiled with if_python3
+" -- pip3 install --user pynvim
+if has('nvim')
+  Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/denite.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 Plug 'sheerun/vim-polyglot'
 Plug 'fatih/vim-go'
 Plug 'godlygeek/tabular'         " allows table formatting in Markdown
