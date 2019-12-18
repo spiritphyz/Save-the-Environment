@@ -39,9 +39,8 @@ set formatoptions-=cro
 "inoremap { {}<Left>
 "inoremap [ []<Left>
 
-" Use F2 key to enable paste mode before pasting in large amount of text
-" to avoid auto-formatting. Press F2 again to exit paste mode.
-set pastetoggle=<F2>
+" clear search highlighting by pressing Enter
+nnoremap <CR> :noh<CR><CR>
 
 filetype plugin indent on
 syntax on
@@ -59,27 +58,22 @@ set splitbelow
 set ttyfast
 set ruler
 set backspace=indent,eol,start
-set number
 set ignorecase
 set smartcase
 set gdefault
-set incsearch
 set showmatch
-set hlsearch
 set wrap
 set linebreak
 set nolist
 set shortmess+=c
 
-" clear search highlighting by pressing Enter
-nnoremap <CR> :noh<CR><CR>
 
 
 " ============================================================================ "
 " ===                           PLUGIN SETUP                               === "
 " ============================================================================ "
 
-" vim-plug auto setup
+" vim-plug auto
 let plugpath = expand('<sfile>:p:h'). '/autoload/plug.vim'
 if !filereadable(plugpath)
     if executable('curl')
@@ -108,10 +102,50 @@ call plug#end()
 " ============================================================================ "
 
 " Enable true color support
-set termguicolors
+set t_co=256
 
-" use cool color scheme
+" Use cool color scheme
 set background=dark
 colorscheme one
 call one#highlight('Visual', 'ffffff', 'e06c75', 'none')
 call one#highlight('vimLineComment', '888888', '', 'none')
+
+" Remove the current line highlight in unfocused windows
+au VimEnter,WinEnter,BufWinEnter,FocusGained,CmdwinEnter * set cul
+au WinLeave,FocusLost,CmdwinLeave * set nocul
+
+" Remove trailing whitespace on save
+autocmd! BufWritePre * :%s/\s\+$//e
+
+" FZF settings
+" Ctrl-p: fuzzy search open buffer names
+" Ctrl-e: fuzzy search files in same folder at vim start
+" Ctrl-i: Ripgrep inside files
+"map <C-p> :Buffers<CR>
+"map <C-e> :Files<CR>
+"map <C-i> :Ag<CR>
+
+" allow mouse reporting from iterm to allow click-to-position cursor in vim
+set mouse=a
+
+" turn on highlight all search patterns
+set hlsearch
+
+" search as characters are entered
+set incsearch
+
+" turn on line numbers
+set number
+
+" Use F2 key to enable paste mode before pasting in large amount of text
+" to avoid auto-formatting. Press F2 again to exit paste mode.
+set pastetoggle=<F2>
+
+" Reload file after disk change, notify
+autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
+autocmd FileChangedShellPost *
+  \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
+
+" faster redraw
+" http://dougblack.io/words/a-good-vimrc.html
+set lazyredraw
