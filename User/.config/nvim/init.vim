@@ -6,12 +6,14 @@ if has('multi_byte')
   setglobal fileencodings=utf-8
 endif
 
+" Load plugins
+source ~/.config/nvim/plugins.vim
+
 " ============================================================================ "
 " ===                           EDITING OPTIONS                            === "
 " ============================================================================ "
 
-" Yank and paste with the system clipboard
-" Instead of using pbcopy/pbpaste
+" Yank and paste with the system clipboard instead of using pbcopy/pbpaste
 " http://vim.wikia.com/wiki/Mac_OS_X_clipboard_sharing
 set clipboard=unnamed
 
@@ -59,46 +61,6 @@ set backspace=indent,eol,start
 " ============================================================================ "
 " ===                           PLUGIN OPTIONS                             === "
 " ============================================================================ "
-
-" === vim-plug options ===
-let plugpath = expand('<sfile>:p:h'). '/autoload/plug.vim'
-if !filereadable(plugpath)
-    if executable('curl')
-        let plugurl = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-        call system('curl -fLo ' . shellescape(plugpath) . ' --create-dirs ' . plugurl)
-        if v:shell_error
-            echom "Error downloading vim-plug. Please install it manually.\n"
-            exit
-        endif
-    else
-        echom "vim-plug not installed. Please install it manually or install curl.\n"
-        exit
-    endif
-endif
-
-call plug#begin('~/.local/share/nvim/plugged')
-
-" Plugins go here
-"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-"Plug 'junegunn/fzf.vim'
-Plug 'sheerun/vim-polyglot'
-Plug 'fatih/vim-go'
-Plug 'godlygeek/tabular'         " allows table formatting in Markdown
-Plug 'elzr/vim-json'             " for front matter highlighting
-Plug 'plasticboy/vim-markdown'
-Plug 'mattn/emmet-vim'
-Plug 'pangloss/vim-javascript'
-Plug 'crusoexia/vim-javascript-lib'
-Plug 'tpope/vim-surround'
-Plug 'rakr/vim-one'
-Plug 'itchyny/lightline.vim'
-Plug 'mengelbrecht/lightline-bufferline'
-Plug 'prettier/vim-prettier', { 'do': 'npm install' }
-Plug 'scrooloose/nerdtree'
-Plug 'ryanoasis/vim-devicons' " should be loaded as last plugin
-
-call plug#end()
-
 
 " === vim-markdown options ===
 let g:vim_markdown_folding_disabled = 1
@@ -163,6 +125,16 @@ let g:prettier#config#trailing_comma = 'all'
 let g:prettier#config#parser = 'flow'
 let g:prettier#config#prose_wrap = 'preserve'
 let g:prettier#config#html_whitespace_sensitivity = 'css'
+
+" === coc-nvim options ===
+let g:coc_global_extensions = ["coc-css",
+            \ "coc-eslint",
+            \ "coc-html",
+            \ "coc-json",
+            \ "coc-prettier",
+            \ "coc-python",
+            \ "coc-tslint",
+            \ "coc-tsserver"]
 
 
 " ============================================================================ "
@@ -318,8 +290,11 @@ nnoremap <leader>d :bd<cr>
 "map <C-e> :Files<CR>
 "map <C-i> :Ag<CR>
 
-" === NERDTree key mappings ===
-"map <C-n> :NERDTreeToggle<CR>
+"n === NERDTree key mappings ===
+"  <leader>n - Toggle NERDTree on/off
+"  <leader>f - Opens current file location in NERDTree
+map <leader>t :NERDTreeToggle<CR>
+map <leader>f :NERDTreeFind<CR>
 
 " Split a pair of braces to type in the middle with Ctrl-J
 imap <C-j> <CR><Esc>O
