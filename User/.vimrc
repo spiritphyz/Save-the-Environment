@@ -140,8 +140,11 @@ set ignorecase
 " Don't ignore case unless already has one capital letter
 set smartcase
 
-" enable 256 color palette for vim-distinguished theme
-set t_Co=256
+" Enable 256 color palette
+" Need to have 'export TERM=xterm-256color' in .bashrc
+if !has('gui_running')
+  set t_Co=256
+endif
 
 " use cool color scheme
 colorscheme one
