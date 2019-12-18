@@ -1,35 +1,19 @@
+" Use Unicode characters. Has to be at the top of the file.
+" The order of these commands is important.
+if has('multi_byte')
+  set encoding=utf-8
+  scriptencoding utf-8
+  setglobal fileencodings=utf-8
+endif
+
 " ============================================================================ "
 " ===                           EDITING OPTIONS                            === "
 " ============================================================================ "
 
-" Copy current buffer to system clipboard
+" Yank and paste with the system clipboard
 " Instead of using pbcopy/pbpaste
 " http://vim.wikia.com/wiki/Mac_OS_X_clipboard_sharing
 set clipboard=unnamed
-
-" Use spacebar as leader key instead of default '\'
-let mapleader="\<Space>"
-
-" Save file using leader
-nnoremap <leader>w :w<cr>
-
-" Quit using leader
-nnoremap <leader>q :q<cr>
-
-" Replace word under cursor using leader
-nnoremap <leader>c :%s/\<<c-r><c-w>//g<left><left>
-
-" Toggle show hidden characters with leader
-nnoremap <silent> <leader>h :set nolist!<cr>
-
-" Insert empty line without entering insert mode with leader
-nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<cr>
-nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<cr>
-
-" Switch to next, previous, and delete buffer
-nnoremap <leader>n :bn<cr>
-nnoremap <leader>p :bp<cr>
-nnoremap <leader>d :bd<cr>
 
 " Disable auto comments on new lines
 set formatoptions-=cro
@@ -42,27 +26,39 @@ set formatoptions-=cro
 " clear search highlighting by pressing Enter
 nnoremap <CR> :noh<CR><CR>
 
-filetype plugin indent on
-syntax on
-set encoding=utf-8
-set tabstop=2
-set expandtab
-set autoindent
+" Tab key behavior
+set expandtab " use spaces instead of tabs
+set smarttab
+set softtabstop=2 " # of spaces that counts as a tab during editing ops
 set shiftwidth=2
-set scrolloff=3
-set showcmd
-set hidden
-set wildmenu
+set tabstop=2
+set ai " auto indent
+set si " smart indent
+
+" Word wrapping, only insert line breaks when I press Enter
+set wrap " wrap lines
+
+" for existing files, keep textwidths but don't let vim automatically reformat when typing on lines
+set formatoptions+=1
+
+" Turn on OmniCompletion for tag completion in insert mode
+" http://vim.wikia.com/wiki/Omni_completion
+" To use omni completion, type <C-X><C-O> while open in Insert mode.
+" If matching names are found, a pop-up menu opens which can be navigated
+" using the <C-N> and <C-P> keys.
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
+
+" make backspace delete over line breaks
+" http://vim.wikia.com/wiki/Backspace_and_delete_problems
+set backspace=indent,eol,start
+
+filetype plugin indent on
+set autoindent
 set visualbell
 set splitbelow
-set ttyfast
-set ruler
-set backspace=indent,eol,start
-set ignorecase
-set smartcase
 set gdefault
 set showmatch
-set wrap
 set linebreak
 set nolist
 set shortmess+=c
@@ -70,7 +66,7 @@ set shortmess+=c
 
 
 " ============================================================================ "
-" ===                           PLUGIN SETUP                               === "
+" ===                           PLUGIN OPTIONS                             === "
 " ============================================================================ "
 
 " vim-plug auto
@@ -96,13 +92,77 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 call plug#end()
 
+" === Prettier options ===
+nmap <Leader>pr <Plug>(Prettier)      " <leader>pr to run Prettier
+let g:prettier#exec_cmd_async = 1     " make :Prettier be async
+let g:prettier#config#semi = 'false'  " don't use semicolons
+let g:prettier#config#single_quote = 'true'     " prefer single quotes
+let g:prettier#config#bracket_spacing = 'false' " no space between brackets
+let g:prettier#config#jsx_bracket_same_line = 'true' " put > on single line
+let g:prettier#config#arrow_parens = 'always'
+let g:prettier#config#trailing_comma = 'all'
+let g:prettier#config#parser = 'flow'
+let g:prettier#config#prose_wrap = 'preserve'
+let g:prettier#config#html_whitespace_sensitivity = 'css'
+
+" === Lightline options ===
+set laststatus=2
+set noshowmode " turn off extra -- INSERT --
+
+" Change colors to be darker for status bar and tab bar
+let g:lightline = {
+      \ 'colorscheme': 'darcula',
+      \ }
+
+let g:lightline.component_expand = {
+      \  'buffers': 'lightline#bufferline#buffers',
+      \  'linter_checking': 'lightline#ale#checking',
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors',
+      \  'linter_ok': 'lightline#ale#ok',
+      \ }
+
+let g:lightline.component_type = {
+      \     'buffers': 'tabsel',
+      \     'linter_checking': 'left',
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error',
+      \     'linter_ok': 'left',
+      \ }
+
+" === Lightline-bufferline options ===
+set showtabline=2
+let g:lightline#bufferline#filename_modifier = ':t' " only filename, no path
+let g:lightline#bufferline#show_number  = 1
+let g:lightline#bufferline#shorten_path = 1
+let g:lightline#bufferline#unnamed      = '[No Name]'
+let g:lightline#bufferline#unicode_symbols = 0
+let g:lightline#bufferline#enable_devicons = 1
+let g:lightline#bufferline#min_buffer_count = 2
+let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']]}
+
+" === vim-markdown options ===
+let g:vim_markdown_folding_disabled = 1
+let g:markdown_enable_spell_checking = 0
+let g:polyglot_disabled = ['md', 'markdown'] " interferes with vim-markdown
+let g:vim_markdown_fenced_languages = ['bash=sh', 'c', 'css', 'go', 'html', 'javascript', 'python', 'ruby', 'scss']
+let g:vim_markdown_frontmatter = 1           " highlight YAML front matter
+let g:vim_markdown_json_frontmatter = 1      " highlight JSON front matter
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_new_list_item_indent = 2
+autocmd FileType markdown highlight htmlH1 cterm=none ctermfg=70
+autocmd BufNewFile,BufRead *.md set filetype=markdown
+
 
 " ============================================================================ "
-" ===                                UI                                    === "
+" ===                                UI OPTIONS                            === "
 " ============================================================================ "
 
 " Enable true color support
 set t_co=256
+
+" Use color syntax highlighting
+syntax on
 
 " Use cool color scheme
 set background=dark
@@ -117,24 +177,16 @@ au WinLeave,FocusLost,CmdwinLeave * set nocul
 " Remove trailing whitespace on save
 autocmd! BufWritePre * :%s/\s\+$//e
 
-" FZF settings
-" Ctrl-p: fuzzy search open buffer names
-" Ctrl-e: fuzzy search files in same folder at vim start
-" Ctrl-i: Ripgrep inside files
-"map <C-p> :Buffers<CR>
-"map <C-e> :Files<CR>
-"map <C-i> :Ag<CR>
-
-" allow mouse reporting from iterm to allow click-to-position cursor in vim
+" Allow mouse reporting from iterm to allow click-to-position cursor in vim
 set mouse=a
 
-" turn on highlight all search patterns
+" Turn on highlight all search patterns
 set hlsearch
 
-" search as characters are entered
+" Search as characters are entered
 set incsearch
 
-" turn on line numbers
+" Turn on line numbers
 set number
 
 " Use F2 key to enable paste mode before pasting in large amount of text
@@ -146,6 +198,117 @@ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checkti
 autocmd FileChangedShellPost *
   \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 
-" faster redraw
+" Watch for changes in .vimrc and auto reload
+" http://superuser.com/questions/132029/how-do-you-reload-your-vimrc-file-without-restarting-vim
+augroup myvimrc
+  au!
+  au BufWritePost init.vim,plugins.vim so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+augroup END
+
+" Faster redraw
 " http://dougblack.io/words/a-good-vimrc.html
 set lazyredraw
+
+" Hide buffers instead of closing them.
+" Allows faster buffer switching, allows unsaved changes
+set hidden
+
+" More characters will be sent to screen for redrawing
+set ttyfast
+
+" Turn on custom wait time for keypress
+set ttimeout
+
+" Make keypress wait period shorter
+set ttimeoutlen=70
+
+" Protect changes between writes. Default values of
+" updatecount (200 keystrokes) and updatetime (4 seconds) are fine
+set swapfile
+set directory^=~/.nvim/swap//
+
+" Protect against crash-during-write
+set writebackup
+" but do not persist backup after successful write.
+set nobackup
+" Use rename-and-write-new method whenever safe.
+set backupcopy=auto
+
+" Consolidate the writebackups.
+set backupdir^=~/.nvim/backup
+
+" Persist the undo tree for each file.
+set undofile
+set undodir^=~/.nvim/undo//
+
+" Better menu completion in command mode
+set wildmenu
+set wildmode=longest:full,full
+
+" Always show 2 lines above/below the cursor
+set scrolloff=2
+
+" Show incomplete commands
+set showcmd
+"
+" Show cursor position
+set ruler
+
+" Ignore case while searching
+set ignorecase
+
+" Don't ignore case unless already has one capital letter
+set smartcase
+
+
+" ============================================================================ "
+" ===                             KEY MAPPINGS                             === "
+" ============================================================================ "
+
+" Use spacebar as leader key instead of default '\'
+let mapleader="\<Space>"
+
+" Save file using leader
+nnoremap <leader>w :w<cr>
+
+" Quit using leader
+nnoremap <leader>q :q<cr>
+
+" Replace word under cursor using leader
+nnoremap <leader>c :%s/\<<c-r><c-w>//g<left><left>
+
+" Toggle show hidden characters with leader
+nnoremap <silent> <leader>h :set nolist!<cr>
+
+" Insert empty line without entering insert mode with leader
+nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<cr>
+nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<cr>
+
+" Switch to next, previous, and delete buffer
+nnoremap <leader>n :bn<cr>
+nnoremap <leader>p :bp<cr>
+nnoremap <leader>d :bd<cr>
+
+" === FZF key mappings ===
+" Ctrl-p: fuzzy search open buffer names
+" Ctrl-e: fuzzy search files in same folder at vim start
+" Ctrl-i: Ripgrep inside files
+"map <C-p> :Buffers<CR>
+"map <C-e> :Files<CR>
+"map <C-i> :Ag<CR>
+
+" === NERDTree key mappings ===
+"map <C-n> :NERDTreeToggle<CR>
+
+" Split a pair of braces to type in the middle with Ctrl-J
+imap <C-j> <CR><Esc>O
+
+" Map Ctrl-J to insert blank line after, Shift-J before
+" http://superuser.com/questions/607163/inserting-a-blank-line-in-vim
+map <C-k> o<Esc>
+map <S-k> O<Esc>
+
+" === Abbreviations ===
+" http://vim.wikia.com/wiki/Using_abbreviations
+ab cll console.log(
+ab fll for (var i = 0; i < x.length; i += 1) {}
