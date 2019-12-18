@@ -1,8 +1,7 @@
 " ============================================================================ "
-" ===                           PLUGIN                                     === "
+" ===                               PLUGINS                                === "
 " ============================================================================ "
 
-" === vim-plug options ===
 " Check if vim-plug is installed, otherwise install it
 let plugpath = expand('<sfile>:p:h'). '/autoload/plug.vim'
 if !filereadable(plugpath)
@@ -21,23 +20,41 @@ endif
 
 call plug#begin('~/.local/share/nvim/plugged')
 
-" Put plugins here
-Plug 'sheerun/vim-polyglot'
-Plug 'fatih/vim-go'
-Plug 'godlygeek/tabular'                              " allows table formatting in Markdown
-Plug 'elzr/vim-json'                                  " allow front matter highlighting
-Plug 'plasticboy/vim-markdown'
-Plug 'mattn/emmet-vim'
-Plug 'pangloss/vim-javascript'
-Plug 'crusoexia/vim-javascript-lib'
-Plug 'tpope/vim-surround'
+"Plug 'pangloss/vim-javascript'
+"Plug 'crusoexia/vim-javascript-lib'
 Plug 'rakr/vim-one'
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
 Plug 'scrooloose/nerdtree'
-Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+"Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+
+" Syntax highlighting for many languages
+Plug 'sheerun/vim-polyglot'
+
+" JSON helpers
+" allow front matter highlighting
+Plug 'elzr/vim-json'
+" allows table formatting in Markdown
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+
+" HTML and CSS selector snippets
+" https://docs.emmet.io/cheat-sheet/
+Plug 'mattn/emmet-vim'
+
+" Surround tag helper
+Plug 'tpope/vim-surround'
+
+" Intellisense Engine, uses VS Code's language servers
+" Needs 'npm i -g neovim' and recent version of NodeJS
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install() }}
-Plug 'ryanoasis/vim-devicons'                         " should be loaded as last plugin
+
+" Golang support
+Plug 'fatih/vim-go'
+
+" Allows fancy icons in lightline tabs and NERDTree.
+" Should be loaded as last plugin.
+Plug 'ryanoasis/vim-devicons'
 
 " Initialize plugin system
 call plug#end()
