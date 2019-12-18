@@ -32,8 +32,8 @@ set smarttab
 set softtabstop=2 " # of spaces that counts as a tab during editing ops
 set shiftwidth=2
 set tabstop=2
-set ai " auto indent
-set si " smart indent
+set autoindent " apply current indentation to next line
+set smartindent " reacts to syntax of your code
 
 " Word wrapping, only insert line breaks when I press Enter
 set wrap " wrap lines
@@ -46,15 +46,14 @@ set formatoptions+=1
 " To use omni completion, type <C-X><C-O> while open in Insert mode.
 " If matching names are found, a pop-up menu opens which can be navigated
 " using the <C-N> and <C-P> keys.
-filetype plugin on
+" filetype plugin on
+filetype plugin indent on " auto-indent based on filetype
 set omnifunc=syntaxcomplete#Complete
 
 " make backspace delete over line breaks
 " http://vim.wikia.com/wiki/Backspace_and_delete_problems
 set backspace=indent,eol,start
 
-filetype plugin indent on
-set autoindent
 set visualbell
 set splitbelow
 set gdefault
@@ -109,18 +108,17 @@ Plug 'ryanoasis/vim-devicons' " should be loaded as last plugin
 call plug#end()
 
 
-" === Prettier options ===
-nmap <Leader>pr <Plug>(Prettier)      " <leader>pr to run Prettier
-let g:prettier#exec_cmd_async = 1     " make :Prettier be async
-let g:prettier#config#semi = 'false'  " don't use semicolons
-let g:prettier#config#single_quote = 'true'     " prefer single quotes
-let g:prettier#config#bracket_spacing = 'false' " no space between brackets
-let g:prettier#config#jsx_bracket_same_line = 'true' " put > on single line
-let g:prettier#config#arrow_parens = 'always'
-let g:prettier#config#trailing_comma = 'all'
-let g:prettier#config#parser = 'flow'
-let g:prettier#config#prose_wrap = 'preserve'
-let g:prettier#config#html_whitespace_sensitivity = 'css'
+" === vim-markdown options ===
+let g:vim_markdown_folding_disabled = 1
+let g:markdown_enable_spell_checking = 0
+let g:polyglot_disabled = ['md', 'markdown'] " interferes with vim-markdown
+let g:vim_markdown_fenced_languages = ['bash=sh', 'c', 'css', 'go', 'html', 'javascript', 'python', 'ruby', 'scss']
+let g:vim_markdown_frontmatter = 1           " highlight YAML front matter
+let g:vim_markdown_json_frontmatter = 1      " highlight JSON front matter
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_new_list_item_indent = 2
+autocmd FileType markdown highlight htmlH1 cterm=none ctermfg=70
+autocmd BufNewFile,BufRead *.md set filetype=markdown
 
 
 " === Lightline options ===
@@ -161,17 +159,18 @@ let g:lightline#bufferline#min_buffer_count = 2
 let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']]}
 
 
-" === vim-markdown options ===
-let g:vim_markdown_folding_disabled = 1
-let g:markdown_enable_spell_checking = 0
-let g:polyglot_disabled = ['md', 'markdown'] " interferes with vim-markdown
-let g:vim_markdown_fenced_languages = ['bash=sh', 'c', 'css', 'go', 'html', 'javascript', 'python', 'ruby', 'scss']
-let g:vim_markdown_frontmatter = 1           " highlight YAML front matter
-let g:vim_markdown_json_frontmatter = 1      " highlight JSON front matter
-let g:vim_markdown_conceal = 0
-let g:vim_markdown_new_list_item_indent = 2
-autocmd FileType markdown highlight htmlH1 cterm=none ctermfg=70
-autocmd BufNewFile,BufRead *.md set filetype=markdown
+" === Prettier options ===
+nmap <Leader>pr <Plug>(Prettier)
+let g:prettier#exec_cmd_async = 1     " make :Prettier be async
+let g:prettier#config#semi = 'false'  " don't use semicolons
+let g:prettier#config#single_quote = 'true'     " prefer single quotes
+let g:prettier#config#bracket_spacing = 'false' " no space between brackets
+let g:prettier#config#jsx_bracket_same_line = 'true' " put > on single line
+let g:prettier#config#arrow_parens = 'always'
+let g:prettier#config#trailing_comma = 'all'
+let g:prettier#config#parser = 'flow'
+let g:prettier#config#prose_wrap = 'preserve'
+let g:prettier#config#html_whitespace_sensitivity = 'css'
 
 
 " ============================================================================ "
@@ -224,6 +223,11 @@ augroup myvimrc
   au!
   au BufWritePost init.vim,plugins.vim so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
 augroup END
+
+" Reload dev-icons after init source
+"if exists('g:loaded_webdevicons')
+"  call webdevicons#refresh()
+"endif
 
 " Faster redraw
 " http://dougblack.io/words/a-good-vimrc.html
