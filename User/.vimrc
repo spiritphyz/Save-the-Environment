@@ -110,8 +110,9 @@ set tabstop=2
 set ai " auto indent
 set si " smart indent
 
-" for word wrapping but only insert line breaks when I press Enter
+" Word wrapping, only insert line breaks when I press Enter
 set wrap " wrap lines
+set linebreak " visually wrap long lines on ^I!@*-+;:,./? character
 
 " for existing files, keep textwidths but don't let vim automatically reformat when typing on lines
 set formatoptions+=1
@@ -136,12 +137,11 @@ set background=dark
 
 " show cursor position
 set ruler
+set nonumber " but turn off line numbers
 
 " ignore case while searching
 set ignorecase
-
-" Don't ignore case unless already has one capital letter
-set smartcase
+set smartcase " unless already has one capital letter
 
 " Enable 256 color palette
 " Need to have 'export TERM=xterm-256color' in .bashrc
@@ -165,9 +165,6 @@ set hlsearch
 
 " search as characters are entered
 set incsearch
-
-" turn on line numbers
-set number
 
 " Disable auto comments on new lines
 set formatoptions-=cro
