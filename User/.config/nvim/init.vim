@@ -37,6 +37,7 @@ set smartindent " reacts to syntax of your code
 
 " Word wrapping, only insert line breaks when I press Enter
 set wrap " wrap lines
+set linebreak " visually wrap long lines on ^I!@*-+;:,./? character
 
 " for existing files, keep textwidths but don't let vim automatically reformat when typing on lines
 set formatoptions+=1
@@ -54,14 +55,11 @@ set omnifunc=syntaxcomplete#Complete
 " http://vim.wikia.com/wiki/Backspace_and_delete_problems
 set backspace=indent,eol,start
 
-set visualbell
-set splitbelow
+" TODO: check what these settings do
 set gdefault
 set showmatch
-set linebreak
 set nolist
 set shortmess+=c
-
 
 
 " ============================================================================ "
@@ -178,7 +176,10 @@ let g:prettier#config#html_whitespace_sensitivity = 'css'
 " ============================================================================ "
 
 " Enable true color support
-set t_co=256
+"set termguicolors " causes undesirable light gray background color
+if !has('gui_running')
+  set t_Co=256
+endif
 
 " Use color syntax highlighting
 syntax on
@@ -196,6 +197,9 @@ au WinLeave,FocusLost,CmdwinLeave * set nocul
 " Remove trailing whitespace on save
 autocmd! BufWritePre * :%s/\s\+$//e
 
+" Set new splits to appear at bottom
+set splitbelow
+
 " Allow mouse reporting from iterm to allow click-to-position cursor in vim
 set mouse=a
 
@@ -204,9 +208,6 @@ set hlsearch
 
 " Search as characters are entered
 set incsearch
-
-" Turn on line numbers
-set number
 
 " Use F2 key to enable paste mode before pasting in large amount of text
 " to avoid auto-formatting. Press F2 again to exit paste mode.
@@ -277,12 +278,11 @@ set showcmd
 "
 " Show cursor position
 set ruler
+set nonumber " but turn off line numbers
 
 " Ignore case while searching
 set ignorecase
-
-" Don't ignore case unless already has one capital letter
-set smartcase
+set smartcase " unless already has one capital letter
 
 
 " ============================================================================ "
