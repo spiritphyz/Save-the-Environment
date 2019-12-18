@@ -1,11 +1,11 @@
 # '.bash_profile' is for interactive login shells while
-# '.bashrc' is for non-login shells (like rsync) or 
+# '.bashrc' is for non-login shells (like rsync) or
 # opening new xterms wile already logged in interactively.
 #
-# MacOS is different than other Unixes in that it always 
-# executes bash_profile for new terminal windows, so I'm 
+# MacOS is different than other Unixes in that it always
+# executes bash_profile for new terminal windows, so I'm
 # putting all customizations into bash_profile, even
-# OS-specific things like colored 'ls' output because 
+# OS-specific things like colored 'ls' output because
 # I will rarely log in remotely to a local Mac machine.
 
 if [ -f ~/.bash_aliases ]; then
@@ -21,6 +21,10 @@ export PATH=/usr/local/bin:$PATH
 # opt out of homebrew analytics
 # https://github.com/Homebrew/brew/blob/master/share/doc/homebrew/Analytics.md
 #export HOMEBREW_NO_ANALYTICS=1
+
+# To get lightline-vim working correctly
+# Set to xterm colors when outside of Tmux
+export TERM=xterm-256color
 
 # add directory colors to OS X shell
 export CLICOLOR=1
