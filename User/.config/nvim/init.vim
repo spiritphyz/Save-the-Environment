@@ -69,7 +69,7 @@ set shortmess+=c
 " ===                           PLUGIN OPTIONS                             === "
 " ============================================================================ "
 
-" vim-plug auto
+" === vim-plug options ===
 let plugpath = expand('<sfile>:p:h'). '/autoload/plug.vim'
 if !filereadable(plugpath)
     if executable('curl')
@@ -87,10 +87,27 @@ endif
 
 call plug#begin('~/.local/share/nvim/plugged')
 
-" Plugins go here like this:
-" Plug '<link>'
+" Plugins go here
+"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+"Plug 'junegunn/fzf.vim'
+Plug 'sheerun/vim-polyglot'
+Plug 'fatih/vim-go'
+Plug 'godlygeek/tabular'         " allows table formatting in Markdown
+Plug 'elzr/vim-json'             " for front matter highlighting
+Plug 'plasticboy/vim-markdown'
+Plug 'mattn/emmet-vim'
+Plug 'pangloss/vim-javascript'
+Plug 'crusoexia/vim-javascript-lib'
+Plug 'tpope/vim-surround'
+Plug 'rakr/vim-one'
+Plug 'itchyny/lightline.vim'
+Plug 'mengelbrecht/lightline-bufferline'
+Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+Plug 'scrooloose/nerdtree'
+Plug 'ryanoasis/vim-devicons' " should be loaded as last plugin
 
 call plug#end()
+
 
 " === Prettier options ===
 nmap <Leader>pr <Plug>(Prettier)      " <leader>pr to run Prettier
@@ -104,6 +121,7 @@ let g:prettier#config#trailing_comma = 'all'
 let g:prettier#config#parser = 'flow'
 let g:prettier#config#prose_wrap = 'preserve'
 let g:prettier#config#html_whitespace_sensitivity = 'css'
+
 
 " === Lightline options ===
 set laststatus=2
@@ -130,6 +148,7 @@ let g:lightline.component_type = {
       \     'linter_ok': 'left',
       \ }
 
+
 " === Lightline-bufferline options ===
 set showtabline=2
 let g:lightline#bufferline#filename_modifier = ':t' " only filename, no path
@@ -140,6 +159,7 @@ let g:lightline#bufferline#unicode_symbols = 0
 let g:lightline#bufferline#enable_devicons = 1
 let g:lightline#bufferline#min_buffer_count = 2
 let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']]}
+
 
 " === vim-markdown options ===
 let g:vim_markdown_folding_disabled = 1
