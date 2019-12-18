@@ -53,6 +53,9 @@ autocmd FileChangedShellPost *
 " http://dougblack.io/words/a-good-vimrc.html
 set lazyredraw
 
+" Set new splits to appear at bottom
+set splitbelow
+
 " Hide buffers instead of closing them.
 " Allows faster buffer switching, allows unsaved changes
 set hidden
