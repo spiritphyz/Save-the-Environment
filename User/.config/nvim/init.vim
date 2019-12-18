@@ -1,5 +1,4 @@
 " Use Unicode characters. Has to be at the top of the file.
-" The order of these commands is important.
 if has('multi_byte')
   set encoding=utf-8
   scriptencoding utf-8
@@ -8,6 +7,7 @@ endif
 
 " Load plugins
 source ~/.config/nvim/plugins.vim
+
 
 " ============================================================================ "
 " ===                           EDITING OPTIONS                            === "
@@ -114,19 +114,28 @@ let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']]}
 
 
 " === Prettier options ===
-nmap <Leader>pr <Plug>(Prettier)
-let g:prettier#exec_cmd_async = 1     " make :Prettier be async
-let g:prettier#config#semi = 'false'  " don't use semicolons
-let g:prettier#config#single_quote = 'true'     " prefer single quotes
-let g:prettier#config#bracket_spacing = 'false' " no space between brackets
-let g:prettier#config#jsx_bracket_same_line = 'true' " put > on single line
-let g:prettier#config#arrow_parens = 'always'
-let g:prettier#config#trailing_comma = 'all'
-let g:prettier#config#parser = 'flow'
-let g:prettier#config#prose_wrap = 'preserve'
-let g:prettier#config#html_whitespace_sensitivity = 'css'
+"nmap <Leader>pr <Plug>(Prettier)
+"let g:prettier#exec_cmd_async = 1     " make :Prettier be async
+"let g:prettier#config#semi = 'false'  " don't use semicolons
+"let g:prettier#config#single_quote = 'true'     " prefer single quotes
+"let g:prettier#config#bracket_spacing = 'false' " no space between brackets
+"let g:prettier#config#jsx_bracket_same_line = 'true' " put > on single line
+"let g:prettier#config#arrow_parens = 'always'
+"let g:prettier#config#trailing_comma = 'all'
+"let g:prettier#config#parser = 'flow'
+"let g:prettier#config#prose_wrap = 'preserve'
+"let g:prettier#config#html_whitespace_sensitivity = 'css'
 
-" === coc-nvim options ===
+
+" === NERDTree options ===
+" Show hidden files/directories
+let g:NERDTreeShowHidden = 1
+
+" Hide certain files and directories from NERDTree
+let g:NERDTreeIgnore = ['^\.DS_Store$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir]]', '\.sass-cache$']
+
+
+" === coc options ===
 let g:coc_global_extensions = ["coc-css",
             \ "coc-eslint",
             \ "coc-html",
@@ -136,15 +145,31 @@ let g:coc_global_extensions = ["coc-css",
             \ "coc-tslint",
             \ "coc-tsserver"]
 
+" use <tab> for trigger completion and navigate to next complete item
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+"Close preview window when completion is done.
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
 
 " ============================================================================ "
 " ===                                UI OPTIONS                            === "
 " ============================================================================ "
 
 " Enable true color support
-"set termguicolors " causes undesirable light gray background color
 if !has('gui_running')
   set t_Co=256
+  if (has("termguicolors"))
+    "set termguicolors " broken, makes light gray background
+  endif
 endif
 
 " Use color syntax highlighting
@@ -192,9 +217,9 @@ augroup myvimrc
 augroup END
 
 " Reload dev-icons after init source
-"if exists('g:loaded_webdevicons')
-"  call webdevicons#refresh()
-"endif
+if exists('g:loaded_webdevicons')
+  call webdevicons#refresh()
+endif
 
 " Faster redraw
 " http://dougblack.io/words/a-good-vimrc.html
@@ -225,7 +250,7 @@ set nobackup
 " Use rename-and-write-new method whenever safe.
 set backupcopy=auto
 
-" Consolidate the writebackups.
+" Consolidate the write backups.
 set backupdir^=~/.nvim/backup
 
 " Persist the undo tree for each file.
@@ -295,6 +320,11 @@ nnoremap <leader>d :bd<cr>
 "  <leader>f - Opens current file location in NERDTree
 map <leader>t :NERDTreeToggle<CR>
 map <leader>f :NERDTreeFind<CR>
+
+" === coc.nvim ===
+nmap <silent> <leader>dd <Plug>(coc-definition)
+nmap <silent> <leader>dr <Plug>(coc-references)
+nmap <silent> <leader>dj <Plug>(coc-implementation)
 
 " Split a pair of braces to type in the middle with Ctrl-J
 imap <C-j> <CR><Esc>O
