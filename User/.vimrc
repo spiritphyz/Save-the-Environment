@@ -143,6 +143,9 @@ set nonumber " but turn off line numbers
 set ignorecase
 set smartcase " unless already has one capital letter
 
+" Don't give completion messages like 'match 1 of 2' or 'The only match'
+set shortmess+=c
+
 " Enable 256 color palette
 " Need to have 'export TERM=xterm-256color' in .bashrc
 if !has('gui_running')

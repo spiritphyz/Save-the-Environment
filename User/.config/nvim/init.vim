@@ -55,12 +55,6 @@ set omnifunc=syntaxcomplete#Complete
 " http://vim.wikia.com/wiki/Backspace_and_delete_problems
 set backspace=indent,eol,start
 
-" TODO: check what these settings do
-set gdefault
-set showmatch
-set nolist
-set shortmess+=c
-
 
 " ============================================================================ "
 " ===                           PLUGIN OPTIONS                             === "
@@ -283,6 +277,9 @@ set nonumber " but turn off line numbers
 " Ignore case while searching
 set ignorecase
 set smartcase " unless already has one capital letter
+
+" Don't give completion messages like 'match 1 of 2' or 'The only match'
+set shortmess+=c
 
 
 " ============================================================================ "
