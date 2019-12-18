@@ -1,3 +1,8 @@
+" Force python3
+" https://robertbasic.com/blog/force-python-version-in-vim/
+if has('python3')
+endif
+
 " Use Unicode characters. Has to be at the top of the file.
 " The order of these commands is important.
 if has('multi_byte')
@@ -286,6 +291,12 @@ call plug#begin('~/.vim/plugged')
 " Denite install requirements:
 " -- Vim 8 compiled with if_python3
 " -- pip3 install --user pynvim
+if has('python3')
+  set pyx=3
+  let g:python3_host_prog = '/usr/bin/python3'
+else
+  set pyx=2
+endif
 if has('nvim')
   Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 else
