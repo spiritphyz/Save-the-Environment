@@ -86,8 +86,8 @@ set-option -g status-left "\
 # Customize right status area
 set-option -g status-right "\
 %a %d-%b \
-#[fg=#000000, bg=colour236]\
-#[fg=colour7, bg=#000000] %H:%M "
+#[fg=colour0, bg=colour236]\
+#[fg=colour255, bg=colour0] %H:%M "
 
 # Customize border colors
 #set -g pane-border-fg colour250
