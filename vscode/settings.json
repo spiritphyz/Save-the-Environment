@@ -1,0 +1,17 @@
+// Place your settings in this file to overwrite the default settings
+{
+    "telemetry.enableTelemetry": false,
+    "telemetry.enableCrashReporter": false,
+    "workbench.activityBar.visible": false,
+    "prettier.singleQuote": true,
+    "prettier.trailingComma": "es5",
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.tabSize": 2,
+    "editor.minimap.enabled": false,
+    "window.zoomLevel": 0,
+    "workbench.colorTheme": "Egoist One",
+    "editor.fontFamily": "Consolas, Menlo, Monaco, 'Courier New', monospace",
+    "editor.lineHeight": 17
+}
