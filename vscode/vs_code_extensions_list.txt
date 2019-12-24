@@ -1,0 +1,3 @@
+esbenp.prettier-vscode
+vscodevim.vim
+Zyst.Egoist-One
