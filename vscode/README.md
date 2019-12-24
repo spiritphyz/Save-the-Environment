@@ -14,7 +14,7 @@ $HOME/.config/Code/User/settings.json
 # Duplicate extensions to new machine
 ```bash
 # On source machine:
-code --list-extensions >> vs_code_extensions_list.txt
+code --list-extensions > vs_code_extensions_list.txt
 
 # On destination machine, install each extension:
 # Windows:
