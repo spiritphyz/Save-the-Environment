@@ -13,15 +13,16 @@ $HOME/.config/Code/User/settings.json
 
 # Duplicate extensions to new machine
 ```bash
-# On old machine:
+# On source machine:
 code --list-extensions >> vs_code_extensions_list.txt
 
-# On new machine, install each extension:
-# Unix-based machine:
-cat vs_code_extensions_list.txt | xargs -n 1 code --install-extension
-
+# On destination machine, install each extension:
 # Windows:
 get-content c:\exportedlist.txt | % { code --install-extension $_ }
+
+# macOS and Linux
+cat vs_code_extensions_list.txt | xargs -n 1 code --install-extension
+
 ```
 
 
