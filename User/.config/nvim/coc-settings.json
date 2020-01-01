@@ -1,0 +1,10 @@
+{
+  "suggest.maxCompleteItemCount": 20,
+  "eslint.options": {"configFile": "/home/tonyle/.eslintrc.json"},
+  "eslint.filetypes": ["javascript", "typescript", "typescriptreact", "javascriptreact", "typescript.tsx"],
+  "diagnostic.errorSign": "•",
+  "diagnostic.warningSign":"•",
+  "diagnostic.infoSign": "•",
+  "prettier.tabWidth": 2,
+  "prettier.semi": true
+}
