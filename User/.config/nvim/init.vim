@@ -116,7 +116,6 @@ let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']]}
 " === Prettier options ===
 "nmap <Leader>pr <Plug>(Prettier)
 "let g:prettier#exec_cmd_async = 1     " make :Prettier be async
-"let g:prettier#config#semi = 'false'  " don't use semicolons
 "let g:prettier#config#single_quote = 'true'     " prefer single quotes
 "let g:prettier#config#bracket_spacing = 'false' " no space between brackets
 "let g:prettier#config#jsx_bracket_same_line = 'true' " put > on single line
@@ -125,6 +124,8 @@ let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']]}
 "let g:prettier#config#parser = 'flow'
 "let g:prettier#config#prose_wrap = 'preserve'
 "let g:prettier#config#html_whitespace_sensitivity = 'css'
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+let g:prettier#config#semi = 'false'  " don't use semicolons
 
 
 " === NERDTree options ===
@@ -304,7 +305,7 @@ nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1
 
 " Switch to next, previous, and delete buffer
 nnoremap <leader>n :bn<cr>
-nnoremap <leader>p :bp<cr>
+nnoremap <leader>N :bp<cr>
 nnoremap <leader>d :bd<cr>
 
 " === FZF key mappings ===
@@ -315,11 +316,14 @@ nnoremap <leader>d :bd<cr>
 "map <C-e> :Files<CR>
 "map <C-i> :Ag<CR>
 
-"n === NERDTree key mappings ===
+" === NERDTree key mappings ===
 "  <leader>n - Toggle NERDTree on/off
 "  <leader>f - Opens current file location in NERDTree
 map <leader>t :NERDTreeToggle<CR>
 map <leader>f :NERDTreeFind<CR>
+
+" === coc-prettier key mappings ===
+map <leader>p <Plug>(coc-format-selected)
 
 " === coc.nvim ===
 nmap <silent> <leader>dd <Plug>(coc-definition)
