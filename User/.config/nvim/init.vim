@@ -202,7 +202,7 @@ autocmd FileChangedShellPost *
 " http://superuser.com/questions/132029/how-do-you-reload-your-vimrc-file-without-restarting-vim
 augroup myvimrc
   au!
-  au BufWritePost init.vim,plugins.vim so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+  au BufWritePost init.vim,plugins.vim ++nested so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
 augroup END
 
 " Reload dev-icons after init source
