@@ -290,7 +290,7 @@ hi! link CocInfoSign Type
 "hi! CocFloating ctermbg=8 ctermfg=15
 
 " Make background transparent for many things
-hi! Normal ctermbg=NONE guibg=NONE
+hi! Normal ctermbg=NONE guibg=NONE " removes 'hazy' bg color from termguicolors
 hi! NonText ctermbg=NONE guibg=NONE
 hi! LineNr ctermfg=NONE guibg=NONE
 hi! SignColumn ctermfg=NONE guibg=NONE
