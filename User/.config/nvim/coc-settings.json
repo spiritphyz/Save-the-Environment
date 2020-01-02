@@ -1,10 +1,22 @@
 {
   "suggest.maxCompleteItemCount": 20,
-  "eslint.options": {"configFile": "/home/tonyle/.eslintrc.json"},
-  "eslint.filetypes": ["javascript", "typescript", "typescriptreact", "javascriptreact", "typescript.tsx"],
+  "eslint.options": { "configFile": "/home/tonyle/.eslintrc.json" },
+  "eslint.filetypes": [
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "javascriptreact",
+    "typescript.tsx"
+  ],
   "diagnostic.errorSign": "•",
-  "diagnostic.warningSign":"•",
+  "diagnostic.warningSign": "•",
   "diagnostic.infoSign": "•",
   "prettier.tabWidth": 2,
+  "prettier.trailingComma":"es5",
+  "prettier.singleQuote": true,
+  "prettier.jsxBracketSameLine": true,
+  "prettier.arrowParens": "avoid",
+  "prettier.parser": "babylon",
+  "prettier.proseWrap": "preserve",
   "prettier.semi": true
 }
