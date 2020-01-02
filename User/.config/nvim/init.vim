@@ -113,22 +113,6 @@ let g:lightline#bufferline#min_buffer_count = 2
 let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']]}
 
 
-" === Prettier options ===
-"nmap <Leader>pr <Plug>(Prettier)
-"let g:prettier#exec_cmd_async = 1     " make :Prettier be async
-"let g:prettier#config#single_quote = 'true'     " prefer single quotes
-"let g:prettier#config#bracket_spacing = 'false' " no space between brackets
-"let g:prettier#config#jsx_bracket_same_line = 'true' " put > on single line
-"let g:prettier#config#arrow_parens = 'always'
-"let g:prettier#config#trailing_comma = 'all'
-"let g:prettier#config#parser = 'flow'
-"let g:prettier#config#prose_wrap = 'preserve'
-"let g:prettier#config#html_whitespace_sensitivity = 'css'
-" Use :Prettier command to format current buffer
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-let g:prettier#config#semi = 'false'  " don't use semicolons
-
-
 " === NERDTree options ===
 " Show hidden files/directories
 let g:NERDTreeShowHidden = 1
@@ -380,6 +364,8 @@ map <leader>t :NERDTreeToggle<CR>
 map <leader>f :NERDTreeFind<CR>
 
 " === coc-prettier key mappings ===
+" Type :Prettier to format current buffer
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
 " Create range first, then <leader>p to Prettier format
 map <leader>p <Plug>(coc-format-selected)
 
