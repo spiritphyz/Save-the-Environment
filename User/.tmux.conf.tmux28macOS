@@ -10,10 +10,17 @@ set -g update-environment -r
 set -sg escape-time 0
 
 # 256 colors
+# Use screen colors when inside Tmux
+# Use Xterm colors when inside Tmux
 set -g default-terminal "screen-256color"
+set-option -sa terminal-overrides ',xterm-256color:RGB'
 
 # Enable tap to reposition cursor
 set -g mouse on
+
+# Set prefix to uncommonly-used ctrl-x
+unbind C-b
+set -g prefix C-x
 
 # Select panes with lowercase keys:
 #   1) prefix and hjkl
@@ -55,10 +62,36 @@ bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "re
 # Use prefix-r to reload tmux config
 bind-key r source-file ~/.tmux.conf \; display-message "~/.tmux.conf reloaded"
 
-# Customize status bar and border colors
-set -g status-bg colour250
-# set -g pane-border-fg colour250 # for Tmux < 2.8 (Linux)
-set -g pane-border-style fg=colour250 # For Tmux 2.8+ (macos, homebrew))
-# set -g pane-active-border-fg colour13 # for Tmux < 2.8 (Linux)
-set -g pane-active-border-style fg=colour13 # For Tmux 2.8+ (macos, homebrew))
+# Customize status bar colors
+set -g status-bg 'colour236'
+set -g status-fg '#999999'
+#set-window-option -g window-status-current-bg 'colour236'
+#set-window-option -g window-status-current-fg '#ffffff'
+set -g window-status-style bg=colour236,fg='#999999',dim # For Tmux 2.8+ (macos)
+set -g window-status-current-style bg=colour236,fg=white,bright # For Tmux 2.8+ (macos)
+
+# Customize copy-mode highlight color
+set-window-option -g mode-style 'bg=colour229,fg=black' # copy-mode highlight color
+
+# Customize left status area
+#
+# NOTE: terminal emulator app patched fonts (like Hack Nerd Font) that has
+# the Powerline-like left and right triangle glyphs: 
+# https://github.com/ryanoasis/nerd-fonts
+#
+set-option -g status-left "\
+#[fg=colour7, bg=colour241]#{?client_prefix,#[bg=colour167],} #S \
+#[fg=colour241, bg=colour236]#{?client_prefix,#[fg=colour167],} "
+
+# Customize right status area
+set-option -g status-right "\
+%a %d-%b \
+#[fg=colour0, bg=colour236]\
+#[fg=colour255, bg=colour0] %H:%M "
+
+# Customize border colors
+#set -g pane-border-fg colour250
+set -g pane-border-style fg=colour250 # For Tmux 2.8+ (macos)
+#set -g pane-active-border-fg colour211
+set -g pane-active-border-style fg=colour211 # For Tmux 2.8+ (macos)
 
