@@ -124,6 +124,7 @@ let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']]}
 "let g:prettier#config#parser = 'flow'
 "let g:prettier#config#prose_wrap = 'preserve'
 "let g:prettier#config#html_whitespace_sensitivity = 'css'
+" Use :Prettier command to format current buffer
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 let g:prettier#config#semi = 'false'  " don't use semicolons
 
@@ -167,10 +168,10 @@ autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " Enable true color support
 if !has('gui_running')
-  set t_Co=256
   if (has("termguicolors"))
-    "set termguicolors " broken, makes light gray background
+    set termguicolors
   endif
+  set t_Co=256
 endif
 
 " Use color syntax highlighting
@@ -183,8 +184,11 @@ call one#highlight('Visual', 'ffffff', 'e06c75', 'none')
 call one#highlight('vimLineComment', '888888', '', 'none')
 
 " Remove the current line highlight in unfocused windows
-au VimEnter,WinEnter,BufWinEnter,FocusGained,CmdwinEnter * set cul
-au WinLeave,FocusLost,CmdwinLeave * set nocul
+"au VimEnter,WinEnter,BufWinEnter,FocusGained,CmdwinEnter * set cul
+"au WinLeave,FocusLost,CmdwinLeave * set nocul
+
+" Turn off highlighting of current line
+set nocursorline
 
 " Remove trailing whitespace on save
 autocmd! BufWritePre * :%s/\s\+$//e
@@ -279,6 +283,59 @@ set smartcase " unless already has one capital letter
 " Don't give completion messages like 'match 1 of 2' or 'The only match'
 set shortmess+=c
 
+" Add custom highlights in method that is executed every time a colorscheme is sourced
+" See https://gist.github.com/romainl/379904f91fa40533175dfaec4c833f2f for details
+function! MyHighlights() abort
+  " Hightlight trailing whitespace
+  highlight Trail ctermbg=red guibg=red
+  call matchadd('Trail', '\s\+$', 100)
+endfunction
+
+augroup MyColors
+  autocmd!
+  autocmd ColorScheme * call MyHighlights()
+augroup END
+
+" Set floating window to be slightly transparent
+set winblend=10
+
+" coc.nvim color changes
+hi! link CocErrorSign WarningMsg
+hi! link CocWarningSign Number
+hi! link CocInfoSign Type
+"hi! CocFloating ctermbg=8 ctermfg=15
+
+" Make background transparent for many things
+hi! Normal ctermbg=NONE guibg=NONE
+hi! NonText ctermbg=NONE guibg=NONE
+hi! LineNr ctermfg=NONE guibg=NONE
+hi! SignColumn ctermfg=NONE guibg=NONE
+hi! StatusLine guifg=#16252b guibg=#6699CC
+hi! StatusLineNC guifg=#16252b guibg=#16252b
+
+" Make background color transparent for git changes
+hi! SignifySignAdd guibg=NONE
+hi! SignifySignDelete guibg=NONE
+hi! SignifySignChange guibg=NONE
+
+" Highlight git change signs
+hi! SignifySignAdd guifg=#99c794
+hi! SignifySignDelete guifg=#ec5f67
+hi! SignifySignChange guifg=#c594c5
+
+" Call method on window enter
+augroup WindowManagement
+  autocmd!
+  autocmd WinEnter * call Handle_Win_Enter()
+augroup END
+
+" Change highlight group of preview window when open
+function! Handle_Win_Enter()
+  if &previewwindow
+    setlocal winhighlight=Normal:MarkdownError
+  endif
+endfunction
+
 
 " ============================================================================ "
 " ===                             KEY MAPPINGS                             === "
@@ -323,6 +380,7 @@ map <leader>t :NERDTreeToggle<CR>
 map <leader>f :NERDTreeFind<CR>
 
 " === coc-prettier key mappings ===
+" Create range first, then <leader>p to Prettier format
 map <leader>p <Plug>(coc-format-selected)
 
 " === coc.nvim ===
