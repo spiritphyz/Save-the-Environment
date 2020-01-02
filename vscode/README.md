@@ -25,7 +25,7 @@ cat vs_code_extensions_list.txt | xargs -n 1 code --install-extension
 ```
 
 # Errors about 'cannot find code'
-Install the helper to launch VS Codde from the terminal.
+Install the helper to launch VS Code from the terminal.
  1. In VS Code, press Shift-Ctrl-P (or Shift-⌘--P) to open the Command Palette
  2. Type `shell command` to find:
     `Shell Command: Install 'code' command in PATH`
