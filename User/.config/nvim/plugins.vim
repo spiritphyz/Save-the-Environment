@@ -26,7 +26,6 @@ Plug 'rakr/vim-one'
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
 Plug 'scrooloose/nerdtree'
-"Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 
 " Syntax highlighting for many languages
 Plug 'sheerun/vim-polyglot'
