@@ -84,17 +84,51 @@ function! CocCurrentFunction()
     return get(b:, 'coc_current_function', '')
 endfunction
 
+function! s:lightline_coc_diagnostic(kind, sign) abort
+  let info = get(b:, 'coc_diagnostic_info', 0)
+  if empty(info) || get(info, a:kind, 0) == 0
+    return ''
+  endif
+  try
+    let s = g:coc_user_config['diagnostic'][a:sign . 'Sign']
+  catch
+    let s = ''
+  endtry
+  return printf('%s %d', s, info[a:kind])
+endfunction
+
+function! LightlineCocErrors() abort
+  return s:lightline_coc_diagnostic('error', 'error')
+endfunction
+
+function! LightlineCocWarnings() abort
+  return s:lightline_coc_diagnostic('warning', 'warning')
+endfunction
+
+function! LightlineCocInfos() abort
+  return s:lightline_coc_diagnostic('information', 'info')
+endfunction
+
+function! LightlineCocHints() abort
+  return s:lightline_coc_diagnostic('hints', 'hint')
+endfunction
+
 " Change colors to be darker for status bar and tab bar
 let g:lightline = {
       \ 'colorscheme': 'darcula',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch' ],
-      \             [ 'currentfunction', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'currentfunction', 'readonly', 'filename', 'modified', 'coc_error', 'coc_warning', 'coc_hint', 'coc_info' ] ]
       \ },
       \ 'component_function': {
-      \   'cocstatus': 'coc#status',
-      \   'currentfunction': 'CocCurrentFunction'
+      \   'cocstatus'        : 'coc#status',
+      \   'coc_error'        : 'LightlineCocErrors',
+      \   'coc_warning'      : 'LightlineCocWarnings',
+      \   'coc_info'         : 'LightlineCocInfos',
+      \   'coc_hint'         : 'LightlineCocHints',
+      \   'coc_fix'          : 'LightlineCocFixes',
+      \   'currentfunction'  : 'CocCurrentFunction'
       \ },
       \ }
 
@@ -103,11 +137,16 @@ let g:lightline.component_expand = {
       \ }
 
 let g:lightline.component_type = {
-      \     'buffers': 'tabsel',
-      \     'linter_checking': 'left',
-      \     'linter_warnings': 'warning',
-      \     'linter_errors': 'error',
-      \     'linter_ok': 'left',
+      \   'buffers'          : 'tabsel',
+      \   'coc_error'        : 'error',
+      \   'coc_warning'      : 'warning',
+      \   'coc_info'         : 'tabsel',
+      \   'coc_hint'         : 'middle',
+      \   'coc_fix'          : 'middle',
+      \   'linter_checking'  : 'left',
+      \   'linter_warnings'  : 'warning',
+      \   'linter_errors'    : 'error',
+      \   'linter_ok'        : 'left',
       \ }
 
 
