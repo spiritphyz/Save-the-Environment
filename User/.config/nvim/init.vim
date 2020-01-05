@@ -80,10 +80,6 @@ set laststatus=2
 set noshowmode " turn off extra -- INSERT --
 
 " Define functions
-function! CocCurrentFunction()
-    return get(b:, 'coc_current_function', '')
-endfunction
-
 function! s:lightline_coc_diagnostic(kind, sign) abort
   let info = get(b:, 'coc_diagnostic_info', 0)
   if empty(info) || get(info, a:kind, 0) == 0
@@ -113,27 +109,24 @@ function! LightlineCocHints() abort
   return s:lightline_coc_diagnostic('hints', 'hint')
 endfunction
 
-" Change colors to be darker for status bar and tab bar
+autocmd User CocDiagnosticChange call lightline#update()
+
+" Configure statusline
 let g:lightline = {
       \ 'colorscheme': 'darcula',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch' ],
-      \             [ 'currentfunction', 'readonly', 'filename', 'modified', 'coc_error', 'coc_warning', 'coc_hint', 'coc_info' ] ]
-      \ },
-      \ 'component_function': {
-      \   'cocstatus'        : 'coc#status',
-      \   'coc_error'        : 'LightlineCocErrors',
-      \   'coc_warning'      : 'LightlineCocWarnings',
-      \   'coc_info'         : 'LightlineCocInfos',
-      \   'coc_hint'         : 'LightlineCocHints',
-      \   'coc_fix'          : 'LightlineCocFixes',
-      \   'currentfunction'  : 'CocCurrentFunction'
+      \             [ 'readonly', 'filename', 'modified', 'coc_error', 'coc_warning', 'coc_hint', 'coc_info' ] ]
       \ },
       \ }
 
 let g:lightline.component_expand = {
-      \  'buffers': 'lightline#bufferline#buffers',
+      \   'buffers'          : 'lightline#bufferline#buffers',
+      \   'coc_error'        : 'LightlineCocErrors',
+      \   'coc_warning'      : 'LightlineCocWarnings',
+      \   'coc_info'         : 'LightlineCocInfos',
+      \   'coc_hint'         : 'LightlineCocHints',
+      \   'coc_fix'          : 'LightlineCocFixes'
       \ }
 
 let g:lightline.component_type = {
@@ -249,15 +242,11 @@ autocmd FileChangedShellPost *
 
 " Watch for changes in .vimrc and auto reload
 " http://superuser.com/questions/132029/how-do-you-reload-your-vimrc-file-without-restarting-vim
+" https://github.com/itchyny/lightline.vim/issues/406
 augroup myvimrc
   au!
   au BufWritePost init.vim,plugins.vim ++nested so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
 augroup END
-
-" Reload dev-icons after init source
-if exists('g:loaded_webdevicons')
-  call webdevicons#refresh()
-endif
 
 " Faster redraw
 " http://dougblack.io/words/a-good-vimrc.html
@@ -336,7 +325,6 @@ set winblend=10
 hi! link CocErrorSign WarningMsg
 hi! link CocWarningSign Number
 hi! link CocInfoSign Type
-"hi! CocFloating ctermbg=8 ctermfg=15
 
 " Make background transparent for many things
 hi! Normal ctermbg=NONE guibg=NONE " removes 'hazy' bg color from termguicolors
@@ -368,6 +356,11 @@ function! Handle_Win_Enter()
     setlocal winhighlight=Normal:MarkdownError
   endif
 endfunction
+
+" Reload dev-icons after init source
+if exists('g:loaded_webdevicons')
+  call webdevicons#refresh()
+endif
 
 
 " ============================================================================ "
@@ -435,3 +428,4 @@ map <S-k> O<Esc>
 " http://vim.wikia.com/wiki/Using_abbreviations
 ab cll console.log(
 ab fll for (var i = 0; i < x.length; i += 1) {}
+
