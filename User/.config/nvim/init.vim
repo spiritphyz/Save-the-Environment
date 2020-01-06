@@ -296,7 +296,7 @@ call one#highlight('vimLineComment', '888888', '', 'none')
 "au WinLeave,FocusLost,CmdwinLeave * set nocul
 
 " Turn off highlighting of current line
-" set nocursorline
+set nocursorline
 
 " Remove trailing whitespace on save
 autocmd! BufWritePre * :%s/\s\+$//e
@@ -489,6 +489,12 @@ nmap <C-h> <C-w>h
 nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
+
+" Delete current visual selection and dump in black hole buffer before pasting
+" Used when you want to paste over something without it getting copied to
+" Vim's default buffer
+vnoremap <leader>p "_dP
+
 
 " === FZF key mappings ===
 " Ctrl-p: fuzzy search open buffer names
