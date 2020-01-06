@@ -44,6 +44,9 @@ Plug 'mattn/emmet-vim'
 " Surround tag helper
 Plug 'tpope/vim-surround'
 
+" Denite - Fuzzy finding, buffer management
+Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
+
 " Intellisense Engine, uses VS Code's language servers
 " Needs 'npm i -g neovim' and recent version of NodeJS
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install() }}
