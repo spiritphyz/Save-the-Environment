@@ -391,6 +391,12 @@ nnoremap <leader>n :bn<cr>
 nnoremap <leader>N :bp<cr>
 nnoremap <leader>d :bd<cr>
 
+" Ctrl HJKL for quick window switching (Vim split panes)
+nmap <C-h> <C-w>h
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+nmap <C-l> <C-w>l
+
 " === FZF key mappings ===
 " Ctrl-p: fuzzy search open buffer names
 " Ctrl-e: fuzzy search files in same folder at vim start
@@ -400,7 +406,7 @@ nnoremap <leader>d :bd<cr>
 "map <C-i> :Ag<CR>
 
 " === NERDTree key mappings ===
-"  <leader>n - Toggle NERDTree on/off
+"  <leader>t - Toggle NERDTree on/off
 "  <leader>f - Opens current file location in NERDTree
 map <leader>t :NERDTreeToggle<CR>
 map <leader>f :NERDTreeFind<CR>
@@ -416,13 +422,6 @@ nmap <silent> <leader>dd <Plug>(coc-definition)
 nmap <silent> <leader>dr <Plug>(coc-references)
 nmap <silent> <leader>dj <Plug>(coc-implementation)
 
-" Split a pair of braces to type in the middle with Ctrl-J
-imap <C-j> <CR><Esc>O
-
-" Map Ctrl-J to insert blank line after, Shift-J before
-" http://superuser.com/questions/607163/inserting-a-blank-line-in-vim
-map <C-k> o<Esc>
-map <S-k> O<Esc>
 
 " === Abbreviations ===
 " http://vim.wikia.com/wiki/Using_abbreviations
