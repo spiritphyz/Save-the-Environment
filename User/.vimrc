@@ -187,8 +187,10 @@ map <C-p> :Buffers<CR>
 map <C-e> :Files<CR>
 map <C-i> :Ag<CR>
 
-" Map Ctrl-n for NERDTree
-map <C-n> :NERDTreeToggle<CR>
+"  <leader>t - Toggle NERDTree on/off
+"  <leader>f - Opens current file location in NERDTree
+map <leader>t :NERDTreeToggle<CR>
+map <leader>f :NERDTreeFind<CR>
 
 " Prettier plugin settings
 nmap <Leader>pr <Plug>(Prettier)      " <leader>pr to run Prettier
@@ -251,13 +253,11 @@ let g:vim_markdown_new_list_item_indent = 2
 autocmd FileType markdown highlight htmlH1 cterm=none ctermfg=70
 autocmd BufNewFile,BufRead *.md set filetype=markdown
 
-" Split a pair of braces to type in the middle with Ctrl-J
-imap <C-j> <CR><Esc>O
-
-" Map Ctrl-J to insert blank line after, Shift-J before
-" http://superuser.com/questions/607163/inserting-a-blank-line-in-vim
-map <C-k> o<Esc>
-map <S-k> O<Esc>
+" Quick window switching
+nmap <C-h> <C-w>h
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+nmap <C-l> <C-w>l
 
 " Watch for changes in .vimrc and auto reload
 " http://superuser.com/questions/132029/how-do-you-reload-your-vimrc-file-without-restarting-vim
