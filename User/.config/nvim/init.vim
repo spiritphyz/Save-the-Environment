@@ -113,7 +113,7 @@ autocmd User CocDiagnosticChange call lightline#update()
 
 " Configure statusline
 let g:lightline = {
-      \ 'colorscheme': 'darcula',
+      \ 'colorscheme': 'ayu_mirage',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'readonly', 'filename', 'modified', 'coc_error', 'coc_warning', 'coc_hint', 'coc_info' ] ]
