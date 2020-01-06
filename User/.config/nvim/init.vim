@@ -26,7 +26,7 @@ set formatoptions-=cro
 "inoremap [ []<Left>
 
 " clear search highlighting by pressing Enter
-nnoremap <CR> :noh<CR><CR>
+nnoremap <CR> :noh<CR>
 
 " Tab key behavior
 set expandtab " use spaces instead of tabs

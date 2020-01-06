@@ -158,7 +158,7 @@ call one#highlight('Visual', 'ffffff', 'e06c75', 'none')
 call one#highlight('vimLineComment', '888888', '', 'none')
 
 " clear search highlighting by pressing Enter
-nnoremap <CR> :noh<CR><CR>
+nnoremap <CR> :noh<CR>
 
 " allow mouse reporting from iterm to allow click-to-position cursor in vim
 set mouse=a
