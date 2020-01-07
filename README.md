@@ -17,7 +17,14 @@ pip install neovim
 # Install NodeJS provider
 npm i -g neovim
 
+# Install ripgrep on macOS
+# Ubuntu instructions are here:
+# https://github.com/BurntSushi/ripgrep#installation
+brew install ripgrep
+
 # Run ":checkhealth" inside Neovim
+
+# Run ":UpdateRemotePlugins" inside Neovim for Denite
 ```
 | Repository Path                    | Destination on Your Computer        |
 | :--------------------------------- | :---------------------------------- |
