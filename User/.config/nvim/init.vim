@@ -275,6 +275,7 @@ autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 " ============================================================================ "
 
 " Enable true color support
+" Note: macOS Terminal app doesn't support true color
 if !has('gui_running')
   if (has("termguicolors"))
     set termguicolors
