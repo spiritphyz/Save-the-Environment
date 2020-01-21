@@ -8,6 +8,9 @@ endif
 " Load plugins
 source ~/.config/nvim/plugins.vim
 
+" Load custom Node to address incompatibility between NVM and COC
+source ~/.config/nvim/nvm-coc.vim
+
 
 " ============================================================================ "
 " ===                           EDITING OPTIONS                            === "
