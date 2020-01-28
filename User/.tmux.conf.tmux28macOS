@@ -22,6 +22,11 @@ set -g mouse on
 unbind C-b
 set -g prefix C-x
 
+# Use "C-x x" to send "Ctrl-x" to inner terminal.
+# Pressing "C-x C-x" doesn't seem to work.
+# Ctrl-x is used as commands in Nano and rTorrent.
+bind-key x send-prefix
+
 # Select panes with lowercase keys:
 #   1) prefix and hjkl
 #   2) Alt hjkl directly
