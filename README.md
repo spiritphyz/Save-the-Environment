@@ -42,9 +42,12 @@ brew install ripgrep
 
 # Run ":UpdateRemotePlugins" inside Neovim for Denite
 
-# Install Python x86_64-linux-gnu-gcc compiler, needed for pylint
+# Install x86_64-linux-gnu-gcc compiler, needed for pylint
 sudo apt install python3-dev
 
 # Install elevated linter for Neovim virtual environment
 sudo pip3 install pylint
+
+# Install Python IntelliSense for coc.vim
+# Run ":CocInstall coc-python" inside Neovim
 ```
