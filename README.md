@@ -7,6 +7,22 @@ Let's save our settings for a better future.
 
 
 # File Locations
+| Repository Path                    | Destination on Your Computer        |
+| :--------------------------------- | :---------------------------------- |
+| User/.eslintrc.json                | ~/.eslintrc.json                    |
+| User/.tmux.conf                    | ~/.tmux.conf                        |
+| User/.tmux.conf.tmux28macOS        | /User/yourusername/.tmux.conf       |
+| User/.config/nvim                  | ~/.config/nvim                      |
+| User/.vim                          | ~/.vim                              |
+| User/.vimrc                        | ~/.vimrc                            |
+
+
+# Create Directories
+ * ~/.nvim/backup
+ * ~/.nvim/swap
+ * ~/.nvim/undo
+
+# Install Utilities
 ```bash
 # Install eslint for nvim coc-eslint
 npm i -g eslint
@@ -25,18 +41,10 @@ brew install ripgrep
 # Run ":checkhealth" inside Neovim
 
 # Run ":UpdateRemotePlugins" inside Neovim for Denite
+
+# Install Python x86_64-linux-gnu-gcc compiler, needed for pylint
+sudo apt install python3-dev
+
+# Install elevated linter for Neovim virtual environment
+sudo pip3 install pylint
 ```
-| Repository Path                    | Destination on Your Computer        |
-| :--------------------------------- | :---------------------------------- |
-| User/.eslintrc.json                | ~/.eslintrc.json                    |
-| User/.tmux.conf                    | ~/.tmux.conf                        |
-| User/.tmux.conf.tmux28macOS        | /User/yourusername/.tmux.conf       |
-| User/.config/nvim                  | ~/.config/nvim                      |
-| User/.vim                          | ~/.vim                              |
-| User/.vimrc                        | ~/.vimrc                            |
-
-
-# Create Directories
- * ~/.nvim/backup
- * ~/.nvim/swap
- * ~/.nvim/undo
