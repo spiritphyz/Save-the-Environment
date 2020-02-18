@@ -456,9 +456,9 @@ endif
 " === Denite shorcuts === "
 "   ctrl-p    - Browser currently open buffers
 "   <leader>f - Browse list of files in current directory
-"   <leader>g - Search current directory for occurrences of given term close window if no results
-"   <leader>j - Search current directory for occurrences of word under cursor
-"   <leader>d - Delete item under cursor (useful for delete buffers in normal mode)
+"   <leader>g - Search curr directory for given term, close window if no results
+"   <leader>j - Search curr directory for occurrences of word under cursor
+"   <leader>d - Delete item under cursor (for delete buffers in normal mode)
 nmap <C-p> :Denite buffer<CR>
 nmap <leader>f :Denite file_rec<CR>
 nnoremap <leader>g :<C-u>Denite grep:. -no-empty<CR>
