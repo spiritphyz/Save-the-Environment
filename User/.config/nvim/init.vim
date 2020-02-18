@@ -412,7 +412,7 @@ hi! link CocErrorSign WarningMsg
 hi! link CocWarningSign Number
 hi! link CocInfoSign Type
 
-" Add underline to locate error on line
+" Add underline to locate error position
 hi! CocUnderline term=underline
 
 " Make background transparent for many things
