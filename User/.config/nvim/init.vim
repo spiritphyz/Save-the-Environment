@@ -485,7 +485,7 @@ nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1
 
 " Switch to next, previous, and delete buffer
 nnoremap <leader>n :bn<cr>
-nnoremap <leader>N :bp<cr>
+nnoremap <leader>b :bp<cr>
 nnoremap <leader>d :bd<cr>
 
 " Ctrl-hjkl for quick window switching (Vim split panes)
