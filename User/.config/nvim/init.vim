@@ -5,6 +5,10 @@ if has('multi_byte')
   setglobal fileencodings=utf-8
 endif
 
+" Avoid slow startup time on cold starts
+let g:python_host_prog  = '/usr/bin/python2'
+let g:python3_host_prog = '/usr/bin/python3'
+
 " Load plugins
 source ~/.config/nvim/plugins.vim
 
@@ -44,7 +48,8 @@ set smartindent " reacts to syntax of your code
 set wrap " wrap lines
 set linebreak " visually wrap long lines on ^I!@*-+;:,./? character
 
-" for existing files, keep textwidths but don't let vim automatically reformat when typing on lines
+" for existing files, keep textwidths but don't let vim automatically reformat
+" when typing on lines
 set formatoptions+=1
 
 " Turn on OmniCompletion for tag completion in insert mode
