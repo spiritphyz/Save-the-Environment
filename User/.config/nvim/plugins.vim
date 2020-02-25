@@ -31,18 +31,22 @@ Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
 
 " JSON helpers
-" allow front matter highlighting
-Plug 'elzr/vim-json'
-" allows table formatting in Markdown
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
+Plug 'elzr/vim-json'             " allow front matter highlighting
+
+" Markdown helpers
+Plug 'godlygeek/tabular'         " allows table formatting in Markdown
+"Plug 'plasticboy/vim-markdown'  " broken, not compatible with vim-one
+Plug 'gabrielelana/vim-markdown' " doesn't have code folding
+
+" Live preview in browser with :MarkdownPreview
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install' }
+
+" Surround tag helper
+Plug 'tpope/vim-surround'
 
 " HTML and CSS selector snippets
 " https://docs.emmet.io/cheat-sheet/
 Plug 'mattn/emmet-vim'
-
-" Surround tag helper
-Plug 'tpope/vim-surround'
 
 " Denite - Fuzzy finding, buffer management
 Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
