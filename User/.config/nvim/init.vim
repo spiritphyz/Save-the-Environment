@@ -6,8 +6,12 @@ if has('multi_byte')
 endif
 
 " Avoid slow startup time on cold starts
+" Linux:
 let g:python_host_prog  = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python3'
+" macOS with Homebrew:
+"let g:python_host_prog  = '/usr/bin/python'
+"let g:python3_host_prog = '/usr/local/bin/python3'
 
 " Load plugins
 source ~/.config/nvim/plugins.vim
@@ -469,7 +473,7 @@ endif
 "   <leader>d - Delete item under cursor (for delete buffers in normal mode)
 nmap <C-p> :Denite buffer<CR>
 nmap <leader>f :Denite file_rec<CR>
-nnoremap <leader>g :<C-u>Denite grep:. -no-empty<CR>
+nnoremap <leader>g :Denite grep:. -no-empty<CR>
 nnoremap <leader>j :<C-u>DeniteCursorWord grep:.<CR>
 
 " Use spacebar as leader key instead of default '\'
@@ -508,14 +512,6 @@ nmap <C-l> <C-w>l
 vnoremap <leader>p "_dP
 
 
-" === FZF key mappings ===
-" Ctrl-p: fuzzy search open buffer names
-" Ctrl-e: fuzzy search files in same folder at vim start
-" Ctrl-i: Ripgrep inside files
-"map <C-p> :Buffers<CR>
-"map <C-e> :Files<CR>
-"map <C-i> :Ag<CR>
-
 " === NERDTree key mappings ===
 "  <leader>t - Toggle NERDTree on/off
 "  <leader>f - Opens current file location in NERDTree
@@ -532,7 +528,6 @@ map <leader>p <Plug>(coc-format-selected)
 nmap <silent> <leader>dd <Plug>(coc-definition)
 nmap <silent> <leader>dr <Plug>(coc-references)
 nmap <silent> <leader>dj <Plug>(coc-implementation)
-
 
 " === Abbreviations ===
 " http://vim.wikia.com/wiki/Using_abbreviations
