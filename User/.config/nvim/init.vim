@@ -470,11 +470,10 @@ endif
 "   <leader>f - Browse list of files in current directory
 "   <leader>g - Search curr directory for given term, close window if no results
 "   <leader>j - Search curr directory for occurrences of word under cursor
-"   <leader>d - Delete item under cursor (for delete buffers in normal mode)
 nmap <C-p> :Denite buffer<CR>
 nmap <leader>f :Denite file_rec<CR>
 nnoremap <leader>g :Denite grep:. -no-empty<CR>
-nnoremap <leader>j :<C-u>DeniteCursorWord grep:.<CR>
+nnoremap <leader>j :DeniteCursorWord grep:.<CR>
 
 " Use spacebar as leader key instead of default '\'
 let mapleader="\<Space>"
