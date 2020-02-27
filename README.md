@@ -15,6 +15,7 @@ Let's save our settings for a better future.
 | User/.config/nvim                  | ~/.config/nvim                      |
 | User/.vim                          | ~/.vim                              |
 | User/.vimrc                        | ~/.vimrc                            |
+| User/pbin/z.sh                     | ~/pbin/z.sh                         |
 
 
 # Create Directories
@@ -37,6 +38,12 @@ npm i -g neovim
 # Ubuntu instructions are here:
 # https://github.com/BurntSushi/ripgrep#installation
 brew install ripgrep
+
+# Install FZF and Silver Surfer on Linux or macOS
+sudo apt install fzf
+brew install fzf
+sudo apt install silversearcher-ag
+brew install the_silver_searcher
 
 # Run ":checkhealth" inside Neovim
 
