@@ -475,7 +475,7 @@ endif
 "   <leader>j - Search curr directory for occurrences of word under cursor
 nmap <C-p> :Denite buffer<CR>
 nmap <leader>f :Denite file_rec<CR>
-nnoremap <leader>g :Denite grep:. -no-empty<CR>
+nnoremap <leader>g <C-u>:Denite grep:. -no-empty<CR>
 nnoremap <leader>j :DeniteCursorWord grep:.<CR>
 
 " Use spacebar as leader key instead of default '\'
