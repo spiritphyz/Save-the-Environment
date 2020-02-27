@@ -481,26 +481,16 @@ nnoremap <leader>j :DeniteCursorWord grep:.<CR>
 " Use spacebar as leader key instead of default '\'
 let mapleader="\<Space>"
 
-" Save file using leader
-nnoremap <leader>w :w<cr>
-
-" Quit using leader
-nnoremap <leader>q :q<cr>
-
-" Replace word under cursor using leader
-nnoremap <leader>c :%s/\<<c-r><c-w>//g<left><left>
-
-" Toggle show hidden characters with leader
-nnoremap <silent> <leader>h :set nolist!<cr>
-
-" Insert empty line without entering insert mode with leader
-nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<cr>
-nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<cr>
-
-" Switch to next, previous, and delete buffer
-nnoremap <leader>n :bn<cr>
-nnoremap <leader>b :bp<cr>
-nnoremap <leader>d :bd<cr>
+" Leader key mappings
+nnoremap <leader>w :w<CR>                                                               " Save file
+nnoremap <leader>q :q<CR>                                                               " Quit
+nnoremap <leader>c :%s/\<<c-r><c-w>//g<left><left>                                      " Replace word under cursor
+nnoremap <silent> <leader>h :set nolist!<CR>                                            " Toggle show hidden characters
+nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<CR>  " Insert empty line w/o insert mode
+nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>  " Insert empty line before
+nnoremap <leader>n :bn<CR>                                                              " Switch to next buffer
+nnoremap <leader>b :bp<CR>                                                              " Switch to prev buffer
+nnoremap <leader>d :bd<CR>                                                              " Delete buffer
 
 " Ctrl-hjkl for quick window switching (Vim split panes)
 nmap <C-h> <C-w>h
