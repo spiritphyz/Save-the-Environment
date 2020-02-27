@@ -51,6 +51,9 @@ export PS1="\W 🐙  "
 #export VISUAL=vim
 #export EDITOR="$VISUAL"
 
+# FZF: use silver surfer, include hidden files (but ignore .git folder)
+export FZF_DEFAULT_COMMAND='ag -l --nogroup --nocolor --hidden --ignore .git -g ""'
+
 # FZF customizations
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
