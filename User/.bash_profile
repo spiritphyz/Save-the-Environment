@@ -70,3 +70,5 @@ fo() {
   fi
 }
 
+# Start Z utility
+. /home/tonyle/pbin/z.sh
