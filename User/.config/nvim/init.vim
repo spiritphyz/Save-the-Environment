@@ -256,6 +256,9 @@ let g:NERDTreeShowHidden = 1
 " Hide certain files and directories from NERDTree
 let g:NERDTreeIgnore = ['^\.DS_Store$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir]]', '\.sass-cache$']
 
+" Automatically close the NerdTree buffer when opening a file
+let g:NERDTreeQuitOnOpen = 1
+
 
 " === coc options ===
 let g:coc_global_extensions = ["coc-css",
