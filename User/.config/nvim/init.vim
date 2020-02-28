@@ -510,7 +510,7 @@ function! s:denite_filter_my_settings() abort
 endfunction
 
 " Define mappings while in Denite window
-"   <CR>                  - Opens currently selected file
+"   o or <CR>             - Opens currently selected file
 "   q or <Esc> or <C-c>   - Quit Denite window
 "   d                     - Delete currenly selected file
 "   p                     - Preview currently selected file
@@ -521,6 +521,8 @@ endfunction
 autocmd FileType denite call s:denite_my_settings()
 function! s:denite_my_settings() abort
   nnoremap <silent><buffer><expr> <CR>
+  \ denite#do_map('do_action')
+  nnoremap <silent><buffer><expr> o
   \ denite#do_map('do_action')
   nnoremap <silent><buffer><expr> q
   \ denite#do_map('quit')
