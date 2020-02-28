@@ -104,6 +104,9 @@ call denite#custom#var('grep', 'final_opts', [])
 " Remove date from buffer list
 call denite#custom#var('buffer', 'date_format', '')
 
+" Set project root so Denite won't be limited to parent of curr file
+call denite#custom#option('_', 'root_markers', 'Pipfile, Makefile, .git')
+
 " Custom options for Denite
 "   auto_resize             - Auto resize the Denite window height automatically.
 "   prompt                  - Customize denite prompt
@@ -115,7 +118,7 @@ call denite#custom#var('buffer', 'date_format', '')
 "   highlight_matched_range - matched range highlight
 let s:denite_options = {'default' : {
 \ 'auto_resize': 1,
-\ 'prompt': 'λ:',
+\ 'prompt': '★',
 \ 'direction': 'rightbelow',
 \ 'winminheight': '10',
 \ 'highlight_mode_insert': 'Visual',
@@ -471,12 +474,40 @@ endif
 " === Denite shorcuts === "
 "   ctrl-p    - Browser currently open buffers
 "   <leader>f - Browse list of files in current directory
+"   <leader>t - Search for files in project directory
 "   <leader>g - Search curr directory for given term, close window if no results
 "   <leader>j - Search curr directory for occurrences of word under cursor
+"           i - After triggers above, press 'i' to enter fuzzy filter mode
 nmap <C-p> :Denite buffer<CR>
-nmap <leader>f :Denite file_rec<CR>
+nmap <leader>f :Denite file/rec<CR>
+nmap <leader>t :DeniteProjectDir file/rec<CR>
 nnoremap <leader>g <C-u>:Denite grep:. -no-empty<CR>
 nnoremap <leader>j :DeniteCursorWord grep:.<CR>
+
+" Define Denite mappings while in 'filter' mode
+"   <C-o>         - Switch to normal mode inside of search results
+"   <Esc>         - Exit denite window in any mode
+"   <CR>          - Open currently selected file in any mode
+"   <C-t>         - Open currently selected file in a new tab
+"   <C-v>         - Open currently selected file a vertical split
+"   <C-h>         - Open currently selected file in a horizontal split
+autocmd FileType denite-filter call s:denite_filter_my_settings()
+function! s:denite_filter_my_settings() abort
+  imap <silent><buffer> <C-o>
+  \ <Plug>(denite_filter_quit)
+  inoremap <silent><buffer><expr> <Esc>
+  \ denite#do_map('quit')
+  nnoremap <silent><buffer><expr> <Esc>
+  \ denite#do_map('quit')
+  inoremap <silent><buffer><expr> <CR>
+  \ denite#do_map('do_action')
+  inoremap <silent><buffer><expr> <C-t>
+  \ denite#do_map('do_action', 'tabopen')
+  inoremap <silent><buffer><expr> <C-v>
+  \ denite#do_map('do_action', 'vsplit')
+  inoremap <silent><buffer><expr> <C-h>
+  \ denite#do_map('do_action', 'split')
+endfunction
 
 " Define mappings while in Denite window
 "   <CR>        - Opens currently selected file
@@ -539,10 +570,10 @@ vnoremap <leader>p "_dP
 
 
 " === NERDTree key mappings ===
-"  <leader>t - Toggle NERDTree on/off
-"  <leader>f - Opens current file location in NERDTree
-map <leader>t :NERDTreeToggle<CR>
-map <leader>f :NERDTreeFind<CR>
+"  <leader>N - Toggle NERDTree on/off (capital N)
+"  <leader>F - Opens current file location in NERDTree (capital F)
+map <leader>N :NERDTreeToggle<CR>
+map <leader>F :NERDTreeFind<CR>
 
 " === coc-prettier key mappings ===
 " Type :Prettier to format current buffer
