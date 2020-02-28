@@ -343,11 +343,11 @@ autocmd FileChangedShellPost *
 
 " Watch for changes in .vimrc and auto reload
 " http://superuser.com/questions/132029/how-do-you-reload-your-vimrc-file-without-restarting-vim
-" https://github.com/itchyny/lightline.vim/issues/406
-augroup myvimrc
-  au!
-  au BufWritePost init.vim,plugins.vim ++nested so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
-augroup END
+" Needs ++nested: https://github.com/itchyny/lightline.vim/issues/406
+"augroup myvimrc
+"  au!
+"  au BufWritePost init.vim,plugins.vim ++nested so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+"augroup END
 
 " Faster redraw
 " http://dougblack.io/words/a-good-vimrc.html
