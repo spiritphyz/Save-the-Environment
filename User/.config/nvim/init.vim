@@ -242,13 +242,15 @@ let g:lightline.component_type = {
 
 " === Lightline-bufferline options ===
 set showtabline=2
-let g:lightline#bufferline#filename_modifier = ':t' " only filename, no path
-let g:lightline#bufferline#show_number  = 1
-let g:lightline#bufferline#shorten_path = 1
-let g:lightline#bufferline#unnamed      = '[No Name]'
-let g:lightline#bufferline#unicode_symbols = 0
-let g:lightline#bufferline#enable_devicons = 1
-let g:lightline#bufferline#min_buffer_count = 2
+let g:lightline#bufferline#filename_modifier = ':t'       " only filename, no path
+let g:lightline#bufferline#show_number       = 1
+let g:lightline#bufferline#shorten_path      = 1
+let g:lightline#bufferline#unnamed           = '[No Name]'
+let g:lightline#bufferline#unicode_symbols   = 0
+let g:lightline#bufferline#enable_devicons   = 1
+let g:lightline#bufferline#min_buffer_count  = 2
+let g:lightline#bufferline#clickable         = 1         " allow clickable tabs, setting 1
+let g:lightline.component_raw = {'buffers': 1}           " allow clickable tabs, setting 2
 let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']]}
 
 
