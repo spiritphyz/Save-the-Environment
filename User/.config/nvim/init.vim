@@ -118,7 +118,7 @@ call denite#custom#option('_', 'root_markers', 'Pipfile, Makefile, .git')
 "   highlight_matched_range - matched range highlight
 let s:denite_options = {'default' : {
 \ 'auto_resize': 1,
-\ 'prompt': '★',
+\ 'prompt': '',
 \ 'direction': 'rightbelow',
 \ 'winminheight': '10',
 \ 'highlight_mode_insert': 'Visual',
