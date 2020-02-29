@@ -4,7 +4,8 @@
   * :bu frag  switch to buffer by searching fragment of name
   * :bd       buffer delete (unload current buffer)
   * :bd#      buffer destroy (:bd2 deletes buffer 2)
-  * :e        edit a file in same directory that you started Vim
+  * :e file   edit a file in same directory that you started Vim
+  * :e!       reload file from disk, discard changes
   * :o        open a file from any starting directory using file browser or FZF (ctrl-P)
   * C-g       show current filename
 
