@@ -561,7 +561,7 @@ nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1
 nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>  " Insert empty line before
 nnoremap <leader>n :bn<CR>                                                              " Switch to next buffer
 nnoremap <leader>b :bp<CR>                                                              " Switch to prev buffer
-nnoremap <leader>d :bd<CR>                                                              " Delete buffer
+nnoremap <leader>D :bd<CR>                                                              " Delete buffer (capital D)
 
 " Ctrl-hjkl for quick window switching (Vim split panes)
 nmap <C-h> <C-w>h
