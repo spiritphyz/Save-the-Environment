@@ -591,6 +591,8 @@ map <leader>p <Plug>(coc-format-selected)
 nmap <silent> <leader>dd <Plug>(coc-definition)
 nmap <silent> <leader>dr <Plug>(coc-references)
 nmap <silent> <leader>dj <Plug>(coc-implementation)
+nmap <silent> <leader>] <Plug>(coc-diagnostic-next) " Jump to next eslint error
+nmap <silent> <leader>[ <Plug>(coc-diagnostic-prev) " Jump to prev eslint error
 
 " === Abbreviations ===
 " http://vim.wikia.com/wiki/Using_abbreviations
