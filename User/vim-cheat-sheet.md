@@ -8,6 +8,7 @@
   * :e!       reload file from disk, discard changes
   * :o        open a file from any starting directory using file browser or FZF (ctrl-P)
   * C-g       show current filename
+  * :ene      edit new empty buffer
 
 # Vim Windows (split panes)
   * ctrl-w v or :vsp    split into columns
