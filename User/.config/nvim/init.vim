@@ -85,11 +85,11 @@ try
 "
 call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!{__pycache__,node_modules,.git}'])
 
-" Use ripgrep in place of "grep"
+" Use ripgrep instead of grep
 call denite#custom#var('grep', 'command', ['rg'])
 
 " Custom options for ripgrep
-"   --vimgrep:  Show results with every match on it's own line
+"   --vimgrep:  Show results with every match on its own line
 "   --hidden:   Search hidden directories and files
 "   --heading:  Show the file name above clusters of matches from each file
 "   --S:        Search case insensitively if the pattern is all lowercase
@@ -569,6 +569,12 @@ nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 
+" Ctrl-arrow keys to resize Vim split panes
+nmap <C-right> :vertical resize +3<CR>
+nmap <C-left> :vertical resize -3<CR>
+nmap <C-up> :resize +3<CR>
+nmap <C-down> :resize -3<CR>
+
 " Delete current visual selection and dump in black hole buffer before pasting
 " Used when you want to paste over something without it getting copied to
 " Vim's default buffer
@@ -596,6 +602,5 @@ nmap <silent> <leader>[ <Plug>(coc-diagnostic-prev) " Jump to prev eslint error
 
 " === Abbreviations ===
 " http://vim.wikia.com/wiki/Using_abbreviations
-ab cll console.log(
-ab fll for (var i = 0; i < x.length; i += 1) {}
-
+abbr cll console.log
+abbr fll for (let i = 0; i < ; i += 1) {<esc>10hi
