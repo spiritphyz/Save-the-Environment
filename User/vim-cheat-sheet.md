@@ -18,6 +18,7 @@
   * ctrl-w _            zoom stack split
   * ctrl-w =            restore splits equally
   * ctrl-w o or :on     cancel split pane (make it the "only" split)
+  * :q                  close split pane
 
   * ctrl-w l            focus on left split
   * ctrl-w h            focus on right split
