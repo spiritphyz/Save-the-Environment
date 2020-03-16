@@ -32,25 +32,25 @@ set clipboard=unnamed
 set formatoptions-=cro
 
 "Autoclose braces
-"inoremap ( ()<Left>
-"inoremap { {}<Left>
-"inoremap [ []<Left>
+inoremap ( ()<Left>
+inoremap { {}<Left>
+inoremap [ []<Left>
 
 " clear search highlighting by pressing Enter
 nnoremap <CR> :noh<CR>
 
 " Tab key behavior
-set expandtab " use spaces instead of tabs
+set expandtab      " use spaces instead of tabs
 set smarttab
-set softtabstop=2 " # of spaces that counts as a tab during editing ops
+set softtabstop=2  " # of spaces that counts as a tab during editing ops
 set shiftwidth=2
 set tabstop=2
-set autoindent " apply current indentation to next line
-set smartindent " reacts to syntax of your code
+set autoindent     " apply current indentation to next line
+set smartindent    " reacts to syntax of your code
 
 " Word wrapping, only insert line breaks when I press Enter
-set wrap " wrap lines
-set linebreak " visually wrap long lines on ^I!@*-+;:,./? character
+set wrap           " wrap lines
+set linebreak      " visually wrap long lines on ^I!@*-+;:,./? character
 
 " for existing files, keep textwidths but don't let vim automatically reformat
 " when typing on lines
@@ -62,7 +62,7 @@ set formatoptions+=1
 " If matching names are found, a pop-up menu opens which can be navigated
 " using the <C-N> and <C-P> keys.
 " filetype plugin on
-filetype plugin indent on " auto-indent based on filetype
+filetype plugin indent on                 " auto-indent based on filetype
 set omnifunc=syntaxcomplete#Complete
 
 " make backspace delete over line breaks
@@ -253,7 +253,7 @@ let g:lightline#bufferline#clickable         = 1         " allow clickable tabs,
 let g:lightline.component_raw = {'buffers': 1}           " allow clickable tabs, setting 2
 let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']]}
 let g:lightline#bufferline#show_number       = 1         " number buffers same as :ls command
-let g:lightline#bufferline#number_map = {
+let g:lightline#bufferline#number_map        = {
 \ 0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴',
 \ 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹'}
 
@@ -347,67 +347,41 @@ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checkti
 autocmd FileChangedShellPost *
   \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 
-" Watch for changes in .vimrc and auto reload
-" http://superuser.com/questions/132029/how-do-you-reload-your-vimrc-file-without-restarting-vim
-" Needs ++nested: https://github.com/itchyny/lightline.vim/issues/406
-"augroup myvimrc
-"  au!
-"  au BufWritePost init.vim,plugins.vim ++nested so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
-"augroup END
-
 " Faster redraw
 " http://dougblack.io/words/a-good-vimrc.html
 set lazyredraw
 
 " Hide buffers instead of closing them.
-" Allows faster buffer switching, allows unsaved changes
+" Allows faster buffer switching, allows unsaved changes.
 set hidden
 
-" More characters will be sent to screen for redrawing
-set ttyfast
+set ttyfast                     " More characters will be sent to screen for redrawing
+set ttimeout                    " Turn on custom wait time for keypress
+set ttimeoutlen=70              " Make keypress wait period shorter
 
-" Turn on custom wait time for keypress
-set ttimeout
-
-" Make keypress wait period shorter
-set ttimeoutlen=70
-
-" Protect changes between writes. Default values of
-" updatecount (200 keystrokes) and updatetime (4 seconds) are fine
+" Protect changes between writes. Default values for updatecount (200 keystrokes)
+" and updatetime (4 seconds) are fine.
 set swapfile
 set directory^=~/.nvim/swap//
-
-" Protect against crash-during-write
-set writebackup
-" but do not persist backup after successful write.
-set nobackup
-" Use rename-and-write-new method whenever safe.
-set backupcopy=auto
-
-" Consolidate the write backups.
-set backupdir^=~/.nvim/backup
+set writebackup                 " Protect against crash-during-write
+set nobackup                    " but do not persist backup after successful write.
+set backupcopy=auto             " Use rename-and-write-new method whenever safe.
+set backupdir^=~/.nvim/backup   " Consolidate the write backups.
 
 " Persist the undo tree for each file.
 set undofile
 set undodir^=~/.nvim/undo//
 
+set scrolloff=2                 " Always show 2 lines above/below cursor
+set showcmd                     " Show incomplete commands
+set ruler                       " Show cursor position
+set number                      " show line numbers
+set ignorecase                  " Ignore case while searching except
+set smartcase                   " when already has one capital letter
+
 " Better menu completion in command mode
 set wildmenu
 set wildmode=longest:full,full
-
-" Always show 2 lines above/below the cursor
-set scrolloff=2
-
-" Show incomplete commands
-set showcmd
-"
-" Show cursor position
-set ruler
-set nonumber " but turn off line numbers
-
-" Ignore case while searching
-set ignorecase
-set smartcase " unless already has one capital letter
 
 " Don't give completion messages like 'match 1 of 2' or 'The only match'
 set shortmess+=c
