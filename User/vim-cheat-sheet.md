@@ -10,6 +10,14 @@
   * C-g       show current filename
   * :ene      edit new empty buffer
 
+# Insert mode shortcuts
+  * ctrl-w              delete word before
+  * ctrl-u              delete to beginning
+  * ctrl-n              invoke next autocomplete
+  * ctrl-p              invoke prev autocomplete
+  * ctrl-[              quit Insert mode, switch to Normal mode
+  * ctrl-c              quit Insert mode, switch to Normal mode
+
 # Vim Windows (split panes)
   * ctrl-w v or :vsp    split into columns
   * ctrl-w s or :sp     split into stacks

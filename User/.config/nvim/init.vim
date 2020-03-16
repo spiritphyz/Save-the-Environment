@@ -441,6 +441,9 @@ function! Handle_Win_Enter()
   endif
 endfunction
 
+" Change Signify deleted line symbol
+let g:signify_sign_delete = '-'
+
 " Reload dev-icons after init source
 if exists('g:loaded_webdevicons')
   call webdevicons#refresh()
