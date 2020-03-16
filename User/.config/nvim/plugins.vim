@@ -5,17 +5,17 @@
 " Check if vim-plug is installed, otherwise install it
 let plugpath = expand('<sfile>:p:h'). '/autoload/plug.vim'
 if !filereadable(plugpath)
-    if executable('curl')
-        let plugurl = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-        call system('curl -fLo ' . shellescape(plugpath) . ' --create-dirs ' . plugurl)
-        if v:shell_error
-            echom "Error downloading vim-plug. Please install it manually.\n"
-            exit
-        endif
-    else
-        echom "vim-plug not installed. Please install it manually or install curl.\n"
-        exit
+  if executable('curl')
+    let plugurl = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    call system('curl -fLo ' . shellescape(plugpath) . ' --create-dirs ' . plugurl)
+    if v:shell_error
+      echom "Error downloading vim-plug. Please install it manually.\n"
+      exit
     endif
+  else
+    echom "vim-plug not installed. Please install it manually or install curl.\n"
+    exit
+  endif
 endif
 
 call plug#begin('~/.local/share/nvim/plugged')
@@ -37,6 +37,10 @@ Plug 'elzr/vim-json'             " allow front matter highlighting
 Plug 'godlygeek/tabular'         " allows table formatting in Markdown
 "Plug 'plasticboy/vim-markdown'  " broken, not compatible with vim-one
 Plug 'gabrielelana/vim-markdown' " doesn't have code folding
+
+" Git helpers
+Plug 'mhinz/vim-signify'
+Plug 'tpope/vim-fugitive'
 
 " Live preview in browser with :MarkdownPreview
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install' }
