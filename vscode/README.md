@@ -11,25 +11,40 @@ $HOME/Library/Application Support/Code/User/settings.json
 $HOME/.config/Code/User/settings.json
 ```
 
-# Duplicate extensions to new machine
-```bash
-# On source machine:
-code --list-extensions > vs_code_extensions_list.txt
+# Install extensions on new machine
 
-# On destination machine, install each extension:
-# Windows:
-get-content c:\exportedlist.txt | % { code --install-extension $_ }
+### Installing the terminal helper
+On both the source and destination machines, make sure the terminal helper is installed:
+
+```bash
+# This command should return a valid path like: /usr/local/bin/code
+which code
+```
+
+If the helper isn't installed, here are the instructions:
+ 1. In VS Code, press Shift-Ctrl-P (or Shift-⌘-P) to open the Command Palette
+ 2. Type `shell command` to find:
+    `Shell Command: Install 'code' command in PATH`
+ 3. Press Enter to install the helper
+
+### Export the extensions
+On the source machine, export the extension list to a text file. (Or, use `vs_code_extensions_list.txt` in this repository.)
+```bash
+# Export the extension list
+code --list-extensions > vs_code_extensions_list.txt
+```
+
+### Import each extension and install
+Then install each extension from the source `txt` file:
+```bash
+# Windows
+get-content c:\vs_code_extensions_list.txt | % { code --install-extension $_ }
 
 # macOS and Linux
 cat vs_code_extensions_list.txt | xargs -n 1 code --install-extension
 ```
 
-# Errors about 'cannot find code'
-Install the helper to launch VS Code from the terminal.
- 1. In VS Code, press Shift-Ctrl-P (or Shift-⌘--P) to open the Command Palette
- 2. Type `shell command` to find:
-    `Shell Command: Install 'code' command in PATH`
- 3. Press Enter to install the helper
+# Installing the terminal helper
 
 # References
  * https://code.visualstudio.com/docs/getstarted/settings#_settings-file-locations
