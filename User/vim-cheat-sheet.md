@@ -11,12 +11,20 @@
   * :ene      edit new empty buffer
 
 # Insert mode shortcuts
+  * ctrl-h              delete character before
   * ctrl-w              delete word before
   * ctrl-u              delete to beginning
+  * ctrl-o D            delete to right of cursor
   * ctrl-n              invoke next autocomplete
   * ctrl-p              invoke prev autocomplete
+  * ctrl-j              insert new line
+  * ctrl-t              indent current line
+  * ctrl-d              un-indent current line
   * ctrl-[              quit Insert mode, switch to Normal mode
   * ctrl-c              quit Insert mode, switch to Normal mode
+  * ctrl-o              do one command without leaving Insert mode
+  * ctrl-o l            move cursor right
+  * ctrl-o h            move cursor left
 
 # Vim Windows (split panes)
   * ctrl-w v or :vsp    split into columns
