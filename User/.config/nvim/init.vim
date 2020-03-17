@@ -552,6 +552,13 @@ nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 
 
+" Insert mode shortcuts
+imap <C-b> <Left>
+imap <C-f> <Right>
+imap <C-e> <End>
+imap <C-a> <Home>
+
+
 " Ctrl-arrow keys to resize Vim split panes
 nmap <C-right> :vertical resize +3<CR>
 nmap <C-left> :vertical resize -3<CR>
