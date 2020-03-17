@@ -31,11 +31,6 @@ set clipboard=unnamed
 " Disable auto comments on new lines
 set formatoptions-=cro
 
-"Autoclose braces
-inoremap ( ()<Left>
-inoremap { {}<Left>
-inoremap [ []<Left>
-
 " clear search highlighting by pressing Enter
 nnoremap <CR> :noh<CR>
 
