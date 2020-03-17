@@ -1,7 +1,8 @@
 {
   // Comments are allowed in this JSONC file
   "suggest.maxCompleteItemCount": 20,
-  "eslint.options": { "configFile": "/home/tonyle/.eslintrc.json" },
+  "eslint.options": { "configFile": "/home/tonyle/.eslintrc.json" },   // Linux
+  //"eslint.options": { "configFile": "/Users/tonyle/.eslintrc.json" },  // macOS
   "eslint.filetypes": [
     "javascript",
     "typescript",
