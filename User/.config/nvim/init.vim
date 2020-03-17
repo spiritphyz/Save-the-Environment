@@ -454,6 +454,21 @@ endif
 " ===                             KEY MAPPINGS                             === "
 " ============================================================================ "
 
+" === Leader key shorcuts === "
+" Use spacebar as leader key instead of default '\'
+let mapleader="\<Space>"
+
+nnoremap <leader>w :w<CR>                                           " Save file
+nnoremap <leader>q :q<CR>                                           " Quit
+nnoremap <leader>c :%s/\<<c-r><c-w>//g<left><left>                  " Replace word under cursor
+nnoremap <silent> <leader>h :set nolist!<CR>                        " Toggle show hidden characters
+nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<CR>  " Insert line before
+nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>  " Insert line
+nnoremap <leader>n :bn<CR>                                          " Switch to next buffer
+nnoremap <leader>b :bp<CR>                                          " Switch to prev buffer
+nnoremap <leader>D :bd<CR>                                          " Delete buffer (capital D)
+
+
 " === Denite shorcuts === "
 "   ctrl-p    - Browser currently open buffers
 "   <leader>f - Browse list of files in current directory
@@ -530,25 +545,12 @@ function! s:denite_my_settings() abort
 endfunction
 
 
-" Use spacebar as leader key instead of default '\'
-let mapleader="\<Space>"
-
-" Leader key mappings
-nnoremap <leader>w :w<CR>                                                               " Save file
-nnoremap <leader>q :q<CR>                                                               " Quit
-nnoremap <leader>c :%s/\<<c-r><c-w>//g<left><left>                                      " Replace word under cursor
-nnoremap <silent> <leader>h :set nolist!<CR>                                            " Toggle show hidden characters
-nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<CR>  " Insert empty line w/o insert mode
-nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>  " Insert empty line before
-nnoremap <leader>n :bn<CR>                                                              " Switch to next buffer
-nnoremap <leader>b :bp<CR>                                                              " Switch to prev buffer
-nnoremap <leader>D :bd<CR>                                                              " Delete buffer (capital D)
-
 " Ctrl-hjkl for quick window switching (Vim split panes)
 nmap <C-h> <C-w>h
 nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
+
 
 " Ctrl-arrow keys to resize Vim split panes
 nmap <C-right> :vertical resize +3<CR>
