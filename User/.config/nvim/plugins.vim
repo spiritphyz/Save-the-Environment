@@ -27,6 +27,9 @@ Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
 Plug 'scrooloose/nerdtree'
 
+" Close braces in insert mode like Sublime, VSCode
+Plug 'jiangmiao/auto-pairs'
+
 " Syntax highlighting for many languages
 Plug 'sheerun/vim-polyglot'
 
