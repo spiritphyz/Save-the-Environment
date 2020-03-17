@@ -65,6 +65,9 @@ We need to install the CoC extensions manually:
 # Install Python IntelliSense
 Run ":CocInstall coc-python" inside Neovim
 
+# Install vscode-eslint support
+Run ":CocInstall coc-eslint" inside Neovim
+
 # Install Prettier for JavaScript
 Run ":CocInstall coc-prettier" inside Neovim
 ```
