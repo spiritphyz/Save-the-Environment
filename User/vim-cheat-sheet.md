@@ -14,7 +14,7 @@
   * ctrl-h              delete character before
   * ctrl-w              delete word before
   * ctrl-u              delete to beginning
-  * ctrl-o D            delete to right of cursor
+  * ctrl-o D            delete to end
   * ctrl-n              invoke next autocomplete
   * ctrl-p              invoke prev autocomplete
   * ctrl-j              insert new line
@@ -25,6 +25,8 @@
   * ctrl-o              do one command without leaving Insert mode
   * ctrl-o l            move cursor right
   * ctrl-o h            move cursor left
+  * shift-right         move cursor one word right
+  * shift-left          move cursor one word left
 
 # Vim Windows (split panes)
   * ctrl-w v or :vsp    split into columns
