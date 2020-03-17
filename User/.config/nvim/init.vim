@@ -576,7 +576,7 @@ map <leader>F :NERDTreeFind<CR>
 " Type :Prettier to format current buffer
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 " Create range first, then <leader>p to Prettier format
-map <leader>p <Plug>(coc-format-selected)
+map <leader>y <Plug>(coc-format-selected)
 
 " === coc.nvim ===
 nmap <silent> <leader>dd <Plug>(coc-definition)
