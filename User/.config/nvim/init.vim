@@ -169,7 +169,7 @@ autocmd BufNewFile,BufRead *.md set filetype=markdown
 
 " === Lightline options ===
 set laststatus=2
-set noshowmode " turn off extra -- INSERT --
+"set noshowmode " turn off extra -- INSERT --
 
 " Define functions
 function! s:lightline_coc_diagnostic(kind, sign) abort
