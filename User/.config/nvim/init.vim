@@ -197,6 +197,12 @@ function! LightlineCocInfos() abort
   return s:lightline_coc_diagnostic('information', 'info')
 endfunction
 
+function! LightlineFilename()
+  let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+  let modified = &modified ? ' +' : ''
+  return filename . modified
+endfunction
+
 function! LightlineFileformat()
   return winwidth(0) > 40 ? &fileformat : ''
 endfunction
@@ -219,6 +225,7 @@ let g:lightline = {
       \   'filetype': '%3l:%-2v%<',
       \ },
       \ 'component_function': {
+      \   'filename': 'LightlineFilename',
       \   'fileformat': 'LightlineFileformat',
       \   'filetype': 'LightlineFiletype',
       \ },
@@ -227,7 +234,7 @@ let g:lightline = {
       \              [ 'percent' ],
       \              [ 'fileformat', 'fileencoding', 'filetype' ] ],
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename', 'modified', 'coc_error', 'coc_warning', 'coc_hint', 'coc_info' ] ]
+      \             [ 'readonly', 'filename', 'coc_error', 'coc_warning', 'coc_hint', 'coc_info' ] ]
       \ },
       \ }
 
