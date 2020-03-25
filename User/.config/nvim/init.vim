@@ -200,15 +200,25 @@ endfunction
 function! LightlineFilename()
   let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
   let modified = &modified ? ' +' : ''
-  return filename . modified
+  if winwidth(0) < 70
+    return filename[len(filename)-40:] . modified
+  else
+    return filename . modified
+  endif
 endfunction
 
+function! LightlineFileencoding()
+  return winwidth(0) > 70 ? &fileencoding : ''
+endfunction
+
+" Ex: unix
 function! LightlineFileformat()
-  return winwidth(0) > 40 ? &fileformat : ''
+  return winwidth(0) > 70 ? &fileformat : ''
 endfunction
 
+" Ex: reactjavascript
 function! LightlineFiletype()
-  return winwidth(0) > 40 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+  return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
 endfunction
 
 function! LightlineCocHints() abort
@@ -226,6 +236,7 @@ let g:lightline = {
       \ },
       \ 'component_function': {
       \   'filename': 'LightlineFilename',
+      \   'fileencoding': 'LightlineFileencoding',
       \   'fileformat': 'LightlineFileformat',
       \   'filetype': 'LightlineFiletype',
       \ },
@@ -236,6 +247,12 @@ let g:lightline = {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'readonly', 'filename', 'coc_error', 'coc_warning', 'coc_hint', 'coc_info' ] ]
       \ },
+      \ 'mode_map': {
+        \ 'n': 'N',
+        \ 'i': 'I',
+        \ 'v': 'V',
+        \ 'V': 'VL',
+        \ },
       \ }
 
 let g:lightline.component_expand = {
