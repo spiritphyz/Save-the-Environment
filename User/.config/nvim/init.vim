@@ -496,13 +496,13 @@ endif
 " Use spacebar as leader key instead of default '\'
 let mapleader="\<Space>"
 
-nnoremap <leader>w :w<CR>                                           " Save file
-nnoremap <leader>q :q<CR>                                           " Quit
-nnoremap <leader>c :%s/\<<c-r><c-w>//g<left><left>                  " Replace word under cursor
-nnoremap <silent> <leader>h :set nolist!<CR>                        " Toggle show hidden characters
-nnoremap <leader>n :bn<CR>                                          " Switch to next buffer
-nnoremap <leader>b :bp<CR>                                          " Switch to prev buffer
-nnoremap <leader>D :bd<CR>                                          " Delete buffer (capital D)
+nnoremap <leader>w :w<CR>                                " Save file
+nnoremap <leader>q :q<CR>                                " Quit
+nnoremap <leader>c :%s/\<<c-r><c-w>//g<left><left>       " Replace word under cursor
+nnoremap <silent> <leader>h :set nolist!<CR>             " Toggle show hidden characters
+nnoremap <leader>n :bn<CR>                               " Switch to next buffer
+nnoremap <leader>b :bp<CR>                               " Switch to prev buffer
+nnoremap <leader>D :bd<CR>                               " Delete buffer (capital D)
 " Insert empty line before and after
 nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<Left><Left><CR>
 nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<Left><Left><CR>
