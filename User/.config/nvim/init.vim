@@ -105,7 +105,7 @@ call denite#custom#option('_', 'root_markers', 'Pipfile, Makefile, .git')
 " Custom options for Denite
 "   auto_resize             - Auto resize the Denite window height automatically.
 "   prompt                  - Customize denite prompt
-"   direction               - Specify Denite window direction as directly below current pane
+"   direction               - Specify Denite window direction as directly below curr pane
 "   winminheight            - Specify min height for Denite window
 "   highlight_mode_insert   - Specify h1-CursorLine in insert mode
 "   prompt_highlight        - Specify color of prompt
@@ -599,10 +599,10 @@ imap <C-a> <Home>
 
 
 " Ctrl-arrow keys to resize Vim split panes
-nmap <C-right> :vertical resize +3<CR>
-nmap <C-left> :vertical resize -3<CR>
-nmap <C-up> :resize +3<CR>
-nmap <C-down> :resize -3<CR>
+nmap <C-right> :vertical resize +1<CR>
+nmap <C-left> :vertical resize -1<CR>
+nmap <C-up> :resize +1<CR>
+nmap <C-down> :resize -1<CR>
 
 " Delete current visual selection and dump in black hole buffer before pasting
 " Used when you want to paste over something without it getting copied to
