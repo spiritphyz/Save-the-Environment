@@ -105,7 +105,7 @@ call denite#custom#option('_', 'root_markers', 'Pipfile, Makefile, .git')
 " Custom options for Denite
 "   auto_resize             - Auto resize the Denite window height automatically.
 "   prompt                  - Customize denite prompt
-"   direction               - Specify Denite window direction as directly below current pane
+"   direction               - Specify Denite window direction as directly below curr pane
 "   winminheight            - Specify min height for Denite window
 "   highlight_mode_insert   - Specify h1-CursorLine in insert mode
 "   prompt_highlight        - Specify color of prompt
@@ -169,7 +169,7 @@ autocmd BufNewFile,BufRead *.md set filetype=markdown
 
 " === Lightline options ===
 set laststatus=2
-set noshowmode " turn off extra -- INSERT --
+"set noshowmode " turn off extra -- INSERT --
 
 " Define functions
 function! s:lightline_coc_diagnostic(kind, sign) abort
@@ -197,6 +197,30 @@ function! LightlineCocInfos() abort
   return s:lightline_coc_diagnostic('information', 'info')
 endfunction
 
+function! LightlineFilename()
+  let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+  let modified = &modified ? ' +' : ''
+  if winwidth(0) < 70
+    return filename[len(filename)-40:] . modified
+  else
+    return filename . modified
+  endif
+endfunction
+
+function! LightlineFileencoding()
+  return winwidth(0) > 70 ? &fileencoding : ''
+endfunction
+
+" Ex: unix
+function! LightlineFileformat()
+  return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+
+" Ex: reactjavascript
+function! LightlineFiletype()
+  return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+endfunction
+
 function! LightlineCocHints() abort
   return s:lightline_coc_diagnostic('hints', 'hint')
 endfunction
@@ -206,10 +230,29 @@ autocmd User CocDiagnosticChange call lightline#update()
 " Configure statusline
 let g:lightline = {
       \ 'colorscheme': 'ayu_mirage',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename', 'modified', 'coc_error', 'coc_warning', 'coc_hint', 'coc_info' ] ]
+      \ 'component': {
+      \   'fileformat': '%3l:%-2v%<',
+      \   'filetype': '%3l:%-2v%<',
       \ },
+      \ 'component_function': {
+      \   'filename': 'LightlineFilename',
+      \   'fileencoding': 'LightlineFileencoding',
+      \   'fileformat': 'LightlineFileformat',
+      \   'filetype': 'LightlineFiletype',
+      \ },
+      \ 'active': {
+      \   'right': [ [ 'lineinfo' ],
+      \              [ 'percent' ],
+      \              [ 'fileformat', 'fileencoding', 'filetype' ] ],
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename', 'coc_error', 'coc_warning', 'coc_hint', 'coc_info' ] ]
+      \ },
+      \ 'mode_map': {
+        \ 'n': 'N',
+        \ 'i': 'I',
+        \ 'v': 'V',
+        \ 'V': 'VL',
+        \ },
       \ }
 
 let g:lightline.component_expand = {
@@ -453,15 +496,16 @@ endif
 " Use spacebar as leader key instead of default '\'
 let mapleader="\<Space>"
 
-nnoremap <leader>w :w<CR>                                           " Save file
-nnoremap <leader>q :q<CR>                                           " Quit
-nnoremap <leader>c :%s/\<<c-r><c-w>//g<left><left>                  " Replace word under cursor
-nnoremap <silent> <leader>h :set nolist!<CR>                        " Toggle show hidden characters
-nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<CR>  " Insert line before
-nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>  " Insert line
-nnoremap <leader>n :bn<CR>                                          " Switch to next buffer
-nnoremap <leader>b :bp<CR>                                          " Switch to prev buffer
-nnoremap <leader>D :bd<CR>                                          " Delete buffer (capital D)
+nnoremap <leader>w :w<CR>                                " Save file
+nnoremap <leader>q :q<CR>                                " Quit
+nnoremap <leader>c :%s/\<<c-r><c-w>//g<left><left>       " Replace word under cursor
+nnoremap <silent> <leader>h :set nolist!<CR>             " Toggle show hidden characters
+nnoremap <leader>n :bn<CR>                               " Switch to next buffer
+nnoremap <leader>b :bp<CR>                               " Switch to prev buffer
+nnoremap <leader>D :bd<CR>                               " Delete buffer (capital D)
+" Insert empty line before and after
+nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<Left><Left><CR>
+nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<Left><Left><CR>
 
 
 " === Denite shorcuts === "
@@ -555,10 +599,10 @@ imap <C-a> <Home>
 
 
 " Ctrl-arrow keys to resize Vim split panes
-nmap <C-right> :vertical resize +3<CR>
-nmap <C-left> :vertical resize -3<CR>
-nmap <C-up> :resize +3<CR>
-nmap <C-down> :resize -3<CR>
+nmap <C-right> :vertical resize +1<CR>
+nmap <C-left> :vertical resize -1<CR>
+nmap <C-up> :resize +1<CR>
+nmap <C-down> :resize -1<CR>
 
 " Delete current visual selection and dump in black hole buffer before pasting
 " Used when you want to paste over something without it getting copied to
@@ -575,7 +619,7 @@ map <leader>F :NERDTreeFind<CR>
 " === coc-prettier key mappings ===
 " Type :Prettier to format current buffer
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
-" Create range first, then <leader>p to Prettier format
+" Create range first, then <leader>y to Prettier format
 map <leader>y <Plug>(coc-format-selected)
 
 " === coc.nvim ===

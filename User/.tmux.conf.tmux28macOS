@@ -10,10 +10,9 @@ set -g update-environment -r
 set -sg escape-time 0
 
 # 256 colors
-# Use screen colors when inside Tmux
-# Use Xterm colors when inside Tmux
-set -g default-terminal "screen-256color"
-set-option -sa terminal-overrides ',xterm-256color:RGB'
+set -g default-terminal "screen-256color"                # Use screen colors when inside Tmux
+#set-option -sa terminal-overrides ',xterm-256color:RGB'  # Use Xterm colors when outside Tmux
+set -ga terminal-overrides ",xterm-256color*:Tc"         # Tell Tmux that outside terminal has true colors
 
 # Enable tap to reposition cursor
 set -g mouse on
@@ -59,6 +58,9 @@ bind -n M-L resize-pane -R 5
 
 # Zoom with Alt-m
 bind -n M-m resize-pane -Z
+
+# Send 'repeat last Bash command' to last active pane
+bind -n M-g send-keys -R -t ! "C-j" Enter
 
 # Use vi mode for navigation in scrollback view (copy mode)
 set-window-option -g mode-keys vi
