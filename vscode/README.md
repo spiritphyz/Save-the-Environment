@@ -17,10 +17,7 @@ $HOME/.config/Code/User/settings.json
 On both the source and destination machines, make sure the terminal helper is installed:
 
 ```bash
-# This command should return a valid path like: /usr/local/bin/code
-which code
-
-# Windows
+# This command on all platforms should return a valid number
 code --version
 ```
 
