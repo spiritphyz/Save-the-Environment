@@ -40,14 +40,12 @@ code --list-extensions > vs_code_extensions_list.txt
 ### Import each extension and install
 Then install each extension from the source `txt` file:
 ```bash
-# Windows
+# Windows PowerShell
 get-content c:\vs_code_extensions_list.txt | % { code --install-extension $_ }
 
 # macOS and Linux
 cat vs_code_extensions_list.txt | xargs -n 1 code --install-extension
 ```
-
-# Installing the terminal helper
 
 # References
  * https://code.visualstudio.com/docs/getstarted/settings#_settings-file-locations
