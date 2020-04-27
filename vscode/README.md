@@ -19,6 +19,9 @@ On both the source and destination machines, make sure the terminal helper is in
 ```bash
 # This command should return a valid path like: /usr/local/bin/code
 which code
+
+# Windows
+code --version
 ```
 
 If the helper isn't installed, here are the instructions:
