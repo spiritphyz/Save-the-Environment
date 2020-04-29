@@ -46,10 +46,15 @@ export PS1="\W 🐙  "
 # http://stackoverflow.com/questions/5076127/bash-update-terminal-title-by-running-a-second-command
 #trap 'echo -ne "\033]2;$(history 1 | sed "s/^[ ]*[0-9]*[ ]*//g")\007"' DEBUG
 
-# set vim as default editor for Ctrl-x-e advanced editing
+# Set vim as default editor (non-Ubuntu distros) for Ctrl-x, Ctrl-e advanced editing
 # https://unix.stackexchange.com/questions/73484/how-can-i-set-vi-as-my-default-editor-in-unix
 #export VISUAL=vim
 #export EDITOR="$VISUAL"
+#
+# If inside Tmux with my person .tmux.conf, chord is "ctrl-x, x, ctrl-e"
+# To set Neovim as Bash visual editor for Ubuntu:
+# sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60 # (or /usr/local/bin)
+# sudo update-alternatives --config editor
 
 # enable tab completion for known hosts
 # https://gist.github.com/aliang/1024466
