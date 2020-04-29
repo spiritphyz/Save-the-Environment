@@ -35,17 +35,17 @@ set formatoptions-=cro
 nnoremap <CR> :noh<CR>
 
 " Tab key behavior
-set expandtab      " use spaces instead of tabs
-set smarttab
-set softtabstop=2  " # of spaces that counts as a tab during editing ops
+set expandtab                      " use spaces instead of tabs
+set smarttab                       " insert tab according to rules below
+set softtabstop=2                  " # of spaces counted as tab during editing
 set shiftwidth=2
 set tabstop=2
-set autoindent     " apply current indentation to next line
-set smartindent    " reacts to syntax of your code
+set autoindent                     " apply current indentation to next line
+set smartindent                    " reacts to syntax of your code
 
 " Word wrapping, only insert line breaks when I press Enter
-set wrap           " wrap lines
-set linebreak      " visually wrap long lines on ^I!@*-+;:,./? character
+set wrap                           " wrap lines
+set linebreak                      " visually wrap long lines on ^I!@*-+;:,./?
 
 " for existing files, keep textwidths but don't let vim automatically reformat
 " when typing on lines
@@ -57,12 +57,17 @@ set formatoptions+=1
 " If matching names are found, a pop-up menu opens which can be navigated
 " using the <C-N> and <C-P> keys.
 " filetype plugin on
-filetype plugin indent on                 " auto-indent based on filetype
+filetype plugin indent on             " auto-indent based on filetype
 set omnifunc=syntaxcomplete#Complete
 
 " make backspace delete over line breaks
 " http://vim.wikia.com/wiki/Backspace_and_delete_problems
 set backspace=indent,eol,start
+
+" Allow cursor to move past last character,
+" automatically pad spaces on new character insert
+" https://keleshev.com/my-book-writing-setup/
+"set virtualedit=all
 
 
 " ============================================================================ "
@@ -165,6 +170,16 @@ let g:vim_markdown_conceal = 0
 let g:vim_markdown_new_list_item_indent = 2
 autocmd FileType markdown highlight htmlH1 cterm=none ctermfg=70
 autocmd BufNewFile,BufRead *.md set filetype=markdown
+
+
+" === markdown-preview-nvim options ===
+" set to 1, preview server available to others in your network
+" by default, the server listens on localhost (127.0.0.1)
+" default: 0
+let g:mkdp_open_to_the_world = 1
+
+" use a custom port to start server or random for empty
+let g:mkdp_port = '8090'
 
 
 " === Lightline options ===
@@ -496,13 +511,14 @@ endif
 " Use spacebar as leader key instead of default '\'
 let mapleader="\<Space>"
 
-nnoremap <leader>w :w<CR>                                " Save file
-nnoremap <leader>q :q<CR>                                " Quit
-nnoremap <leader>c :%s/\<<c-r><c-w>//g<left><left>       " Replace word under cursor
-nnoremap <silent> <leader>h :set nolist!<CR>             " Toggle show hidden characters
-nnoremap <leader>n :bn<CR>                               " Switch to next buffer
-nnoremap <leader>b :bp<CR>                               " Switch to prev buffer
-nnoremap <leader>D :bd<CR>                               " Delete buffer (capital D)
+nnoremap <leader>w :w<CR>                            " Save file
+nnoremap <leader>q :q<CR>                            " Quit
+nnoremap <leader>c :%s/\<<c-r><c-w>//g<left><left>   " Replace word under cursor
+nnoremap <silent> <leader>h :set nolist!<CR>         " Toggle show hidden characters
+nnoremap <leader>H :SignifyHunkDiff<CR>              " Show hunk diff on gutter symbol (capital H)
+nnoremap <leader>n :bn<CR>                           " Switch to next buffer
+nnoremap <leader>b :bp<CR>                           " Switch to prev buffer
+nnoremap <leader>D :bd<CR>                           " Delete buffer (capital D)
 " Insert empty line before and after
 nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<Left><Left><CR>
 nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<Left><Left><CR>
