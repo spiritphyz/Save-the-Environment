@@ -42,8 +42,8 @@ Plug 'godlygeek/tabular'         " allows table formatting in Markdown
 Plug 'gabrielelana/vim-markdown' " doesn't have code folding
 
 " Git helpers
-Plug 'mhinz/vim-signify'
-Plug 'tpope/vim-fugitive'
+Plug 'mhinz/vim-signify'         " Show symbol in gutter, :SignifyHunkDiff
+Plug 'tpope/vim-fugitive'        " Provides :Git commands, branch indicator
 
 " Live preview in browser with :MarkdownPreview
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install' }
