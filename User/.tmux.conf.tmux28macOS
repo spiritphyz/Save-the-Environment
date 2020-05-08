@@ -60,7 +60,7 @@ bind -n M-L resize-pane -R 5
 bind -n M-m resize-pane -Z
 
 # Send 'repeat last Bash command' to last active pane
-bind -n M-g send-keys -R -t ! "C-j" Enter
+bind -n M-g send-keys -R -t ! "C-p" Enter
 
 # Use vi mode for navigation in scrollback view (copy mode)
 set-window-option -g mode-keys vi
