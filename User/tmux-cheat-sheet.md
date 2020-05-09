@@ -1,36 +1,33 @@
 # Tmux Sessions
-  * C-b $  rename current session
-  * C-b )  switch to next session
-  * C-b (  switch to previous session
+  * C-b $    rename current session
+  * C-b )    switch to next session
+  * C-b (    switch to previous session
 
 # Tmux Windows (tabs)
-  * C-b c  create window
-  * C-b 1  switch to window 1
-  * C-b w  list windows
-  * C-b n  next window
-  * C-b p  previous window // interferes with tmux paste
-  * C-b ,  name window
-  * C-b .  move window (prompts for new window index)
-  * C-b &  kill window
+  * C-b c    create window
+  * C-b 1    switch to window 1
+  * C-b w    list windows
+  * C-b n    next window
+  * C-b p    previous window // conflicts with my Tmux paste
+  * C-b ,    name window
+  * C-b .    move window (prompts for new window index)
+  * C-b &    kill window
+
+  * :swap-window -s 3 -t 2   swap window 2 and target window 3
 
 # Tmux Panes (splits)
 M is the meta key, which is `option` on Mac keyboards.
-
 `C-b M-1` means to "press control-b, then press option-1".
 
-  * C-b %    split into left and right panes (percent symbol parts are mostly horizontal)
-  * C-b "    split into top and bottom panes (double quote is stacked above single quote)
+  * C-b %    create left & right panes (slash symbol is mostly horizontal)
+  * C-b "    create top & bottom panes (double quote is above single quote)
   * C-b o    jump between panes
   * C-b q2   show pane numbers, jump to pane 2
-  * C-b C-b  swap the location of 2 panes
+  * C-b ;    move cursor to last active pane
+  * C-b o    move cursor to last active pane (other)
   * C-b }    move current pane to right
   * C-b {    move current pane to left
-
-  * C-b M-1  split columns, equal width
-  * C-b M-2  stack vertically, equal height
-  * C-b M-3  big pane on top, split columns on bottom
-  * C-b M-4  big pane on left, split columns on right
-  * C-b M-5  big pane on bottom, split columns on top
+  * C-b x    close pane // conflicts with my Tmux prefix
 
   * resize-pane -L 10   resize current pane left by 10 cells
   * resize-pane -R 10   resize current pane right by 10 cells
@@ -38,7 +35,16 @@ M is the meta key, which is `option` on Mac keyboards.
   * resize-pane -D      resize current pane down
   * C-b M-arrow_key     resize the active pane
 
-  * :select-layout tiled  make all splits roughly equal
+  * C-b M-1        split columns, equal width
+  * C-b M-2        stack vertically, equal height
+  * C-b M-3        big pane on top, split columns on bottom
+  * C-b M-4        big pane on left, split columns on right
+  * C-b M-5        big pane on bottom, split columns on top
+  * C-b spacebar   cycle through pane layouts (equal parts)
+  * C-b !          convert pane into a window
+
+  * :swap-panes -s 3 -t 2   swap source pane 2 and target pane 3
+  * :select-layout tiled    make all splits roughly equal
 
 # Tmux copy and paste
 `C-b p` means to "press control-b, then press p".
@@ -52,3 +58,9 @@ M is the meta key, which is `option` on Mac keyboards.
 | `C-b [`                            | enter Copy Mode, use vi keys to move around  |
 | `y` on selection in Copy Mode      | yank selection to Tmux clipboard             |
 | `(enter key)` in Copy Mode         | exit Copy Mode                               |
+| `:show-buffer`                     | show buffer_0 contents                       |
+| `:list-buffer`                     | list all buffers                             |
+| `:choose-buffer`                   | show all buffers and paste selected one      |
+| `:capture-pane`                    | copy visual content into buffer              |
+| `:save-buffer name.txt`            | save buffer content to a file                |
+
