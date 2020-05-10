@@ -60,7 +60,7 @@
 # Scrolling the view
 These commands are affected by 'scrolloff' value.
   zt                    position current line at top of view
-  zm or z.              position current line at middle
+  zz or z.              position current line at middle
   zb or z-              position current line at bottom
 
 # Reload .vimrc file while editing it inside Vim
