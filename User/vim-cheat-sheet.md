@@ -57,6 +57,12 @@
   * :vert res +5        resize width wider by 5 units
   * :vert res -5        resize width thinner by 5 units
 
+# Scrolling the view
+These commands are affected by 'scrolloff' value.
+  zt                    position current line at top of view
+  zm or z.              position current line at middle
+  zb or z-              position current line at bottom
+
 # Reload .vimrc file while editing it inside Vim
   * :so %
 
