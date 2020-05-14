@@ -44,6 +44,12 @@ get-content c:\vs_code_extensions_list.txt | % { code --install-extension $_ }
 cat vs_code_extensions_list.txt | xargs -n 1 code --install-extension
 ```
 
+# Enable key repeat on macOS
+The default macOS behavior when holding a key is to enable an accented version of the key. To disable this behavior, execute the following command in Terminal and restart VS Code.
+```bash
+defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+```
+
 # References
  * https://code.visualstudio.com/docs/getstarted/settings#_settings-file-locations
  * https://superuser.com/questions/1080682/how-do-i-back-up-my-vs-code-settings-and-list-of-installed-extensions
