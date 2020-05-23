@@ -1,7 +1,8 @@
 # Tmux Sessions
-  * C-b $    rename current session
-  * C-b )    switch to next session
-  * C-b (    switch to previous session
+  * C-b :new   create new session
+  * C-b $      rename current session
+  * C-b )      switch to next session
+  * C-b (      switch to previous session
 
 # Tmux Windows (tabs)
   * C-b c    create window
