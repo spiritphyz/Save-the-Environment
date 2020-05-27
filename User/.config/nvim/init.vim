@@ -425,7 +425,7 @@ set backupdir^=~/.nvim/backup   " Consolidate the write backups.
 set undofile
 set undodir^=~/.nvim/undo//
 
-set scrolloff=2                 " Always show 2 lines above/below cursor
+"set scrolloff=2                 " Always show 2 lines above/below cursor
 set showcmd                     " Show incomplete commands
 set ruler                       " Show cursor position
 set number                      " show line numbers

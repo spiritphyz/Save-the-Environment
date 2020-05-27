@@ -29,7 +29,10 @@ Let's save our settings for a better future.
 npm i -g eslint
 
 # Install Python virtualenv
-pip install neovim
+pip3 install neovim
+
+# Install Neovim Python module
+pip3 install pynvim
 
 # Install NodeJS provider
 npm i -g neovim
