@@ -24,7 +24,12 @@ export PATH=/usr/local/bin:$PATH
 
 # To get lightline-vim working correctly
 # Set to xterm colors when outside of Tmux
-export TERM=xterm-256color
+#export TERM=xterm-256color
+#
+# Above is bad advice, only terminal emulator
+# is supposed to set TERM variable (like iTerm),
+# not the shell profile.
+# https://jdhao.github.io/2018/10/19/tmux_nvim_true_color/
 
 # add directory colors to OS X shell
 export CLICOLOR=1
