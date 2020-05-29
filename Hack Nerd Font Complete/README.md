@@ -9,6 +9,12 @@ Weights:
 - Italic
 - Regular
 
+## Installation
+
+For macOS, unzip the archive, then double-click to add them to Font Book. You can [see the complete instructions](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Hack#quick-installation) for all platforms at the official repository.
+
+A local version is stored here because it seems like some of the latest releases of Hack Nerd Font Complete don't seem to include the devicons necessary for Neovim and NERDTree but the older version in this repo has a working set.
+
 ![Sample Set of Devicons](https://vorillaz.github.io/devicons/img/ogimage.png)
 
 
