@@ -1,3 +1,4 @@
+# Add aliases in separate file
 if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
 fi
@@ -9,17 +10,13 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 # Show short hostname, current working directory
 export PS1="%B%m%b %1~%% "
 
-# For NVM (Node Version Manager)
-#export NVM_DIR="$HOME/.nvm"
-#[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-#[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+# Fix NVM slow startup on new terminal windows
 #
-# Fix NVM slow startup
+# Defers initialization of nvm until nvm, node or a node-dependent command is
+# run. Only run once if .bashrc gets sourced multiple times by checking if
+# __init_nvm is a function.
+#
 # https://www.growingwiththeweb.com/2018/01/slow-nvm-init.html
-#
-# Defer initialization of nvm until nvm, node or a node-dependent command is
-# run. Ensure this block is only run once if .bashrc gets sourced multiple times
-# by checking whether __init_nvm is a function.
 if [ -s "$HOME/.nvm/nvm.sh" ] && [ ! "$(type -t __init_nvm)" = function ]; then
   export NVM_DIR="$HOME/.nvm"
   [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
