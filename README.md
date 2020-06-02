@@ -28,10 +28,10 @@ Install nightly version:
 https://github.com/neovim/neovim/releases/tag/nightly
 
 If you get CoC errors about a frozen lock file, then run the yarn install manually:
-  ```bash
-  cd /Users/yourusername/.local/share/nvim/plugged/coc.nvim
-  yarn install --frozen-lockfile
-  ```
+```bash
+cd /Users/yourusername/.local/share/nvim/plugged/coc.nvim
+yarn install --frozen-lockfile
+```
 
 # Install Utilities
 ```bash
