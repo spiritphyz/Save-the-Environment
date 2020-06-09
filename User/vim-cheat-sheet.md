@@ -11,8 +11,8 @@
   * :ene      edit new empty buffer
 
 # Normal mode shortcuts
-  * xp        swap current character with next character
-  * Xp        swap current character with previous character
+  * xp        swap (transpose) current character with next character
+  * Xp        transpose current character with previous character
   * ~         toggle uppercase or lowercase for current character
 
 # Insert mode shortcuts
