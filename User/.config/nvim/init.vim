@@ -615,19 +615,22 @@ nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 
-
 " Insert mode shortcuts
 imap <C-b> <Left>
 imap <C-f> <Right>
 imap <C-e> <End>
 imap <C-a> <Home>
 
-
 " Ctrl-arrow keys to resize Vim split panes
 nmap <C-right> :vertical resize +1<CR>
 nmap <C-left> :vertical resize -1<CR>
 nmap <C-up> :resize +1<CR>
 nmap <C-down> :resize -1<CR>
+
+" Switch to last open buffer with <leader>k
+" Default of ctrl-^ (or ctrl-6) conflicts with Mosh interrupt
+" This method doesn't work with unnamed buffers
+nmap <leader>k :e #<CR>
 
 " Delete current visual selection and dump in black hole buffer before pasting
 " Used when you want to paste over something without it getting copied to
