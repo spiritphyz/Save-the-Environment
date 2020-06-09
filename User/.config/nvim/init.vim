@@ -636,9 +636,9 @@ vnoremap <leader>p "_dP
 
 
 " === NERDTree key mappings ===
-"  <leader>n - Toggle NERDTree on/off
-"  <leader>f - Opens current file location in NERDTree
-map <leader>n :NERDTreeToggle<CR>
+"  <leader>r - Toggle NERDTree panel (<leader>n is next buffer)
+"  <leader>f - Show current file in containing folder
+map <leader>r :NERDTreeToggle<CR>
 map <leader>f :NERDTreeFind<CR>
 
 " === coc-prettier key mappings ===
