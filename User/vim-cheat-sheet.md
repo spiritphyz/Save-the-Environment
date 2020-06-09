@@ -14,6 +14,9 @@
   * xp        swap (transpose) current character with next character
   * Xp        transpose current character with previous character
   * ~         toggle uppercase or lowercase for current character
+  * ctrl-o    jump to older location in jump list
+  * ctrl-i    jump to newer location in jump list
+  * :jumps    show jump list. keeps track of file, line, and column position
 
 # Insert mode shortcuts
   * ctrl-h              delete character before
