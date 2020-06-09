@@ -10,6 +10,11 @@
   * C-g       show current filename
   * :ene      edit new empty buffer
 
+# Normal mode shortcuts
+  * xp        swap current character with next character
+  * Xp        swap current character with previous character
+  * ~         toggle uppercase or lowercase for current character
+
 # Insert mode shortcuts
   * ctrl-h              delete character before
   * ctrl-w              delete word before
@@ -59,22 +64,22 @@
 
 # Scrolling the view
 These commands are affected by 'scrolloff' value.
-  zt                    position current line at top of view
-  zz or z.              position current line at middle
-  zb or z-              position current line at bottom
+  * zt                    position current line at top of view
+  * zz or z.              position current line at middle
+  * zb or z-              position current line at bottom
 
 # Reload .vimrc file while editing it inside Vim
   * :so %
 
 # Search with * and #
-  *                     set word to search for
-  n                     move to next occurence
-  N                     move to prev occurence
-  #                     set word to search for backwards
-  n                     move backwards to next occurence
-  N                     move backwards to prev occurence
-  g*                    search for not exact word forwards
-  g#                    search for not exact word backwards
+  * *                     set word to search for
+  * n                     move to next occurence
+  * N                     move to prev occurence
+  * #                     set word to search for backwards
+  * n                     move backwards to next occurence
+  * N                     move backwards to prev occurence
+  * g*                    search for not exact word forwards
+  * g#                    search for not exact word backwards
 
 # Vim marks
   * m1                  set mark named `1`
