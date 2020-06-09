@@ -428,9 +428,18 @@ set undodir^=~/.nvim/undo//
 "set scrolloff=2                 " Always show 2 lines above/below cursor
 set showcmd                     " Show incomplete commands
 set ruler                       " Show cursor position
-set number                      " show line numbers
 set ignorecase                  " Ignore case while searching except
 set smartcase                   " when already has one capital letter
+
+" Show hybrid line numbers (relative except for current line)
+set number relativenumber
+
+" For non-focused buffers, show absolute line numbers
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
 
 " Better menu completion in command mode
 set wildmenu
