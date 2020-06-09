@@ -655,6 +655,11 @@ nnoremap <silent> <leader>ds :<C-u>CocList -I -N --top symbols<CR>
 nmap <silent> <leader>] <Plug>(coc-diagnostic-next) " Jump to next eslint error
 nmap <silent> <leader>[ <Plug>(coc-diagnostic-prev) " Jump to prev eslint error
 
+" === Search shorcuts ===
+"  <leader>h - For all lines in file, search and replace
+map <leader>h :%s/
+
+
 " === Abbreviations ===
 " http://vim.wikia.com/wiki/Using_abbreviations
 abbr cll console.log
