@@ -67,22 +67,22 @@
 
 # Scrolling the view
 These commands are affected by 'scrolloff' value.
-  * zt                    position current line at top of view
-  * zz or z.              position current line at middle
-  * zb or z-              position current line at bottom
+  * zt                  position current line at top of view
+  * zz or z.            position current line at middle
+  * zb or z-            position current line at bottom
 
 # Reload .vimrc file while editing it inside Vim
   * :so %
 
 # Search with * and #
-  * *                     set word to search for
-  * n                     move to next occurence
-  * N                     move to prev occurence
-  * #                     set word to search for backwards
-  * n                     move backwards to next occurence
-  * N                     move backwards to prev occurence
-  * g*                    search for not exact word forwards
-  * g#                    search for not exact word backwards
+  * *                   set word to search for
+  * n                   move to next occurrence
+  * N                   move to prev occurrence
+  * #                   set word to search for backwards
+  * n                   move backwards to next occurrence
+  * N                   move backwards to prev occurrence
+  * g*                  search for not exact word forwards
+  * g#                  search for not exact word backwards
 
 # Vim marks
   * m1                  set mark named `1`
@@ -98,7 +98,14 @@ These commands are affected by 'scrolloff' value.
 
 # Ex commands
   * :pwd                print working directory
-  * :s/foo/bar/g        for curr line, replace foo w/ bar for all occurences on line
+  * :s/foo/bar/g        for curr line, replace foo w/ bar for all occurrences on line
   * :%s/foo/bar         for all lines, replace foo w/ bar
   * :set syntax=html    set syntax highlighting for current buffer
 
+# Spell check
+  * ]s                  go to next misspelled word
+  * [s                  go to prev misspelled word
+  * z=                  with cursor on misspelled word, show suggestions
+  * zw                  mark word as misspelled
+  * zg                  with misspelled word, add to dictionary
+  * :set nospell        turn off highlighting
