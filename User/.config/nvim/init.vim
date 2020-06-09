@@ -636,10 +636,10 @@ vnoremap <leader>p "_dP
 
 
 " === NERDTree key mappings ===
-"  <leader>N - Toggle NERDTree on/off (capital N)
-"  <leader>F - Opens current file location in NERDTree (capital F)
-map <leader>N :NERDTreeToggle<CR>
-map <leader>F :NERDTreeFind<CR>
+"  <leader>n - Toggle NERDTree on/off
+"  <leader>f - Opens current file location in NERDTree
+map <leader>n :NERDTreeToggle<CR>
+map <leader>f :NERDTreeFind<CR>
 
 " === coc-prettier key mappings ===
 " Type :Prettier to format current buffer
