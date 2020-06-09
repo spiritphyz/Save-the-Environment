@@ -29,6 +29,7 @@ M is the meta key, which is `option` on Mac keyboards.
   * C-b }    move current pane to right
   * C-b {    move current pane to left
   * C-b x    close pane // conflicts with my Tmux prefix
+  * C-b :kill-pane      kill pane
 
   * resize-pane -L 10   resize current pane left by 10 cells
   * resize-pane -R 10   resize current pane right by 10 cells
