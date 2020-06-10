@@ -121,11 +121,14 @@ let s:denite_options = {'default' : {
 \ 'prompt': '',
 \ 'direction': 'rightbelow',
 \ 'winminheight': '10',
+\ 'source_names': 'short',
 \ 'highlight_mode_insert': 'Visual',
 \ 'highlight_mode_normal': 'Visual',
 \ 'prompt_highlight': 'Function',
 \ 'highlight_matched_char': 'Function',
-\ 'highlight_matched_range': 'Normal'
+\ 'highlight_matched_range': 'Normal',
+\ 'winrow': 1,
+\ 'vertical_preview': 1
 \ }}
 
 " Loop through denite options and enable them
@@ -540,7 +543,7 @@ nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1
 "   <leader>g - Search curr directory for given term, close window if no results
 "   <leader>j - Search curr directory for occurrences of word under cursor
 "           i - After triggers above, press 'i' to enter fuzzy filter mode
-nmap <C-p> :Denite buffer<CR>
+nmap <C-p> :Denite buffer<CR>i
 nmap <leader>f :Denite file/rec<CR>
 nmap <leader>t :DeniteProjectDir file/rec<CR>
 nnoremap <leader>g <C-u>:Denite grep:. -no-empty<CR>
@@ -629,7 +632,7 @@ nmap <C-down> :resize -1<CR>
 
 " Switch to last open buffer with <leader>k
 " Default of ctrl-^ (or ctrl-6) conflicts with Mosh interrupt
-" This method doesn't work with unnamed buffers
+" This method doesn't work with unnamed buffers (ctrl-^ does)
 nmap <leader>k :e #<CR>
 
 " Delete current visual selection and dump in black hole buffer before pasting
@@ -661,6 +664,11 @@ nmap <silent> <leader>[ <Plug>(coc-diagnostic-prev) " Jump to prev eslint error
 " === Search shorcuts ===
 "  <leader>h - For all lines in file, search and replace
 map <leader>h :%s/
+
+
+" === Miscellaneous ===
+" Enable spellcheck for markdown files
+autocmd BufRead,BufNewFile *.md setlocal spell
 
 
 " === Abbreviations ===
