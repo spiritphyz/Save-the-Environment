@@ -106,8 +106,8 @@ _complete_ssh_hosts ()
 }
 complete -F _complete_ssh_hosts ssh
 
-# FZF: use silver surfer, include hidden files (but ignore .git folder)
-export FZF_DEFAULT_COMMAND='ag -l --nogroup --nocolor --hidden --ignore .git -g ""'
+# Use ripgrep to find hidden files (but ignore node_modules and .git folder)
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!*node_modules*" -g "!*.git*"'
 
 # FZF customizations
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
