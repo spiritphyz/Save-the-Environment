@@ -1,4 +1,3 @@
-# Add aliases in separate file
 if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
 fi
@@ -10,13 +9,38 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 # Show short hostname, current working directory
 export PS1="%B%m%b %1~%% "
 
-# Fix NVM slow startup on new terminal windows
+# Use ripgrep to find hidden files (but ignore node_modules and .git folder)
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!*node_modules*" -g "!*.git*"'
+
+# FZF customizations
+#[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Fuzzy open file with 'fo' command in terminal
+#   - CTRL-O to open with `open` command,
+#   - CTRL-E or Enter key to open with the $EDITOR
+
+fo() {
+  local out file key
+  IFS=$'\n' out=("$(fzf-tmux --query="$1" --exit-0 --expect=ctrl-o,ctrl-e)")
+  key=$(head -1 <<< "$out")
+  file=$(head -2 <<< "$out" | tail -1)
+  if [ -n "$file" ]; then
+    [ "$key" = ctrl-o ] && open "$file" || ${EDITOR:-vim} "$file"
+  fi
+}
+
+# For NVM (Node Version Manager)
+#export NVM_DIR="$HOME/.nvm"
+#[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+#[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 #
-# Defers initialization of nvm until nvm, node or a node-dependent command is
-# run. Only run once if .bashrc gets sourced multiple times by checking if
-# __init_nvm is a function.
-#
+# Fix NVM slow startup
 # https://www.growingwiththeweb.com/2018/01/slow-nvm-init.html
+#
+# Defer initialization of nvm until nvm, node or a node-dependent command is
+# run. Ensure this block is only run once if .bashrc gets sourced multiple times
+# by checking whether __init_nvm is a function.
 if [ -s "$HOME/.nvm/nvm.sh" ] && [ ! "$(type -t __init_nvm)" = function ]; then
   export NVM_DIR="$HOME/.nvm"
   [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
@@ -32,3 +56,4 @@ fi
 
 # Start Z utility to change directories easily
 . /Users/kyivdev/pbin/z-utility/z.sh
+
