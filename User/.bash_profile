@@ -112,7 +112,7 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!*node_
 # FZF customizations
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-# Fuzzy open file with NeoVim with 'fo'
+# Fuzzy open file with 'fo' command in terminal
 #   - CTRL-O to open with `open` command,
 #   - CTRL-E or Enter key to open with the $EDITOR
 fo() {
