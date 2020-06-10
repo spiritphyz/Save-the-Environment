@@ -11,3 +11,9 @@ options    head
   }
 
   export default $1;
+
+snippet    console-log-with-template-string-variable
+alias      cll
+abbr       console.log(`${...}`)
+options    head
+  console.log($1: \`\$\{${1:#:variable}\}\`)
