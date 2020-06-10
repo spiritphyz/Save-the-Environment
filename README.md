@@ -52,11 +52,13 @@ npm i -g neovim
 # https://github.com/BurntSushi/ripgrep#installation
 brew install ripgrep
 
-# Install FZF and Silver Surfer on Linux or macOS
+# Install FZF on Linux
+# Fuzzy auto-completion and Neovim plugin installed automatically it seems
 sudo apt install fzf
+
+# FZF on macOS
 brew install fzf
-sudo apt install silversearcher-ag
-brew install the_silver_searcher
+$(brew --prefix)/opt/fzf/install
 
 # Run ":checkhealth" inside Neovim
 
