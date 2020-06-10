@@ -19,6 +19,7 @@ Let's save our settings for a better future.
 
 
 # Create Directories
+ * ~/.config/nvim/snippets
  * ~/.nvim/backup
  * ~/.nvim/swap
  * ~/.nvim/undo
