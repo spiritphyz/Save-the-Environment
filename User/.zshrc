@@ -9,6 +9,9 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 # Show short hostname, current working directory
 export PS1="%B%m%b %1~%% "
 
+# Set Neovim as default editor
+export EDITOR="nvim"
+
 # Use ripgrep to find hidden files (but ignore node_modules and .git folder)
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!*node_modules*" -g "!*.git*"'
 
