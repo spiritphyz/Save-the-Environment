@@ -107,5 +107,7 @@ These commands are affected by 'scrolloff' value.
   * [s                  go to prev misspelled word
   * z=                  with cursor on misspelled word, show suggestions
   * zw                  mark word as misspelled
+  * zug                 undo mark word as misspelled
   * zg                  with misspelled word, add to dictionary
+  * zug                 undo add word to spellfile
   * :set nospell        turn off highlighting
