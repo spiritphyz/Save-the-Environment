@@ -1,5 +1,6 @@
 {
   // Comments are allowed in this JSONC file
+  "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,
   "eslint.options": { "configFile": "/home/tonyle/.eslintrc.json" },   // Linux
   //"eslint.options": { "configFile": "/Users/tonyle/.eslintrc.json" },  // macOS
@@ -10,6 +11,13 @@
     "javascriptreact",
     "typescript.tsx"
   ],
+  // Fix bug with visual fragments of floating window remaining after ctrl-c
+  "list.normalMappings": {
+    "<C-c>": "do:exit"
+  },
+  "list.insertMappings": {
+    "<C-c>": "do:exit"
+  },
   "diagnostic.errorSign": "•",
   "diagnostic.warningSign": "•",
   "diagnostic.infoSign": "•",
