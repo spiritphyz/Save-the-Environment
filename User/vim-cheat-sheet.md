@@ -101,6 +101,7 @@ These commands are affected by 'scrolloff' value.
   * :s/foo/bar/g        for curr line, replace foo w/ bar for all occurrences on line
   * :%s/foo/bar         for all lines, replace foo w/ bar
   * :set syntax=html    set syntax highlighting for current buffer
+  * :set cc=80          shorter version of "set colorcolumn=80" for visual guide
 
 # Spell check
   * ]s                  go to next misspelled word
