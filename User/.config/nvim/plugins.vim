@@ -38,9 +38,9 @@ Plug 'sheerun/vim-polyglot'
 Plug 'elzr/vim-json'             " allow front matter highlighting
 
 " Markdown helpers
-Plug 'godlygeek/tabular'         " allows table formatting in Markdown
-"Plug 'plasticboy/vim-markdown'  " broken, not compatible with vim-one
-Plug 'gabrielelana/vim-markdown' " doesn't have code folding
+Plug 'godlygeek/tabular', { 'for': 'markdown' }   " allows table formatting in Markdown
+"Plug 'plasticboy/vim-markdown'                   " broken, not compatible with vim-one
+Plug 'gabrielelana/vim-markdown'                  " doesn't have code folding
 
 " Git helpers
 Plug 'mhinz/vim-signify'         " Show symbol in gutter, :SignifyHunkDiff
@@ -58,7 +58,7 @@ Plug 'Shougo/neosnippet-snippets'
 
 " HTML and CSS selector snippets
 " https://docs.emmet.io/cheat-sheet/
-Plug 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim', { 'for': ['css', 'html', 'javascriptreact', 'typescriptreact'] }
 
 " Denite - Fuzzy finding, buffer management
 Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -68,11 +68,11 @@ Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install() }}
 
 " Golang support
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'for': 'markdown' }
 
 " Allows fancy icons in lightline tabs and NERDTree.
 " Should be loaded as last plugin.
-Plug 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-devicons', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 
 " Initialize plugin system
 call plug#end()
