@@ -73,7 +73,7 @@ Plug 'fatih/vim-go', { 'for': 'markdown' }
 
 " Allows fancy icons in lightline tabs and NERDTree.
 " Should be loaded as last plugin.
-Plug 'ryanoasis/vim-devicons', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+Plug 'ryanoasis/vim-devicons'
 
 " Initialize plugin system
 call plug#end()
