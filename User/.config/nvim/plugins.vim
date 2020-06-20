@@ -25,7 +25,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'rakr/vim-one'
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
-Plug 'scrooloose/nerdtree'
+" Defer loading of NERDTree since it slows down Vim startup times
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 
 " Close braces in insert mode like Sublime, VSCode
 Plug 'jiangmiao/auto-pairs'
@@ -50,6 +51,10 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install' }
 
 " Surround tag helper
 Plug 'tpope/vim-surround'
+
+" Snippet support
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
 
 " HTML and CSS selector snippets
 " https://docs.emmet.io/cheat-sheet/
