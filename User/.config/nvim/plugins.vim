@@ -26,7 +26,8 @@ Plug 'rakr/vim-one'
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
 " Defer loading of NERDTree since it slows down Vim startup times
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+"Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+Plug 'scrooloose/nerdtree'
 
 " Close braces in insert mode like Sublime, VSCode
 Plug 'jiangmiao/auto-pairs'
