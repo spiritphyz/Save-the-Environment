@@ -683,6 +683,8 @@ map <leader>h :%s/
 " === Miscellaneous ===
 " Enable spellcheck for markdown files
 autocmd BufRead,BufNewFile *.md setlocal spell
+set spelllang=en
+set spellfile=$HOME/.config/nvim/spell/en.utf-8.add
 
 
 " === Abbreviations ===
