@@ -17,6 +17,8 @@
   * ctrl-o    jump to older location in jump list
   * ctrl-i    jump to newer location in jump list
   * :jumps    show jump list. keeps track of file, line, and column position
+  * ctrl-^    (or soemtimes ctrl-6): jump back and forth between last buffers
+  * !         run an arbitrary command, like: ! ls -alF
 
 # Insert mode shortcuts
   * ctrl-h              delete character before
