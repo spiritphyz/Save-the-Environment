@@ -110,7 +110,7 @@ call denite#custom#option('_', 'root_markers', 'Pipfile, Makefile, .git')
 " Custom options for Denite
 "   auto_resize             - Auto resize the Denite window height automatically.
 "   prompt                  - Customize denite prompt
-"   direction               - Specify Denite window direction as directly below curr pane
+"   direction               - Specify window direction as directly below curr pane
 "   winminheight            - Specify min height for Denite window
 "   highlight_mode_insert   - Specify h1-CursorLine in insert mode
 "   prompt_highlight        - Specify color of prompt
@@ -298,17 +298,17 @@ let g:lightline.component_type = {
 
 " === Lightline-bufferline options ===
 set showtabline=2
-let g:lightline#bufferline#filename_modifier = ':t'       " only filename, no path
+let g:lightline#bufferline#filename_modifier = ':t'  " only filename, no path
 let g:lightline#bufferline#unnamed           = '*'
 let g:lightline#bufferline#more_buffers      = '…'
 let g:lightline#bufferline#unicode_symbols   = 0
 let g:lightline#bufferline#shorten_path      = 1
 let g:lightline#bufferline#enable_devicons   = 1
 let g:lightline#bufferline#min_buffer_count  = 2
-let g:lightline#bufferline#clickable         = 1         " allow clickable tabs, setting 1
-let g:lightline.component_raw = {'buffers': 1}           " allow clickable tabs, setting 2
+let g:lightline#bufferline#clickable         = 1     " allow clickable tabs, setting 1
+let g:lightline.component_raw = {'buffers': 1}       " allow clickable tabs, setting 2
 let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']]}
-let g:lightline#bufferline#show_number       = 1         " number buffers same as :ls command
+let g:lightline#bufferline#show_number       = 1     " number buffers same as :ls
 let g:lightline#bufferline#number_map        = {
 \ 0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴',
 \ 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹'}
@@ -528,6 +528,9 @@ if exists('g:loaded_webdevicons')
   call webdevicons#refresh()
 endif
 
+" Automatically change current working directory to same as current buffer
+set autochdir
+
 
 " ============================================================================ "
 " ===                             KEY MAPPINGS                             === "
@@ -541,7 +544,7 @@ nnoremap <leader>w :w<CR>                            " Save file
 nnoremap <leader>q :q<CR>                            " Quit
 nnoremap <leader>c :%s/\<<c-r><c-w>//g<left><left>   " Replace word under cursor
 nnoremap <silent> <leader>h :set nolist!<CR>         " Toggle show hidden characters
-nnoremap <leader>H :SignifyHunkDiff<CR>              " Show hunk diff on gutter symbol (capital H)
+nnoremap <leader>H :SignifyHunkDiff<CR>  " Show hunk diff on gutter symbol (capital H)
 nnoremap <leader>n :bn<CR>                           " Switch to next buffer
 nnoremap <leader>b :bp<CR>                           " Switch to prev buffer
 nnoremap <leader>D :bd<CR>                           " Delete buffer (capital D)
@@ -593,7 +596,7 @@ endfunction
 "   q or <Esc> or <C-c>   - Quit Denite window
 "   d                     - Delete currenly selected file
 "   p                     - Preview currently selected file
-"   <C-o> or i            - Switch to insert mode inside of filter prompt
+"   <C-o> or i            - Switch to insert mode for filtering buffer
 "   <C-t>                 - Open currently selected file in a new tab
 "   <C-v>                 - Open currently selected file a vertical split
 "   <C-h>                 - Open currently selected file in a horizontal split
@@ -632,7 +635,7 @@ nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 
-" Insert mode shortcuts
+" Insert mode shortcuts like emacs/readline
 imap <C-b> <Left>
 imap <C-f> <Right>
 imap <C-e> <End>
@@ -686,8 +689,3 @@ autocmd BufRead,BufNewFile *.md setlocal spell
 set spelllang=en
 set spellfile=$HOME/.config/nvim/spell/en.utf-8.add
 
-
-" === Abbreviations ===
-" http://vim.wikia.com/wiki/Using_abbreviations
-abbr cll console.log
-abbr fll for (let i = 0; i < ; i += 1) {<esc>10hi
