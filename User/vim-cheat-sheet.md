@@ -1,3 +1,5 @@
+In Vim's world, files are buffers, splits are windows, and layouts are tabs.
+
 # Vim Buffers (files)
   * :ls       list buffers
   * :b1       switch to buffer 1
