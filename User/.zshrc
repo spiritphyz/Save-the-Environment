@@ -6,7 +6,7 @@ fi
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
-# Show user in color153, short host in color194, curr working dir as prompt
+# Show user in color153, short host in color105, curr working dir as prompt
 export PS1="%F{153}%n%f@%F{105}%m%f %1~%% "
 
 # Set Neovim as default editor
