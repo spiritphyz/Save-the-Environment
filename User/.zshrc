@@ -66,5 +66,5 @@ if [ -s "$HOME/.nvm/nvm.sh" ] && [ ! "$(type -t __init_nvm)" = function ]; then
 fi
 
 # Start Z utility to change directories easily
-. /Users/kyivdev/pbin/z-utility/z.sh
+. ~/bin/z.sh
 
