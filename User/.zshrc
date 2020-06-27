@@ -13,7 +13,7 @@ export PS1="%B%m%b %1~%% "
 export EDITOR="nvim"
 
 # Use ripgrep to find hidden files (but ignore node_modules and .git folder)
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!*node_modules*" -g "!*.git*"'
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!*node_modules*" -g "!*.git*" -g "!*.DS_Store"'
 
 # FZF customizations
 #[ -f ~/.fzf.bash ] && source ~/.fzf.bash
