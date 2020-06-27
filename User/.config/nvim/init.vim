@@ -324,6 +324,10 @@ let g:NERDTreeIgnore = ['^\.DS_Store$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir
 " Automatically close the NerdTree buffer when opening a file
 let g:NERDTreeQuitOnOpen = 1
 
+" Turn off help message banner at top, press ? to open it
+" Press u to move up a directory, U to leave old root open
+let NERDTreeMinimalUI=1
+
 
 " === coc options ===
 let g:coc_global_extensions = ["coc-css",
