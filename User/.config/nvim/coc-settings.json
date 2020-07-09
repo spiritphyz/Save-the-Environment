@@ -21,6 +21,7 @@
   "diagnostic.errorSign": "•",
   "diagnostic.warningSign": "•",
   "diagnostic.infoSign": "•",
+  "prettier.useTabs": true,
   "prettier.tabWidth": 2,
   "prettier.trailingComma": "es5",
   "prettier.singleQuote": true,
