@@ -48,7 +48,7 @@ Plug 'mhinz/vim-signify'         " Show symbol in gutter, :SignifyHunkDiff
 Plug 'tpope/vim-fugitive'        " Provides :Git commands, branch indicator
 
 " Live preview in browser with :MarkdownPreview
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install' }
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug'], 'on': 'MarkdownPreview' }
 
 " Surround tag helper
 Plug 'tpope/vim-surround'
@@ -66,7 +66,7 @@ Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " Intellisense Engine, uses VS Code's language servers
 " Needs 'npm i -g neovim' and recent version of NodeJS
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install() }}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Golang support
 Plug 'fatih/vim-go', { 'for': 'markdown' }
