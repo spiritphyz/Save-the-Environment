@@ -664,9 +664,9 @@ vnoremap <leader>p "_dP
 
 " === NERDTree key mappings ===
 "  <leader>r - Toggle NERDTree panel (<leader>n is next buffer)
-"  <leader>f - Show current file in containing folder
+"  <leader>e - Show current file in containing folder
 map <leader>r :NERDTreeToggle<CR>
-map <leader>f :NERDTreeFind<CR>
+map <leader>e :NERDTreeFind<CR>
 
 " === coc-prettier key mappings ===
 " Type :Prettier to format current buffer
