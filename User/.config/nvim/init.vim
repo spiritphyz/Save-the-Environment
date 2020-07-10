@@ -435,12 +435,17 @@ set ttimeoutlen=70              " Make keypress wait period shorter
 
 " Protect changes between writes. Default values for updatecount (200 keystrokes)
 " and updatetime (4 seconds) are fine.
-set swapfile
-set directory^=~/.nvim/swap//
-set writebackup                 " Protect against crash-during-write
-set nobackup                    " but do not persist backup after successful write.
-set backupcopy=auto             " Use rename-and-write-new method whenever safe.
-set backupdir^=~/.nvim/backup   " Consolidate the write backups.
+" Disabling all backup options due to tsserver incompatibilities.
+" See: https://github.com/neoclide/coc.nvim/issues/649
+"set swapfile
+"set directory^=~/.nvim/swap//
+"set writebackup                 " Protect against crash-during-write
+"set nobackup                    " but do not persist backup after successful write.
+"set backupcopy=auto             " Use rename-and-write-new method whenever safe.
+"set backupdir^=~/.nvim/backup   " Consolidate the write backups.
+set nobackup
+set nowritebackup
+set updatetime=300               " make coc plugins much more responsive
 
 " Persist the undo tree for each file.
 set undofile
