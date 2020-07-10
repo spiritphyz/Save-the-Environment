@@ -516,6 +516,15 @@ hi! SignifySignAdd guifg=#99c794
 hi! SignifySignDelete guifg=#ec5f67
 hi! SignifySignChange guifg=#c594c5
 
+" Always show the signcolumn (for git gutter), otherwise it will shift
+" the text each time diagnostics appear or become resolved.
+if has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+
 " Call method on window enter
 augroup WindowManagement
   autocmd!
