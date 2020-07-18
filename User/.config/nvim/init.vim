@@ -665,6 +665,10 @@ nmap <C-left> :vertical resize -1<CR>
 nmap <C-up> :resize +1<CR>
 nmap <C-down> :resize -1<CR>
 
+" Ctrl-c remapped to Escape to avoid leftover artifacts with CoC menus.
+" https://github.com/neoclide/coc.nvim/issues/1469
+inoremap <C-c> <Esc>
+
 " Switch to last open buffer with <leader>k
 " Default of ctrl-^ (or ctrl-6) conflicts with Mosh interrupt
 " This method doesn't work with unnamed buffers (ctrl-^ does)
