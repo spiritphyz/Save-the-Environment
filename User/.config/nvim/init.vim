@@ -329,6 +329,11 @@ let g:NERDTreeQuitOnOpen = 1
 let NERDTreeMinimalUI=1
 
 
+" === netrw options ===
+" When browsing, <cr> will open the file by re-using same netrw window
+let g:netrw_browse_split = 0
+
+
 " === coc options ===
 let g:coc_global_extensions = ["coc-css",
             \ "coc-eslint",
