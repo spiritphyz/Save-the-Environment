@@ -330,8 +330,12 @@ let NERDTreeMinimalUI=1
 
 
 " === netrw options ===
-" When browsing, <cr> will open the file by re-using same netrw window
-let g:netrw_browse_split = 0
+" Open files in prev window unless we're opening the current dir
+if argv(0) ==# '.'
+    let g:netrw_browse_split = 0
+else
+    let g:netrw_browse_split = 4
+endif
 
 
 " === coc options ===
