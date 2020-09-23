@@ -12,6 +12,7 @@ alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 alias subo='open -a sublime\ text'
 alias cdi='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs'
 alias nv='/usr/local/bin/nvim'
+alias kode='cd ~/kode'
 
 # Grip-specific
 alias griph='FLASK_ENV=development grip 0.0.0.0:8090' # public access on port 8090
