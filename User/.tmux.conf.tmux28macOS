@@ -1,6 +1,7 @@
 # Set up clipboard copy to macOS utility
 # Need to install utility first: brew install reattach-to-user-namespace
 #set-option -g default-command "reattach-to-user-namespace -l bash"
+
 # Need to install utility first: brew install reattach-to-user-namespace
 # If you don't install the utility, tmux will crash on launch
 set-option -g default-command "reattach-to-user-namespace -l zsh"
