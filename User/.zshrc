@@ -11,6 +11,10 @@ export PS1="%F{153}%n%f@%F{219}%m%f %1~%% "
 
 # Set Neovim as default editor
 export EDITOR="nvim"
+export VISUAL="nvim"
+
+# But still use emacs-style zsh bindings
+bindkey -e
 
 # Use ripgrep to find hidden files (but ignore node_modules and .git folder)
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!*node_modules*" -g "!*.git*" -g "!*.DS_Store"'
