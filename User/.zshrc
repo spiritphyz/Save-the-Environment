@@ -1,3 +1,13 @@
+# Needs 'brew install antigen' first.
+# Use antigen as zsh plugin manager.
+source /usr/local/share/antigen/antigen.zsh
+
+# Use zsh-nvm plugin
+antigen bundle lukechilds/zsh-nvm
+
+# Tell antigen we're done
+antigen apply
+
 if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
 fi
