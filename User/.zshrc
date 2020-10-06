@@ -56,6 +56,9 @@ fd() {
   cd "$dir"
 }
 
+#  Get settings for tiny-care-terminal
+source ~/.tinyrc
+
 # Start Z utility to change directories easily
 . ~/bin/z.sh
 
