@@ -14,7 +14,6 @@ let g:python3_host_prog = '/usr/bin/python3'
 "let g:python3_host_prog = '/usr/local/bin/python3'
 
 " Load plugins
-let g:polyglot_disabled = ['md', 'markdown'] " interferes with vim-markdown
 source ~/.config/nvim/plugins.vim
 
 " Load custom Node to address incompatibility between NVM and COC
@@ -453,7 +452,7 @@ set ttimeoutlen=70              " Make keypress wait period shorter
 " Disabling all backup options due to tsserver incompatibilities.
 " See: https://github.com/neoclide/coc.nvim/issues/649
 "set swapfile
-"set directory^=~/.nvim/swap//
+set directory^=~/.nvim/swap//
 "set writebackup                 " Protect against crash-during-write
 "set nobackup                    " but do not persist backup after successful write.
 "set backupcopy=auto             " Use rename-and-write-new method whenever safe.
