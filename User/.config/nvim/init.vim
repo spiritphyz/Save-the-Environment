@@ -14,6 +14,7 @@ let g:python3_host_prog = '/usr/bin/python3'
 "let g:python3_host_prog = '/usr/local/bin/python3'
 
 " Load plugins
+let g:polyglot_disabled = ['md', 'markdown'] " interferes with vim-markdown
 source ~/.config/nvim/plugins.vim
 
 " Load custom Node to address incompatibility between NVM and COC
