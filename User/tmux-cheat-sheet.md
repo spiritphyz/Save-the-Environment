@@ -3,6 +3,7 @@
   * C-b $      rename current session
   * C-b )      switch to next session
   * C-b (      switch to previous session
+  * C-b s      show all sessions (lower-case s)
 
 # Tmux Windows (tabs)
   * C-b c    create window
