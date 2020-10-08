@@ -24,6 +24,14 @@ Let's save our settings for a better future.
  * ~/.nvim/swap
  * ~/.nvim/undo
 
+# Set up Tmux plugins
+ ```bash
+mkdir -p ~/.tmux/plugins/tpm
+mkdir -p ~/.tmux/plugins/tmux-resurrect
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+git clone https://github.com/tmux-plugins/tmux-resurrect ~/.tmux/plugins/tmux-resurrect
+ ```
+
 # Install Neovim and CoC
 Install nightly version:
 https://github.com/neovim/neovim/releases/tag/nightly
