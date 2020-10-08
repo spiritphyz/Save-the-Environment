@@ -1,6 +1,6 @@
-" ============================================================================ "
-" ===                               PLUGINS                                === "
-" ============================================================================ "
+" ========================================================================== "
+" ===                               PLUGINS                              === "
+" ========================================================================== "
 
 " Check if vim-plug is installed, otherwise install it
 let plugpath = expand('<sfile>:p:h'). '/autoload/plug.vim'
@@ -33,14 +33,15 @@ Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'jiangmiao/auto-pairs'
 
 " Syntax highlighting for many languages
+let g:polyglot_disabled = ['md', 'markdown'] " interferes with vim-markdown
 Plug 'sheerun/vim-polyglot'
 
 " JSON helpers
 Plug 'elzr/vim-json'             " allow front matter highlighting
 
 " Markdown helpers
-Plug 'godlygeek/tabular', { 'for': 'markdown' }   " allows table formatting in Markdown
-"Plug 'plasticboy/vim-markdown'                   " broken, not compatible with vim-one
+Plug 'godlygeek/tabular', { 'for': 'markdown' }   " allows table formatting
+"Plug 'plasticboy/vim-markdown'                   " disable, breaks vim-one
 Plug 'gabrielelana/vim-markdown'                  " doesn't have code folding
 
 " Git helpers
@@ -52,6 +53,9 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 
 " Surround tag helper
 Plug 'tpope/vim-surround'
+
+" Automatically save sessions
+Plug 'tpope/vim-obsession'
 
 " Snippet support
 Plug 'Shougo/neosnippet'
