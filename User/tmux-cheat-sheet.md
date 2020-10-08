@@ -69,6 +69,9 @@ M is the meta key, which is `option` on Mac keyboards.
 | `:save-buffer name.txt`            | save buffer content to a file                |
 
 
+# Tmux configuration file
+* C-b :source-file ~/.tmux.conf     reload config file
+
 # Tmux resurrect plugin
  * C-b C-s              save session
  * C-b C-r              restore session
