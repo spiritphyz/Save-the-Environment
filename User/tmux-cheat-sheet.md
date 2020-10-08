@@ -68,3 +68,8 @@ M is the meta key, which is `option` on Mac keyboards.
 | `:capture-pane`                    | copy visual content into buffer              |
 | `:save-buffer name.txt`            | save buffer content to a file                |
 
+
+# Tmux resurrect plugin
+ * C-b C-s              save session
+ * C-b C-r              restore session
+ * C-b :kill-server     kill server to test restores
