@@ -14,6 +14,7 @@ let g:python3_host_prog = '/usr/bin/python3'
 "let g:python3_host_prog = '/usr/local/bin/python3'
 
 " Load plugins
+let g:polyglot_disabled = ['md', 'markdown'] " interferes with vim-markdown
 source ~/.config/nvim/plugins.vim
 
 " Load custom Node to address incompatibility between NVM and COC
@@ -165,7 +166,6 @@ endfunction
 " === vim-markdown options ===
 let g:vim_markdown_folding_disabled = 1
 let g:markdown_enable_spell_checking = 0
-let g:polyglot_disabled = ['md', 'markdown'] " interferes with vim-markdown
 let g:vim_markdown_fenced_languages = ['bash=sh', 'c', 'css', 'go', 'html', 'javascript', 'python', 'ruby', 'scss']
 let g:vim_markdown_frontmatter = 1           " highlight YAML front matter
 let g:vim_markdown_json_frontmatter = 1      " highlight JSON front matter
@@ -243,6 +243,10 @@ function! LightlineCocHints() abort
   return s:lightline_coc_diagnostic('hints', 'hint')
 endfunction
 
+function! LightlineObsession()
+    return '%{ObsessionStatus(''▶'', ''■'')}'
+endfunction
+
 autocmd User CocDiagnosticChange call lightline#update()
 
 " Configure statusline
@@ -261,7 +265,8 @@ let g:lightline = {
       \ 'active': {
       \   'right': [ [ 'lineinfo' ],
       \              [ 'percent' ],
-      \              [ 'fileformat', 'fileencoding', 'filetype' ] ],
+      \              [ 'fileformat', 'fileencoding', 'filetype' ],
+      \              [ 'obsession' ] ],
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'readonly', 'filename', 'coc_error', 'coc_warning', 'coc_hint', 'coc_info' ] ]
       \ },
@@ -279,7 +284,8 @@ let g:lightline.component_expand = {
       \   'coc_warning'      : 'LightlineCocWarnings',
       \   'coc_info'         : 'LightlineCocInfos',
       \   'coc_hint'         : 'LightlineCocHints',
-      \   'coc_fix'          : 'LightlineCocFixes'
+      \   'coc_fix'          : 'LightlineCocFixes',
+      \   'obsession'        : 'LightlineObsession'
       \ }
 
 let g:lightline.component_type = {
