@@ -30,6 +30,7 @@ Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 "Plug 'scrooloose/nerdtree'
 
 " Close braces in insert mode like Sublime, VSCode
+" Press alt-p to toggle Auto Pairs
 Plug 'jiangmiao/auto-pairs'
 
 " Syntax highlighting for many languages
