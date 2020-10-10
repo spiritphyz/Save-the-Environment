@@ -49,7 +49,7 @@ M is the meta key, which is `option` on Mac keyboards.
   * :swap-panes -s 3 -t 2   swap source pane 2 and target pane 3
   * :select-layout tiled    make all splits roughly equal
 
-  & C-b t         show big clock
+  * C-b t         show time (big clock)
 
 # Tmux copy and paste
 `C-b p` means to "press control-b, then press p".
