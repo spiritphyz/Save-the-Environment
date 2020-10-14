@@ -63,6 +63,7 @@ Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 
 " HTML and CSS selector snippets
+" Trigger completion with C-y,
 " https://docs.emmet.io/cheat-sheet/
 Plug 'mattn/emmet-vim', { 'for': ['css', 'html', 'javascriptreact', 'typescriptreact'] }
 
