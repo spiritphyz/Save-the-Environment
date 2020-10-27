@@ -106,6 +106,7 @@ These commands are affected by 'scrolloff' value.
   * :%s/foo/bar         for all lines, replace foo w/ bar
   * :set syntax=html    set syntax highlighting for current buffer
   * :set cc=80          shorter version of "set colorcolumn=80" for visual guide
+  * retab               convert tabs to spaces using settings in .vimrc
 
 # Spell check
   * ]s                  go to next misspelled word
