@@ -59,6 +59,9 @@ fd() {
 #  Get settings for tiny-care-terminal
 source ~/.tinyrc
 
+#  Get settings for Android Studio
+source ~/.androidrc
+
 # Start Z utility to change directories easily
 . ~/bin/z.sh
 
