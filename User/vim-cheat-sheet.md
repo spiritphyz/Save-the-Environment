@@ -1,5 +1,3 @@
-In Vim's world, files are buffers, splits are windows, and layouts are tabs.
-
 # Vim Buffers (files)
   * :ls       list buffers
   * :b1       switch to buffer 1
@@ -87,6 +85,8 @@ These commands are affected by 'scrolloff' value.
   * N                   move backwards to prev occurrence
   * g*                  search for not exact word forwards
   * g#                  search for not exact word backwards
+  * :set ic             enable case-insensitive search
+  * :set noic           disable case-insentitive search
 
 # Vim marks
   * m1                  set mark named `1`
@@ -106,7 +106,7 @@ These commands are affected by 'scrolloff' value.
   * :%s/foo/bar         for all lines, replace foo w/ bar
   * :set syntax=html    set syntax highlighting for current buffer
   * :set cc=80          shorter version of "set colorcolumn=80" for visual guide
-  * retab               convert tabs to spaces using settings in .vimrc
+  * :retab              convert tabs to spaces using settings in .vimrc
 
 # Spell check
   * ]s                  go to next misspelled word
