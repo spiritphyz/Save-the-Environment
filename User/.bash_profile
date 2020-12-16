@@ -110,11 +110,15 @@ complete -F _complete_ssh_hosts ssh
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!*node_modules*" -g "!*.git*"'
 
 # FZF customizations
+#   Inside shell, press:
+#   - ctrl-t: paste the search results into command line when done
+#   - ctrl-r: reverse search command history and paste into command line
+#   - alt-c:  cd into directory
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-# Fuzzy open file with 'fo' command in terminal
-#   - CTRL-O to open with `open` command,
-#   - CTRL-E or Enter key to open with the $EDITOR
+# Fuzzy open file with 'fo' command in terminal, then press:
+#   - ctrl-o:              open with `open` command
+#   - ctrl-e or Enter key: open with the $EDITOR
 fo() {
   local out file key
   IFS=$'\n' out=("$(fzf-tmux --query="$1" --exit-0 --expect=ctrl-o,ctrl-e)")
