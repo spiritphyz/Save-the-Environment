@@ -593,12 +593,14 @@ nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1
 "   <leader>t - Search for files in project directory
 "   <leader>g - Search curr directory for given term, close window if no results
 "   <leader>j - Search curr directory for occurrences of word under cursor
+"   <leader>: - Fuzzy search command history (non-fuzzy default is q:)
 "           i - After triggers above, press 'i' to enter fuzzy filter mode
 nmap <C-p> :Denite buffer<CR>i
 nmap <leader>f :Denite file/rec<CR>
 nmap <leader>t :DeniteProjectDir file/rec<CR>
 nnoremap <leader>g <C-u>:Denite grep:. -no-empty<CR>
 nnoremap <leader>j :DeniteCursorWord grep:.<CR>
+nnoremap <leader>: :Denite command_history<CR>
 
 " Define Denite mappings while in 'filter' mode
 "   <C-o>          - Switch to normal mode inside of search results

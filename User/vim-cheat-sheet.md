@@ -19,6 +19,7 @@
   * :jumps    show jump list. keeps track of file, line, and column position
   * ctrl-^    (or soemtimes ctrl-6): jump back and forth between last buffers
   * !         run an arbitrary command, like: ! ls -alF
+  * q:        open command history search, press Enter to execute curr line
 
 # Insert mode shortcuts
   * ctrl-h              delete character before
