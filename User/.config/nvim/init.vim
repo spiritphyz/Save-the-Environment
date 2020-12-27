@@ -31,8 +31,9 @@ set clipboard=unnamed
 " Disable auto comments on new lines
 set formatoptions-=cro
 
-" clear search highlighting by pressing Enter
-nnoremap <CR> :noh<CR>
+" Clear search highlighting by '\' instead of Enter,
+" which interferes with command history window's "execute"
+nnoremap \ :noh<CR>
 
 " Tab key behavior
 set expandtab                      " use spaces instead of tabs
@@ -165,6 +166,7 @@ endfunction
 " === vim-markdown options ===
 let g:vim_markdown_folding_disabled = 1
 let g:markdown_enable_spell_checking = 0
+let g:polyglot_disabled = ['md', 'markdown'] " interferes with vim-markdown
 let g:vim_markdown_fenced_languages = ['bash=sh', 'c', 'css', 'go', 'html', 'javascript', 'python', 'ruby', 'scss']
 let g:vim_markdown_frontmatter = 1           " highlight YAML front matter
 let g:vim_markdown_json_frontmatter = 1      " highlight JSON front matter
@@ -242,10 +244,6 @@ function! LightlineCocHints() abort
   return s:lightline_coc_diagnostic('hints', 'hint')
 endfunction
 
-function! LightlineObsession()
-    return '%{ObsessionStatus(''▶'', ''■'')}'
-endfunction
-
 autocmd User CocDiagnosticChange call lightline#update()
 
 " Configure statusline
@@ -264,8 +262,7 @@ let g:lightline = {
       \ 'active': {
       \   'right': [ [ 'lineinfo' ],
       \              [ 'percent' ],
-      \              [ 'fileformat', 'fileencoding', 'filetype' ],
-      \              [ 'obsession' ] ],
+      \              [ 'fileformat', 'fileencoding', 'filetype' ] ],
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'readonly', 'filename', 'coc_error', 'coc_warning', 'coc_hint', 'coc_info' ] ]
       \ },
@@ -283,8 +280,7 @@ let g:lightline.component_expand = {
       \   'coc_warning'      : 'LightlineCocWarnings',
       \   'coc_info'         : 'LightlineCocInfos',
       \   'coc_hint'         : 'LightlineCocHints',
-      \   'coc_fix'          : 'LightlineCocFixes',
-      \   'obsession'        : 'LightlineObsession'
+      \   'coc_fix'          : 'LightlineCocFixes'
       \ }
 
 let g:lightline.component_type = {
@@ -430,8 +426,11 @@ set incsearch
 " to avoid auto-formatting. Press F2 again to exit paste mode.
 set pastetoggle=<F2>
 
-" Reload file after disk change, notify
-autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
+" Reload file after disk change, then notify.
+" Guard against command history window errors: https://unix.stackexchange.com/questions/149209
+" /refresh-changed-content-of-file-opened-in-vim/383044#comment1045364_383044
+autocmd FocusGained,BufEnter,CursorHold,CursorHoldI *
+            \ if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif
 autocmd FileChangedShellPost *
   \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 
@@ -452,7 +451,7 @@ set ttimeoutlen=70              " Make keypress wait period shorter
 " Disabling all backup options due to tsserver incompatibilities.
 " See: https://github.com/neoclide/coc.nvim/issues/649
 "set swapfile
-set directory^=~/.nvim/swap//
+"set directory^=~/.nvim/swap//
 "set writebackup                 " Protect against crash-during-write
 "set nobackup                    " but do not persist backup after successful write.
 "set backupcopy=auto             " Use rename-and-write-new method whenever safe.
@@ -570,9 +569,12 @@ set autochdir
 
 " === Leader key shorcuts === "
 " Use spacebar as leader key instead of default '\'
+" '\' is remapped to 'clear search highlighting'
 let mapleader="\<Space>"
 
-nnoremap <leader>w :w<CR>                            " Save file
+" Save file [can't put this comment at end of line or else cursor jumps]
+" https://vi.stackexchange.com/a/6922
+nnoremap <leader>w :w!<CR>
 nnoremap <leader>q :q<CR>                            " Quit
 nnoremap <leader>c :%s/\<<c-r><c-w>//g<left><left>   " Replace word under cursor
 nnoremap <silent> <leader>h :set nolist!<CR>         " Toggle show hidden characters
