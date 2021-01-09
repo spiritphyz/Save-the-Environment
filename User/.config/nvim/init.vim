@@ -399,6 +399,7 @@ set background=dark
 colorscheme one
 call one#highlight('Visual', 'ffffff', 'e06c75', 'none')
 call one#highlight('vimLineComment', '888888', '', 'none')
+call one#highlight('Comment', '888888', '', 'none')
 
 " Remove the current line highlight in unfocused windows
 "au VimEnter,WinEnter,BufWinEnter,FocusGained,CmdwinEnter * set cul
