@@ -688,6 +688,23 @@ key_bindings:
   # ctrl-^ doesn't work in some terminals like Alacritty, so enable it
   - { key: Key6, mods: Control, chars: "\x1e" }
 
+  # allow alt-backspace to backward-delete a word
+  # https://github.com/alacritty/alacritty/issues/62#issuecomment-347552058
+  - { key: Back,      mods: Alt,     chars: "\x1b\x7f"                      }
+
+  # allow alt-jkhl for my tmux pane switching
+  - { key: H,         mods: Alt,       chars: "\x1bh"                       }
+  - { key: J,         mods: Alt,       chars: "\x1bj"                       }
+  - { key: K,         mods: Alt,       chars: "\x1bk"                       }
+  - { key: L,         mods: Alt,       chars: "\x1bl"                       }
+
+  # allow alt-p to toggle autopairs in Neovim
+  - { key: P,         mods: Alt,       chars: "\x1bp"                       }
+
+  # allow common Bash keybindings
+  - { key: B,         mods: Alt,       chars: "\x1bb"                       }
+  - { key: F,         mods: Alt,       chars: "\x1bf"                       }
+
   #- { key: Paste,                                       action: Paste          }
   #- { key: Copy,                                        action: Copy           }
   #- { key: L,         mods: Control,                    action: ClearLogNotice }
