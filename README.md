@@ -118,11 +118,8 @@ Hack Nerd Font
   Bold
 ```
 
-3. Set `~/.config/alacritty/alacritty.yml` to use the terminal type and font family:
+3. Set `~/.config/alacritty/alacritty.yml` to use font family.
 ```yaml
-env:
-  TERM: alacritty
-
 font:
   normal:
     family: Hack Nerd Font
