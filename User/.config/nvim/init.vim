@@ -32,7 +32,7 @@ set clipboard=unnamed
 set formatoptions-=cro
 
 " Clear search highlighting by '\' instead of Enter,
-" which interferes with command history window's "execute"
+" which interferes with command history window's 'execute'
 nnoremap \ :noh<CR>
 
 " Tab key behavior
