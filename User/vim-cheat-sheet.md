@@ -21,6 +21,9 @@
   * !         run an arbitrary command, like: ! ls -alF
   * q:        open command history search, press Enter to execute curr line
 
+  * "ay{motion}  copy (yank) text into named register 'a'
+  * "ap          paste text from named register 'a'
+
 # Insert mode shortcuts
   * ctrl-h              delete character before
   * ctrl-w              delete word before
