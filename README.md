@@ -97,22 +97,9 @@ Run ":CocInstall coc-eslint" inside Neovim
 # Install Prettier for JavaScript
 Run ":CocInstall coc-prettier" inside Neovim
 ```
-# Alacritty, Neovim and italics for comments
+# Neovim and italics for comments
 
-1. Add Alacritty [terminal support for italics](https://github.com/alacritty/alacritty/blob/master/INSTALL.md#terminfo).
-
-```bash
-# Check if alacritty terminfo is not empty
-infocmp alacritty
-
-# If empty, download the helper file
-curl -O https://raw.githubusercontent.com/alacritty/alacritty/master/extra/alacritty.info
-
-# Install the alacritty terminal type globally using the helper file
-sudo tic -xe alacritty,alacritty-direct alacritty.info
-```
-
-2. Make sure the font you're using has an italic weight, for example:
+1. Make sure the font you're using has an italic weight, for example:
 ```
 Hack Nerd Font
   Regular
@@ -120,14 +107,16 @@ Hack Nerd Font
   Bold
 ```
 
-3. Set `~/.config/alacritty/alacritty.yml` to use font family.
-```yaml
-font:
-  normal:
-    family: Hack Nerd Font
-```
+2. Set your terminal emulator (iTerm, Terminal, Alacritty) to use the font family.
 
-4. Make sure these lines are in `~/.config/nvim/init.vim`:
+   For Alacritty, edit `~/.config/alacritty/alacritty.yml`:
+   ```yaml
+   font:
+     normal:
+       family: Hack Nerd Font
+   ```
+
+3. Make sure these lines are in `~/.config/nvim/init.vim`:
 ```vim
 " Italicize inline comments, set after colorscheme and one#highlight
 highlight Comment cterm=italic gui=italic
