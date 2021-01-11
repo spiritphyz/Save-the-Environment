@@ -4,6 +4,7 @@ Let's save our settings for a better future.
   * Vim
   * Visual Studio Code
   * Sublime Text
+  * Alacritty
 
 
 # File Locations
@@ -13,6 +14,7 @@ Let's save our settings for a better future.
 | User/.tmux.conf                    | ~/.tmux.conf                        |
 | User/.tmux.conf.tmux28macOS        | /User/yourusername/.tmux.conf       |
 | User/.config/nvim                  | ~/.config/nvim                      |
+| User/.config/alacritty             | ~/.config/alacritty                 |
 | User/.vim                          | ~/.vim                              |
 | User/.vimrc                        | ~/.vimrc                            |
 | User/pbin/z.sh                     | ~/pbin/z.sh                         |
