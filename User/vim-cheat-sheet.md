@@ -73,6 +73,8 @@ These commands are affected by 'scrolloff' value.
   * zt                  position current line at top of view
   * zz or z.            position current line at middle
   * zb or z-            position current line at bottom
+  * ctrl-e              move screen down 1 line unless cursor in viewport
+  * ctrl-y              move screen up 1 line unless cursor in viewport
 
 # Reload .vimrc file while editing it inside Vim
   * :so %
