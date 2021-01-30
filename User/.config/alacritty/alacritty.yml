@@ -1,0 +1,110 @@
+# Configuration for Alacritty, the GPU enhanced terminal emulator.
+
+env:
+  # Cannot be alacritty or else Denite in Neovim fails
+  TERM: xterm-256color
+  #TERM: alacritty
+
+window:
+  # Window dimensions (changes require restart)
+  dimensions:
+    columns: 99
+    lines: 50
+
+  # Window position (changes require restart)
+  position:
+    x: 1048
+    y: 374
+
+font:
+  normal:
+    family: Hack Nerd Font
+
+    # The `style` can be specified to pick a specific face.
+    #style: Regular
+
+  # Bold font face
+  # Don't need to set Bold and Italic keys
+  # https://github.com/alacritty/alacritty/issues/1977#issuecomment-736279394
+  #bold:
+    # Font family
+    #
+    # If the bold family is not specified, it will fall back to the
+    # value specified for the normal font.
+    #family: Hack Nerd Font
+
+    # The `style` can be specified to pick a specific face.
+    #style: Bold
+
+  # Point size
+  size: 13.0
+
+  # Offset is the extra space around each character. `offset.y` can be thought
+  # of as modifying the line spacing, and `offset.x` as modifying the letter
+  # spacing.
+  offset:
+    x: 0
+    y: 1
+
+  # Glyph offset determines the locations of the glyphs within their cells with
+  # the default being at the bottom. Increasing `x` moves the glyph to the
+  # right, increasing `y` moves the glyph upward.
+  #glyph_offset:
+  #  x: 0
+  #  y: 0
+
+  # Thin stroke font rendering (macOS only)
+  #
+  # Thin strokes are suitable for retina displays, but for non-retina screens
+  # it is recommended to set `use_thin_strokes` to `false`.
+  use_thin_strokes: true
+
+# If `true`, bold text is drawn using the bright color variants.
+draw_bold_text_with_bright_colors: true
+
+selection:
+  # This string contains all characters that are used as separators for
+  # "semantic words" in Alacritty.
+  semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+
+  # When set to `true`, selected text will be copied to the primary clipboard.
+  save_to_clipboard: true
+
+# Live config reload (changes require restart)
+live_config_reload: true
+
+# Send ESC (\x1b) before characters when alt is pressed.
+#alt_send_esc: true
+
+key_bindings:
+  # ctrl-^ doesn't work in some terminals like Alacritty, so enable it
+  - { key: Key6, mods: Control, chars: "\x1e" }
+
+  # allow alt-backspace to backward-delete a word
+  # https://github.com/alacritty/alacritty/issues/62#issuecomment-347552058
+  - { key: Back,      mods: Alt,       chars: "\x1b\x7f"                    }
+
+  # allow alt-jkhlz for my tmux pane switching, resizing, zoom
+  - { key: H,         mods: Alt,       chars: "\x1bh"                       }
+  - { key: J,         mods: Alt,       chars: "\x1bj"                       }
+  - { key: K,         mods: Alt,       chars: "\x1bk"                       }
+  - { key: L,         mods: Alt,       chars: "\x1bl"                       }
+  - { key: M,         mods: Alt,       chars: "\x1bm"                       }
+  - { key: H,         mods: Alt|Shift, chars: "\x1bH"                       }
+  - { key: J,         mods: Alt|Shift, chars: "\x1bJ"                       }
+  - { key: K,         mods: Alt|Shift, chars: "\x1bK"                       }
+  - { key: L,         mods: Alt|Shift, chars: "\x1bL"                       }
+
+  # tmux alt-g for 'repeat last bash command in last active pane'
+  - { key: G,         mods: Alt,       chars: "\x1bg"                       }
+
+  # allow alt-p to toggle autopairs in Neovim
+  - { key: P,         mods: Alt,       chars: "\x1bp"                       }
+
+  # allow common Bash keybindings
+  - { key: B,         mods: Alt,       chars: "\x1bb"                       }
+  - { key: F,         mods: Alt,       chars: "\x1bf"                       }
+
+  # (macOS only)
+  - { key: Return,    mods: Command,  action: ToggleFullscreen              }
+

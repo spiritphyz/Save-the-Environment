@@ -4,6 +4,7 @@ Let's save our settings for a better future.
   * Vim
   * Visual Studio Code
   * Sublime Text
+  * Alacritty
 
 
 # File Locations
@@ -13,6 +14,7 @@ Let's save our settings for a better future.
 | User/.tmux.conf                    | ~/.tmux.conf                        |
 | User/.tmux.conf.tmux28macOS        | /User/yourusername/.tmux.conf       |
 | User/.config/nvim                  | ~/.config/nvim                      |
+| User/.config/alacritty             | ~/.config/alacritty                 |
 | User/.vim                          | ~/.vim                              |
 | User/.vimrc                        | ~/.vimrc                            |
 | User/pbin/z.sh                     | ~/pbin/z.sh                         |
@@ -94,4 +96,30 @@ Run ":CocInstall coc-eslint" inside Neovim
 
 # Install Prettier for JavaScript
 Run ":CocInstall coc-prettier" inside Neovim
+```
+# Neovim and italics for comments
+
+1. Make sure the font you're using has an italic weight, for example:
+```
+Hack Nerd Font
+  Regular
+  Italic
+  Bold
+```
+
+2. Set your terminal emulator (iTerm, Terminal, Alacritty) to use the font family.
+
+   For Alacritty, edit `~/.config/alacritty/alacritty.yml`:
+   ```yaml
+   font:
+     normal:
+       family: Hack Nerd Font
+   ```
+
+3. Make sure these lines are in `~/.config/nvim/init.vim`:
+```vim
+" Italicize inline comments, set after colorscheme and one#highlight
+highlight Comment cterm=italic gui=italic
+" Italicize whole line comments
+highlight vimLineComment cterm=italic gui=italic
 ```

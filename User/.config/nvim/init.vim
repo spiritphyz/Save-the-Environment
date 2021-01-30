@@ -32,7 +32,7 @@ set clipboard=unnamed
 set formatoptions-=cro
 
 " Clear search highlighting by '\' instead of Enter,
-" which interferes with command history window's "execute"
+" which interferes with command history window's 'execute'
 nnoremap \ :noh<CR>
 
 " Tab key behavior
@@ -397,9 +397,17 @@ syntax on
 " Use cool color scheme
 set background=dark
 colorscheme one
+
+" Change visually selected text to white for easier reading
 call one#highlight('Visual', 'ffffff', 'e06c75', 'none')
+" Make Vim comments and general comments be lighter gray to readability
 call one#highlight('vimLineComment', '888888', '', 'none')
 call one#highlight('Comment', '888888', '', 'none')
+
+" Italicize inline comments, set after colorscheme and one#highlight
+"highlight Comment cterm=italic gui=italic
+" Italicize whole line comments
+"highlight vimLineComment cterm=italic gui=italic
 
 " Remove the current line highlight in unfocused windows
 "au VimEnter,WinEnter,BufWinEnter,FocusGained,CmdwinEnter * set cul
