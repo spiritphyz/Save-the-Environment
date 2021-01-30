@@ -1,6 +1,6 @@
-" ========================================================================== "
-" ===                               PLUGINS                              === "
-" ========================================================================== "
+" ============================================================================ "
+" ===                               PLUGINS                                === "
+" ============================================================================ "
 
 " Check if vim-plug is installed, otherwise install it
 let plugpath = expand('<sfile>:p:h'). '/autoload/plug.vim'
@@ -57,6 +57,11 @@ Plug 'tpope/vim-surround'
 
 " Automatically save sessions
 Plug 'tpope/vim-obsession'
+
+" Syntax-sensitive comment block helper
+" gcc to toggle line comment
+" gcip to toggle commenting out inner paragraph
+Plug 'tpope/vim-commentary'
 
 " Snippet support
 Plug 'Shougo/neosnippet'
