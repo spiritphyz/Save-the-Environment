@@ -64,6 +64,8 @@ Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-commentary'
 
 " Snippet support
+" In insert mode, type snippet, then ctrl-k
+" In command mode, ctrl-k is navigate to lower Vim split
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 
