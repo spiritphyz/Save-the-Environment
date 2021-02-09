@@ -397,10 +397,9 @@ syntax on
 " Use cool color scheme
 set background=dark
 colorscheme one
-
 " Change visually selected text to white for easier reading
 call one#highlight('Visual', 'ffffff', 'e06c75', 'none')
-" Make Vim comments and general comments be lighter gray to readability
+" Make Vim comments and general comments be lighter gray for readability
 call one#highlight('vimLineComment', '888888', '', 'none')
 call one#highlight('Comment', '888888', '', 'none')
 
@@ -483,11 +482,36 @@ set smartcase                   " when already has one capital letter
 set number relativenumber
 
 " For non-focused buffers, show absolute line numbers
-augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-augroup END
+function! ToggleLineNumsAndGutter()
+  " Switch the toggle variable
+  let g:toggle_linenum = !get(g:, 'toggle_linenum', 1)
+
+  " Reset group
+  augroup numbertoggle
+    set nonumber
+    set norelativenumber
+    set signcolumn=no
+    autocmd!
+  augroup END
+
+  " Enable if toggled on
+  if g:toggle_linenum
+    set number relativenumber
+    set relativenumber
+
+    if has("patch-8.1.1564")
+      " Recently vim can merge signcolumn and number column into one
+      set signcolumn=number
+    else
+      set signcolumn=yes
+    endif
+
+    augroup numbertoggle
+      autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+      autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+    augroup END
+  endif
+endfunction
 
 " Better menu completion in command mode
 set wildmenu
@@ -584,6 +608,8 @@ let mapleader="\<Space>"
 " Save file [can't put this comment at end of line or else cursor jumps]
 " https://vi.stackexchange.com/a/6922
 nnoremap <leader>w :w!<CR>
+" Toggle line numbers and gutter (signcolumn) for easier Tmux copy
+nnoremap <leader>l :call ToggleLineNumsAndGutter()<CR>
 nnoremap <leader>q :q<CR>                            " Quit
 nnoremap <leader>c :%s/\<<c-r><c-w>//g<left><left>   " Replace word under cursor
 nnoremap <silent> <leader>h :set nolist!<CR>         " Toggle show hidden characters
