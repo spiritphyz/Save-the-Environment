@@ -254,17 +254,18 @@ let g:lightline = {
       \   'filetype': '%3l:%-2v%<',
       \ },
       \ 'component_function': {
-      \   'filename': 'LightlineFilename',
-      \   'fileencoding': 'LightlineFileencoding',
-      \   'fileformat': 'LightlineFileformat',
-      \   'filetype': 'LightlineFiletype',
+      \   'filename'          : 'LightlineFilename',
+      \   'fileencoding'      : 'LightlineFileencoding',
+      \   'fileformat'        : 'LightlineFileformat',
+      \   'filetype'          : 'LightlineFiletype',
+      \   'gitbranch'         : 'FugitiveHead'
       \ },
       \ 'active': {
       \   'right': [ [ 'lineinfo' ],
       \              [ 'percent' ],
       \              [ 'fileformat', 'fileencoding', 'filetype' ] ],
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename', 'coc_error', 'coc_warning', 'coc_hint', 'coc_info' ] ]
+      \             [ 'gitbranch', 'readonly', 'filename', 'coc_error', 'coc_warning', 'coc_hint', 'coc_info' ] ]
       \ },
       \ 'mode_map': {
         \ 'n': 'N',
