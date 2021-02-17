@@ -109,27 +109,23 @@ call denite#custom#var('buffer', 'date_format', '')
 call denite#custom#option('_', 'root_markers', 'Pipfile, Makefile, .git')
 
 " Custom options for Denite
-"   auto_resize             - Auto resize the Denite window height automatically.
+"   auto_resize             - Auto resize the height automatically.
 "   prompt                  - Customize denite prompt
-"   direction               - Specify window direction as directly below curr pane
-"   winminheight            - Specify min height for Denite window
-"   highlight_mode_insert   - Specify h1-CursorLine in insert mode
 "   prompt_highlight        - Specify color of prompt
 "   highlight_matched_char  - Matched characters highlight
 "   highlight_matched_range - matched range highlight
 let s:denite_options = {'default' : {
+\ 'split': 'floating',
+\ 'start_filter': 0,
 \ 'auto_resize': 1,
-\ 'prompt': '',
-\ 'direction': 'rightbelow',
-\ 'winminheight': '10',
 \ 'source_names': 'short',
-\ 'highlight_mode_insert': 'Visual',
-\ 'highlight_mode_normal': 'Visual',
-\ 'prompt_highlight': 'Function',
-\ 'highlight_matched_char': 'Function',
-\ 'highlight_matched_range': 'Normal',
-\ 'winrow': 1,
-\ 'vertical_preview': 1
+\ 'prompt': ' ',
+\ 'statusline': 0,
+\ 'highlight_matched_char': 'QuickFixLine',
+\ 'highlight_matched_range': 'Visual',
+\ 'highlight_filter_background': 'DiffAdd',
+\ 'winrow': 10,
+\ 'vertical_preview': 0
 \ }}
 
 " Loop through denite options and enable them
