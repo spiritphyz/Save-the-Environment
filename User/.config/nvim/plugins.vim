@@ -81,6 +81,17 @@ Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 " Needs 'npm i -g neovim' and recent version of NodeJS
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+" These plugins will automatically be installed and updated by CoC
+let g:coc_global_extensions = [
+  \ 'coc-prettier',
+  \ 'coc-python',
+  \ 'coc-tsserver'
+  \ ]
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+  let g:coc_global_extensions += ['coc-eslint']
+endif
+
 " Golang support
 Plug 'fatih/vim-go', { 'for': 'markdown' }
 
