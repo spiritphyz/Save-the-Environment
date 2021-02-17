@@ -744,11 +744,14 @@ map <leader>y <Plug>(coc-format-selected)
 
 " === coc.nvim ===
 nmap <silent> <leader>dd <Plug>(coc-definition)
+nmap <silent> <leader>dy <Plug>(coc-type-definition)
 nmap <silent> <leader>dr <Plug>(coc-references)
 nmap <silent> <leader>dj <Plug>(coc-implementation)
 nnoremap <silent> <leader>ds :<C-u>CocList -I -N --top symbols<CR>
-nmap <silent> <leader>] <Plug>(coc-diagnostic-next) " Jump to next eslint error
-nmap <silent> <leader>[ <Plug>(coc-diagnostic-prev) " Jump to prev eslint error
+" Jump to next eslint error
+nmap <silent> <leader>] <Plug>(coc-diagnostic-next)
+" Jump to prev eslint error
+nmap <silent> <leader>[ <Plug>(coc-diagnostic-prev)
 
 " === Search shorcuts ===
 "  <leader>h - For all lines in file, search and replace
