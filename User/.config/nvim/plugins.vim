@@ -84,6 +84,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Golang support
 Plug 'fatih/vim-go', { 'for': 'markdown' }
 
+" Angular language service
+Plug 'iamcco/coc-angular'
+
 " Allows fancy icons in lightline tabs and NERDTree.
 " Should be loaded as last plugin.
 Plug 'ryanoasis/vim-devicons'
