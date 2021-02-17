@@ -102,6 +102,9 @@ Plug 'fatih/vim-go', { 'for': 'markdown' }
 " Angular language service
 Plug 'iamcco/coc-angular'
 
+" GraphQL queries: detect, syntax highlight, and indent
+Plug 'jparise/vim-graphql'
+
 " Allows fancy icons in lightline tabs and NERDTree.
 " Should be loaded as last plugin.
 Plug 'ryanoasis/vim-devicons'
