@@ -752,6 +752,12 @@ nnoremap <silent> <leader>ds :<C-u>CocList -I -N --top symbols<CR>
 nmap <silent> <leader>] <Plug>(coc-diagnostic-next)
 " Jump to prev eslint error
 nmap <silent> <leader>[ <Plug>(coc-diagnostic-prev)
+" Perform code action for word under cursor.
+" Code actions are automaticed changes for a fix or issue,
+" such as automatically importing a missing symbol.
+nmap <leader>do <Plug>(coc-codeaction)
+" Intelligent symbol renaming
+nmap <leader>rn <Plug>(coc-rename)
 
 " === Search shorcuts ===
 "  <leader>h - For all lines in file, search and replace
