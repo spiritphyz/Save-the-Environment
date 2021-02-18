@@ -20,14 +20,10 @@ endif
 
 call plug#begin('~/.local/share/nvim/plugged')
 
-"Plug 'pangloss/vim-javascript'
-"Plug 'crusoexia/vim-javascript-lib'
 Plug 'rakr/vim-one'
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
-" Defer loading of NERDTree since it slows down Vim startup times
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
-"Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 
 " Close braces in insert mode like Sublime, VSCode
 " Press alt-p to toggle Auto Pairs
@@ -86,6 +82,8 @@ Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " These plugins will automatically be installed and updated by CoC
+" :CocInstall to install the first time
+" :CocUpdate to update the plugins
 let g:coc_global_extensions = [
   \ 'coc-prettier',
   \ 'coc-python',

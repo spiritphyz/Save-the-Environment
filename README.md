@@ -81,22 +81,7 @@ sudo apt install python3-dev
 # Install elevated linter for Neovim virtual environment
 sudo pip3 install pylint
 ```
-# Install CoC extensions manually
- You can use a Neovim plugin manager, but there are [bad limitations](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#use-vims-plugin-manager-for-coc-extension):
-  - Plugin won't be automatically updated
-  - You can't use `:CocUninstall`
 
-We need to install the CoC extensions manually:
-```bash
-# Install Python IntelliSense
-Run ":CocInstall coc-python" inside Neovim
-
-# Install vscode-eslint support
-Run ":CocInstall coc-eslint" inside Neovim
-
-# Install Prettier for JavaScript
-Run ":CocInstall coc-prettier" inside Neovim
-```
 # Neovim and italics for comments
 
 1. Make sure the font you're using has an italic weight, for example:
