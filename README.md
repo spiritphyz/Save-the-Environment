@@ -35,8 +35,12 @@ git clone https://github.com/tmux-plugins/tmux-resurrect ~/.tmux/plugins/tmux-re
  ```
 
 # Install Neovim and CoC
-Install nightly version:
+Install NeoVim nightly version:
 https://github.com/neovim/neovim/releases/tag/nightly
+
+Start NeoVim with `nvim`, then run:
+ - [ ] `:PlugInstall`
+ - [ ] `:CocInstall`
 
 If you get CoC errors about a frozen lock file, then run the yarn install manually:
 ```bash
