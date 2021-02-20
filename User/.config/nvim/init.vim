@@ -10,8 +10,8 @@ endif
 let g:python_host_prog  = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python3'
 " macOS with Homebrew:
-"let g:python_host_prog  = '/usr/bin/python'
-"let g:python3_host_prog = '/usr/local/bin/python3'
+" let g:python_host_prog  = '/usr/bin/python'
+" let g:python3_host_prog = '/usr/local/bin/python3'
 
 " Load plugins
 source ~/.config/nvim/plugins.vim
@@ -110,22 +110,24 @@ call denite#custom#option('_', 'root_markers', 'Pipfile, Makefile, .git')
 
 " Custom options for Denite
 "   auto_resize             - Auto resize the height automatically.
+"   direction               - Specify window as directly below curr pane
+"   winminheight            - Specify min height for Denite window
 "   prompt                  - Customize denite prompt
 "   prompt_highlight        - Specify color of prompt
 "   highlight_matched_char  - Matched characters highlight
 "   highlight_matched_range - matched range highlight
 let s:denite_options = {'default' : {
-\ 'split': 'floating',
 \ 'start_filter': 0,
 \ 'auto_resize': 1,
+\ 'winminheight': '5',
+\ 'direction': 'rightbelow',
 \ 'source_names': 'short',
 \ 'prompt': ' ',
 \ 'statusline': 0,
 \ 'highlight_matched_char': 'QuickFixLine',
 \ 'highlight_matched_range': 'Visual',
 \ 'highlight_filter_background': 'DiffAdd',
-\ 'winrow': 10,
-\ 'vertical_preview': 0
+\ 'vertical_preview': 1
 \ }}
 
 " Loop through denite options and enable them
