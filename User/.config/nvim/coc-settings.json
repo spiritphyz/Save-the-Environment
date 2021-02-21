@@ -3,8 +3,8 @@
   "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,
   "eslint.options": { "configFile": "/home/tonyle/.eslintrc.json" },   // Linux
-  //"eslint.options": { "configFile": "/Users/tonyle/.eslintrc.json" },  // macOS
-  "eslint.filetypes": [
+  //"eslint.options": { "configFile": "/Users/ktonyle/.eslintrc.json" },  // macOS
+  "eslint.validate": [
     "javascript",
     "typescript",
     "typescriptreact",
