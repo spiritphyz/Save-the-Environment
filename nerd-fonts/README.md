@@ -27,7 +27,9 @@ Both **Hack** and **Iosevka** include long ligature support to display single gl
 
 # Installation
 
-For macOS, unzip the archive, then double-click the TrueType font files to add them to Font Book. You can [see the complete instructions](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Hack#quick-installation) for all platforms at the official repository.
+For macOS, unzip the archive, then double-click the TrueType font file to add that specific weight to Font Book.
+
+For Linux and Windows, [Hack](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Hack#quick-installation) and [Iosevka](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Iosevka#installation) instructions are available at their official repositories.
 
 A local version of Hack Nerd Font is stored here because the latest releases seem to have missing Devicons in Neovim and NERDTree. The older version of Hack stored in this repo has a working set of symbols that displays correctly in Neovim on Linux and macOS.
 
