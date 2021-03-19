@@ -1,15 +1,31 @@
 ![Powerline Separators](https://camo.githubusercontent.com/3c3a1717e42f17651f688ecc19f87e7433275098/68747470733a2f2f7261772e6769746875622e636f6d2f706f7765726c696e652f706f7765726c696e652f646576656c6f702f646f63732f736f757263652f5f7374617469632f696d672f706c2d6d6f64652d6e6f726d616c2e706e67)
 
+## Hack
+![Hack Specimen](https://sourcefoundry.org/hack/assets/img/mockup/srcmockup.png)
+
 **Hack Nerd Font** is a patched programming font that includes both [Powerline separator glyphs](https://github.com/microsoft/cascadia-code/issues/10#issue-481430946) and Devicon glyphs as additions to the [well-designed base font](https://sourcefoundry.org/hack/). The extra glyphs are designed to make terminal applications look "fancier" with sophisticated symbols — often seen in the status bars of Tmux, Neovim, and NERDTree.
 
-Font Weights:
+Font weights in ZIP archive:
 - Bold
 - Bold Italic
 - Italic
 - Regular
 
+## Iosevka
+![Patched Iosevka Sample](https://raw.githubusercontent.com/be5invis/Iosevka/master/images/preview-all.png)
 
-### Installation
+**Iosevka Nerd Font** has also been patched to include Powerline and Devicon glyphs. Iosevka has a [condensed look](https://typeof.net/Iosevka/) to fit more characters horizontally, which is useful for long lines inside Vim split panes and Tmux windows. Iosevka supports 160 languages and includes Vietnamese diacritics.
+
+Font weights in ZIP archive:
+- Bold
+- Bold Italic
+- Italic
+- Regular
+
+### Programming Ligatures
+Both **Hack** and **Iosevka** include long ligature support to display single glyphs for common programming symbols like `=>`, `!==`, `<=` and `>=`.
+
+# Installation
 
 For macOS, unzip the archive, then double-click the TrueType font files to add them to Font Book. You can [see the complete instructions](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Hack#quick-installation) for all platforms at the official repository.
 
