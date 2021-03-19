@@ -3,28 +3,31 @@
   * :b1       switch to buffer 1
   * :bu frag  switch to buffer by searching fragment of name
   * :bd       buffer delete (unload current buffer)
-  * :bd#      buffer destroy (:bd2 deletes buffer 2)
+  * :bd#      buffer delete numbered buffer 2
   * :e file   edit a file in same directory that you started Vim
   * :e!       reload file from disk, discard changes
-  * :o        open a file from any starting directory using file browser or FZF (ctrl-P)
+  * :o        open file from any starting directory using file browser or FZF (ctrl-P)
   * C-g       show current filename
   * :ene      edit new empty buffer
 
 # Normal mode shortcuts
-  * xp        swap (transpose) current character with next character
-  * Xp        transpose current character with previous character
-  * ~         toggle uppercase or lowercase for current character
-  * ctrl-o    jump to older location in jump list
-  * ctrl-i    jump to newer location in jump list
-  * :jumps    show jump list. keeps track of file, line, and column position
-  * ctrl-^    (or soemtimes ctrl-6): jump back and forth between last buffers
-  * !         run an arbitrary command, like: ! ls -alF
-  * q:        open command history search, press Enter to execute curr line
-
+  * xp           swap (transpose) current character with next character
+  * Xp           transpose current character with previous character
+  * ~            toggle uppercase or lowercase for current character
+  * ctrl-o       jump to older location in jump list
+  * ctrl-i       jump to newer location in jump list
+  * :jumps       show jump list. keeps track of file, line, and column position
+  * ctrl-^       (or soemtimes ctrl-6): jump back and forth between last buffers
+  * !            run an arbitrary command, like: ! ls -alF
+  * q:           open command history search, press Enter to execute curr line
   * "ay{motion}  copy (yank) text into named register 'a'
   * "ap          paste text from named register 'a'
+  * shift-<<     shift current line left
+  * shift->>     shift current line right
 
 # Insert mode shortcuts
+  * ctrl-d              move backwards one tab stop
+  * ctrl-t              move forwards one tab stop
   * ctrl-h              delete character before
   * ctrl-w              delete word before
   * ctrl-u              delete to beginning
@@ -41,6 +44,11 @@
   * ctrl-o h            move cursor left
   * shift-right         move cursor one word right
   * shift-left          move cursor one word left
+
+# Visual mode shortcuts
+  * <                       shift selection left
+  * >                       shift selection right
+  * ctri-V, ctrl-I, motion  blockwise edit, like add line number
 
 # Vim Windows (split panes)
   * ctrl-w v or :vsp    split into columns
@@ -59,6 +67,8 @@
 
   * ctrl-w R            swap top/bottom or left/right split
   * ctrl-w J            swap top/bottom
+  * ctrl-w K            swap top/bottom
+  * ctrl-w H            swap left/right
   * ctrl-w L            swap left/right
 
   * ctrl-w -            resize height shorter by 1 unit
@@ -67,9 +77,10 @@
   * :res -5             resize height shorter by 5 units
 
   * ctrl-w >            resize width wider by 1 unit
-  * ctrl-w <            >resize width thinner by 1 unit
+  * ctrl-w <            resize width thinner by 1 unit
   * :vert res +5        resize width wider by 5 units
   * :vert res -5        resize width thinner by 5 units
+  * (drag mouse)        grab the split line and resize the pane
 
 # Scrolling the view
 These commands are affected by 'scrolloff' value.
@@ -108,10 +119,10 @@ These commands are affected by 'scrolloff' value.
 
 # Ex commands
   * :pwd                print working directory
-  * :s/foo/bar/g        for curr line, replace foo w/ bar for all occurrences on line
+  * :s/foo/bar/g        for curr line, replace foo w/ bar for all occurrences
   * :%s/foo/bar         for all lines, replace foo w/ bar
   * :set syntax=html    set syntax highlighting for current buffer
-  * :set cc=80          shorter version of "set colorcolumn=80" for visual guide
+  * :set cc=80          short version of "set colorcolumn=80" for vertical guide
   * :retab              convert tabs to spaces using settings in .vimrc
 
 # Spell check
