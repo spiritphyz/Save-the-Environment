@@ -86,7 +86,7 @@ sudo apt install python3-dev
 sudo pip3 install pylint
 ```
 
-# Neovim and italics for comments
+# Italics in Neovim, Tmux, and SSH
 
 Make sure the terminal emulator is using a font that has an italic weight, for example:
 ```
