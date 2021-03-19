@@ -13,13 +13,16 @@ set -g update-environment -r
 # Remove Esc-Wait so Vim works faster
 set -sg escape-time 0
 
-# 256 color and true color modes
-set -g default-terminal "screen-256color"                # Use screen colors inside Tmux
-#set-option -sa terminal-overrides ',xterm-256color:RGB' # Use Xterm colors outside Tmux
-set -ga terminal-overrides ",xterm-256color*:Tc"         # Tell Tmux outside term has true colors
+# 256 color, true color, and italics modes
+# https://medium.com/@dubistkomisch/how-to-actually-get-italics-and-true-colour-to-work-in-iterm-tmux-vim-9ebe55ebc2be
+set -g default-terminal 'tmux-256color'            # Use screen colors inside Tmux
+set -as terminal-overrides ',xterm*:Tc:sitm=\E[3m' # Enable true colors, italics
 
 # Enable tap to reposition cursor, scrolling inside panes
 set -g mouse on
+
+# Set focus-events on (important for Neovim autoread)
+set -g focus-events on
 
 # Set prefix to uncommonly-used ctrl-x
 unbind C-b

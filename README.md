@@ -88,7 +88,7 @@ sudo pip3 install pylint
 
 # Neovim and italics for comments
 
-1. Make sure the font you're using has an italic weight, for example:
+Make sure the terminal emulator is using a font that has an italic weight, for example:
 ```
 Hack Nerd Font
   Regular
@@ -96,19 +96,29 @@ Hack Nerd Font
   Bold
 ```
 
-2. Set your terminal emulator (iTerm, Terminal, Alacritty) to use the font family.
-
-   For Alacritty, edit `~/.config/alacritty/alacritty.yml`:
+## Alacritty
+1. Edit `~/.config/alacritty/alacritty.yml`:
    ```yaml
    font:
      normal:
        family: Hack Nerd Font
    ```
 
-3. Make sure these lines are in `~/.config/nvim/init.vim`:
+2. Make sure these lines are in `~/.config/nvim/init.vim`:
 ```vim
 " Italicize inline comments, set after colorscheme and one#highlight
 highlight Comment cterm=italic gui=italic
 " Italicize whole line comments
 highlight vimLineComment cterm=italic gui=italic
 ```
+
+## iTerm
+1. Create the new terminfo files and compile them as listed in:
+    * [./User/pbin-install/terminfo/README.md](./User/pbin-install/terminfo/README.md)
+2. Configure iTerm settings as listed in the `README.md` of Step 1
+3. Make sure these lines are in `~/.tmux.conf`:
+  ```tmux
+     # 256 color, true color, and italics modes
+     set -g default-terminal 'tmux-256color'            # Use screen colors inside Tmux
+     set -as terminal-overrides ',xterm*:Tc:sitm=\E[3m' # Enable true colors, italics
+  ```
