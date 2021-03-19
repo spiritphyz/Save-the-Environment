@@ -63,6 +63,12 @@ bind -n M-K resize-pane -U 1
 bind -r L resize-pane -R 1
 bind -n M-L resize-pane -R 1
 
+# Use prefix-! to hide pane
+# Use prefix-@ to bring back hidden pane at current pane
+# https://unix.stackexchange.com/a/506103
+bind-key ! break-pane -d -n _hide
+bind-key @ join-pane -s $.0
+
 # Zoom with Alt-m
 bind -n M-m resize-pane -Z
 
@@ -121,9 +127,13 @@ set -g @plugin 'tmux-plugins/tmux-resurrect'
 
 # Enable restore of Vim/Neovim sessions
 # (requires vim-obsession plugin and Session.vim file)
-# Doesn't auto-restore with Neovim currently.
+#
+# Doesn't seem to auto-restore panes with Neovim.
 # Instead, launch saved session with 'nvim -S'.
 # Use ':Obsession' in Nvim to start recording session to a file.
+#
+# Save session:    prefix ctrl-s
+# Restore session: prefilx ctrl-r
 set -g @resurrect-strategy-vim 'session'
 set -g @resurrect-strategy-nvim 'session'
 
