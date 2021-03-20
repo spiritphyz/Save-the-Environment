@@ -147,4 +147,7 @@ colors:
   # -- 2021/03/20, tonyle
   cursor:
     text: CellBackground
-    cursor: '#528bff'     # light blue color
+    #cursor: CellForeground
+    #cursor: '#528bff'        # light blue
+    #cursor: '#bd93f9'        # purple
+    cursor: '#ff79c6'        # hot pink
