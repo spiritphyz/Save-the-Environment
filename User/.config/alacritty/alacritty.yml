@@ -1,4 +1,5 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
+# https://github.com/alacritty/alacritty/blob/master/alacritty.yml
 
 env:
   # Cannot be alacritty or else Denite in Neovim fails
@@ -8,13 +9,13 @@ env:
 window:
   # Window dimensions (changes require restart)
   dimensions:
-    columns: 110
-    lines: 52
+    columns: 160
+    lines: 63
 
   # Window position (changes require restart)
   position:
-    x: 1010
-    y: 400
+    x: 1280
+    y: 63
 
 font:
   normal:
@@ -25,7 +26,7 @@ font:
     #style: Regular
 
   # Point size
-  size: 17.0
+  size: 16.0
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
@@ -124,3 +125,26 @@ key_bindings:
   - { key: Key8,      mods: Alt,       chars: "\x1b8"                       }
   - { key: Key9,      mods: Alt,       chars: "\x1b9"                       }
   - { key: Key0,      mods: Alt,       chars: "\x1b0"                       }
+
+
+# Colors
+colors:
+  # Allowed values are CellForeground and CellBackground, which reference the
+  # affected cell, or hexadecimal colors like #ff00ff.
+
+  # Default for cursor is 'CellForeground', but Alacritty doesn't draw the
+  # background of the last character correctly when 'vi copy mode' is active
+  # (it looks like the last character isn't selected because the highlight
+  # only shows up to the second-to-last character).
+  #
+  # I'm avoiding this bugged CellForeground behavior during 'vi copy mode'
+  # by setting the cursor to light blue to signify the end of the visual
+  # selection when 'vi copy mode' is active.
+  #
+  # https://github.com/alacritty/alacritty/issues/4264
+  # Issue #4311 doesn't work for me either, usine OneDark theme
+  #
+  # -- 2021/03/20, tonyle
+  cursor:
+    text: CellBackground
+    cursor: '#528bff'     # light blue color
