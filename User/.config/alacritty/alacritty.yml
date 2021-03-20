@@ -8,36 +8,24 @@ env:
 window:
   # Window dimensions (changes require restart)
   dimensions:
-    columns: 99
-    lines: 50
+    columns: 110
+    lines: 52
 
   # Window position (changes require restart)
   position:
-    x: 1048
-    y: 374
+    x: 1010
+    y: 400
 
 font:
   normal:
-    family: Hack Nerd Font
+    #family: Hack Nerd Font
+    family: Iosevka Nerd Font
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
 
-  # Bold font face
-  # Don't need to set Bold and Italic keys
-  # https://github.com/alacritty/alacritty/issues/1977#issuecomment-736279394
-  #bold:
-    # Font family
-    #
-    # If the bold family is not specified, it will fall back to the
-    # value specified for the normal font.
-    #family: Hack Nerd Font
-
-    # The `style` can be specified to pick a specific face.
-    #style: Bold
-
   # Point size
-  size: 13.0
+  size: 17.0
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
@@ -72,6 +60,23 @@ selection:
 
 # Live config reload (changes require restart)
 live_config_reload: true
+
+
+# Shell
+#
+# You can set `shell.program` to the path of your favorite shell, e.g.
+# `/bin/fish`. Entries in `shell.args` are passed unmodified as arguments to the
+# shell.
+#
+# Default:
+#   - (macOS) /bin/bash --login
+#   - (Linux/BSD) user login shell
+#   - (Windows) powershell
+shell:
+  program: /bin/zsh
+  args:
+    - --login
+
 
 # Send ESC (\x1b) before characters when alt is pressed.
 #alt_send_esc: true
@@ -108,3 +113,14 @@ key_bindings:
   # (macOS only)
   - { key: Return,    mods: Command,  action: ToggleFullscreen              }
 
+  # allow alt-1 through 4 for Tmux switch pane views
+  - { key: Key1,      mods: Alt,       chars: "\x1b1"                       }
+  - { key: Key2,      mods: Alt,       chars: "\x1b2"                       }
+  - { key: Key3,      mods: Alt,       chars: "\x1b3"                       }
+  - { key: Key4,      mods: Alt,       chars: "\x1b4"                       }
+  - { key: Key5,      mods: Alt,       chars: "\x1b5"                       }
+  - { key: Key6,      mods: Alt,       chars: "\x1b6"                       }
+  - { key: Key7,      mods: Alt,       chars: "\x1b7"                       }
+  - { key: Key8,      mods: Alt,       chars: "\x1b8"                       }
+  - { key: Key9,      mods: Alt,       chars: "\x1b9"                       }
+  - { key: Key0,      mods: Alt,       chars: "\x1b0"                       }
