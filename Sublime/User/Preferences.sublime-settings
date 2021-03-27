@@ -1,25 +1,20 @@
 {
-	"caret_style": "blink",
-	"color_scheme": "Packages/User/SublimeLinter/Tomorrow-Night-Custom (SL).tmTheme",
-	"font_size": 12,
+	"caret_style": "phase",
+	"color_scheme": "Packages/Theme - One Dark/One Dark.tmTheme",
+	"font_size": 15,
 	"highlight_line": true,
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
-		"Floobits",
 		"Vintage"
 	],
 	"indent_guide_options":
 	[
 		"draw_normal",
 		"draw_active"
-  ],
-  "scroll_past_end": true,
-	"tab_size": 2,
+	],
+	"scroll_past_end": true,
+  "tab_size": 2,
 	"theme": "Soda Dark 3.sublime-theme",
-	"translate_tabs_to_spaces": true,
-	"vintageous_use_ctrl_keys": true,
-	"vintageous_use_sys_clipboard": true,
-	"wide_caret": true,
-	"word_wrap": "true"
+	"word_wrap": "true",
 }

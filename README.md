@@ -8,16 +8,17 @@ Let's save our settings for a better future.
 
 
 # File Locations
-| Repository Path                    | Destination on Your Computer        |
-| :--------------------------------- | :---------------------------------- |
-| User/.eslintrc.json                | ~/.eslintrc.json                    |
-| User/.tmux.conf                    | ~/.tmux.conf                        |
-| User/.tmux.conf.tmux28macOS        | /User/yourusername/.tmux.conf       |
-| User/.config/nvim                  | ~/.config/nvim                      |
-| User/.config/alacritty             | ~/.config/alacritty                 |
-| User/.vim                          | ~/.vim                              |
-| User/.vimrc                        | ~/.vimrc                            |
-| User/pbin/z.sh                     | ~/pbin/z.sh                         |
+| Repository Path                                 | Destination on Your Computer        |
+| :---------------------------------------------- | :---------------------------------- |
+| User/.eslintrc.json                             | ~/.eslintrc.json                    |
+| User/.tmux.conf                                 | ~/.tmux.conf                        |
+| User/.tmux.conf.tmux28macOS                     | /User/yourusername/.tmux.conf       |
+| User/.config/nvim                               | ~/.config/nvim                      |
+| User/.config/alacritty                          | ~/.config/alacritty                 |
+| User/.vim                                       | ~/.vim                              |
+| User/.vimrc                                     | ~/.vimrc                            |
+| User/pbin/z.sh                                  | ~/pbin/z.sh                         |
+| User/Sublime/User/Preferences.sublime-settings  | ~/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings |
 
 
 # Create Directories
@@ -25,6 +26,7 @@ Let's save our settings for a better future.
  * ~/.nvim/backup
  * ~/.nvim/swap
  * ~/.nvim/undo
+
 
 # Set up Tmux plugins
  ```bash
