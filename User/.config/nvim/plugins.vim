@@ -42,6 +42,7 @@ Plug 'godlygeek/tabular', { 'for': 'markdown' }   " allows table formatting
 Plug 'gabrielelana/vim-markdown'                  " doesn't have code folding
 
 " Git helpers
+" ]c and [c to move between changed git chunks
 Plug 'mhinz/vim-signify'         " Show symbol in gutter, :SignifyHunkDiff
 Plug 'tpope/vim-fugitive'        " Provides :Git commands, branch indicator
 
