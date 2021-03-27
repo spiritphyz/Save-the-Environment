@@ -1,7 +1,9 @@
 {
 	"caret_style": "phase",
 	"color_scheme": "Packages/Theme - One Dark/One Dark.tmTheme",
-	"font_size": 15,
+  "font_face": "Iosevka Nerd Font",
+	"font_size": 18,
+	"font_options": ["dlig"],
 	"highlight_line": true,
 	"highlight_modified_tabs": true,
 	"ignored_packages":
@@ -14,7 +16,7 @@
 		"draw_active"
 	],
 	"scroll_past_end": true,
-  "tab_size": 2,
+	"tab_size": 2,
 	"theme": "Soda Dark 3.sublime-theme",
-	"word_wrap": "true",
+	"word_wrap": "true"
 }
