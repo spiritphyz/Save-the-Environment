@@ -1,9 +1,15 @@
 {
-	"caret_style": "phase",
+	"caret_extra_bottom": 1,
+	"caret_extra_top": 2,
+	"caret_extra_width": 1,
+	"caret_style": "blink",
 	"color_scheme": "Packages/Theme - One Dark/One Dark.tmTheme",
-  "font_face": "Iosevka Nerd Font",
+	"font_face": "Iosevka Nerd Font",
+	"font_options":
+	[
+		"dlig"
+	],
 	"font_size": 18,
-	"font_options": ["dlig"],
 	"highlight_line": true,
 	"highlight_modified_tabs": true,
 	"ignored_packages":
@@ -15,6 +21,7 @@
 		"draw_normal",
 		"draw_active"
 	],
+	"margin": 0,
 	"scroll_past_end": true,
 	"tab_size": 2,
 	"theme": "Soda Dark 3.sublime-theme",
