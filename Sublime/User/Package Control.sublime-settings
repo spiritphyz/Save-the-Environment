@@ -6,7 +6,9 @@
 	"installed_packages":
 	[
 		"ActualVim",
+		"Origami",
 		"Package Control",
+		"PackageResourceViewer",
 		"Theme - One Dark",
 		"Theme - Soda"
 	]
