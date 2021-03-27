@@ -10,8 +10,8 @@ endif
 let g:python_host_prog  = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python3'
 " macOS with Homebrew:
-" let g:python_host_prog  = '/usr/bin/python'
-" let g:python3_host_prog = '/usr/local/bin/python3'
+"let g:python_host_prog  = '/usr/bin/python'
+"let g:python3_host_prog = '/usr/local/bin/python3'
 
 " Load plugins
 source ~/.config/nvim/plugins.vim
@@ -52,13 +52,15 @@ set linebreak                      " visually wrap long lines on ^I!@*-+;:,./?
 " when typing on lines
 set formatoptions+=1
 
+" Indent based on filetype
+filetype on
+filetype plugin on
+filetype indent on
 " Turn on OmniCompletion for tag completion in insert mode
 " http://vim.wikia.com/wiki/Omni_completion
 " To use omni completion, type <C-X><C-O> while open in Insert mode.
 " If matching names are found, a pop-up menu opens which can be navigated
 " using the <C-N> and <C-P> keys.
-" filetype plugin on
-filetype plugin indent on             " auto-indent based on filetype
 set omnifunc=syntaxcomplete#Complete
 
 " make backspace delete over line breaks
@@ -403,9 +405,9 @@ call one#highlight('vimLineComment', '888888', '', 'none')
 call one#highlight('Comment', '888888', '', 'none')
 
 " Italicize inline comments, set after colorscheme and one#highlight
-"highlight Comment cterm=italic gui=italic
+highlight Comment cterm=italic gui=italic
 " Italicize whole line comments
-"highlight vimLineComment cterm=italic gui=italic
+highlight vimLineComment cterm=italic gui=italic
 
 " Remove the current line highlight in unfocused windows
 "au VimEnter,WinEnter,BufWinEnter,FocusGained,CmdwinEnter * set cul
@@ -451,7 +453,10 @@ set hidden
 
 set ttyfast                     " More characters will be sent to screen for redrawing
 set ttimeout                    " Turn on custom wait time for keypress
-set ttimeoutlen=70              " Make keypress wait period shorter
+set ttimeoutlen=70              " Key codes wait period (like arrow keys)
+" Mapping wait period before abort and carry out behavior of keys typed so far
+" https://vi.stackexchange.com/a/24938
+set timeoutlen=800
 
 " Protect changes between writes. Default values for updatecount (200 keystrokes)
 " and updatetime (4 seconds) are fine.
@@ -465,7 +470,7 @@ set ttimeoutlen=70              " Make keypress wait period shorter
 "set backupdir^=~/.nvim/backup   " Consolidate the write backups.
 set nobackup
 set nowritebackup
-set updatetime=300               " make coc plugins much more responsive
+set updatetime=100               " make coc plugins much more responsive
 
 " Persist the undo tree for each file.
 set undofile
@@ -611,8 +616,8 @@ nnoremap <leader>w :w!<CR>
 nnoremap <leader>l :call ToggleLineNumsAndGutter()<CR>
 nnoremap <leader>q :q<CR>                            " Quit
 nnoremap <leader>c :%s/\<<c-r><c-w>//g<left><left>   " Replace word under cursor
-nnoremap <silent> <leader>h :set nolist!<CR>         " Toggle show hidden characters
-nnoremap <leader>H :SignifyHunkDiff<CR>  " Show hunk diff on gutter symbol (capital H)
+nnoremap <silent> <leader>h :set nolist!<CR>         " Toggle hidden characters
+nnoremap <leader>h :SignifyHunkDiff<CR>              " Show hunk diff in gutter
 nnoremap <leader>n :bn<CR>                           " Switch to next buffer
 nnoremap <leader>b :bp<CR>                           " Switch to prev buffer
 nnoremap <leader>D :bd<CR>                           " Delete buffer (capital D)
@@ -751,9 +756,9 @@ nmap <silent> <leader>dr <Plug>(coc-references)
 nmap <silent> <leader>dj <Plug>(coc-implementation)
 nnoremap <silent> <leader>ds :<C-u>CocList -I -N --top symbols<CR>
 " Jump to next eslint error
-nmap <silent> <leader>] <Plug>(coc-diagnostic-next)
+nmap <silent> ]e <Plug>(coc-diagnostic-next)
 " Jump to prev eslint error
-nmap <silent> <leader>[ <Plug>(coc-diagnostic-prev)
+nmap <silent> [e <Plug>(coc-diagnostic-prev)
 " Perform code action for word under cursor.
 " Code actions are automaticed changes for a fix or issue,
 " such as automatically importing a missing symbol.
@@ -762,8 +767,8 @@ nmap <leader>do <Plug>(coc-codeaction)
 nmap <leader>rn <Plug>(coc-rename)
 
 " === Search shorcuts ===
-"  <leader>h - For all lines in file, search and replace
-map <leader>h :%s/
+"  <leader>s - For all lines in file, search and replace
+map <leader>s :%s/
 
 
 " === Miscellaneous ===
