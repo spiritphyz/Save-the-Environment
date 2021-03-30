@@ -240,6 +240,12 @@ function! LightlineFiletype()
   return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
 endfunction
 
+function! LightlineGitBranch()
+  if exists ('*FugitiveHead')
+  let branch = FugitiveHead()
+  return branch !=# '' ? ' '.branch : ''
+endfunction
+
 function! LightlineCocHints() abort
   return s:lightline_coc_diagnostic('hints', 'hint')
 endfunction
@@ -258,7 +264,7 @@ let g:lightline = {
       \   'fileencoding'      : 'LightlineFileencoding',
       \   'fileformat'        : 'LightlineFileformat',
       \   'filetype'          : 'LightlineFiletype',
-      \   'gitbranch'         : 'FugitiveHead'
+      \   'gitbranch'         : 'LightlineGitBranch'
       \ },
       \ 'active': {
       \   'right': [ [ 'lineinfo' ],
@@ -310,7 +316,7 @@ let g:lightline#bufferline#min_buffer_count  = 2
 let g:lightline#bufferline#clickable         = 1     " allow clickable tabs, setting 1
 let g:lightline.component_raw = {'buffers': 1}       " allow clickable tabs, setting 2
 let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']]}
-let g:lightline#bufferline#show_number       = 1     " number buffers same as :ls
+let g:lightline#bufferline#show_number       = 0     " number buffers same as :ls
 let g:lightline#bufferline#number_map        = {
 \ 0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴',
 \ 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹'}
@@ -614,6 +620,8 @@ let mapleader="\<Space>"
 nnoremap <leader>w :w!<CR>
 " Toggle line numbers and gutter (signcolumn) for easier Tmux copy
 nnoremap <leader>l :call ToggleLineNumsAndGutter()<CR>
+" Toggle display of indent guides
+nnoremap <leader>i :IndentBlanklineToggle<CR>
 nnoremap <leader>q :lclose<bar>b#<bar>bd #<CR>       " Close buffer w/o closing split
 nnoremap <leader>c :%s/\<<c-r><c-w>//g<left><left>   " Replace word under cursor
 nnoremap <leader>h :SignifyHunkDiff<CR>              " Show hunk diff in gutter
@@ -766,6 +774,10 @@ nmap <silent> [e <Plug>(coc-diagnostic-prev)
 nmap <leader>do <Plug>(coc-codeaction)
 " Intelligent symbol renaming
 nmap <leader>rn <Plug>(coc-rename)
+
+" === indentBlankline options ===
+" Use UTF-8 glyph for indent character
+let g:indent_blankline_char = '¦'
 
 " === Search shorcuts ===
 "  <leader>s - For all lines in file, search and replace
