@@ -1,5 +1,7 @@
 # Terminal aliases
-alias ls='ls -hF' # show human-readable file sizes, show directory symbols
+# show human-readable file sizes, show directory symbols, show color
+#alias ls='ls -hF --color'  # Linux
+alias ls='ls -hFG'         # macOS
 alias ll='ls -al'
 alias lll='ls -alF --color | less -R' # get color in less piping
 alias lsrt='ls -rt'
