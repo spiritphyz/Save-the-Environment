@@ -26,6 +26,7 @@ alias gdc='git diff --color-words=.' # highlight individual color changes
 alias gc='git commit'
 alias gl='git log'
 alias gll='git log --graph --decorate --pretty=oneline --abbrev-commit --all'
+alias gls='git log --stat'
 alias gp='git push'
 alias gpom='git push origin main'
 alias gcm='git commit -m'
