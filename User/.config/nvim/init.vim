@@ -616,11 +616,12 @@ nnoremap <leader>w :w!<CR>
 nnoremap <leader>l :call ToggleLineNumsAndGutter()<CR>
 nnoremap <leader>q :q<CR>                            " Quit
 nnoremap <leader>c :%s/\<<c-r><c-w>//g<left><left>   " Replace word under cursor
-nnoremap <silent> <leader>h :set nolist!<CR>         " Toggle hidden characters
 nnoremap <leader>h :SignifyHunkDiff<CR>              " Show hunk diff in gutter
 nnoremap <leader>n :bn<CR>                           " Switch to next buffer
 nnoremap <leader>b :bp<CR>                           " Switch to prev buffer
 nnoremap <leader>D :bd<CR>                           " Delete buffer (capital D)
+" Toggle hidden characters (capital H)
+nnoremap <silent> <leader>H :set nolist!<CR>
 " Insert empty line before and after
 nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<Left><Left><CR>
 nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<Left><Left><CR>
