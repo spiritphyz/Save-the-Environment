@@ -33,6 +33,9 @@ Plug 'jiangmiao/auto-pairs'
 let g:polyglot_disabled = ['md', 'markdown'] " interferes with vim-markdown
 Plug 'sheerun/vim-polyglot'
 
+" More advanced syntax highlighting
+"Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+
 " JSON helpers
 Plug 'elzr/vim-json'             " allow front matter highlighting
 
@@ -103,6 +106,11 @@ Plug 'iamcco/coc-angular'
 
 " GraphQL queries: detect, syntax highlight, and indent
 Plug 'jparise/vim-graphql'
+
+" Show indent guides on all lines (including blank lines)
+" lua branch is needed until Neovim 0.5 is released
+" https://github.com/lukas-reineke/indent-blankline.nvim
+Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
 
 " Allows fancy icons in lightline tabs and NERDTree.
 " Should be loaded as last plugin.
