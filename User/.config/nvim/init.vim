@@ -311,12 +311,14 @@ let g:lightline#bufferline#unnamed           = '*'
 let g:lightline#bufferline#more_buffers      = '…'
 let g:lightline#bufferline#unicode_symbols   = 0
 let g:lightline#bufferline#shorten_path      = 1
+let g:lightline#bufferline#smart_path        = 1
 let g:lightline#bufferline#enable_devicons   = 1
+let g:lightline#bufferline#icon_position     = 'left'
 let g:lightline#bufferline#min_buffer_count  = 2
 let g:lightline#bufferline#clickable         = 1     " allow clickable tabs, setting 1
 let g:lightline.component_raw = {'buffers': 1}       " allow clickable tabs, setting 2
 let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']]}
-let g:lightline#bufferline#show_number       = 0     " number buffers same as :ls
+let g:lightline#bufferline#show_number       = 1     " number buffers same as :ls
 let g:lightline#bufferline#number_map        = {
 \ 0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴',
 \ 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹'}
