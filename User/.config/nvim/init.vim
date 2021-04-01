@@ -779,7 +779,10 @@ nmap <leader>rn <Plug>(coc-rename)
 
 " === indentBlankline options ===
 " Use UTF-8 glyph for indent character
-let g:indent_blankline_char = '¦'
+"let g:indent_blankline_char = '¦'
+" Use U+258F 'left one eigth block' glyph
+" in Iosevka NerdFont
+let g:indent_blankline_char = '▏'
 
 " === Search shorcuts ===
 "  <leader>s - For all lines in file, search and replace
