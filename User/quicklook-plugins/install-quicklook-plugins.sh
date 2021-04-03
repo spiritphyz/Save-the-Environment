@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# script adapted from: https://mths.be/macos
+# Script adapted from: https://mths.be/macos
+# Original plugins list: https://github.com/sindresorhus/quick-look-plugins
 
 
 ###############################################################################
