@@ -44,8 +44,18 @@ brew install provisionql &&
 # Installs inside /Applications folder
 brew install apparency &&
 
-# Preview WWebP images
+# Preview WebP images
 brew install webpquicklook
+
+# Preview ZIP archives
+# Installs inside /Applications folder
+# Run BetterZip to enable Quick Look plugin
+brew install betterzip
+
+# Preview videos files as single frames
+# I don't like the presentation as it doesn't play the movie.
+# Finder can natively play the movie through QuickLook.
+#brew install qlvideo
 
 # Remove quarantine attribute for macOS Catalina and above
 xattr -d -r com.apple.quarantine ~/Library/QuickLook/QLColorCode.qlgenerator &&
