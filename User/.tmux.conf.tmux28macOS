@@ -18,6 +18,18 @@ set -sg escape-time 0
 set -g default-terminal 'tmux-256color'            # Use screen colors inside Tmux
 set -as terminal-overrides ',xterm*:Tc:sitm=\E[3m' # Enable true colors, italics
 
+# Automatically renumber windows when one is closed
+# Tmux windows are "tabs" listed at bottom bar
+set -g renumber-windows on
+
+# Increase scrollback buffer size from 2000
+set -g history-limit 5000
+
+# Use readline (emacs) keys like ctrl-a, ctrl-e
+# on Tmux command line
+# https://git.sr.ht/~gpanders/dotfiles/tree/master/item/.config/tmux/tmux.conf
+set -g status-keys emacs
+
 # Enable tap to reposition cursor, scrolling inside panes
 set -g mouse on
 
