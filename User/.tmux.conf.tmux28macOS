@@ -2,9 +2,6 @@
 # Requires this utility: brew install reattach-to-user-namespace
 # If you don't install the utility, Tmux will crash on launch.
 #
-# For Bash:
-#set-option -g default-command "reattach-to-user-namespace -l bash"
-# For Zsh:
 set-option -g default-command "reattach-to-user-namespace -l zsh"
 
 # Connect to ssh-agent socket by copying environment variables
