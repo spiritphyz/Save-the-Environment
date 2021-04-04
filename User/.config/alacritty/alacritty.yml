@@ -9,13 +9,13 @@ env:
 window:
   # Window dimensions (changes require restart)
   dimensions:
-    columns: 128
-    lines: 55
+    columns: 182
+    lines: 72
 
   # Window position (changes require restart)
   position:
-    x: 1280
-    y: 63
+    x: 1283
+    y: 73
 
 font:
   normal:
@@ -26,7 +26,7 @@ font:
     #style: Regular
 
   # Point size
-  size: 20.76
+  size: 15.76
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
@@ -40,7 +40,7 @@ font:
   # right, increasing `y` moves the glyph upward.
   glyph_offset:
     x: 0
-    y: 1
+    y: 0
 
   # Thin stroke font rendering (macOS only)
   #
