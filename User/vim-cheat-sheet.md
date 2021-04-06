@@ -49,7 +49,6 @@
   * <                       shift selection left
   * >                       shift selection right
   * ctri-V, ctrl-I, motion  blockwise edit, like add line number
-
 # Vim Windows (split panes)
   * ctrl-w v or :vsp    split into columns
   * ctrl-w s or :sp     split into stacks
@@ -109,7 +108,7 @@ These commands are affected by 'scrolloff' value.
   * m1                  set mark named `1`
   * '1                  jump to mark named `1`
   * mH                  set capitalized mark named `H`
-  * :bH                 jump to named buffer across any open buffers,
+  * 'H                  jump to named buffer across any open buffers,
                         useful if you set "H" for Header file, "C" for
                         a source file, "M" for Makefile
 
