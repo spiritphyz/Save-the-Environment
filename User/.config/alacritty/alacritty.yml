@@ -3,6 +3,7 @@
 
 import:
   - ~/.config/alacritty/colors/colors.yml
+  - ~/.config/alacritty/keys.yml
 
 env:
   # Cannot be alacritty or else Denite in Neovim fails
@@ -80,52 +81,3 @@ shell:
   program: /bin/zsh
   args:
     - --login
-
-
-# Send ESC (\x1b) before characters when alt is pressed.
-#alt_send_esc: true
-
-key_bindings:
-  # ctrl-^ doesn't work in some terminals like Alacritty, so enable it
-  - { key: Key6, mods: Control, chars: "\x1e" }
-
-  # allow alt-backspace to backward-delete a word
-  # https://github.com/alacritty/alacritty/issues/62#issuecomment-347552058
-  - { key: Back,      mods: Alt,       chars: "\x1b\x7f"                    }
-
-  # allow alt-jkhlz for my tmux pane switching, resizing, zoom
-  - { key: H,         mods: Alt,       chars: "\x1bh"                       }
-  - { key: J,         mods: Alt,       chars: "\x1bj"                       }
-  - { key: K,         mods: Alt,       chars: "\x1bk"                       }
-  - { key: L,         mods: Alt,       chars: "\x1bl"                       }
-  - { key: M,         mods: Alt,       chars: "\x1bm"                       }
-  - { key: H,         mods: Alt|Shift, chars: "\x1bH"                       }
-  - { key: J,         mods: Alt|Shift, chars: "\x1bJ"                       }
-  - { key: K,         mods: Alt|Shift, chars: "\x1bK"                       }
-  - { key: L,         mods: Alt|Shift, chars: "\x1bL"                       }
-
-  # tmux alt-g for 'repeat last bash command in last active pane'
-  - { key: G,         mods: Alt,       chars: "\x1bg"                       }
-
-  # allow alt-p to toggle autopairs in Neovim
-  - { key: P,         mods: Alt,       chars: "\x1bp"                       }
-
-  # allow common Bash keybindings
-  - { key: B,         mods: Alt,       chars: "\x1bb"                       }
-  - { key: F,         mods: Alt,       chars: "\x1bf"                       }
-
-  # (macOS only)
-  - { key: Return,    mods: Command,  action: ToggleFullscreen              }
-
-  # allow alt-1 through 4 for Tmux switch pane views
-  - { key: Key1,      mods: Alt,       chars: "\x1b1"                       }
-  - { key: Key2,      mods: Alt,       chars: "\x1b2"                       }
-  - { key: Key3,      mods: Alt,       chars: "\x1b3"                       }
-  - { key: Key4,      mods: Alt,       chars: "\x1b4"                       }
-  - { key: Key5,      mods: Alt,       chars: "\x1b5"                       }
-  - { key: Key6,      mods: Alt,       chars: "\x1b6"                       }
-  - { key: Key7,      mods: Alt,       chars: "\x1b7"                       }
-  - { key: Key8,      mods: Alt,       chars: "\x1b8"                       }
-  - { key: Key9,      mods: Alt,       chars: "\x1b9"                       }
-  - { key: Key0,      mods: Alt,       chars: "\x1b0"                       }
-
