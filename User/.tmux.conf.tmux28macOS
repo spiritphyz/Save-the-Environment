@@ -137,6 +137,7 @@ set -g pane-active-border-style fg=colour211 # For Tmux 2.8+ (macos)
 # "prefix I" to install the plugin (capital I)
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-copycat'
 
 # Enable restore of Vim/Neovim sessions
 # (requires vim-obsession plugin and Session.vim file)
@@ -148,6 +149,26 @@ set -g @plugin 'tmux-plugins/tmux-resurrect'
 # Restore session: prefilx ctrl-r
 set -g @resurrect-strategy-vim 'session'
 set -g @resurrect-strategy-nvim 'session'
+
+# Copycat plugin
+# Iterates through regex searches, git files, urls
+#
+# While Tmux 3.1 has native regex searching, it's not as
+# ergonomic as Copycpat (doesn't yank selection, has poor filtering
+# of files). Copycpat is more convenient but has janky redraw issues.
+#
+# I should see if found searches are automatically yanked in Tmux 3.2
+# and filenames are smartly distinguished, and if both are true,
+# I can ditch Copycat plugin.
+#
+# prefix, ctrl-f - find files
+# prefix, ctrl-g - iterate through git status files (use after git status)
+# prefix, ctrl-h - iterate through git SHA hashes (use after git log)
+# prefix, ctrl-u - find URLs (http, ftp, git)
+# prefix, ctrl-d - find numbers (mnemonic is 'd' for digit)
+# n              - jump backwards in scrollback buffer to next match
+# N              - jump forward in scrollback buffer to previous match
+# Enter          - copy highlighted match
 
 # Initialize Tmux plugin manager (keep at end of tmux.conf)
 run '~/.tmux/plugins/tpm/tpm'
