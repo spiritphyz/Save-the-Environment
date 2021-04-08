@@ -626,8 +626,9 @@ nnoremap <silent> <leader>cc :execute "set colorcolumn=" . (&colorcolumn == "" ?
 nnoremap <leader>l :call ToggleLineNumsAndGutter()<CR>
 " Toggle display of indent guides
 nnoremap <leader>i :IndentBlanklineToggle<CR>
+" Find and replace word under cursor (mnemonic: c_u_rsor)
+nnoremap <leader>u :%s/<c-r><c-w>//g<left><left>
 nnoremap <leader>q :lclose<bar>b#<bar>bd #<CR>       " Close buffer w/o closing split
-nnoremap <leader>c :%s/\<<c-r><c-w>//g<left><left>   " Replace word under cursor
 nnoremap <leader>h :SignifyHunkDiff<CR>              " Show hunk diff in gutter
 nnoremap <leader>n :bn<CR>                           " Switch to next buffer
 nnoremap <leader>b :bp<CR>                           " Switch to prev buffer
