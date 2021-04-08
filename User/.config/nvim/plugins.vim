@@ -29,6 +29,12 @@ Plug 'scrooloose/nerdtree'
 " Press alt-p to toggle Auto Pairs
 Plug 'jiangmiao/auto-pairs'
 
+" Allows syntax highlighting of CSS inside styled component template strings
+" 2021-02-17: Project is unmaintained
+" Needs to be before vim-polyglot or else breaks JavaScript indentation
+" https://github.com/sheerun/vim-polyglot/issues/392#issuecomment-597891075
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+
 " Syntax highlighting for many languages
 let g:polyglot_disabled = ['md', 'markdown'] " interferes with vim-markdown
 Plug 'sheerun/vim-polyglot'
@@ -73,10 +79,6 @@ Plug 'Shougo/neosnippet-snippets'
 " Trigger completion with C-y,
 " https://docs.emmet.io/cheat-sheet/
 Plug 'mattn/emmet-vim', { 'for': ['css', 'html', 'javascriptreact', 'typescriptreact'] }
-
-" Allows syntax highlighting of CSS inside styled component template strings
-" 2021-02-17: Project is unmaintained
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 " Denite - Fuzzy finding, buffer management
 Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
