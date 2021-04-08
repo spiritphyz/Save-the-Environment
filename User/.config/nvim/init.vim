@@ -620,6 +620,8 @@ let mapleader="\<Space>"
 " Save file [can't put this comment at end of line or else cursor jumps]
 " https://vi.stackexchange.com/a/6922
 nnoremap <leader>w :w!<CR>
+" Toggle highlight at column 80
+nnoremap <silent> <leader>cc :execute "set colorcolumn=" . (&colorcolumn == "" ? "80" : "")<CR>
 " Toggle line numbers and gutter (signcolumn) for easier Tmux copy
 nnoremap <leader>l :call ToggleLineNumsAndGutter()<CR>
 " Toggle display of indent guides
