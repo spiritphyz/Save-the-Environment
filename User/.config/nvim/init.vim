@@ -36,13 +36,13 @@ set formatoptions-=cro
 nnoremap \ :noh<CR>
 
 " Tab key behavior
-set expandtab                      " use spaces instead of tabs
-set smarttab                       " insert tab according to rules below
-set softtabstop=2                  " # of spaces counted as tab during editing
+set expandtab         " use spaces instead of tabs
+set smarttab          " insert tab according to rules below
+set softtabstop=2     " # of spaces counted as tab during editing
 set shiftwidth=2
 set tabstop=2
-set autoindent                     " apply current indentation to next line
-set smartindent                    " reacts to syntax of your code
+set indentexpr        " Neovim: evaluate expressions to compute indent,
+                      " overrides Vim's autoindent and smartindent
 
 " Word wrapping, only insert line breaks when I press Enter
 set wrap                           " wrap lines
