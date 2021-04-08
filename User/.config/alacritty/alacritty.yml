@@ -1,6 +1,10 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
 # https://github.com/alacritty/alacritty/blob/master/alacritty.yml
 
+import:
+  - ~/.config/alacritty/colors/colors.yml
+  - ~/.config/alacritty/keys.yml
+
 env:
   # Cannot be alacritty or else Denite in Neovim fails
   TERM: xterm-256color
@@ -9,13 +13,13 @@ env:
 window:
   # Window dimensions (changes require restart)
   dimensions:
-    columns: 128
-    lines: 55
+    columns: 182
+    lines: 72
 
   # Window position (changes require restart)
   position:
-    x: 1280
-    y: 63
+    x: 1283
+    y: 73
 
 font:
   normal:
@@ -26,7 +30,7 @@ font:
     #style: Regular
 
   # Point size
-  size: 20.76
+  size: 15.76
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
@@ -40,7 +44,7 @@ font:
   # right, increasing `y` moves the glyph upward.
   glyph_offset:
     x: 0
-    y: 1
+    y: 0
 
   # Thin stroke font rendering (macOS only)
   #
@@ -77,77 +81,3 @@ shell:
   program: /bin/zsh
   args:
     - --login
-
-
-# Send ESC (\x1b) before characters when alt is pressed.
-#alt_send_esc: true
-
-key_bindings:
-  # ctrl-^ doesn't work in some terminals like Alacritty, so enable it
-  - { key: Key6, mods: Control, chars: "\x1e" }
-
-  # allow alt-backspace to backward-delete a word
-  # https://github.com/alacritty/alacritty/issues/62#issuecomment-347552058
-  - { key: Back,      mods: Alt,       chars: "\x1b\x7f"                    }
-
-  # allow alt-jkhlz for my tmux pane switching, resizing, zoom
-  - { key: H,         mods: Alt,       chars: "\x1bh"                       }
-  - { key: J,         mods: Alt,       chars: "\x1bj"                       }
-  - { key: K,         mods: Alt,       chars: "\x1bk"                       }
-  - { key: L,         mods: Alt,       chars: "\x1bl"                       }
-  - { key: M,         mods: Alt,       chars: "\x1bm"                       }
-  - { key: H,         mods: Alt|Shift, chars: "\x1bH"                       }
-  - { key: J,         mods: Alt|Shift, chars: "\x1bJ"                       }
-  - { key: K,         mods: Alt|Shift, chars: "\x1bK"                       }
-  - { key: L,         mods: Alt|Shift, chars: "\x1bL"                       }
-
-  # tmux alt-g for 'repeat last bash command in last active pane'
-  - { key: G,         mods: Alt,       chars: "\x1bg"                       }
-
-  # allow alt-p to toggle autopairs in Neovim
-  - { key: P,         mods: Alt,       chars: "\x1bp"                       }
-
-  # allow common Bash keybindings
-  - { key: B,         mods: Alt,       chars: "\x1bb"                       }
-  - { key: F,         mods: Alt,       chars: "\x1bf"                       }
-
-  # (macOS only)
-  - { key: Return,    mods: Command,  action: ToggleFullscreen              }
-
-  # allow alt-1 through 4 for Tmux switch pane views
-  - { key: Key1,      mods: Alt,       chars: "\x1b1"                       }
-  - { key: Key2,      mods: Alt,       chars: "\x1b2"                       }
-  - { key: Key3,      mods: Alt,       chars: "\x1b3"                       }
-  - { key: Key4,      mods: Alt,       chars: "\x1b4"                       }
-  - { key: Key5,      mods: Alt,       chars: "\x1b5"                       }
-  - { key: Key6,      mods: Alt,       chars: "\x1b6"                       }
-  - { key: Key7,      mods: Alt,       chars: "\x1b7"                       }
-  - { key: Key8,      mods: Alt,       chars: "\x1b8"                       }
-  - { key: Key9,      mods: Alt,       chars: "\x1b9"                       }
-  - { key: Key0,      mods: Alt,       chars: "\x1b0"                       }
-
-
-# Colors
-colors:
-  # Allowed values are CellForeground and CellBackground, which reference the
-  # affected cell, or hexadecimal colors like #ff00ff.
-
-  # Default for cursor is 'CellForeground', but Alacritty doesn't draw the
-  # background of the last character correctly when 'vi copy mode' is active
-  # (it looks like the last character isn't selected because the highlight
-  # only shows up to the second-to-last character).
-  #
-  # I'm avoiding this bugged CellForeground behavior during 'vi copy mode'
-  # by setting the cursor to light blue to signify the end of the visual
-  # selection when 'vi copy mode' is active.
-  #
-  # https://github.com/alacritty/alacritty/issues/4264
-  # Issue #4311 doesn't work for me either, usine OneDark theme
-  #
-  # -- 2021/03/20, tonyle
-  cursor:
-    text: CellBackground
-    #cursor: CellForeground
-    #cursor: '#528bff'        # light blue
-    #cursor: '#bd93f9'        # purple
-    cursor: '#ff79c6'        # hot pink
