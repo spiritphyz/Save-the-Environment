@@ -29,6 +29,9 @@ Plug 'scrooloose/nerdtree'
 " Press alt-p to toggle Auto Pairs
 Plug 'jiangmiao/auto-pairs'
 
+" Paste and indent to match destination context
+Plug 'sickill/vim-pasta'
+
 " Allows syntax highlighting of CSS inside styled component template strings
 " 2021-02-17: Project is unmaintained
 " Needs to be before vim-polyglot or else breaks JavaScript indentation
