@@ -439,6 +439,9 @@ set hlsearch
 " Search as characters are entered
 set incsearch
 
+" Neovim: show effects of substitution incrementally in a split preview
+set inccommand=split
+
 " Use F2 key to enable paste mode before pasting in large amount of text
 " to avoid auto-formatting. Press F2 again to exit paste mode.
 set pastetoggle=<F2>
