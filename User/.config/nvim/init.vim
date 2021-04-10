@@ -331,7 +331,7 @@ let g:lightline#bufferline#number_map        = {
 let g:NERDTreeShowHidden = 1
 
 " Hide certain files and directories from NERDTree
-let g:NERDTreeIgnore = ['^\.DS_Store$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir]]', '\.sass-cache$']
+let g:NERDTreeIgnore = ['^\.DS_Store$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir]]', '^node_modules$[[dir]]', '\.sass-cache$']
 
 " Automatically close the NerdTree buffer when opening a file
 let g:NERDTreeQuitOnOpen = 1
