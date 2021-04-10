@@ -113,6 +113,7 @@ call denite#custom#option('_', 'root_markers', 'Pipfile, Makefile, .git')
 " Custom options for Denite
 "   auto_resize             - Auto resize the height automatically.
 "   direction               - Specify window as directly below curr pane
+"   floating_preview        - For Neovim, open preview window as floating
 "   winminheight            - Specify min height for Denite window
 "   prompt                  - Customize denite prompt
 "   prompt_highlight        - Specify color of prompt
@@ -122,7 +123,8 @@ let s:denite_options = {'default' : {
 \ 'start_filter': 0,
 \ 'auto_resize': 1,
 \ 'winminheight': '5',
-\ 'direction': 'rightbelow',
+\ 'direction': 'dynamicbottom',
+\ 'floating_preview': 'true',
 \ 'source_names': 'short',
 \ 'prompt': ' ',
 \ 'statusline': 0,
@@ -644,7 +646,7 @@ nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1
 
 
 " === Denite shorcuts === "
-"   <leader>L - Browser currently open buffers (capital L)
+"   <leader>L - Browser currently open buffers (capital L), like Vim's :ls
 "   <leader>f - Browse list of files in current directory
 "   <leader>t - Search for files in project directory
 "   <leader>g - Search curr directory for given term, close window if no results
