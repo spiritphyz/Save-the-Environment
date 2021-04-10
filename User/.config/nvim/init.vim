@@ -7,11 +7,11 @@ endif
 
 " Avoid slow startup time on cold starts
 " Linux:
-let g:python_host_prog  = '/usr/bin/python2'
-let g:python3_host_prog = '/usr/bin/python3'
+"let g:python_host_prog  = '/usr/bin/python2'
+"let g:python3_host_prog = '/usr/bin/python3'
 " macOS with Homebrew:
-"let g:python_host_prog  = '/usr/bin/python'
-"let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python_host_prog  = '/usr/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python3'
 
 " Load plugins
 source ~/.config/nvim/plugins.vim
@@ -644,14 +644,14 @@ nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1
 
 
 " === Denite shorcuts === "
-"   ctrl-p    - Browser currently open buffers
+"   <leader>L - Browser currently open buffers (capital L)
 "   <leader>f - Browse list of files in current directory
 "   <leader>t - Search for files in project directory
 "   <leader>g - Search curr directory for given term, close window if no results
 "   <leader>j - Search curr directory for occurrences of word under cursor
 "   <leader>: - Fuzzy search command history (non-fuzzy default is q:)
 "           i - After triggers above, press 'i' to enter fuzzy filter mode
-nmap <C-p> :Denite buffer<CR>i
+nmap <leader>L :Denite buffer<CR>i
 nmap <leader>f :Denite file/rec<CR>
 nmap <leader>t :DeniteProjectDir file/rec<CR>
 nnoremap <leader>g <C-u>:Denite grep:. -no-empty<CR>
@@ -748,6 +748,26 @@ nmap <C-right> :vertical resize +1<CR>
 nmap <C-left> :vertical resize -1<CR>
 nmap <C-up> :resize +1<CR>
 nmap <C-down> :resize -1<CR>
+
+" leader-0 to toggle zoom split
+" Mnemonic: 0 looks like 'o' for Vim's ctrl-w o ("only this split")
+" leader-o and leader-O are already mapped to 'add blank line above, below'
+" Awesome toggle function written by stackoverflow user 'ata':
+" https://stackoverflow.com/a/60639802
+function! ToggleZoom(zoom)
+  if exists("t:restore_zoom") && (a:zoom == v:true || t:restore_zoom.win != winnr())
+      exec t:restore_zoom.cmd
+      unlet t:restore_zoom
+  elseif a:zoom
+      let t:restore_zoom = { 'win': winnr(), 'cmd': winrestcmd() }
+      exec "normal \<C-W>\|\<C-W>_"
+  endif
+endfunction
+
+augroup restorezoom
+    au WinEnter * silent! :call ToggleZoom(v:false)
+augroup END
+nnoremap <silent> <Leader>0 :call ToggleZoom(v:true)<CR>
 
 " Ctrl-c remapped to Escape to avoid leftover artifacts with CoC menus.
 " https://github.com/neoclide/coc.nvim/issues/1469
