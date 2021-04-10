@@ -111,7 +111,7 @@ call denite#custom#var('buffer', 'date_format', '')
 call denite#custom#option('_', 'root_markers', 'Pipfile, Makefile, .git')
 
 " Custom options for Denite
-"   auto_resize             - Auto resize the height automatically.
+"   auto_resize             - Auto resize the height automatically
 "   direction               - Specify window as directly below curr pane
 "   floating_preview        - For Neovim, open preview window as floating
 "   winminheight            - Specify min height for Denite window
@@ -228,18 +228,19 @@ function! LightlineFilename()
   endif
 endfunction
 
+" Ex: utf-8
 function! LightlineFileencoding()
-  return winwidth(0) > 70 ? &fileencoding : ''
+  return winwidth(0) > 80 ? &fileencoding : ''
 endfunction
 
 " Ex: unix
 function! LightlineFileformat()
-  return winwidth(0) > 70 ? &fileformat : ''
+  return winwidth(0) > 80 ? &fileformat : ''
 endfunction
 
 " Ex: reactjavascript
 function! LightlineFiletype()
-  return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+  return winwidth(0) > 80 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
 endfunction
 
 function! LightlineGitBranch()
