@@ -17,7 +17,7 @@
   * ctrl-o       jump to older location in jump list
   * ctrl-i       jump to newer location in jump list
   * :jumps       show jump list. keeps track of file, line, and column position
-  * ctrl-^       (or soemtimes ctrl-6): jump back and forth between last buffers
+  * ctrl-^       (or sometimes ctrl-6): jump back and forth between last buffers
   * !            run an arbitrary command, like: ! ls -alF
   * q:           open command history search, press Enter to execute curr line
   * "ay{motion}  copy (yank) text into named register 'a'
@@ -49,12 +49,13 @@
   * <                       shift selection left
   * >                       shift selection right
   * ctri-V, ctrl-I, motion  blockwise edit, like add line number
+
 # Vim Windows (split panes)
   * ctrl-w v or :vsp    split into columns
   * ctrl-w s or :sp     split into stacks
   * ctrl-w c            close current window (pane)
-  * ctrl-w |            zoom column split
-  * ctrl-w _            zoom stack split
+  * ctrl-w |            zoom column split (shows other panes as skinny split)
+  * ctrl-w _            zoom stack split  (shows other panes as skinny split)
   * ctrl-w =            restore splits equally
   * ctrl-w o or :on     cancel split pane (make it the "only" split)
   * :q                  close split pane
