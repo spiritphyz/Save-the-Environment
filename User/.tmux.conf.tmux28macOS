@@ -88,6 +88,12 @@ bind -n M-m resize-pane -Z
 # Mnemonic is 'Go do last command' using alt-g
 bind -n M-g send-keys -R -t ! "C-p" Enter
 
+# Switch between windows with Alt-0 (zero)
+# Mnemonic is 'Other window', (0 looks like o,
+# but alt-o and alt-O makes new 'øØ' glyphs in macOS)
+# https://stackoverflow.com/a/12380693
+bind -n M-0 'last-window'
+
 # Use vi mode for navigation in scrollback view (copy mode)
 set-window-option -g mode-keys vi
 unbind p   ;   bind p paste-buffer    # ignore default 'prefix-p, switch to prev buffer'
