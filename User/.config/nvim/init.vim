@@ -41,8 +41,8 @@ set smarttab          " insert tab according to rules below
 set softtabstop=2     " # of spaces counted as tab during editing
 set shiftwidth=2
 set tabstop=2
-set indentexpr        " Neovim: evaluate expressions to compute indent,
-                      " overrides Vim's autoindent and smartindent
+set autoindent
+set smartindent
 
 " Word wrapping, only insert line breaks when I press Enter
 set wrap                           " wrap lines
@@ -182,7 +182,6 @@ autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 " === vim-markdown options ===
 let g:vim_markdown_folding_disabled = 1
 let g:markdown_enable_spell_checking = 0
-let g:polyglot_disabled = ['md', 'markdown'] " interferes with vim-markdown
 let g:vim_markdown_fenced_languages = ['bash=sh', 'c', 'css', 'go', 'html', 'javascript', 'python', 'ruby', 'scss']
 let g:vim_markdown_frontmatter = 1           " highlight YAML front matter
 let g:vim_markdown_json_frontmatter = 1      " highlight JSON front matter
