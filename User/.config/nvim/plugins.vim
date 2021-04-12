@@ -20,9 +20,16 @@ endif
 
 call plug#begin('~/.local/share/nvim/plugged')
 
+" Use Atom One Dark theme for colorscheme
 Plug 'rakr/vim-one'
+
+" Use fancy status bar, more lightweight than vim-airline
 Plug 'itchyny/lightline.vim'
+
+" Simulate a tab bar at top for open buffers
 Plug 'mengelbrecht/lightline-bufferline'
+
+" Show file explorer on left side
 Plug 'scrooloose/nerdtree'
 
 " Close braces in insert mode like Sublime, VSCode
@@ -39,24 +46,25 @@ Plug 'sickill/vim-pasta'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 " Syntax highlighting for many languages
-let g:polyglot_disabled = ['md', 'markdown'] " interferes with vim-markdown
 Plug 'sheerun/vim-polyglot'
 
 " More advanced syntax highlighting
+" Doesn't seem to support JSX yet (2021-04-11), see open issues for 'jsx'
 "Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 
-" JSON helpers
-Plug 'elzr/vim-json'             " allow front matter highlighting
+" -- JSON helpers --
+" allow front matter highlighting
+Plug 'elzr/vim-json'
 
-" Markdown helpers
+" -- Markdown helpers --
 Plug 'godlygeek/tabular', { 'for': 'markdown' }   " allows table formatting
 "Plug 'plasticboy/vim-markdown'                   " disable, breaks vim-one
 Plug 'gabrielelana/vim-markdown'                  " doesn't have code folding
 
-" Git helpers
+" -- Git helpers --
 " ]c and [c to move between changed git chunks
-Plug 'mhinz/vim-signify'         " Show symbol in gutter, :SignifyHunkDiff
-Plug 'tpope/vim-fugitive'        " Provides :Git commands, branch indicator
+Plug 'mhinz/vim-signify'      " Show symbols in gutter column, :SignifyHunkDiff
+Plug 'tpope/vim-fugitive'     " Provides :Git commands, branch indicator
 
 " Live preview in browser with :MarkdownPreview
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug'], 'on': 'MarkdownPreview' }
@@ -90,19 +98,6 @@ Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 " Needs 'npm i -g neovim' and recent version of NodeJS
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" These plugins will automatically be installed and updated by CoC
-" :CocInstall to install the first time
-" :CocUpdate to update the plugins
-let g:coc_global_extensions = [
-  \ 'coc-prettier',
-  \ 'coc-python',
-  \ 'coc-tsserver'
-  \ ]
-
-if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
-  let g:coc_global_extensions += ['coc-eslint']
-endif
-
 " Golang support
 Plug 'fatih/vim-go', { 'for': 'markdown' }
 
@@ -117,7 +112,7 @@ Plug 'jparise/vim-graphql'
 " https://github.com/lukas-reineke/indent-blankline.nvim
 Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
 
-" Allows fancy icons in lightline tabs and NERDTree.
+" Allows fancy icon glyphs in lightline tabs and NERDTree.
 " Should be loaded as last plugin.
 Plug 'ryanoasis/vim-devicons'
 
