@@ -16,7 +16,7 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 " Load plugins
 source ~/.config/nvim/plugins.vim
 
-" Load custom Node to address incompatibility between NVM and COC
+" Load custom Node to address incompatibility between NVM and CoC
 source ~/.config/nvim/nvm-coc.vim
 
 
@@ -164,6 +164,20 @@ function! s:denite_my_settings() abort
   \ denite#do_map('toggle_select').'j'
 endfunction
 
+" use <tab> for trigger completion and navigate to next complete item
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+"Close preview window when completion is done.
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
 
 " === vim-markdown options ===
 let g:vim_markdown_folding_disabled = 1
@@ -228,14 +242,14 @@ function! LightlineFilename()
   endif
 endfunction
 
-" Ex: utf-8
-function! LightlineFileencoding()
-  return winwidth(0) > 80 ? &fileencoding : ''
-endfunction
-
 " Ex: unix
 function! LightlineFileformat()
   return winwidth(0) > 80 ? &fileformat : ''
+endfunction
+
+" Ex: utf-8
+function! LightlineFileencoding()
+  return winwidth(0) > 80 ? &fileencoding : ''
 endfunction
 
 " Ex: reactjavascript
@@ -352,28 +366,24 @@ endif
 
 
 " === coc options ===
-let g:coc_global_extensions = ["coc-css",
-            \ "coc-eslint",
-            \ "coc-html",
-            \ "coc-json",
-            \ "coc-prettier",
-            \ "coc-python",
-            \ "coc-tslint",
-            \ "coc-tsserver"]
+" These plugins will automatically be installed and updated by CoC
+" :CocInstall to install the first time
+" :CocUpdate to update the plugins
+let g:coc_global_extensions = [
+  \ "coc-css",
+  \ "coc-eslint",
+  \ "coc-html",
+  \ "coc-json",
+  \ "coc-prettier",
+  \ "coc-python",
+  \ "coc-tslint",
+  \ "coc-tsserver"
+  \]
 
-" use <tab> for trigger completion and navigate to next complete item
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
+if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+  let g:coc_global_extensions += ['coc-eslint']
+endif
 
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-"Close preview window when completion is done.
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " === NeoSnippet === "
 " Map <C-k> as shortcut to activate snippet in insert mode
