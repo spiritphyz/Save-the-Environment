@@ -46,6 +46,9 @@ Plug 'sickill/vim-pasta'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 " Syntax highlighting for many languages
+" Must configure polyglot options before loading plugin
+" Disable polyglot for markdown, interferes with vim-markdown
+let g:polyglot_disabled = ['md', 'markdown']
 Plug 'sheerun/vim-polyglot'
 
 " More advanced syntax highlighting
