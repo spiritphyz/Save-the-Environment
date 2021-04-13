@@ -253,7 +253,7 @@ endfunction
 
 " Ex: reactjavascript
 function! LightlineFiletype()
-  return winwidth(0) > 80 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+  return winwidth(0) > 75 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
 endfunction
 
 function! LightlineGitBranch()
@@ -451,8 +451,10 @@ set hlsearch
 " Search as characters are entered
 set incsearch
 
-" Neovim: show effects of substitution incrementally in a split preview
-set inccommand=split
+" Neovim: show effects of substitution incrementally
+" Don't use 'split' preview window, resets existing layout
+" even though that option is nice since it shows all occurrences
+set inccommand=nosplit
 
 " Use F2 key to enable paste mode before pasting in large amount of text
 " to avoid auto-formatting. Press F2 again to exit paste mode.
@@ -551,7 +553,7 @@ set wildmode=longest:full,full
 " See https://gist.github.com/romainl/379904f91fa40533175dfaec4c833f2f for details
 function! MyHighlights() abort
   " Hightlight trailing whitespace
-  highlight Trail ctermbg=red guibg=red
+  highlight Trail ctermbg=red guibg=Purple4
   call matchadd('Trail', '\s\+$', 100)
 endfunction
 
