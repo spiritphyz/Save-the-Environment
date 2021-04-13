@@ -16,6 +16,7 @@
   * C-b &    kill window
 
   * :swap-window -s 3 -t 2   swap window 2 and target window 3
+  * :move-window -t 5        renumber current window to 5 (5 can't exist yet)
 
 # Tmux Panes (splits)
 M is the meta key, which is `option` on Mac keyboards.
@@ -46,10 +47,9 @@ M is the meta key, which is `option` on Mac keyboards.
   * C-b spacebar   cycle through pane layouts (equal parts)
   * C-b !          convert pane into a window
 
-  * :swap-panes -s 3 -t 2   swap source pane 2 and target pane 3
   * :select-layout tiled    make all splits roughly equal
 
-  * C-b t         show time (big clock)
+  * C-b t         show big clock
 
 # Tmux copy and paste
 `C-b p` means to "press control-b, then press p".
