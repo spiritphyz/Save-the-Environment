@@ -39,7 +39,7 @@ nnoremap \ :noh<CR>
 set expandtab         " use spaces instead of tabs
 set smarttab          " insert tab according to rules below
 set softtabstop=2     " # of spaces counted as tab during editing
-set shiftwidth=2
+set shiftwidth=2      " # of spaces for indentation
 set tabstop=2
 set autoindent
 set smartindent
@@ -451,10 +451,21 @@ set hlsearch
 " Search as characters are entered
 set incsearch
 
-" Neovim: show effects of substitution incrementally
-" Don't use 'split' preview window, resets existing layout
-" even though that option is nice since it shows all occurrences
-set inccommand=nosplit
+" Neovim: show effects of substitution incrementally.
+" 'split' option will show all occurrences in preview window
+"  but resets existing layout. For a workound, run
+" ':Obsession'            save the current layout split to Session.vim file
+" ':source Session.vim'   restore layout after substitution
+"
+" Or, open buffer in new tab, run :%s//, then close tab
+" :tabedit %              open current buffer in new tab
+" :tabclose               close current tab
+"
+" Or, run the custom ToggleZoom() function before and after the substitution
+" leader-0                zoom the current split
+" :%s//                   run incremental substitution
+" leader-0                restore splits to former sizes
+set inccommand=split
 
 " Use F2 key to enable paste mode before pasting in large amount of text
 " to avoid auto-formatting. Press F2 again to exit paste mode.
@@ -548,19 +559,6 @@ set wildmode=longest:full,full
 
 " Don't give completion messages like 'match 1 of 2' or 'The only match'
 "set shortmess+=c
-
-" Add custom highlights in method that is executed every time a colorscheme is sourced
-" See https://gist.github.com/romainl/379904f91fa40533175dfaec4c833f2f for details
-function! MyHighlights() abort
-  " Hightlight trailing whitespace
-  highlight Trail ctermbg=red guibg=Purple4
-  call matchadd('Trail', '\s\+$', 100)
-endfunction
-
-augroup MyColors
-  autocmd!
-  autocmd ColorScheme * call MyHighlights()
-augroup END
 
 " Set floating window to be slightly transparent
 set winblend=10
@@ -792,10 +790,16 @@ inoremap <C-c> <Esc>
 " This method doesn't work with unnamed buffers (ctrl-^ does)
 nmap <leader>k :e #<CR>
 
+" Paste Over Do Not Yank:
 " Delete current visual selection and dump in black hole buffer before pasting
 " Used when you want to paste over something without it getting copied to
 " Vim's default buffer
 vnoremap <leader>p "_dP
+
+
+" === key mappings for tab pages ===
+nnoremap t. :tabedit %<CR>
+nnoremap tc :tabclose<CR>
 
 
 " === NERDTree key mappings ===
