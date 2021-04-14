@@ -16,7 +16,8 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 " Load plugins
 source ~/.config/nvim/plugins.vim
 
-" Load custom Node to address incompatibility between NVM and CoC
+" Load custom NodeJS version to address incompatibility
+" between NVM (Node Version Manager) and CoC
 source ~/.config/nvim/nvm-coc.vim
 
 
@@ -31,9 +32,14 @@ set clipboard=unnamed
 " Disable auto comments on new lines
 set formatoptions-=cro
 
-" Clear search highlighting by '\' instead of Enter,
+" Toggle search highlighting by '\' instead of Enter,
 " which interferes with command history window's 'execute'
-nnoremap \ :noh<CR>
+nnoremap \ <Esc>:set hls!<CR>
+
+" Search highlights are very distracting, esp. when you do 'c/<string>',
+" so remove highlighting anytime you enter insert mode
+" https://vi.stackexchange.com/a/17425
+autocmd InsertEnter * :let @/=""
 
 " Tab key behavior
 set expandtab         " use spaces instead of tabs
@@ -453,11 +459,11 @@ set incsearch
 
 " Neovim: show effects of substitution incrementally.
 " 'split' option will show all occurrences in preview window
-"  but resets existing layout. For a workound, run
+"  but resets existing layout. For a workaround, run:
 " ':Obsession'            save the current layout split to Session.vim file
 " ':source Session.vim'   restore layout after substitution
 "
-" Or, open buffer in new tab, run :%s//, then close tab
+" Or, open buffer in new tab page, run :%s//, then close tab
 " :tabedit %              open current buffer in new tab
 " :tabclose               close current tab
 "
