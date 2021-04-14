@@ -648,7 +648,8 @@ nnoremap <leader>l :call ToggleLineNumsAndGutter()<CR>
 " Toggle display of indent guides
 nnoremap <leader>i :IndentBlanklineToggle<CR>
 " Find and replace word under cursor (mnemonic: c_u_rsor)
-nnoremap <leader>u :%s/<c-r><c-w>//g<left><left>
+" ToggleZoom first to avoid resetting split layout
+nnoremap <leader>u :call ToggleZoom(v:true)<CR>:%s/<c-r><c-w>//g<left><left>
 nnoremap <leader>q :lclose<bar>b#<bar>bd #<CR>       " Close buffer w/o closing split
 nnoremap <leader>h :SignifyHunkDiff<CR>              " Show hunk diff in gutter
 nnoremap <leader>n :bn<CR>                           " Switch to next buffer
@@ -846,7 +847,8 @@ let g:indent_blankline_char = '▏'
 
 " === Search shorcuts ===
 "  <leader>s - For all lines in file, search and replace
-map <leader>s :%s/
+" Call ToggleZoom first to avoid resetting split layout
+map <leader>s :call ToggleZoom(v:true)<CR>:%s/
 
 
 " === Miscellaneous ===
