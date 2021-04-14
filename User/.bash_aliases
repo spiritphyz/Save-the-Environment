@@ -18,7 +18,10 @@ alias kode='cd ~/kode'
 alias stx="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | grep 'lastTxRate'"
 
 # Grip-specific
-alias griph='FLASK_ENV=development grip 0.0.0.0:8090' # public access on port 8090
+# Bash aliases only accept arguments at the end, not in the middle,
+# so we have to use a temporary function 'f' and unset it
+# https://stackoverflow.com/a/42466441
+alias griph='f(){ FLASK_ENV=development grip "$1" 0.0.0.0:8090; unset -f f; }; f' # public access on port 8090
 
 # Git-specific aliases
 alias gs='git status'
