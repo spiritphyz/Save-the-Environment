@@ -22,6 +22,7 @@ alias griph='FLASK_ENV=development grip 0.0.0.0:8090' # public access on port 80
 
 # Git-specific aliases
 alias gs='git status'
+alias gss='git show $1'              # put in commit ID for $1
 alias ga='git add'
 alias gd='git diff'
 alias gdc='git diff --color-words=.' # highlight individual color changes
