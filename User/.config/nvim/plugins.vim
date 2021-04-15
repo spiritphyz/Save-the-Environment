@@ -76,6 +76,9 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 Plug 'tpope/vim-surround'
 
 " Automatically save sessions
+" :Obsession              save session to 'Session.vim' to current folder
+" :Obsession name.vim     save custom name for multiple sessions
+" :source Session.vim     reload session
 Plug 'tpope/vim-obsession'
 
 " Syntax-sensitive comment block helper
@@ -114,6 +117,9 @@ Plug 'jparise/vim-graphql'
 " lua branch is needed until Neovim 0.5 is released
 " https://github.com/lukas-reineke/indent-blankline.nvim
 Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
+
+" Close buffers without closing or resetting window layout
+Plug 'moll/vim-bbye'
 
 " Allows fancy icon glyphs in lightline tabs and NERDTree.
 " Should be loaded as last plugin.
