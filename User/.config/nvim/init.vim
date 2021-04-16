@@ -512,7 +512,7 @@ set timeoutlen=800
 "set backupdir^=~/.nvim/backup   " Consolidate the write backups.
 set nobackup
 set nowritebackup
-set updatetime=100               " make coc plugins much more responsive
+set updatetime=100               " make CoC plugins much more responsive
 
 " Persist the undo tree for each file.
 set undofile
@@ -627,6 +627,11 @@ endif
 
 " Automatically change current working directory to same as current buffer
 set autochdir
+
+" Don't automatically resize window splits when creating or closing windows.
+" Helps NERDTreeToggle not clobber current widths of horizontal splits.
+" https://stackoverflow.com/a/61732698
+set noequalalways
 
 
 " ============================================================================ "
