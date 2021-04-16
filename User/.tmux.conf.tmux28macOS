@@ -1,8 +1,8 @@
-# MacOS: send copy-mode text to system clipboard.
+# MacOS Mojave and below: send copy-mode text to system clipboard.
 # Requires this utility: brew install reattach-to-user-namespace
 # If you don't install the utility, Tmux will crash on launch.
 #
-set-option -g default-command "reattach-to-user-namespace -l zsh"
+#set-option -g default-command "reattach-to-user-namespace -l zsh"
 
 # Connect to ssh-agent socket by copying environment variables
 # from parent shell. Avoids typing SSH passwords again in new shells.
@@ -102,9 +102,14 @@ bind -n M-0 'last-window'
 set-window-option -g mode-keys vi
 unbind p   ;   bind p paste-buffer    # ignore default 'prefix-p, switch to prev buffer'
 unbind-key -T copy-mode-vi Space  ;   bind-key -T copy-mode-vi v send-keys -X begin-selection
-# The following 2 lines are for Tmux 2.8+ and macOS
-bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy"
-bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy"
+
+# The following 2 lines are for Tmux 2.8+ and macOS 10 and below (Mojave)
+#bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "reattach-to-user-namespace -l $SHELL"
+#bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "reattach-to-user-namespace -l $SHELL"
+
+# The following 2 lines are for Tmux 2.8+ and macOS Big Sur
+bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "pbcopy"
+bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "pbcopy"
 
 # Use prefix-r to reload tmux config
 bind-key r source-file ~/.tmux.conf \; display-message "~/.tmux.conf reloaded"
