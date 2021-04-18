@@ -264,8 +264,13 @@ endfunction
 
 function! LightlineGitBranch()
   if exists ('*FugitiveHead')
-  let branch = FugitiveHead()
-  return branch !=# '' ? ' '.branch : ''
+    let branch = FugitiveHead()
+    if winwidth(0) > 70
+      return branch !=# '' ? ' '.branch : ''
+    else
+      return branch !=# '' ? '' : ''
+    endif
+  endif
 endfunction
 
 function! LightlineCocHints() abort
