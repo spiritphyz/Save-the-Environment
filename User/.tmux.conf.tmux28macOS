@@ -114,21 +114,21 @@ bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "pb
 # Use prefix-r to reload tmux config
 bind-key r source-file ~/.tmux.conf \; display-message "~/.tmux.conf reloaded"
 
-# Customize status bar colors
-set -g status-bg 'colour236'
-set -g status-fg '#999999'
-#set-window-option -g window-status-current-bg 'colour236'
-#set-window-option -g window-status-current-fg '#ffffff'
-set -g window-status-style bg=colour236,fg='#999999',dim # For Tmux 2.8+ (macos)
-set -g window-status-current-style bg=colour236,fg=white,bright # For Tmux 2.8+ (macos)
+# Open current visual selection with system default app (prefix-O)
+bind -T copy-mode-vi O send-keys -X copy-pipe-and-cancel { xargs -I {} tmux run-shell -b 'cd "#{pane_current_path}"; open "{}" >/dev/null' }
 
-# Customize copy-mode highlight color
-set-window-option -g mode-style 'bg=colour229,fg=black' # copy-mode highlight color
+# Customize copy mode highlight color -----------------------------------------
+# This controls the visual highlight color of copy mode
+set-window-option -g mode-style 'bg=colour229,fg=colour236'
 
-# Customize left status area
+# Customize status bar colors -------------------------------------------------
+set -g window-status-style bg=colour236,fg='#999999',dim
+set -g window-status-current-style bg=colour236,fg=white,bright
+
+# Customize left status area --------------------------------------------------
 #
-# NOTE: Set terminal app to use patched fonts (like Hack Nerd Font) that has
-# the Powerline-like left and right triangle glyphs: 
+# NOTE: Set terminal app to use patched fonts (like Hack Nerd Font)
+# that has the Powerline-like left and right triangle glyphs: 
 # https://github.com/ryanoasis/nerd-fonts
 #
 set-option -g status-left "\
@@ -141,13 +141,15 @@ set-option -g status-right "\
 #[fg=colour0, bg=colour236]\
 #[fg=colour255, bg=colour0] %H:%M "
 
-# Customize border colors
-#set -g pane-border-fg colour250
-set -g pane-border-style fg=colour250 # For Tmux 2.8+ (macos)
-#set -g pane-active-border-fg colour211
-set -g pane-active-border-style fg=colour211 # For Tmux 2.8+ (macos)
+# Customize border colors -----------------------------------------------------
+set -g pane-border-style fg='colour250',bg='colour234'
+set -g pane-active-border-style fg='colour211',bg='colour234'
 
-# List of Tmux plugins
+# Customize window colors -----------------------------------------------------
+set -g window-style fg='colour250',bg='colour234'
+set -g window-active-style fg='colour252',bg='colour233'
+
+# List of Tmux plugins --------------------------------------------------------
 # Clone new plugins into ~/.tmux/plugins/, then
 # "prefix I" to install the plugin (capital I)
 set -g @plugin 'tmux-plugins/tpm'
@@ -160,8 +162,8 @@ set -g @plugin 'tmux-plugins/tmux-copycat'
 # Instead, launch saved session with 'nvim -S'.
 # Use ':Obsession' in Nvim to start recording session to a file.
 #
-# Save session:    prefix ctrl-s
-# Restore session: prefilx ctrl-r
+# Save Tmux session:      prefix, ctrl-s
+# Restore Tmux session:   prefix, ctrl-r
 set -g @resurrect-strategy-vim 'session'
 set -g @resurrect-strategy-nvim 'session'
 
