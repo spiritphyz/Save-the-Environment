@@ -412,13 +412,13 @@ let g:neosnippet#enable_conceal_markers = 0
 
 " === Nvim-Treesitter ===
 " Enable tree-sitter for all language modules
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  highlight = {
-    enable = true
-  },
-}
-EOF
+" lua <<EOF
+" require'nvim-treesitter.configs'.setup {
+"   highlight = {
+"     enable = true
+"   },
+" }
+" EOF
 
 
 " ============================================================================ "
