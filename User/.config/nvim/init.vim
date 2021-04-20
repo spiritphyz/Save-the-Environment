@@ -395,7 +395,7 @@ if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
 endif
 
 
-" === NeoSnippet === "
+" === NeoSnippet ===
 " Map <C-k> as shortcut to activate snippet in insert mode
 " Type snippet's alias, then ctrl-k to circulate through insertion areas
 " In command mode, ctrl-k is my Vim shortcut to navigate to lower split pane
@@ -408,6 +408,17 @@ let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
 
 " Hide conceal markers
 let g:neosnippet#enable_conceal_markers = 0
+
+
+" === Nvim-Treesitter ===
+" Enable tree-sitter for all language modules
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true
+  },
+}
+EOF
 
 
 " ============================================================================ "

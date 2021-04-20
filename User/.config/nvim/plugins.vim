@@ -48,12 +48,18 @@ Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 " Syntax highlighting for many languages
 " Must configure polyglot options before loading plugin
 " Disable polyglot for markdown, interferes with vim-markdown
-let g:polyglot_disabled = ['md', 'markdown']
-Plug 'sheerun/vim-polyglot'
+"let g:polyglot_disabled = ['md', 'markdown']
+"Plug 'sheerun/vim-polyglot'
 
 " More advanced syntax highlighting
-" Doesn't seem to support JSX yet (2021-04-11), see open issues for 'jsx'
-"Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+" Supposedly faster than polyglot, but I don't see a difference in scrolling
+" long files with lots of syntax highlighting.
+" On new installs, also do:
+" :TSInstall bash
+" :TSInstall css
+" :TSInstall javascript
+" :TSInstall html
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 
 " -- JSON helpers --
 " allow front matter highlighting
