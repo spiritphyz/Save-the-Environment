@@ -122,6 +122,8 @@ bind -T copy-mode-vi O send-keys -X copy-pipe-and-cancel { xargs -I {} tmux run-
 set-window-option -g mode-style 'bg=colour229,fg=colour236'
 
 # Customize status bar colors -------------------------------------------------
+# macOS Tmux 2.8+
+# https://github.com/tmux/tmux/issues/1689#issuecomment-486722349
 set -g window-status-style bg=colour236,fg='#999999',dim
 set -g window-status-current-style bg=colour236,fg=white,bright
 
