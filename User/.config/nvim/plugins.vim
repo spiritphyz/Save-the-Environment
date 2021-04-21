@@ -102,7 +102,9 @@ Plug 'Shougo/neosnippet-snippets'
 " HTML and CSS selector snippets
 " Trigger completion with C-y,
 " https://docs.emmet.io/cheat-sheet/
-Plug 'mattn/emmet-vim', { 'for': ['css', 'html', 'javascriptreact', 'typescriptreact'] }
+"
+" Using coc-emmet for now, trigger completion with ctrl-e
+"Plug 'mattn/emmet-vim', { 'for': ['css', 'html', 'javascriptreact', 'typescriptreact'] }
 
 " Denite - Fuzzy finding, buffer management
 Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }

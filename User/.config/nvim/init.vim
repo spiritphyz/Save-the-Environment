@@ -381,6 +381,7 @@ endif
 " :CocUpdate to update the plugins
 let g:coc_global_extensions = [
   \ "coc-css",
+  \ "coc-emmet",
   \ "coc-eslint",
   \ "coc-html",
   \ "coc-json",
