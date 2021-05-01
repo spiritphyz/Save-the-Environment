@@ -130,6 +130,9 @@ Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
 " Close buffers without closing or resetting window layout
 Plug 'moll/vim-bbye'
 
+" Keep project root consistent for current working directory
+Plug 'airblade/vim-rooter'
+
 " Allows fancy icon glyphs in lightline tabs and NERDTree.
 " Should be loaded as last plugin.
 Plug 'ryanoasis/vim-devicons'
