@@ -92,7 +92,16 @@ try
 "   --glob:  Include or exclues files for searching that match the given glob
 "            (aka ignore .git files)
 "
-call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!{__pycache__,node_modules,.git}'])
+call denite#custom#var('file/rec', 'command', [
+  \'rg',
+  \'--files',
+  \'--glob', '!build',
+  \'--glob', '!.cache',
+  \'--glob', '!dist',
+  \'--glob', '!.git',
+  \'--glob', '!node_modules',
+  \'--max-filesize', '50K'
+  \])
 
 " Use ripgrep instead of grep
 call denite#custom#var('grep', 'command', ['rg'])
@@ -265,7 +274,7 @@ endfunction
 function! LightlineGitBranch()
   if exists ('*FugitiveHead')
     let branch = FugitiveHead()
-    if winwidth(0) > 70
+    if winwidth(0) > 57
       return branch !=# '' ? ' '.branch : ''
     else
       return branch !=# '' ? '' : ''
@@ -410,6 +419,12 @@ let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
 " Hide conceal markers
 let g:neosnippet#enable_conceal_markers = 0
 
+
+" === Rooter ===
+" All directories and files will trigger Rooter
+let g:rooter_targets = '/,*'
+" Root has these directories or filenames
+let g:rooter_patterns = ['.git', 'Makefile', 'node_modules', 'package.json']
 
 " === Nvim-Treesitter ===
 " Enable tree-sitter for all language modules
@@ -643,7 +658,8 @@ if exists('g:loaded_webdevicons')
 endif
 
 " Automatically change current working directory to same as current buffer
-set autochdir
+" Doesn't work well, won't allow project-wide search from root folder
+"set autochdir
 
 " Don't automatically resize window splits when creating or closing windows.
 " Helps NERDTreeToggle not clobber current widths of horizontal splits.
