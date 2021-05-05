@@ -50,13 +50,41 @@
   * >                       shift selection right
   * ctri-V, ctrl-I, motion  blockwise edit, like add line number
 
+# Incrementing numbers
+For Vim 8+, have a bunch lines with the same number pattern, like:
+my_array[00] = 0;
+my_array[00] = 0;
+my_array[00] = 0;
+my_array[00] = 0;
+my_array[00] = 0;
+my_array[00] = 0;
+my_array[00] = 0;
+my_array[00] = 0;
+my_array[00] = 0;
+my_array[00] = 0;
+my_array[00] = 0;
+
+Press ctrl-v on first 0 to start a blockwise select, then select the second 0, then move down towards the end. To automatically number the selection, press g ctrl-a
+my_array[01] = 0;
+my_array[02] = 0;
+my_array[03] = 0;
+my_array[04] = 0;
+my_array[05] = 0;
+my_array[06] = 0;
+my_array[07] = 0;
+my_array[08] = 0;
+my_array[09] = 0;
+my_array[10] = 0;
+my_array[11] = 0;
+
+
 # Vim Windows (split panes)
   * ctrl-w v or :vsp    split into columns
   * ctrl-w s or :sp     split into stacks
   * ctrl-w c            close current window (pane)
   * ctrl-w |            zoom column split (shows other panes as skinny split)
   * ctrl-w _            zoom stack split  (shows other panes as skinny split)
-  * ctrl-w =            restore splits equally
+  * ctrl-w =            reset splits with equal spacing
   * ctrl-w o or :on     cancel split pane (make it the "only" split)
   * :q                  close split pane
 
@@ -65,7 +93,7 @@
   * ctrl-w j            focus on bottom split
   * ctrl-w k            focus on top split
 
-  * ctrl-w R            swap top/bottom or left/right split
+  * ctrl-w R            swap top/bottom or left/right split (rotate right)
   * ctrl-w J            swap top/bottom
   * ctrl-w K            swap top/bottom
   * ctrl-w H            swap left/right
@@ -106,9 +134,10 @@ These commands are affected by 'scrolloff' value.
   * :set noic           disable case-insentitive search
 
 # Vim marks
-  * m1                  set mark named `1`
-  * '1                  jump to mark named `1`
-  * mH                  set capitalized mark named `H`
+  * ma                  set mark named 'a', local to 1 buffer
+  * 'a                  jump to mark named 'a' (first non-blank character)
+  * `a``                  jump to mark named 'a' (exact character)
+  * mH                  set capitalized mark named `H`, global to all buffers
   * 'H                  jump to named buffer across any open buffers,
                         useful if you set "H" for Header file, "C" for
                         a source file, "M" for Makefile
@@ -129,6 +158,7 @@ These commands are affected by 'scrolloff' value.
   * ]s                  go to next misspelled word
   * [s                  go to prev misspelled word
   * z=                  with cursor on misspelled word, show suggestions
+  * 1z=                 accept first spelling suggestion
   * zw                  mark word as misspelled
   * zug                 undo mark word as misspelled
   * zg                  with misspelled word, add to dictionary
