@@ -1,0 +1,37 @@
+snippet    react-stateless-component
+alias      rfc
+abbr       function Component() {...}
+options    head
+  export default function ${1:component-name}(${2:#:props}) {
+    return (
+      ${3}
+    );
+  }
+
+snippet    console-log
+alias      ccl
+abbr       console.log('')
+options    head
+  console.log('$1'$2)
+
+snippet    console-log-with-variable
+alias      cll
+abbr       console.log(`${...}`)
+options    head
+  console.log('🍊 ${1:#:variable}: ' + $1)${2}
+
+snippet    for-loop-with-addition-assignment-operator
+alias      forr
+abbr       for (let i=0; i < x.length; i+=1)
+options    head
+  for (let ${1:i} = 0; $1 < ${2:#:list}.length; $1 += 1) {
+    ${0:TARGET}
+  }
+
+snippet    for-of-loop
+alias      ffor
+abbr       for (let x of list)
+options    head
+  for (let ${1} of ${2:#:list}) {
+    ${0:TARGET}
+  }
