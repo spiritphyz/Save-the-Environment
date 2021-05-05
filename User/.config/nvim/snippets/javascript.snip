@@ -12,6 +12,12 @@ options    head
 
   export default $1;
 
+snippet    console-log
+alias      ccl
+abbr       console.log('')
+options    head
+  console.log('$1'$2)
+
 snippet    console-log-with-variable
 alias      cll
 abbr       console.log(`${...}`)

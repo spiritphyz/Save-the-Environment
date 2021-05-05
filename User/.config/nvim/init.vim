@@ -100,6 +100,7 @@ call denite#custom#var('file/rec', 'command', [
   \'--glob', '!dist',
   \'--glob', '!.git',
   \'--glob', '!node_modules',
+  \'--glob', '!__pycache__',
   \'--max-filesize', '50K'
   \])
 
@@ -874,8 +875,9 @@ nmap <silent> [e <Plug>(coc-diagnostic-prev)
 " Code actions are automaticed changes for a fix or issue,
 " such as automatically importing a missing symbol.
 nmap <leader>do <Plug>(coc-codeaction)
-" Intelligent symbol renaming
+" Intelligent symbol renaming, which is F2 key in VSCode
 nmap <leader>rn <Plug>(coc-rename)
+
 
 " === indentBlankline options ===
 " Use UTF-8 glyph for indent character
