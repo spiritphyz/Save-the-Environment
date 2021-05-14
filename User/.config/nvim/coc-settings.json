@@ -23,7 +23,8 @@
   "prettier.useTabs": false,
   "prettier.tabWidth": 2,
   "prettier.trailingComma": "es5",
-  "prettier.singleQuote": true,
+  "prettier.singleQuote": true,      // Use single quotes everywhere,
+  "prettier.jsxSingleQuote": false,  // except inside JSX (for HTML attributes)
   "prettier.jsxBracketSameLine": true,
   "prettier.arrowParens": "always",
   "prettier.parser": "babel",
