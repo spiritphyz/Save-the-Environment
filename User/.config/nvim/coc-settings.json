@@ -2,8 +2,7 @@
   // Comments are allowed in this JSONC file
   "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,
-  "eslint.options": { "configFile": "/home/tonyle/.eslintrc.json" },   // Linux
-  //"eslint.options": { "configFile": "/Users/ktonyle/.eslintrc.json" },  // macOS
+  "eslint.options": { "configFile": "~/.eslintrc.json" },
   "eslint.validate": [
     "javascript",
     "typescript",
