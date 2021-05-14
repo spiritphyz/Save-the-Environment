@@ -20,9 +20,19 @@
   "diagnostic.errorSign": "•",
   "diagnostic.warningSign": "•",
   "diagnostic.infoSign": "•",
+  //
+  // Changing Prettier settings requires :CocReload
+  // https://github.com/neoclide/coc.nvim/issues/1595
   "prettier.useTabs": false,
   "prettier.tabWidth": 2,
   "prettier.trailingComma": "es5",
+  //
+  // Presence of .editorconfig file overrides all coc-prettier settings.
+  // quote_type = single, double, or auto doesn't seem fine-grained enough
+  // to capture my preference for 'all single quotes except JSX'.
+  // coc-prettier's list of priority overrides:
+  // https://github.com/neoclide/coc-prettier#prettiers-settings
+  //
   "prettier.singleQuote": true,      // Use single quotes everywhere,
   "prettier.jsxSingleQuote": false,  // except inside JSX (for HTML attributes)
   "prettier.jsxBracketSameLine": true,
