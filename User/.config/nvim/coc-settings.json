@@ -2,7 +2,8 @@
   // Comments are allowed in this JSONC file
   "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,
-  "eslint.options": { "configFile": "~/.eslintrc.json" },
+  // Path for eslint config file starts from home directory
+  "eslint.options": { "configFile": ".eslintrc.json" },
   "eslint.validate": [
     "javascript",
     "typescript",
@@ -32,6 +33,7 @@
   // to capture my preference for 'all single quotes except JSX'.
   // coc-prettier's list of priority overrides:
   // https://github.com/neoclide/coc-prettier#prettiers-settings
+  // https://github.com/editorconfig/editorconfig/wiki/EditorConfig-Properties
   //
   "prettier.singleQuote": true,      // Use single quotes everywhere,
   "prettier.jsxSingleQuote": false,  // except inside JSX (for HTML attributes)
