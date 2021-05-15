@@ -28,7 +28,7 @@
   "prettier.tabWidth": 2,
   "prettier.trailingComma": "es5",
   //
-  // Presence of .editorconfig file overrides all coc-prettier settings.
+  // Project-level .editorconfig rules will override these coc-prettier rules.
   // quote_type = single, double, or auto doesn't seem fine-grained enough
   // to capture my preference for 'all single quotes except JSX'.
   // coc-prettier's list of priority overrides:
