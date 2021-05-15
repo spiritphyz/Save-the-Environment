@@ -122,10 +122,11 @@ These commands are affected by 'scrolloff' value.
   * :so %
 
 # Search with * and #
-  * *                   set word to search for
+  * #                   set word to search for backwards
+  * * or g*             with current word, jump to next occurrence
+  * # or g#             with current word, jump to prev occurrence
   * n                   move to next occurrence
   * N                   move to prev occurrence
-  * #                   set word to search for backwards
   * n                   move backwards to next occurrence
   * N                   move backwards to prev occurrence
   * g*                  search for not exact word forwards
@@ -133,10 +134,18 @@ These commands are affected by 'scrolloff' value.
   * :set ic             enable case-insensitive search
   * :set noic           disable case-insentitive search
 
+# Search inside a line
+  * fe                  find forward next 'e' character
+  * Fe                  find backward next 'e' character
+  * te                  jump to character before the next 'e' (unTil)
+  * Te                  jump to character before the previous 'e'
+  * ;                   move to next occurrence in line
+  * ,                   move to previous occurrence in line
+
 # Vim marks
   * ma                  set mark named 'a', local to 1 buffer
   * 'a                  jump to mark named 'a' (first non-blank character)
-  * `a``                  jump to mark named 'a' (exact character)
+  * `a`                 jump to mark named 'a' (exact character)
   * mH                  set capitalized mark named `H`, global to all buffers
   * 'H                  jump to named buffer across any open buffers,
                         useful if you set "H" for Header file, "C" for
