@@ -26,6 +26,7 @@
   * shift->>     shift current line right
 
 # Insert mode shortcuts
+:help ins-special-keys
   * ctrl-d              move backwards one tab stop
   * ctrl-t              move forwards one tab stop
   * ctrl-h              delete character before
