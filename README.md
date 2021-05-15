@@ -15,6 +15,7 @@ Let's save our settings for a better future.
 | User/.tmux.conf.tmux28macOS                     | /User/yourusername/.tmux.conf       |
 | User/.config/nvim                               | ~/.config/nvim                      |
 | User/.config/alacritty                          | ~/.config/alacritty                 |
+| User/.config/bat/config                         | ~/.config/bat/confg                 |
 | User/.vim                                       | ~/.vim                              |
 | User/.vimrc                                     | ~/.vimrc                            |
 | User/pbin/z.sh                                  | ~/pbin/z.sh                         |
