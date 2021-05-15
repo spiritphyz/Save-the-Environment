@@ -1,5 +1,5 @@
 # Install instructions for older Ubuntu versions (less than 19)
-Use a local package to and gdebi to install it.
+Use a local package and gdebi to install it.
 
 ## Get latest `.deb` file from Releases page
 https://github.com/sharkdp/bat/releases
