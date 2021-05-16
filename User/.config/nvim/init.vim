@@ -180,20 +180,6 @@ function! s:denite_my_settings() abort
   \ denite#do_map('toggle_select').'j'
 endfunction
 
-" use tab for trigger completion and navigate to next complete item
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-"Close preview window when completion is done.
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-
 
 " === vim-markdown options ===
 let g:vim_markdown_folding_disabled = 1
@@ -386,6 +372,25 @@ endif
 
 
 " === coc options ===
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
 " These plugins will automatically be installed and updated by CoC
 " :CocInstall to install the first time
 " :CocUpdate to update the plugins
@@ -861,7 +866,7 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 " Create range first, then <leader>y to Prettier format
 map <leader>y <Plug>(coc-format-selected)
 
-" === coc.nvim ===
+" === coc key mappings ===
 nmap <silent> <leader>dd <Plug>(coc-definition)
 nmap <silent> <leader>dy <Plug>(coc-type-definition)
 nmap <silent> <leader>dr <Plug>(coc-references)
