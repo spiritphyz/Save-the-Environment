@@ -411,7 +411,7 @@ if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
 endif
 
 
-" === NeoSnippet ===
+" === NeoSnippet options ===
 " Map <C-k> as shortcut to activate snippet in insert mode
 " Type snippet's alias, then ctrl-k to circulate through insertion areas
 " In command mode, ctrl-k is my Vim shortcut to navigate to lower split pane
@@ -426,11 +426,20 @@ let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
 let g:neosnippet#enable_conceal_markers = 0
 
 
-" === Rooter ===
+" === indentBlankline options ===
+" Use UTF-8 glyph for indent character
+"let g:indent_blankline_char = '¦'
+" Use U+258F 'left one eigth block' glyph
+" in Iosevka NerdFont
+let g:indent_blankline_char = '▏'
+
+
+" === Rooter options ===
 " All directories and files will trigger Rooter
 let g:rooter_targets = '/,*'
 " Root has these directories or filenames
 let g:rooter_patterns = ['.git', 'Makefile', 'node_modules', 'package.json']
+
 
 " === Nvim-Treesitter ===
 " Enable tree-sitter for all language modules
@@ -607,7 +616,7 @@ set wildmode=longest:full,full
 " Set floating window to be slightly transparent
 set winblend=10
 
-" coc.nvim color changes
+" coc color changes
 hi! link CocErrorSign WarningMsg
 hi! link CocWarningSign Number
 hi! link CocInfoSign Type
@@ -671,6 +680,12 @@ endif
 " Helps NERDTreeToggle not clobber current widths of horizontal splits.
 " https://stackoverflow.com/a/61732698
 set noequalalways
+
+" === Miscellaneous ===
+" Enable spellcheck for markdown files
+autocmd BufRead,BufNewFile *.md setlocal spell
+set spelllang=en
+set spellfile=$HOME/.config/nvim/spell/en.utf-8.add
 
 
 " ============================================================================ "
@@ -784,16 +799,6 @@ function! s:denite_my_settings() abort
   \ denite#do_map('do_action', 'split')
 endfunction
 
-" Remap <C-f> and <C-p> for scroll float windows/popups
-if has('nvim-0.4.0') || has('patch-8.2.0750')
-  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  nnoremap <silent><nowait><expr> <C-p> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-p>"
-  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-  inoremap <silent><nowait><expr> <C-p> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  vnoremap <silent><nowait><expr> <C-p> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-p>"
-endif
-
 
 " Ctrl-hjkl for quick window switching (Vim split panes)
 nmap <C-h> <C-w>h
@@ -860,11 +865,13 @@ nnoremap tc :tabclose<CR>
 map <leader>r :NERDTreeToggle<CR>
 map <leader>e :NERDTreeFind<CR>
 
+
 " === coc-prettier key mappings ===
 " Type :Prettier to format current buffer
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 " Create range first, then <leader>y to Prettier format
 map <leader>y <Plug>(coc-format-selected)
+
 
 " === coc key mappings ===
 nmap <silent> <leader>dd <Plug>(coc-definition)
@@ -884,22 +891,18 @@ nmap <leader>do <Plug>(coc-codeaction)
 nmap <leader>rn <Plug>(coc-rename)
 
 
-" === indentBlankline options ===
-" Use UTF-8 glyph for indent character
-"let g:indent_blankline_char = '¦'
-" Use U+258F 'left one eigth block' glyph
-" in Iosevka NerdFont
-let g:indent_blankline_char = '▏'
+" Remap <C-f> and <C-p> for scroll float windows/popups
+if has('nvim-0.4.0') || has('patch-8.2.0750')
+  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  nnoremap <silent><nowait><expr> <C-p> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-p>"
+  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-p> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  vnoremap <silent><nowait><expr> <C-p> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-p>"
+endif
+
 
 " === Search shorcuts ===
 "  <leader>s - For all lines in file, search and replace
 " Call ToggleZoom first to avoid resetting split layout
 map <leader>s :call ToggleZoom(v:true)<CR>:%s/
-
-
-" === Miscellaneous ===
-" Enable spellcheck for markdown files
-autocmd BufRead,BufNewFile *.md setlocal spell
-set spelllang=en
-set spellfile=$HOME/.config/nvim/spell/en.utf-8.add
-
