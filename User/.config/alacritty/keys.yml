@@ -33,7 +33,8 @@ key_bindings:
   # (macOS only)
   - { key: Return,    mods: Command,  action: ToggleFullscreen              }
 
-  # allow alt-1 through 4 for Tmux switch pane views
+  # allow alt-number for Tmux switch pane views
+  # Ex: (prefix alt-1) to make all splits as even columns
   - { key: Key1,      mods: Alt,       chars: "\x1b1"                       }
   - { key: Key2,      mods: Alt,       chars: "\x1b2"                       }
   - { key: Key3,      mods: Alt,       chars: "\x1b3"                       }

@@ -26,6 +26,7 @@ window:
     y: 0
 
   # Spread additional padding evenly around the terminal content.
+  # Fixes window not being pixel-perfect aligned with screen halves.
   dynamic_padding: true
   decorations: full
   startup_mode: Windowed
@@ -65,6 +66,9 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
 
+mouse:
+  hide_when_typing: true
+
 selection:
   # This string contains all characters that are used as separators for
   # "semantic words" in Alacritty.
@@ -72,6 +76,10 @@ selection:
 
   # When set to `true`, selected text will be copied to the primary clipboard.
   save_to_clipboard: true
+
+cursor:
+  style: Block
+  unfocused_hollow: true
 
 # Live config reload (changes require restart)
 live_config_reload: true
