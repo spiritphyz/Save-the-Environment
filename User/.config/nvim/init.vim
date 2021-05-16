@@ -180,7 +180,7 @@ function! s:denite_my_settings() abort
   \ denite#do_map('toggle_select').'j'
 endfunction
 
-" use <tab> for trigger completion and navigate to next complete item
+" use tab for trigger completion and navigate to next complete item
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
@@ -702,15 +702,15 @@ nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1
 nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<Left><Left><CR>
 
 
-" === Denite shorcuts === "
-"   <leader>L - Browser currently open buffers (capital L), like Vim's :ls
+" === Denite shortcuts === "
+"   <leader>; - Fuzzy search open buffers (like FZF or Ctrl-P)
 "   <leader>f - Browse list of files in current directory
 "   <leader>t - Search for files in project directory
 "   <leader>g - Search curr directory for given term, close window if no results
 "   <leader>j - Search curr directory for occurrences of word under cursor
 "   <leader>: - Fuzzy search command history (non-fuzzy default is q:)
 "           i - After triggers above, press 'i' to enter fuzzy filter mode
-nmap <leader>L :Denite buffer<CR>i
+nmap <leader>; :Denite buffer<CR>i
 nmap <leader>f :Denite file/rec<CR>
 nmap <leader>t :DeniteProjectDir file/rec<CR>
 nnoremap <leader>g <C-u>:Denite grep:. -no-empty<CR>
