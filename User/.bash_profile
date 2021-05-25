@@ -129,5 +129,8 @@ fo() {
   fi
 }
 
-# Start Z utility
-. /home/tonyle/pbin/z.sh
+# Start zoxide utility to change directories easily
+# Needs installation first:
+#   macOS  - brew install zoxide
+#   Ubuntu - apt install zoxide
+eval "$(zoxide init bash)"

@@ -62,6 +62,8 @@ source ~/.tinyrc
 #  Get settings for Android Studio
 source ~/.androidrc
 
-# Start Z utility to change directories easily
-. ~/bin/z.sh
-
+# Start zoxide utility to change directories easily
+# Needs installation first:
+#   macOS  - brew install zoxide
+#   Ubuntu - apt install zoxide
+eval "$(zoxide init zsh)"
