@@ -6,6 +6,7 @@
 | cmd-shift-p       | show command palette
 | cmd-\             | create split downwards
 | cmd-k, z          | enter zen mode
+| cmd-.             | show quick fix code actions on underlined error
 
 # Terminal
 |-------------------|----------------------------------------------------------|
