@@ -1,5 +1,5 @@
-# Need special terminfo on macOS for delete key and colors
-# to work correctly inside Alacritty.
+# Need special terminfo on macOS for delete key and
+# directory colors to work correctly inside Alacritty.
 # https://github.com/tmux/tmux/issues/1257#issuecomment-581378716
 #    $ brew install ncurses
 #    $ /usr/local/opt/ncurses/bin/infocmp tmux-256color > ~/tmux-256color.info
