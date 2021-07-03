@@ -1,3 +1,11 @@
+# Need special terminfo on macOS for delete key and colors
+# to work correctly inside Alacritty.
+# https://github.com/tmux/tmux/issues/1257#issuecomment-581378716
+#    $ brew install ncurses
+#    $ /usr/local/opt/ncurses/bin/infocmp tmux-256color > ~/tmux-256color.info
+#    $ tic -xe tmux-256color tmux-256color.info
+# This creates a compiled entry in ~/.terminfo
+
 # MacOS 10.14 Mojave and below: send copy-mode text to system clipboard.
 # Requires this utility: brew install reattach-to-user-namespace
 # If you don't install the utility, Tmux will crash on launch.
