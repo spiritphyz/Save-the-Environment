@@ -361,6 +361,10 @@ let g:NERDTreeQuitOnOpen = 1
 " Press u to move up a directory, U to leave old root open
 let NERDTreeMinimalUI=1
 
+" Ensure that buffers don't open inside NerdTree split.
+" If more than one window, and prev buffer was NERDTree, go back to it.
+autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
+
 
 " === netrw options ===
 " Open files in prev window unless we're opening the current dir
