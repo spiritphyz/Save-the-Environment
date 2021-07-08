@@ -71,12 +71,15 @@ xattr -d -r com.apple.quarantine ~/Library/QuickLook/WebpQuickLook.qlgenerator
 
 # Restart Quick Look Server
 qlmanage -r &&
+qlmanage -r cache &&
 
 echo ''
-echo 'To see some of the new Quick Look features, you may need to either:'
-echo '1. Log out the current user and log in again, or'
-echo '2. Switch user to another macOS account, then switch back'
+echo 'Right-click and choose "Open" on these 2 apps:'
+echo '/Applications/BetterZip.app'
+echo '/Applications/Suspicious Package.app'
 echo ''
-echo 'This script will not log you out'
-echo 'to avoid disrupting your current session.'
+echo 'Restart the Finder:'
+echo '1) Hold down the option key'
+echo '2) Right-click on the Finder icon in the Dock'
+echo '3) Choose "Relaunch"'
 echo ''
