@@ -21,7 +21,10 @@ endif
 call plug#begin('~/.local/share/nvim/plugged')
 
 " Use Atom One Dark theme for colorscheme
-Plug 'rakr/vim-one'
+"Plug 'rakr/vim-one'
+"Plug 'mhartington/oceanic-next'
+" Plug 'christianchiarulli/nvcode-color-schemes.vim'
+Plug 'navarasu/onedark.nvim'
 
 " Use fancy status bar, more lightweight than vim-airline
 Plug 'itchyny/lightline.vim'
@@ -31,6 +34,10 @@ Plug 'mengelbrecht/lightline-bufferline'
 
 " Show file explorer on left side
 Plug 'scrooloose/nerdtree'
+" disabling nvim-tree because not much faster
+" and resizes window splits when toggled open
+" Plug 'kyazdani42/nvim-web-devicons' " for file icons
+" Plug 'kyazdani42/nvim-tree.lua'
 
 " Close braces in insert mode like Sublime, VSCode
 " Press alt-p to toggle Auto Pairs
@@ -48,8 +55,8 @@ Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 " Syntax highlighting for many languages
 " Must configure polyglot options before loading plugin
 " Disable polyglot for markdown, interferes with vim-markdown
-let g:polyglot_disabled = ['md', 'markdown']
-Plug 'sheerun/vim-polyglot'
+" let g:polyglot_disabled = ['md', 'markdown']
+"Plug 'sheerun/vim-polyglot'
 
 " More advanced syntax highlighting
 " Disabling for now because indenting is worse than polyglot.
@@ -60,7 +67,7 @@ Plug 'sheerun/vim-polyglot'
 " :TSInstall css
 " :TSInstall javascript
 " :TSInstall html
-" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 
 " -- JSON helpers --
 " allow front matter highlighting
@@ -125,13 +132,17 @@ Plug 'jparise/vim-graphql'
 " Show indent guides on all lines (including blank lines)
 " lua branch is needed until Neovim 0.5 is released
 " https://github.com/lukas-reineke/indent-blankline.nvim
-Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
+"Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
 
 " Close buffers without closing or resetting window layout
 Plug 'moll/vim-bbye'
 
 " Keep project root consistent for current working directory
 Plug 'airblade/vim-rooter'
+
+" Helps work with CSV files
+" https://github.com/chrisbra/csv.vim#using-a-plugin-manager
+Plug 'chrisbra/csv.vim'
 
 " Allows fancy icon glyphs in lightline tabs and NERDTree.
 " Should be loaded as last plugin.
