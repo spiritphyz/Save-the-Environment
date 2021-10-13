@@ -10,7 +10,7 @@ endif
 "let g:python_host_prog  = '/usr/bin/python2'
 "let g:python3_host_prog = '/usr/bin/python3'
 " macOS with Homebrew:
-let g:python_host_prog  = '/usr/bin/python'
+let g:python_host_prog  = '/usr/local/opt/python/libexec/bin/python'
 let g:python3_host_prog = '/usr/local/bin/python3'
 
 " Load plugins
@@ -234,10 +234,11 @@ function! LightlineCocInfos() abort
 endfunction
 
 function! LightlineFilename()
-  let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
-  let modified = &modified ? ' +' : ''
-  if winwidth(0) < 70
-    return filename[len(filename)-40:] . modified
+  let shortfilename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+  let filename = expand('%:t') !=# '' ? expand('%:p:h:t') . '/' . expand('%:t') : '[No Name]'
+  let modified = &modified ? ' 🥬' : ''
+  if winwidth(0) < 75
+    return shortfilename . modified
   else
     return filename . modified
   endif
@@ -245,7 +246,7 @@ endfunction
 
 " Ex: unix
 function! LightlineFileformat()
-  return winwidth(0) > 80 ? &fileformat : ''
+  return winwidth(0) > 85 ? &fileformat : ''
 endfunction
 
 " Ex: utf-8
@@ -297,7 +298,7 @@ let g:lightline = {
       \             [ 'gitbranch', 'readonly', 'filename', 'coc_error', 'coc_warning', 'coc_hint', 'coc_info' ] ]
       \ },
       \ 'mode_map': {
-        \ 'n': 'N',
+        \ 'n': '🌼 N',
         \ 'i': 'I',
         \ 'v': 'V',
         \ 'V': 'VL',
@@ -340,7 +341,7 @@ let g:lightline#bufferline#icon_position     = 'left'
 let g:lightline#bufferline#min_buffer_count  = 2
 let g:lightline#bufferline#clickable         = 1     " allow clickable tabs, setting 1
 let g:lightline.component_raw = {'buffers': 1}       " allow clickable tabs, setting 2
-let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']]}
+let g:lightline.tabline = {'left': [['buffers']], 'right': [['']]}
 let g:lightline#bufferline#show_number       = 1     " number buffers same as :ls
 let g:lightline#bufferline#number_map        = {
 \ 0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴',
@@ -361,9 +362,12 @@ let g:NERDTreeQuitOnOpen = 1
 " Press u to move up a directory, U to leave old root open
 let NERDTreeMinimalUI=1
 
+" Increase width of NERDTree window
+:let g:NERDTreeWinSize=50
+
 " Ensure that buffers don't open inside NerdTree split.
 " If more than one window, and prev buffer was NERDTree, go back to it.
-autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
+"autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
 
 
 " === netrw options ===
@@ -455,6 +459,17 @@ let g:rooter_patterns = ['.git', 'Makefile', 'node_modules', 'package.json']
 " }
 " EOF
 
+" configure treesitter
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    disable = { "c", "rust" },  -- list of language that will be disabled
+  },
+}
+EOF
+
 
 " ============================================================================ "
 " ===                                UI OPTIONS                            === "
@@ -474,12 +489,21 @@ syntax on
 
 " Use cool color scheme
 set background=dark
-colorscheme one
+"colorscheme one
+"colorscheme OceanicNext
+"colorscheme onedark
+"let g:oceanic_next_terminal_bold = 1
+"let g:oceanic_next_terminal_italic = 1
+" configure nvcode-color-schemes
+" let g:nvcode_termcolors=256
+"let g:onedark_style = 'darker'  " We need add the configs before colorscheme line
+colorscheme onedark
+
 " Change visually selected text to white for easier reading
-call one#highlight('Visual', 'ffffff', 'e06c75', 'none')
+" call one#highlight('Visual', 'ffffff', 'e06c75', 'none')
 " Make Vim comments and general comments be lighter gray for readability
-call one#highlight('vimLineComment', '888888', '', 'none')
-call one#highlight('Comment', '888888', '', 'none')
+" call one#highlight('vimLineComment', '888888', '', 'none')
+" call one#highlight('Comment', '888888', '', 'none')
 
 " Italicize inline comments, set after colorscheme and one#highlight
 highlight Comment cterm=italic gui=italic
@@ -687,7 +711,7 @@ set noequalalways
 
 " === Miscellaneous ===
 " Enable spellcheck for markdown files
-autocmd BufRead,BufNewFile *.md setlocal spell
+"autocmd BufRead,BufNewFile *.md setlocal spell
 set spelllang=en
 set spellfile=$HOME/.config/nvim/spell/en.utf-8.add
 
@@ -734,9 +758,9 @@ nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1
 "   <leader>j - Search curr directory for occurrences of word under cursor
 "   <leader>: - Fuzzy search command history (non-fuzzy default is q:)
 "           i - After triggers above, press 'i' to enter fuzzy filter mode
-nmap <leader>; :Denite buffer<CR>i
+nmap <leader>; :Denite buffer<CR>
 nmap <leader>f :Denite file/rec<CR>
-nmap <leader>t :DeniteProjectDir file/rec<CR>
+nmap <leader>t :DeniteProjectDir file/rec<CR>i
 nnoremap <leader>g <C-u>:Denite grep:. -no-empty<CR>
 nnoremap <leader>j :DeniteCursorWord grep:.<CR>
 nnoremap <leader>: :Denite command_history<CR>
@@ -855,8 +879,11 @@ nmap <leader>k :e #<CR>
 " Delete current visual selection and dump in black hole buffer before pasting
 " Used when you want to paste over something without it getting copied to
 " Vim's default buffer
-vnoremap <leader>p "_dP
+" vnoremap <leader>p "_dhp
 
+" replace currently selected text with default register
+" without yanking it
+vnoremap <leader>p "_dP
 
 " === key mappings for tab pages ===
 nnoremap t. :tabedit %<CR>
@@ -868,6 +895,33 @@ nnoremap tc :tabclose<CR>
 "  <leader>e - Show current file in containing folder
 map <leader>r :NERDTreeToggle<CR>
 map <leader>e :NERDTreeFind<CR>
+
+
+" === nvim-tree key mappings ===
+" disabling because it keeps resizing window splits when open
+" nnoremap <leader>r :NvimTreeToggle<CR>
+" nnoremap <leader>e :NvimTreeFindFile<CR>
+" " NvimTreeRefresh, NvimTreeOpen, NvimTreeClose, NvimTreeFocus and NvimTreeResize are also available if you need them
+" let g:nvim_tree_ignore = [ '.git', 'node_modules', '.cache' ] "empty by default
+" let g:nvim_tree_quit_on_open = 1 "0 by default, closes the tree when you open a file
+" let g:nvim_tree_gitignore = 1 "0 by default
+" let g:nvim_tree_indent_markers = 0 "0 by default, this option shows indent markers when folders are open
+" let g:nvim_tree_highlight_opened_files = 1 "0 by default, will enable folder and file icon highlight for opened files/directories.
+" let g:nvim_tree_show_icons = {
+"     \ 'git': 0,
+"     \ 'folders': 1,
+"     \ 'files': 1,
+"     \ 'folder_arrows': 1,
+"     \ }
+" let g:nvim_tree_icon_padding = ' ' "one space by default, used for rendering the space between the icon and the filename. Use with caution, it could break rendering if you set an empty string depending on your font.
+" lua << EOF
+" require'nvim-tree'.setup({
+"   view = {
+"     width = 30,
+"     auto_resize = false
+"   }
+" })
+" EOF
 
 
 " === coc-prettier key mappings ===
