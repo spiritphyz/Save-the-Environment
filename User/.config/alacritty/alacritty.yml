@@ -13,13 +13,13 @@ env:
 window:
   # Window dimensions (changes require restart)
   dimensions:
-    columns: 182
-    lines: 72
+    columns: 113
+    lines: 56
 
   # Window position (changes require restart)
   position:
-    x: 1283
-    y: 73
+    x: 1848
+    y: 70
 
   padding:
     x: 0
@@ -78,7 +78,10 @@ selection:
   save_to_clipboard: true
 
 cursor:
-  style: Block
+  style:
+    shape: Block
+    blinking: Always
+  blink_interval: 250
   unfocused_hollow: true
 
 # Live config reload (changes require restart)
