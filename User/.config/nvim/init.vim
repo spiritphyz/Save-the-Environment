@@ -434,14 +434,6 @@ let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
 let g:neosnippet#enable_conceal_markers = 0
 
 
-" === indentBlankline options ===
-" Use UTF-8 glyph for indent character
-"let g:indent_blankline_char = '¦'
-" Use U+258F 'left one eigth block' glyph
-" in Iosevka NerdFont
-let g:indent_blankline_char = '▏'
-
-
 " === Rooter options ===
 " All directories and files will trigger Rooter
 let g:rooter_targets = '/,*'
@@ -526,6 +518,63 @@ EOF
 " Make Vim comments and general comments be lighter gray for readability
 " call one#highlight('vimLineComment', '888888', '', 'none')
 " call one#highlight('Comment', '888888', '', 'none')
+
+
+" === indentBlankline options ===
+" Options must be set after color scheme is loaded because
+" most themes reset all highlight groups
+lua <<EOF
+vim.cmd[[highlight IndentBlanklineContextChar guifg=#e06c75 gui=nocombine]]
+local context_patterns = {
+  'arguments',
+  'block',       -- CSS
+  'catch_clause',
+  'class',
+  'element',     -- HTML
+  '^else',
+  '^for',
+  'function',
+  '^if',
+  'import_statement',
+  '^jsx',
+  'method',
+  '^object',     -- JS
+  'operation_type',
+  'return',
+  '^table',      -- Lua
+  '^try',
+  '^while',
+ }
+
+local filetype_exclude = {
+ 'fzf',
+ 'floatline',
+ 'git',
+ 'help',
+ 'man',
+ 'markdown',
+ 'nerdtree',
+ 'NERDTree',
+ 'NERD_tree_',
+ 'NvimTree',
+ 'packer',
+ 'text',
+ 'terminal',
+ 'scheme',
+}
+
+require("indent_blankline").setup {
+  use_treesitter = true,
+  char = '▏',                             -- Use U+258F 'left one eigth block' glyph in Iosevka NerdFont
+  show_current_context = true,            -- Expand indentlines down to the end of a method for example
+  show_current_context_start = false,     -- Underline first line of context?
+  show_first_indent_level = true,         -- Hide for the first column
+  show_trailing_blankline_indent = false, -- Show on blank lines?
+  context_patterns = context_patterns,
+  filetype_exclude = filetype_exclude,
+}
+EOF
+
 
 " Italicize inline comments, set after colorscheme and one#highlight
 highlight Comment cterm=italic gui=italic
