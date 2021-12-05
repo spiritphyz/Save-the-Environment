@@ -499,6 +499,28 @@ set background=dark
 "let g:onedark_style = 'darker'  " We need add the configs before colorscheme line
 colorscheme onedark
 
+" === rakr/vim-one options ===
+" We need add the configs before colorscheme line
+" for newer version of vim-one that's not released yet
+" lua <<EOF
+" require('onedark').setup {
+"   style = 'darker',
+"   diagnostics = {
+"     darker = true,        -- darker colors for diagnostic
+"     undercurl = true,     -- use undercurl for diagnostics
+"     background = true,    -- use background color for virtual text
+"   },
+" }
+" EOF
+lua <<EOF
+  vim.g.onedark_style = 'dark'
+  vim.g.onedark_italic_comment = true
+  vim.g.onedark_diagnostics_undercurl = true
+  vim.g.onedark_darker_diagnostics = true
+  require('onedark').setup()
+EOF
+
+" === rakr/vim-one options ===
 " Change visually selected text to white for easier reading
 " call one#highlight('Visual', 'ffffff', 'e06c75', 'none')
 " Make Vim comments and general comments be lighter gray for readability
