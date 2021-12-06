@@ -182,6 +182,7 @@ endfunction
 
 
 " === vim-markdown options ===
+let g:markdown_enable_mappings = 0
 let g:vim_markdown_folding_disabled = 1
 let g:markdown_enable_spell_checking = 0
 let g:vim_markdown_fenced_languages = ['bash=sh', 'c', 'css', 'go', 'html', 'javascript', 'python', 'ruby', 'scss']
