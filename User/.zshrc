@@ -17,6 +17,7 @@ fi
 setopt histignorespace
 
 # Edit current command in editor with ctrl-x ctrl-e
+# If not available on server, can use 'fc' to edit last command in history
 autoload -z edit-command-line
 zle -N edit-command-line
 bindkey "^X^E" edit-command-line
