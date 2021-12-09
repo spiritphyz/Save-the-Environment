@@ -13,6 +13,9 @@ if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
 fi
 
+# Ignore commands with leading space from history
+setopt histignorespace
+
 # Add directory colors to macOS shell
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
