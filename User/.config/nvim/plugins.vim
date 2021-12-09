@@ -133,7 +133,7 @@ Plug 'jparise/vim-graphql'
 " Show indent guides on all lines (including blank lines)
 " lua branch is needed until Neovim 0.5 is released
 " https://github.com/lukas-reineke/indent-blankline.nvim
-"Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
+Plug 'lukas-reineke/indent-blankline.nvim'
 
 " Close buffers without closing or resetting window layout
 Plug 'moll/vim-bbye'
