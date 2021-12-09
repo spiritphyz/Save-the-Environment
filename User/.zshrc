@@ -16,6 +16,11 @@ fi
 # Ignore commands with leading space from history
 setopt histignorespace
 
+# Edit current command in editor with ctrl-x ctrl-e
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
+
 # Add directory colors to macOS shell
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
