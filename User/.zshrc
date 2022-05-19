@@ -27,7 +27,9 @@ export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
 # Show user in color153, short host in color219, curr working dir as prompt
-export PS1="%F{153}%n%f@%F{219}%m%f %1~%% "
+# Use 2 lines for long server names and long current working directory
+NEWLINE=$'\n'
+export PS1="%F{153}%n%f@%F{219}%m%f %1~${NEWLINE}%% "
 
 # Set Neovim as default editor
 export EDITOR="nvim"
