@@ -73,6 +73,9 @@ source ~/.tinyrc
 #  Get settings for Android Studio
 source ~/.androidrc
 
+# Run fnm NodeJS helper
+eval "$(fnm env --use-on-cd)"
+
 # Start zoxide utility to change directories easily
 # Needs installation first:
 #   macOS  - brew install zoxide
