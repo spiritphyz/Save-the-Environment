@@ -3,8 +3,8 @@
 source /usr/local/share/antigen/antigen.zsh
 
 # Use zsh-nvm plugin, defer loading
-export NVM_LAZY_LOAD=true
-antigen bundle lukechilds/zsh-nvm
+#export NVM_LAZY_LOAD=true
+#antigen bundle lukechilds/zsh-nvm
 
 # Tell antigen we're done
 antigen apply
