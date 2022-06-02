@@ -81,3 +81,10 @@ eval "$(fnm env --use-on-cd)"
 #   macOS  - brew install zoxide
 #   Ubuntu - apt install zoxide
 eval "$(zoxide init zsh)"
+
+# Look up command options for Unix utilities
+# cheat tar
+function cheat() {
+  curl cht.sh/$1
+}
+
