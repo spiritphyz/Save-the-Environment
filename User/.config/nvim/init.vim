@@ -455,7 +455,7 @@ let g:rooter_patterns = ['.git', 'Makefile', 'node_modules', 'package.json']
 " configure treesitter
 lua << EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ensure_installed = { "bash", "c", "c_sharp", "clojure", "css", "dockerfile", "go", "html", "http", "java", "javascript", "json", "julia", "lua", "markdown", "nix", "php", "python", "regex", "scheme", "scss", "sql", "toml", "tsx", "typescript", "vim", "vue", "yaml" }, -- "all" or a list of languages
   highlight = {
     enable = true,              -- false will disable the whole extension
     disable = { "c", "rust" },  -- list of language that will be disabled
