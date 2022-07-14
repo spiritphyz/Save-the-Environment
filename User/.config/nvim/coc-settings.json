@@ -3,10 +3,9 @@
     "css.lint.emptyRules": "ignore",
   // Ignore warnings on 'mso-line-height-rule:exactly' in HTML4 emails
   "css.lint.unknownProperties": "ignore",
-  "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,
   // Path for eslint config file starts from home directory
-  "eslint.options": { "configFile": ".eslintrc.json" },
+  "eslint.options": { "overrideConfigFile": ".eslintrc.json" },
   "eslint.validate": [
     "javascript",
     "typescript",
@@ -42,7 +41,6 @@
   "prettier.jsxSingleQuote": false,  // except inside JSX (for HTML attributes)
   "prettier.jsxBracketSameLine": true,
   "prettier.arrowParens": "always",
-  "prettier.parser": "babel",
   "prettier.proseWrap": "preserve",
   "prettier.semi": true,
   // Use IntelliSense engine, not VS Code's Python Analysis Engine
