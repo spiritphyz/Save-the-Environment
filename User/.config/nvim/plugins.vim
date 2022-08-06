@@ -145,6 +145,17 @@ Plug 'airblade/vim-rooter'
 " https://github.com/chrisbra/csv.vim#using-a-plugin-manager
 Plug 'chrisbra/csv.vim'
 
+" Provides syntax highlighting for template literals in JavaScript
+" Only works with tagged template string, like: html`<div>{{count}}</div>`
+" Doesn't work with vscode es6-string-html plugin, like: /*html*/`
+Plug 'Quramy/vim-js-pretty-template'
+
+" Comment out line based on context with: gcc
+" Can do these comments correctly in VueJS templates, React:
+" /* CSS */ ..... // JS ..... <!-- HTML -->
+" Requires TreeSitter
+Plug 'JoosepAlviste/nvim-ts-context-commentstring'
+
 " Allows fancy icon glyphs in lightline tabs and NERDTree.
 " Should be loaded as last plugin.
 Plug 'ryanoasis/vim-devicons'
