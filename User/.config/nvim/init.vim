@@ -468,6 +468,19 @@ require'nvim-treesitter.configs'.setup {
 EOF
 
 
+" === vim-js-pretty-template ===
+" Register tag name associated the filetype
+call jspretmpl#register_tag('gql', 'graphql')
+
+autocmd FileType javascript JsPreTmpl
+autocmd FileType javascript.jsx JsPreTmpl
+
+
+" === LunarWatcher/auto-pairs options ===
+" Change mappings from meta-based to control-based
+"let g:AutoPairsCompatibleMaps = 0
+
+
 " ============================================================================ "
 " ===                                UI OPTIONS                            === "
 " ============================================================================ "
