@@ -42,7 +42,7 @@ Plug 'scrooloose/nerdtree'
 
 " Close braces in insert mode like Sublime, VSCode
 " Press alt-p to toggle Auto Pairs
-Plug 'jiangmiao/auto-pairs'
+Plug 'LunarWatcher/auto-pairs'
 
 " Paste and indent to match destination context
 Plug 'sickill/vim-pasta'
