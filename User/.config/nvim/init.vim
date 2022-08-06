@@ -1021,14 +1021,17 @@ nmap <leader>do <Plug>(coc-codeaction)
 nmap <leader>rn <Plug>(coc-rename)
 
 
-" Remap <C-f> and <C-p> for scroll float windows/popups
+" Remap <C-n> and <C-p> for selecting item in scrolling popup window
 if has('nvim-0.4.0') || has('patch-8.2.0750')
-  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  nnoremap <silent><nowait><expr> <C-p> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-p>"
-  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-  inoremap <silent><nowait><expr> <C-p> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  vnoremap <silent><nowait><expr> <C-p> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-p>"
+  inoremap <silent><nowait><expr> <C-n> coc#pum#visible() ? coc#pum#next(1) : "\<C-n>"
+  inoremap <silent><nowait><expr> <C-p> coc#pum#visible() ? coc#pum#prev(1) : "\<C-p>"
+  inoremap <silent><nowait><expr> <down> coc#pum#visible() ? coc#pum#next(0) : "\<down>"
+  inoremap <silent><nowait><expr> <up> coc#pum#visible() ? coc#pum#prev(0) : "\<up>"
+  inoremap <silent><nowait><expr> <PageDown> coc#pum#visible() ? coc#pum#scroll(1) : "\<PageDown>"
+  inoremap <silent><nowait><expr> <PageUp> coc#pum#visible() ? coc#pum#scroll(0) : "\<PageUp>"
+  " Use <C-e> and <C-y> to cancel and confirm completion
+  inoremap <silent><nowait><expr> <C-e> coc#pum#visible() ? coc#pum#cancel() : "\<C-e>"
+  inoremap <silent><nowait><expr> <C-y> coc#pum#visible() ? coc#pum#confirm() : "\<C-y>"
 endif
 
 
