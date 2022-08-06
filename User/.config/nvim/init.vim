@@ -396,9 +396,13 @@ function! s:check_back_space() abort
 endfunction
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
-" format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" format on enter, <cr> could be remapped by other vim plugin.
+" Check with --> :verbose imap <cr>
+" Conflicts with auto autopairs:
+" https://github.com/LunarWatcher/auto-pairs/issues/66
+" Instead of <CR>, try ctrl-y to accept the current selection.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+  \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " These plugins will automatically be installed and updated by CoC
 " :CocInstall to install the first time
