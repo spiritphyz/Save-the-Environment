@@ -1,0 +1,32 @@
+%YAML 1.2
+---
+# See http://www.sublimetext.com/docs/3/syntax.html
+name: Javascript HTML
+file_extensions:
+  - element.js
+  - tag.js
+  - jsx
+  - js
+  - vue
+scope: source.js.tag
+contexts:
+  main:
+    - match: ""
+      push: Packages/JavaScript/JavaScript.sublime-syntax
+      with_prototype:
+      - match: '([a-zA-Z$_][\w$_]*)?(`)'
+        push:
+          - meta_content_scope: text.html.basic.embedded.js
+          - include: 'scope:text.html.basic'
+          - match: '`'
+            pop: true
+          - match: '\$\{'
+            captures:
+              0: punctuation.definition.template-expression.begin.js
+            push:
+              - meta_scope: meta.template.expression.js
+              - include: 'scope:source.js'
+              #- meta_content_scope: source.js.embedded.expression
+              - match: '\}'
+                scope: punctuation.definition.template-expression.end.js
+                pop: true
