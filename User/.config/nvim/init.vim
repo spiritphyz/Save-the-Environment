@@ -420,8 +420,10 @@ let g:coc_global_extensions = [
   \ "coc-json",
   \ "coc-prettier",
   \ "coc-python",
+  \ "coc-styled-components",
   \ "coc-tslint",
-  \ "coc-tsserver"
+  \ "coc-tsserver",
+  \ "coc-vetur"
   \]
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
