@@ -156,6 +156,9 @@ Plug 'Quramy/vim-js-pretty-template'
 " Requires TreeSitter
 Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 
+" Highlight matching words, extends Vim % key
+Plug 'andymass/vim-matchup'
+
 " Allows fancy icon glyphs in lightline tabs and NERDTree.
 " Should be loaded as last plugin.
 Plug 'ryanoasis/vim-devicons'
