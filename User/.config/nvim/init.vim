@@ -831,12 +831,16 @@ nnoremap <leader>i :IndentBlanklineToggle<CR>
 " Find and replace word under cursor (mnemonic: c_u_rsor)
 " ToggleZoom first to avoid resetting split layout
 nnoremap <leader>u :call ToggleZoom(v:true)<CR>:%s/<c-r><c-w>//g<left><left>
-" fixme
-nnoremap <leader>q :Bwipeout<CR>                     " Close buffer w/o closing split
-nnoremap <leader>h :SignifyHunkDiff<CR>              " Show hunk diff in gutter
-nnoremap <leader>n :bn<CR>                           " Switch to next buffer
-nnoremap <leader>b :bp<CR>                           " Switch to prev buffer
-nnoremap <leader>D :bd<CR>                           " Delete buffer (capital D)
+" Close buffer w/o closing split
+nnoremap <leader>q :Bwipeout<CR>
+" Show hunk diff in gutter
+nnoremap <leader>h :SignifyHunkDiff<CR>
+" Switch to next buffer
+nnoremap <leader>n :bn<CR>
+" Switch to prev buffer
+nnoremap <leader>b :bp<CR>
+" Delete buffer (capital D)
+nnoremap <leader>D :bd<CR>
 " Toggle hidden characters (capital H)
 nnoremap <silent> <leader>H :set nolist!<CR>
 " Insert empty line before and after
