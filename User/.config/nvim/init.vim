@@ -416,6 +416,7 @@ let g:coc_global_extensions = [
   \ "coc-css",
   \ "coc-emmet",
   \ "coc-eslint",
+  \ "coc-format-json",
   \ "coc-html",
   \ "coc-json",
   \ "coc-prettier",
