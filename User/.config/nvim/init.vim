@@ -455,18 +455,15 @@ let g:rooter_patterns = ['.git', 'Makefile', 'node_modules', 'package.json']
 
 
 " === Nvim-Treesitter ===
-" Enable tree-sitter for all language modules
-" lua <<EOF
-" require'nvim-treesitter.configs'.setup {
-"   highlight = {
-"     enable = true
-"   },
-" }
-" EOF
-
 " configure treesitter
 lua << EOF
 require'nvim-treesitter.configs'.setup {
+  autotag = {
+    enable = true,              -- autoclose HTML tags
+  },
+  context_commentstring = {     -- enable comments based on context
+    enable = true,
+  },
   ensure_installed = { "bash", "c", "c_sharp", "clojure", "css", "dockerfile", "go", "html", "http", "java", "javascript", "json", "julia", "lua", "markdown", "nix", "php", "python", "regex", "scheme", "scss", "sql", "toml", "tsx", "typescript", "vim", "vue", "yaml" }, -- "all" or a list of languages
   highlight = {
     enable = true,              -- false will disable the whole extension
