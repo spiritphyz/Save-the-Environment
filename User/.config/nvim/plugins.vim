@@ -159,6 +159,9 @@ Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 " Highlight matching words, extends Vim % key
 Plug 'andymass/vim-matchup'
 
+" Autoclose and autorename HTML tags using TreeSitter syntax
+Plug 'windwp/nvim-ts-autotag'
+
 " Allows fancy icon glyphs in lightline tabs and NERDTree.
 " Should be loaded as last plugin.
 Plug 'ryanoasis/vim-devicons'
