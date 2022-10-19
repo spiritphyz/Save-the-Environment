@@ -99,7 +99,7 @@ Plug 'tpope/vim-obsession'
 " Syntax-sensitive comment block helper
 " gcc to toggle line comment
 " gcip to toggle commenting out inner paragraph
-Plug 'tpope/vim-commentary'
+"Plug 'tpope/vim-commentary'
 
 " Snippet support
 " In insert mode, type snippet, then ctrl-k
