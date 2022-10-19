@@ -424,7 +424,7 @@ let g:coc_global_extensions = [
   \ "coc-styled-components",
   \ "coc-tslint",
   \ "coc-tsserver",
-  \ "@yaegassy/coc-volar"
+  \ "coc-vetur"
   \]
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
