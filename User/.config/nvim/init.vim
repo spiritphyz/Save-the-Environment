@@ -93,16 +93,16 @@ try
 "            (aka ignore .git files)
 "
 call denite#custom#var('file/rec', 'command', [
-  \'rg',
-  \'--files',
-  \'--glob', '!build',
-  \'--glob', '!.cache',
-  \'--glob', '!dist',
-  \'--glob', '!.git',
-  \'--glob', '!node_modules',
-  \'--glob', '!__pycache__',
-  \'--max-filesize', '50K'
-  \])
+\ 'rg',
+\ '--files',
+\ '--ignore=build',
+\ '--ignore=.cache',
+\ '--ignore=dist',
+\ '--ignore=.git',
+\ '--ignore=node_modules',
+\ '--ignore=__pycache__',
+\ '--max-filesize', '50K'
+\])
 
 " Use ripgrep instead of grep
 call denite#custom#var('grep', 'command', ['rg'])
