@@ -99,7 +99,7 @@ Plug 'tpope/vim-obsession'
 " Syntax-sensitive comment block helper
 " gcc to toggle line comment
 " gcip to toggle commenting out inner paragraph
-"Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-commentary'
 
 " Snippet support
 " In insert mode, type snippet, then ctrl-k
@@ -154,6 +154,7 @@ Plug 'Quramy/vim-js-pretty-template'
 " Can do these comments correctly in VueJS templates, React:
 " /* CSS */ ..... // JS ..... <!-- HTML -->
 " Requires TreeSitter
+" Needs another mapping plugin like vim-commentary (above)
 Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 
 " Highlight matching words, extends Vim % key
