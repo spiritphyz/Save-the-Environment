@@ -78,6 +78,14 @@ set backspace=indent,eol,start
 " https://keleshev.com/my-book-writing-setup/
 "set virtualedit=all
 
+" Allow folding based on TreeSitter syntax
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+
+" When opening files, default to all folds open, not closed
+set foldlevelstart=20
+autocmd BufReadPost,FileReadPost * normal zR
+
 
 " ============================================================================ "
 " ===                           PLUGIN OPTIONS                             === "
