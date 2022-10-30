@@ -523,6 +523,7 @@ require'treesitter-context'.setup {
 }
 EOF
 
+
 " === vim-matchup ===
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
@@ -533,6 +534,13 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 EOF
+" Change color of matched words and brackets
+augroup matchup_matchparen_highlight
+  autocmd!
+  autocmd ColorScheme * hi MatchWord guifg=black guibg=lightblue
+  autocmd ColorScheme * hi MatchParen guifg=black guibg=lightblue
+augroup END
+
 
 
 " === vim-js-pretty-template ===
