@@ -490,6 +490,38 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
+-- Configure 'sticky scroll'
+require'treesitter-context'.setup {
+  enable = true,
+  patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
+    -- For all filetypes
+    -- Note that setting an entry here replaces all other patterns for this entry.
+    -- By setting the 'default' entry below, you can control which nodes you want to
+    -- appear in the context window.
+    default = {
+      'class',
+      'function',
+      'method',
+      'for',
+      'while',
+      'if',
+      'switch',
+      'case',
+    },
+    -- Patterns for specific filetypes
+    -- If a pattern is missing, *open a PR* so everyone can benefit.
+    markdown = {
+      'section',
+    },
+    json = {
+      'pair',
+    },
+    yaml = {
+      'block_mapping_pair',
+    },
+  },
+}
+EOF
 
 " === vim-matchup ===
 lua <<EOF
