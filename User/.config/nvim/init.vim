@@ -466,19 +466,29 @@ let g:rooter_patterns = ['.git', 'Makefile', 'node_modules', 'package.json']
 " configure treesitter
 lua << EOF
 require'nvim-treesitter.configs'.setup {
-  autotag = {
-    enable = true,              -- autoclose HTML tags
+  autotag = {                   -- autoclose HTML tags
+    enable = true,
   },
   context_commentstring = {     -- enable comments based on context
     enable = true,
   },
-  ensure_installed = { "bash", "c", "c_sharp", "clojure", "css", "dockerfile", "go", "html", "http", "java", "javascript", "json", "julia", "lua", "markdown", "nix", "php", "python", "regex", "scheme", "scss", "sql", "toml", "tsx", "typescript", "vim", "vue", "yaml" }, -- "all" or a list of languages
+  ensure_installed = {          -- "all" or a list of languages
+    "bash", "c", "c_sharp", "clojure", "css",
+    "dockerfile", "go", "html", "http",
+    "java", "javascript", "json", "julia", "lua", "nix",
+    "php", "python", "regex", "scheme", "scss",
+    "toml", "tsx", "typescript", "vim", "vue", "yaml",
+  },
   highlight = {
     enable = true,              -- false will disable the whole extension
-    disable = { "c", "rust" },  -- list of language that will be disabled
+    disable = {                 -- list of language that will be disabled
+      "c", "markdown", "rust"
+    },
+  },
+  indent = {                    -- indent based on = operator, experimental feature
+    enable = true,
   },
 }
-EOF
 
 
 " === vim-matchup ===
