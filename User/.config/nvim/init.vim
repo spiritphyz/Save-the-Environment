@@ -265,7 +265,7 @@ endfunction
 
 " Ex: reactjavascript
 function! LightlineFiletype()
-  return winwidth(0) > 75 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+  return winwidth(0) > 85 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
 endfunction
 
 function! LightlineGitBranch()
