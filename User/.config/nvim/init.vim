@@ -255,12 +255,12 @@ endfunction
 
 " Ex: unix
 function! LightlineFileformat()
-  return winwidth(0) > 89 ? &fileformat : ''
+  return winwidth(0) > 95 ? &fileformat : ''
 endfunction
 
 " Ex: utf-8
 function! LightlineFileencoding()
-  return winwidth(0) > 89 ? &fileencoding : ''
+  return winwidth(0) > 95 ? &fileencoding : ''
 endfunction
 
 " Ex: reactjavascript
