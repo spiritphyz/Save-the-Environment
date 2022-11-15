@@ -265,7 +265,7 @@ function! LightlineFilename()
 		let i += 1
 	endfor
 
-  if winwidth(0) < 75
+  if winwidth(0) < 80
     return shortfilename . modified
   else
     return name . modified
@@ -290,7 +290,7 @@ endfunction
 function! LightlineGitBranch()
   if exists ('*FugitiveHead')
     let branch = FugitiveHead()
-    if winwidth(0) > 85
+    if winwidth(0) > 75
       return branch !=# '' ? ' '.branch : ''
     else
       return branch !=# '' ? '' : ''
