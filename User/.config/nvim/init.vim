@@ -290,7 +290,7 @@ endfunction
 function! LightlineGitBranch()
   if exists ('*FugitiveHead')
     let branch = FugitiveHead()
-    if winwidth(0) > 74
+    if winwidth(0) > 85
       return branch !=# '' ? ' '.branch : ''
     else
       return branch !=# '' ? '' : ''
