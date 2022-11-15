@@ -244,12 +244,31 @@ endfunction
 
 function! LightlineFilename()
   let shortfilename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
-  let filename = expand('%:t') !=# '' ? expand('%:p:h:t') . '/' . expand('%:t') : '[No Name]'
+  "let filename = expand('%:t') !=# '' ? expand('%:p:h:t') . '/' . expand('%:t') : '[No Name]'
+  "show relative path
+  " let filename = expand('%:t') !=# '' ? expand('%') : '[No Name]'
   let modified = &modified ? ' 🥬' : ''
+  
+  " show relative path trimmed to 4 characters per folder
+  let name = ""
+  let subs = split(expand('%'), "/")
+	let i = 1
+	for s in subs
+		let parent = name
+		if  i == len(subs)
+			let name = parent . '/' . s
+		elseif i == 1
+			let name = s
+		else
+			let name = parent . '/' . strpart(s, 0, 4)
+		endif
+		let i += 1
+	endfor
+
   if winwidth(0) < 75
     return shortfilename . modified
   else
-    return filename . modified
+    return name . modified
   endif
 endfunction
 
