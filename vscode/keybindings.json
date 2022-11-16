@@ -17,7 +17,11 @@
     "command": "workbench.action.navigateDown"
   },
   {
-    "key": "ctrl+w 0",
+    "key": "ctrl+w 0", // number 0
     "command": "workbench.action.toggleEditorWidths"
+  },
+  {
+    "key": "ctrl+w o", // letter o
+    "command": "workbench.action.editorLayoutSingle"
   },
 ]
