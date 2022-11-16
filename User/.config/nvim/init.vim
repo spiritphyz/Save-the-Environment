@@ -535,6 +535,10 @@ require'treesitter-context'.setup {
     json = {
       'pair',
     },
+    vue = {
+      'element',
+      'start_tag',
+    },
     yaml = {
       'block_mapping_pair',
     },
