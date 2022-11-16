@@ -279,7 +279,7 @@ endfunction
 
 " Ex: utf-8
 function! LightlineFileencoding()
-  return winwidth(0) > 95 ? &fileencoding : ''
+  return winwidth(0) > 115 ? &fileencoding : ''
 endfunction
 
 " Ex: reactjavascript
