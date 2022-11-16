@@ -544,6 +544,9 @@ EOF
 
 
 " === vim-matchup ===
+let g:matchup_matchparen_offscreen = {'method': 'popup'}
+let g:matchup_matchparen_deferred = 1
+
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
   matchup = {
