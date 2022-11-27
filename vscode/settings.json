@@ -20,8 +20,11 @@
     "vim.useSystemClipboard": true,
     "workbench.activityBar.visible": false,
     "workbench.colorCustomizations": {
-        "tab.activeBorderTop": "#ffffff",
-        "tab.activeBackground": "#444444",
+        // "editorStickyScroll.background": "#333333",
+        // make bottom border darker on all themes
+        "scrollbar.shadow": "#000000",
+        //"tab.activeBorderTop": "#ffffff",
+        "tab.activeBackground": "#55555",
         "tab.unfocusedActiveBorder": "#000000"
     },
     "workbench.editor.highlightModifiedTabs": true,
