@@ -586,13 +586,14 @@ autocmd FileType javascript.jsx JsPreTmpl
 " ===                                UI OPTIONS                            === "
 " ============================================================================ "
 
-" Enable true color support
-" Note: macOS Terminal app doesn't support true color
+" Enable true color support.
+" Note: macOS Terminal app doesn't support true color,
+" set notermguicolors later in this file.
 if !has('gui_running')
   if (has("termguicolors"))
     set termguicolors
+    colorscheme onedark
   endif
-  set t_Co=256
 endif
 
 " Use color syntax highlighting
@@ -608,7 +609,7 @@ set background=dark
 " configure nvcode-color-schemes
 " let g:nvcode_termcolors=256
 "let g:onedark_style = 'darker'  " We need add the configs before colorscheme line
-colorscheme onedark
+"colorscheme onedark
 
 " === rakr/vim-one options ===
 " We need add the configs before colorscheme line
@@ -867,6 +868,13 @@ if has("patch-8.1.1564")
   set signcolumn=number
 else
   set signcolumn=yes
+endif
+
+" Disable True Color support on macOS Terminal
+" Needs to be set after custom transparent color changes
+if $TERM_PROGRAM ==# 'Apple_Terminal'
+  set notermguicolors
+  colorscheme desert
 endif
 
 " Call method on window enter
