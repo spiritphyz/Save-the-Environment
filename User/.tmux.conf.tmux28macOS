@@ -123,7 +123,7 @@ bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "pb
 bind-key r source-file ~/.tmux.conf \; display-message "~/.tmux.conf reloaded"
 
 # Open current visual selection with system default app (prefix-O)
-bind -T copy-mode-vi O send-keys -X copy-pipe-and-cancel { xargs -I {} tmux run-shell -b 'cd "#{pane_current_path}"; open "{}" >/dev/null' }
+#bind -T copy-mode-vi O send-keys -X copy-pipe-and-cancel { xargs -I {} tmux run-shell -b 'cd "#{pane_current_path}"; open "{}" >/dev/null' }
 
 # Customize copy mode highlight color -----------------------------------------
 # This controls the visual highlight color of copy mode
