@@ -42,7 +42,7 @@ zstyle ':vcs_info:git:*' formats ' %F{147}%b%f'
 # Add git branch name ${vcs_info_msg_0_}
 # Must use single quotes to delay evaluation and show new switched branch
 NEWLINE=$'\n'
-PROMPT='%F{153}%n%<%f<@%F{219}%m%f ${vcs_info_msg_0_} %1~${NEWLINE}$ '
+PROMPT='%F{153}%n%f@%F{219}%7>>%m%>>%f ${vcs_info_msg_0_} %1~${NEWLINE}$ '
 
 # Set Neovim as default editor
 #export EDITOR="nvim"
