@@ -26,10 +26,21 @@ bindkey "^X^E" edit-command-line
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
+# Load version control information
+# PROMPT_SUBST must be before prompt customizations to delay evaluation
+setopt PROMPT_SUBST
+autoload -Uz vcs_info
+precmd() { vcs_info }
+
+# Format the vcs_info_msg_0_ variable
+# %b will be git branch name
+# %F{147} color start is lightsteelblue, end with %f
+zstyle ':vcs_info:git:*' formats ' %F{147}%b%f'
+
 # Show user in color153, short host in color219, curr working dir as prompt
 # Use 2 lines for long server names and long current working directory
 NEWLINE=$'\n'
-export PS1="%F{153}%n%f@%F{219}%m%f %1~${NEWLINE}$ "
+PROMPT='%F{153}%n%<%f<@%F{219}%m%f ${vcs_info_msg_0_} %1~${NEWLINE}$ '
 
 # Set Neovim as default editor
 #export EDITOR="nvim"
