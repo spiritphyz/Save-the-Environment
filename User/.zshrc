@@ -39,6 +39,8 @@ zstyle ':vcs_info:git:*' formats ' %F{147}%b%f'
 
 # Show user in color153, short host in color219, curr working dir as prompt
 # Use 2 lines for long server names and long current working directory
+# Add git branch name ${vcs_info_msg_0_}
+# Must use single quotes to delay evaluation and show new switched branch
 NEWLINE=$'\n'
 PROMPT='%F{153}%n%<%f<@%F{219}%m%f ${vcs_info_msg_0_} %1~${NEWLINE}$ '
 
