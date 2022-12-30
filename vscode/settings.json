@@ -58,6 +58,7 @@
     "terminal.integrated.fontSize": 16,
     "vscode-neovim.neovimExecutablePaths.darwin": "/usr/local/bin/nvim",
     "editor.stickyScroll.enabled": true,
+    "vetur.ignoreProjectWarning": true,
     "window.zoomLevel": -1,
     "editor.minimap.enabled": false
 }
