@@ -24,6 +24,7 @@
   * "ap          paste text from named register 'a'
   * shift-<<     shift current line left
   * shift->>     shift current line right
+  * gq           reformat paragraph to word wrap textwidth
 
 # Insert mode shortcuts
 :help ins-special-keys
