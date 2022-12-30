@@ -31,6 +31,7 @@
     "window.nativeTabs": true,
     "editor.tabSize": 2,
     "editor.tabCompletion": "on",
+    "editor.stickyScroll.maxLineCount": 6,
     "[javascript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
