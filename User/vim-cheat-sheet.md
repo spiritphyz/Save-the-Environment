@@ -1,30 +1,34 @@
-# Vim Buffers (files)
-  * :ls       list buffers
-  * :b1       switch to buffer 1
-  * :bu frag  switch to buffer by searching fragment of name
-  * :bd       buffer delete (unload current buffer)
-  * :bd#      buffer delete numbered buffer 2
-  * :e file   edit a file in same directory that you started Vim
-  * :e!       reload file from disk, discard changes
-  * :o        open file from any starting directory using file browser or FZF (ctrl-P)
-  * C-g       show current filename
-  * :ene      edit new empty buffer
+# Vim buffers (files)
+```
+:ls       list buffers
+:b1       switch to buffer 1
+:bu frag  switch to buffer by searching fragment of name
+:bd       buffer delete (unload current buffer)
+:bd#      buffer delete numbered buffer 2
+:e file   edit a file in same directory that you started Vim
+:e!       reload file from disk, discard changes
+:o        open file from any starting directory using file browser or FZF (ctrl-P)
+C-g       show current filename
+:ene      edit new empty buffer
+```
 
 # Normal mode shortcuts
-  * xp           swap (transpose) current character with next character
-  * Xp           transpose current character with previous character
-  * ~            toggle uppercase or lowercase for current character
-  * ctrl-o       jump to older location in jump list
-  * ctrl-i       jump to newer location in jump list
-  * :jumps       show jump list. keeps track of file, line, and column position
-  * ctrl-^       (or sometimes ctrl-6): jump back and forth between last buffers
-  * !            run an arbitrary command, like: ! ls -alF
-  * q:           open command history search, press Enter to execute curr line
-  * "ay{motion}  copy (yank) text into named register 'a'
-  * "ap          paste text from named register 'a'
-  * shift-<<     shift current line left
-  * shift->>     shift current line right
-  * gq           reformat paragraph to word wrap textwidth
+```
+xp           swap (transpose) current character with next character
+Xp           transpose current character with previous character
+~            toggle uppercase or lowercase for current character
+ctrl-o       jump to older location in jump list
+ctrl-i       jump to newer location in jump list
+:jumps       show jump list. keeps track of file, line, and column position
+ctrl-^       (or sometimes ctrl-6): jump back and forth between last buffers
+!            run an arbitrary command, like: ! ls -alF
+q:           open command history search, press Enter to execute curr line
+"ay{motion}  copy (yank) text into named register 'a'
+"ap          paste text from named register 'a'
+shift-<<     shift current line left
+shift->>     shift current line right
+gq           reformat paragraph to word wrap textwidth
+```
 
 # Insert mode shortcuts
 :help ins-special-keys
