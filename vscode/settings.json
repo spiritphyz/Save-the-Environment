@@ -65,5 +65,8 @@
     "vim.neovimPath": "/usr/local/bin/nvim",
     "vim.neovimConfigPath": "/Users/letuan/.config/nvim/init.min-vscode.vim",
     "editor.minimap.enabled": false,
-    "editor.wordWrap": "on"
+    "editor.wordWrap": "on",
+    "editor.autoClosingBrackets": "never",
+    "editor.autoClosingQuotes": "never",
+    "html.autoClosingTags": false
 }
