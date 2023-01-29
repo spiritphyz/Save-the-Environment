@@ -61,6 +61,9 @@
     "vetur.ignoreProjectWarning": true,
     "javascript.format.insertSpaceBeforeFunctionParenthesis": false,
     "window.zoomLevel": -1,
+    "vim.neovimUseConfigFile": true,
+    "vim.neovimPath": "/usr/local/bin/nvim",
+    "vim.neovimConfigPath": "/Users/letuan/.config/nvim/init.min-vscode.vim",
     "editor.minimap.enabled": false,
     "editor.wordWrap": "on"
 }
