@@ -11,8 +11,10 @@ oderwat.indent-rainbow
 ritwickdey.LiveServer
 sdras.vue-vscode-snippets
 syler.sass-indented
+TabNine.tabnine-vscode
 Tobermory.es6-string-html
 vincaslt.highlight-matching-tag
 vscodevim.vim
 Vue.volar
+zhuangtongfa.material-theme
 Zyst.Egoist-One
