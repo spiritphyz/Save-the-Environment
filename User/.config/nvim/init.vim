@@ -874,7 +874,7 @@ endif
 " Needs to be set after custom transparent color changes
 if $TERM_PROGRAM ==# 'Apple_Terminal'
   set notermguicolors
-  colorscheme desert
+  colorscheme torte
 endif
 
 " Call method on window enter
