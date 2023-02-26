@@ -66,7 +66,10 @@
     "vim.neovimConfigPath": "/Users/letuan/.config/nvim/init.min-vscode.vim",
     "editor.minimap.enabled": false,
     "editor.wordWrap": "on",
+    "editor.wordWrapColumn": 80,
     "editor.autoClosingBrackets": "never",
     "editor.autoClosingQuotes": "never",
-    "html.autoClosingTags": false
+    "html.autoClosingTags": false,
+    "editor.defaultFormatter": "vscode.typescript-language-features",
+    "vetur.format.defaultFormatter.js": "vscode-typescript"
 }
