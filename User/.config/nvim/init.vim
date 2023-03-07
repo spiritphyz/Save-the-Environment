@@ -265,7 +265,7 @@ function! LightlineFilename()
 		let i += 1
 	endfor
 
-  if winwidth(0) < 80
+  if winwidth(0) < 85
     return shortfilename . modified
   else
     return name . modified
