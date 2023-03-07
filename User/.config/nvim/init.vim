@@ -103,12 +103,7 @@ try
 call denite#custom#var('file/rec', 'command', [
 \ 'rg',
 \ '--files',
-\ '--ignore=build',
-\ '--ignore=.cache',
-\ '--ignore=dist',
-\ '--ignore=.git',
-\ '--ignore=node_modules',
-\ '--ignore=__pycache__',
+\ "--glob=\!{build,.cache,dist,.git,node_modules,__pycache__,**/*.eot,**/*.min.js,**/*.png,**/*.ttf,**/*.woff*,**/*.zip}",
 \ '--max-filesize', '50K'
 \])
 
