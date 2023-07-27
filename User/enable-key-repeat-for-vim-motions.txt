@@ -1,5 +1,8 @@
+# Below terminal command doesn't work anymore in macOS Ventura.
+# Add the "Unicode Hex Input" Input Source instead to disable accented characters.
+
 # For macOS Lion and newer, avoid default behavior of accents for held keys.
 # To make a key repeat the letter when held down, run this once at the Terminal.
 # Need to log out and in again to see effects of the change.
 
-defaults write -g ApplePressAndHoldEnabled -bool false
+#defaults write -g ApplePressAndHoldEnabled -bool false
