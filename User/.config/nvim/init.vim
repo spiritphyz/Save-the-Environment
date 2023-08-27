@@ -543,7 +543,10 @@ EOF
 
 
 " === vim-matchup ===
-let g:matchup_matchparen_offscreen = {'method': 'popup'}
+" Place offscreen match as popup at top of screen with syntax highlighting.
+" Highlighting may cause performance degradation, Neovim doesn't provide relative line number
+" in popup, https://github.com/andymass/vim-matchup/issues/253
+let g:matchup_matchparen_offscreen = {'method': 'popup', 'fullwidth': 1, 'syntax_hl': 1}
 let g:matchup_matchparen_deferred = 1
 
 lua <<EOF
