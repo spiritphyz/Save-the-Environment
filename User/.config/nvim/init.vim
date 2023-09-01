@@ -710,6 +710,8 @@ EOF
 " === fzf options ===
 " [Buffers] Jump to the existing window if possible
 let g:fzf_buffers_jump = 0
+" Enable highlight of found phrase in preview pane
+let $FZF_PREVIEW_COMMAND="COLORTERM=truecolor bat --theme='Sublime Snazzy' --style=numbers --color=always {}"
 
 " === vim-remembers options ===
 " let g:remembers_always_create = 1
