@@ -26,6 +26,11 @@ bindkey "^X^E" edit-command-line
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
+# Neovim unsets the COLORTERM VARIABLE, need to set again for bat utility
+if [ -n "${NVIM_LISTEN_ADDRESS+x}" ]; then
+  export COLORTERM="truecolor"
+fi
+
 # Load version control information
 # PROMPT_SUBST must be before prompt customizations to delay evaluation
 setopt PROMPT_SUBST
