@@ -10,7 +10,7 @@ endif
 "let g:python_host_prog  = '/usr/bin/python2'
 "let g:python3_host_prog = '/usr/bin/python3'
 " macOS with Homebrew:
-let g:python_host_prog  = '/usr/local/opt/python/libexec/bin/python'
+"let g:python_host_prog  = '/usr/local/opt/python/libexec/bin/python'
 let g:python3_host_prog = '/usr/local/bin/python3'
 
 " Load plugins
@@ -18,7 +18,7 @@ source ~/.config/nvim/plugins.vim
 
 " Load custom NodeJS version to address incompatibility
 " between NVM (Node Version Manager) and CoC
-source ~/.config/nvim/nvm-coc.vim
+"source ~/.config/nvim/nvm-coc.vim
 
 
 " ============================================================================ "
@@ -79,12 +79,12 @@ set backspace=indent,eol,start
 "set virtualedit=all
 
 " Allow folding based on TreeSitter syntax
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
+" set foldmethod=expr
+" set foldexpr=nvim_treesitter#foldexpr()
 
 " When opening files, default to all folds open, not closed
-set foldlevelstart=20
-autocmd BufReadPost,FileReadPost * normal zR
+" autocmd BufReadPost,FileReadPost * normal zR
+" set nofoldenable
 
 
 " ============================================================================ "
@@ -103,7 +103,7 @@ try
 call denite#custom#var('file/rec', 'command', [
 \ 'rg',
 \ '--files',
-\ "--glob=\!{build,.cache,dist,.git,node_modules,__pycache__,**/*.eot,**/*.min.js,**/*.png,**/*.ttf,**/*.woff*,**/*.zip}",
+\ "--glob=\!{build,.cache,.git,dist,node_modules,__pycache__,src/assets/media/**,public/assets/images/**,public/assets/media/**,src/assets/sass/**,**/*LICENSE*,**/*.eot,**/*.min.js,**/*.png,**/*.ttf,**/*.woff*,**/*.zip}",
 \ '--max-filesize', '50K'
 \])
 
@@ -240,10 +240,10 @@ endfunction
 function! LightlineFilename()
   let shortfilename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
   "let filename = expand('%:t') !=# '' ? expand('%:p:h:t') . '/' . expand('%:t') : '[No Name]'
-  "show relative path
+  " show relative path
   " let filename = expand('%:t') !=# '' ? expand('%') : '[No Name]'
-  let modified = &modified ? ' 🥬' : ''
-  
+  let modified = &modified ? ' 🍄' : ''
+
   " show relative path trimmed to 4 characters per folder
   let name = ""
   let subs = split(expand('%'), "/")
@@ -255,14 +255,15 @@ function! LightlineFilename()
 		elseif i == 1
 			let name = s
 		else
-			let name = parent . '/' . strpart(s, 0, 4)
+			let name = parent . '/' . strpart(s, 0, 5)
 		endif
 		let i += 1
 	endfor
 
-  if winwidth(0) < 85
+  if winwidth(0) < 86
     return shortfilename . modified
   else
+    " return filename . modified
     return name . modified
   endif
 endfunction
@@ -285,7 +286,7 @@ endfunction
 function! LightlineGitBranch()
   if exists ('*FugitiveHead')
     let branch = FugitiveHead()
-    if winwidth(0) > 70
+    if winwidth(0) > 54
       return branch !=# '' ? ' '.branch : ''
     else
       return branch !=# '' ? '' : ''
@@ -297,11 +298,22 @@ function! LightlineCocHints() abort
   return s:lightline_coc_diagnostic('hints', 'hint')
 endfunction
 
+" function! LightlineVimZoomStatus() abort
+  " let status = g:zoom#statusline()
+  " if status == 'zoomed'
+  "   return '🔎'
+  " else
+  "   return ''
+" endfunction
+
 autocmd User CocDiagnosticChange call lightline#update()
 
 " Configure statusline
+" Old colorscheme was ayu_mirage
+" \   'zoomstate'         : 'LightlineVimZoomStatus'
+" \             [ 'zoomstate', 'gitbranch', 'readonly', 'filename', 'coc_error', 'coc_warning', 'coc_hint', 'coc_info' ] ]
 let g:lightline = {
-      \ 'colorscheme': 'ayu_mirage',
+      \ 'colorscheme': 'tokyonight',
       \ 'component': {
       \   'fileformat': '%3l:%-2v%<',
       \   'filetype': '%3l:%-2v%<',
@@ -311,7 +323,7 @@ let g:lightline = {
       \   'fileencoding'      : 'LightlineFileencoding',
       \   'fileformat'        : 'LightlineFileformat',
       \   'filetype'          : 'LightlineFiletype',
-      \   'gitbranch'         : 'LightlineGitBranch'
+      \   'gitbranch'         : 'LightlineGitBranch',
       \ },
       \ 'active': {
       \   'right': [ [ 'lineinfo' ],
@@ -321,7 +333,7 @@ let g:lightline = {
       \             [ 'gitbranch', 'readonly', 'filename', 'coc_error', 'coc_warning', 'coc_hint', 'coc_info' ] ]
       \ },
       \ 'mode_map': {
-        \ 'n': '🌼 N',
+        \ 'n': '🦋 N',
         \ 'i': 'I',
         \ 'v': 'V',
         \ 'V': 'VL',
@@ -407,9 +419,9 @@ endif
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
-    \ coc#pum#visible() ? coc#pum#next(1):
-    \ CheckBackspace() ? "\<Tab>" :
-    \ coc#refresh()
+  \ coc#pum#visible() ? coc#pum#next(1):
+  \ CheckBackspace() ? "\<Tab>" :
+  \ coc#refresh()
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
 " Make <CR> to accept selected completion item or notify coc.nvim to format
@@ -503,10 +515,41 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
   },
 }
+EOF
 
+" === Configure Nvim-Treesitter-Playground ===
+lua <<EOF
+require "nvim-treesitter.configs".setup {
+  playground = {
+    enable = true,
+    disable = {},
+    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+    persist_queries = false, -- Whether the query persists across vim sessions
+    keybindings = {
+      toggle_query_editor = 'o',
+      toggle_hl_groups = 'i',
+      toggle_injected_languages = 't',
+      toggle_anonymous_nodes = 'a',
+      toggle_language_display = 'I',
+      focus_language = 'f',
+      unfocus_language = 'F',
+      update = 'R',
+      goto_node = '<cr>',
+      show_help = '?',
+    },
+  }
+}
+EOF
+
+" === Configure Nvim-Treesitter-Context ===
+lua <<EOF
 -- Configure 'sticky scroll'
 require'treesitter-context'.setup {
-  enable = true,
+  -- enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+  enable = false, -- Enable this plugin (Can be enabled/disabled later via commands)
+  max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+  trim_scope = 'outer', -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
+  min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
   patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
     -- For all filetypes
     -- Note that setting an entry here replaces all other patterns for this entry.
@@ -521,32 +564,105 @@ require'treesitter-context'.setup {
       'if',
       'switch',
       'case',
+			'interface',
+			'struct',
+			'enum',
     },
     -- Patterns for specific filetypes
     -- If a pattern is missing, *open a PR* so everyone can benefit.
+    tex = {
+      'chapter',
+      'section',
+      'subsection',
+      'subsubsection',
+    },
+    haskell = {
+      'adt'
+    },
+    rust = {
+      'impl_item',
+    },
+    terraform = {
+      'block',
+      'object_elem',
+      'attribute',
+    },
+    scala = {
+      'object_definition',
+    },
+    vhdl = {
+      'process_statement',
+      'architecture_body',
+      'entity_declaration',
+    },
     markdown = {
       'section',
+    },
+    elixir = {
+      'anonymous_function',
+      'arguments',
+      'block',
+      'do_block',
+      'list',
+      'map',
+      'tuple',
+      'quoted_content',
     },
     json = {
       'pair',
     },
-    vue = {
-      'element',
-      'start_tag',
+    typescript = {
+      'export_statement',
     },
     yaml = {
       'block_mapping_pair',
     },
+    javascript = {
+      'else_clause',
+      'try_statement',
+      'catch_clause',
+    },
+    vue = {
+      -- works inside <template> tag
+      'element',
+      'start_tag',
+      -- below doesn't work, trying for <script> tag
+      'script_element',
+      'raw_text',
+      'export_statement',
+      'pair',
+      'method_definition',
+      'property_identifier',
+      'if_statement',
+      'else_clause',
+    },
   },
+  exact_patterns = {
+    -- Example for a specific filetype with Lua patterns
+    -- Treat patterns.rust as a Lua pattern (i.e "^impl_item$" will
+    -- exactly match "impl_item" only)
+    -- rust = true,
+  },
+
+  -- [!] The options below are exposed but shouldn't require your attention,
+  --     you can safely ignore them.
+
+  zindex = 20, -- The Z-index of the context window
+  mode = 'cursor',  -- Line used to calculate context. Choices: 'cursor', 'topline'
+  -- Separator between context and content. Should be a single character string, like '-'.
+  -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
+  separator = nil,
 }
 EOF
 
 
 " === vim-matchup ===
 " Place offscreen match as popup at top of screen with syntax highlighting.
-" Highlighting may cause performance degradation, Neovim doesn't provide relative line number
+" Highlighting popup cause performance degradation because Neovim doesn't provide relative line number
 " in popup, https://github.com/andymass/vim-matchup/issues/253
-let g:matchup_matchparen_offscreen = {'method': 'popup', 'fullwidth': 1, 'syntax_hl': 1}
+" popup is still buggy inside splits, disabling it
+" let g:matchup_matchparen_offscreen = {'method': 'popup', 'fullwidth': 1, 'syntax_hl': 1}
+let g:matchup_matchparen_offscreen = {'method': 'status'}
 let g:matchup_matchparen_deferred = 1
 
 lua <<EOF
@@ -558,13 +674,13 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 EOF
+
 " Change color of matched words and brackets
 augroup matchup_matchparen_highlight
   autocmd!
-  autocmd ColorScheme * hi MatchWord guifg=black guibg=lightblue
-  autocmd ColorScheme * hi MatchParen guifg=black guibg=lightblue
+  autocmd ColorScheme * hi MatchWord guifg=black guibg=darkgray
+  autocmd ColorScheme * hi MatchParen guifg=black guibg=darkgray
 augroup END
-
 
 
 " === vim-js-pretty-template ===
@@ -579,10 +695,40 @@ autocmd FileType javascript.jsx JsPreTmpl
 " Change mappings from meta-based to control-based
 "let g:AutoPairsCompatibleMaps = 0
 
+" === tabnine options ===
+lua <<EOF
+require('tabnine').setup({
+  disable_auto_comment=true,
+  accept_keymap="<Tab>",
+  dismiss_keymap = "<C-]>",
+  debounce_ms = 800,
+  suggestion_color = {gui = "#808080", cterm = 244},
+  exclude_filetypes = {"TelescopePrompt"}
+})
+EOF
+
+" === fzf options ===
+" [Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 0
+
+" === vim-remembers options ===
+" let g:remembers_always_create = 1
+" let g:remembers_always_reload = 0
+" let g:remembers_tmp_dir     = '~/.nvim/remember-unnamed'
+" let g:remembers_session_dir = '~/.nvim/remember-unnamed/sessions'
+
 
 " ============================================================================ "
 " ===                                UI OPTIONS                            === "
 " ============================================================================ "
+
+" Colorscheme settings need to occur before loading scheme
+lua <<EOF
+require("tokyonight").setup({
+  style = "moon", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
+  transparent = true, -- Enable this to disable setting the background color
+})
+EOF
 
 " Enable true color support.
 " Note: macOS Terminal app doesn't support true color,
@@ -590,7 +736,8 @@ autocmd FileType javascript.jsx JsPreTmpl
 if !has('gui_running')
   if (has("termguicolors"))
     set termguicolors
-    colorscheme onedark
+    " colorscheme onedark
+    colorscheme tokyonight
   endif
 endif
 
@@ -607,7 +754,7 @@ set background=dark
 " configure nvcode-color-schemes
 " let g:nvcode_termcolors=256
 "let g:onedark_style = 'darker'  " We need add the configs before colorscheme line
-"colorscheme onedark
+" colorscheme onedark
 
 " === rakr/vim-one options ===
 " We need add the configs before colorscheme line
@@ -625,7 +772,53 @@ set background=dark
 lua <<EOF
   vim.g.onedark_style = 'dark'
   vim.g.onedark_italic_comment = true
-  vim.g.onedark_diagnostics_undercurl = true
+  vim.g.onedark_diagnostics_undercurl = false
+  vim.g.onedark_darker_diagnostics = true
+  require('onedark').setup()
+EOF
+" Enable true color support.
+" Note: macOS Terminal app doesn't support true color,
+" set notermguicolors later in this file.
+if !has('gui_running')
+  if (has("termguicolors"))
+    set termguicolors
+    " colorscheme onedark
+    colorscheme tokyonight
+  endif
+endif
+
+" Use color syntax highlighting
+syntax on
+
+" Use cool color scheme
+set background=dark
+"colorscheme one
+"colorscheme OceanicNext
+"colorscheme onedark
+"let g:oceanic_next_terminal_bold = 1
+"let g:oceanic_next_terminal_italic = 1
+" configure nvcode-color-schemes
+" let g:nvcode_termcolors=256
+"let g:onedark_style = 'darker'  " We need add the configs before colorscheme line
+" colorscheme onedark
+
+" === rakr/vim-one options ===
+" We need add the configs before colorscheme line
+" for newer version of vim-one that's not released yet
+" lua <<EOF
+" require('onedark').setup {
+"   style = 'darker',
+"   diagnostics = {
+"     darker = true,        -- darker colors for diagnostic
+"     undercurl = true,     -- use undercurl for diagnostics
+"     background = true,    -- use background color for virtual text
+"   },
+" }
+" EOF
+lua <<EOF
+  vim.g.onedark_style = 'dark'
+  vim.g.onedark_italic_comment = true
+  vim.g.onedark_diagnostics_undercurl = false
   vim.g.onedark_darker_diagnostics = true
   require('onedark').setup()
 EOF
@@ -739,7 +932,7 @@ set inccommand=split
 
 " Use F2 key to enable paste mode before pasting in large amount of text
 " to avoid auto-formatting. Press F2 again to exit paste mode.
-set pastetoggle=<F2>
+set pastetoggle=<F4>
 
 " Reload file after disk change, then notify.
 " Guard against command history window errors: https://unix.stackexchange.com/questions/149209
@@ -766,17 +959,21 @@ set timeoutlen=800
 
 " Protect changes between writes. Default values for updatecount (200 keystrokes)
 " and updatetime (4 seconds) are fine.
+
 " Disabling all backup options due to tsserver incompatibilities.
+" Vim always creates a file to test writeability in directory,
+" which causes all files to recompile and breaks IntelliSense.
 " See: https://github.com/neoclide/coc.nvim/issues/649
-"set swapfile
+setlocal nowritebackup
+setlocal nobackup
+
+set swapfile
 set directory^=~/.nvim/swap//
 "set writebackup                 " Protect against crash-during-write
 "set nobackup                    " but do not persist backup after successful write.
-"set backupcopy=auto             " Use rename-and-write-new method whenever safe.
-"set backupdir^=~/.nvim/backup   " Consolidate the write backups.
-set nowritebackup
-set nobackup
-set updatetime=100               " make CoC plugins much more responsive
+set backupcopy=auto             " Use rename-and-write-new method whenever safe.
+set backupdir^=~/.nvim/backup   " Consolidate the write backups.
+set updatetime=100              " make CoC plugins much more responsive
 
 " Persist the undo tree for each file.
 set undofile
@@ -859,21 +1056,16 @@ hi! SignifySignAdd guifg=#99c794
 hi! SignifySignDelete guifg=#ec5f67
 hi! SignifySignChange guifg=#c594c5
 
-" Always show the signcolumn (for git gutter), otherwise it will shift
-" the text each time diagnostics appear or become resolved.
-if has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
-
 " Disable True Color support on macOS Terminal
 " Needs to be set after custom transparent color changes
 if $TERM_PROGRAM ==# 'Apple_Terminal'
   set notermguicolors
-  colorscheme torte
+  colorscheme desert
 endif
+
+" Always show the signcolumn (for git gutter), otherwise it will shift
+" the text each time diagnostics appear or become resolved.
+set signcolumn=yes
 
 " Call method on window enter
 augroup WindowManagement
@@ -932,6 +1124,7 @@ nnoremap <leader>l :call ToggleLineNumsAndGutter()<CR>
 nnoremap <leader>i :IndentBlanklineToggle<CR>
 " Find and replace word under cursor (mnemonic: c_u_rsor)
 " ToggleZoom first to avoid resetting split layout
+" nnoremap <leader>u :%s/<c-r><c-w>//g<left><left>
 nnoremap <leader>u :call ToggleZoom(v:true)<CR>:%s/<c-r><c-w>//g<left><left>
 " Close buffer w/o closing split
 nnoremap <leader>q :Bwipeout<CR>
@@ -958,11 +1151,13 @@ nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1
 "   <leader>j - Search curr directory for occurrences of word under cursor
 "   <leader>: - Fuzzy search command history (non-fuzzy default is q:)
 "           i - After triggers above, press 'i' to enter fuzzy filter mode
-nmap <leader>; :Denite buffer<CR>
-nmap <leader>f :Denite file/rec<CR>
+"nmap <leader>; :Denite buffer<CR>
+nmap <leader>; :Buffers<CR>
+" nmap <leader>f :Denite file/rec<CR>
+nnoremap <silent> <leader>f :Files<CR>
 nmap <leader>t :DeniteProjectDir file/rec<CR>i
 nnoremap <leader>g <C-u>:Denite grep:. -no-empty<CR>
-nnoremap <leader>j :DeniteCursorWord grep:.<CR>
+nnoremap <leader>j :call ToggleZoom(v:true)<CR>:DeniteCursorWord grep:.<CR>
 nnoremap <leader>: :Denite command_history<CR>
 
 " Define Denite mappings while in 'filter' mode
@@ -1064,6 +1259,7 @@ endfunction
 augroup restorezoom
     au WinEnter * silent! :call ToggleZoom(v:false)
 augroup END
+" nnoremap <silent> <Leader>0 <Plug>(zoom-toggle)
 nnoremap <silent> <Leader>0 :call ToggleZoom(v:true)<CR>
 
 " Ctrl-c remapped to Escape to avoid leftover artifacts with CoC menus.
@@ -1084,6 +1280,9 @@ nmap <leader>k :e #<CR>
 " replace currently selected text with default register
 " without yanking it
 vnoremap <leader>p "_dP
+
+" Comment line using nvim-ts-context-commentstring
+nmap <leader>/ gcc
 
 " === key mappings for tab pages ===
 nnoremap t. :tabedit %<CR>
@@ -1132,10 +1331,10 @@ map <leader>y <Plug>(coc-format-selected)
 
 
 " === coc key mappings ===
-nmap <silent> <leader>dd <Plug>(coc-definition)
-nmap <silent> <leader>dy <Plug>(coc-type-definition)
-nmap <silent> <leader>dr <Plug>(coc-references)
-nmap <silent> <leader>dj <Plug>(coc-implementation)
+nmap <silent> <leader>gd <Plug>(coc-definition)
+nmap <silent> <leader>gy <Plug>(coc-type-definition)
+nmap <silent> <leader>gr <Plug>(coc-references)
+nmap <silent> <leader>gj <Plug>(coc-implementation)
 nnoremap <silent> <leader>ds :<C-u>CocList -I -N --top symbols<CR>
 " Jump to next eslint error
 nmap <silent> ]e <Plug>(coc-diagnostic-next)
@@ -1166,4 +1365,9 @@ endif
 " === Search shorcuts ===
 "  <leader>s - For all lines in file, search and replace
 " Call ToggleZoom first to avoid resetting split layout
+" map <leader>s :%s/
 map <leader>s :call ToggleZoom(v:true)<CR>:%s/
+
+" === vim-matchup shorcuts ===
+"  <leader>? - show position in code as breadcrumb outline
+nnoremap <leader>? :<c-u>MatchupWhereAmI??<cr>
