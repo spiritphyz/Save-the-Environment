@@ -16,12 +16,6 @@ fi
 # Ignore commands with leading space from history
 setopt histignorespace
 
-# Edit current command in editor with ctrl-x ctrl-e
-# If not available on server, can use 'fc' to edit last command in history
-autoload -z edit-command-line
-zle -N edit-command-line
-bindkey "^X^E" edit-command-line
-
 # Add directory colors to macOS shell
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
@@ -57,6 +51,12 @@ export VISUAL="vim"
 
 # But still use emacs-style zsh bindings
 bindkey -e
+
+# Edit current command in editor with ctrl-x ctrl-e
+# If not available on server, can use 'fc' to edit last command in history
+autoload edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
 
 # Use ripgrep to find hidden files (but ignore node_modules and .git folder)
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!*node_modules*" -g "!*.git*" -g "!*.DS_Store"'
