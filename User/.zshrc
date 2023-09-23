@@ -60,6 +60,7 @@ bindkey -M vicmd v edit-command-line
 
 # Use ripgrep to find hidden files (but ignore node_modules and .git folder)
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!*node_modules*" -g "!*.git*" -g "!*.DS_Store"'
+export FZF_DEFAULT_OPTS="--height=40% --layout=reverse  --info=inline --margin=1 --padding=0 --preview-window 'up,70%,border-bottom'"
 
 # FZF customizations
 #[ -f ~/.fzf.bash ] && source ~/.fzf.bash
