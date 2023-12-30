@@ -514,6 +514,20 @@ require'nvim-treesitter.configs'.setup {
   indent = {                    -- indent based on = operator, experimental feature
     enable = true,
   },
+  textobjects = {
+    select = {
+      enable = true,
+      lookahead = true,
+      keymaps = {
+        ['ab'] = '@block.outer',
+        ['ib'] = '@block.inner',
+        ['af'] = '@function.outer',
+        ['if'] = '@function.inner',
+        ['ac'] = '@class.outer',
+        ['ic'] = '@class.inner',
+      }
+    },
+  },
 }
 EOF
 
