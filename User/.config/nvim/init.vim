@@ -1226,7 +1226,7 @@ nmap <leader>; :Buffers<CR>
 " nmap <leader>f :Denite file/rec<CR>
 nnoremap <silent> <leader>f :Files<CR>
 nmap <leader>t :DeniteProjectDir file/rec<CR>i
-nnoremap <leader>g <C-u>:Denite grep:. -no-empty<CR>
+nnoremap <leader>g :Rg<CR>
 nnoremap <leader>j :call ToggleZoom(v:true)<CR>:DeniteCursorWord grep:.<CR>
 nnoremap <leader>: :Denite command_history<CR>
 
