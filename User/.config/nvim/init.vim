@@ -772,7 +772,7 @@ EOF
 " [Buffers] Jump to the existing window if possible
 let g:fzf_buffers_jump = 0
 " Enable highlight of found phrase in preview pane. All themes are buggy except base16
-"let $FZF_PREVIEW_COMMAND="COLORTERM=truecolor bat --theme='Sublime Snazzy' --style=numbers --color=always {}"
+" let $FZF_PREVIEW_COMMAND="COLORTERM=truecolor bat --theme='Coldark-Dark' --style=numbers --color=always {}"
 let $FZF_PREVIEW_COMMAND="COLORTERM=truecolor bat --theme='base16' style=numbers --color=always --line-range :900 {}"
 
 " === vim-remembers options ===
@@ -1198,6 +1198,10 @@ nnoremap <leader>h :SignifyHunkDiff<CR>
 nnoremap <leader>n :bn<CR>
 " Switch to prev buffer
 nnoremap <leader>b :bp<CR>
+" Mark piece of text as foldable (doesn't work, don't know why)
+"nnoremap <leader>d zf
+" Toggle folds
+nnoremap <leader>a za
 " Delete buffer (capital D)
 nnoremap <leader>D :bd<CR>
 " Toggle hidden characters (capital H)
