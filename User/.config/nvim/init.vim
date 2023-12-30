@@ -1329,6 +1329,14 @@ endfunction
 augroup restorezoom
     au WinEnter * silent! :call ToggleZoom(v:false)
 augroup END
+
+" Save folds
+" augroup AutoSaveFolds
+"   autocmd!
+"   autocmd BufWinLeave * mkview
+"   autocmd BufWinEnter * silent loadview
+" augroup END
+
 " nnoremap <silent> <Leader>0 <Plug>(zoom-toggle)
 nnoremap <silent> <Leader>0 :call ToggleZoom(v:true)<CR>
 
