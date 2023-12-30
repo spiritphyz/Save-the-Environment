@@ -1209,6 +1209,8 @@ nnoremap <silent> <leader>H :set nolist!<CR>
 " Insert empty line before and after
 nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<Left><Left><CR>
 nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<Left><Left><CR>
+" Run Prettier on whole file
+nnoremap <leader>P :Prettier<CR>
 
 
 " === Denite shortcuts === "
