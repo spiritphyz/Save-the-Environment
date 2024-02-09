@@ -1,3 +1,5 @@
+;; extends
+
 ; Make Tree-sitter provide syntax highlighting inside Vue template strings
 ; make sure /* html */ is before the string
 (pair
