@@ -893,57 +893,10 @@ EOF
 
 
 " === indentBlankline options ===
-" Options must be set after color scheme is loaded because
-" most themes reset all highlight groups
 lua <<EOF
-vim.cmd[[highlight IndentBlanklineContextChar guifg=#e06c75 gui=nocombine]]
-local context_patterns = {
-  'arguments',
-  'block',       -- CSS
-  'catch_clause',
-  'class',
-  'element',     -- HTML
-  '^else',
-  '^for',
-  'function',
-  '^if',
-  'import_statement',
-  '^jsx',
-  'method',
-  '^object',     -- JS
-  'operation_type',
-  'return',
-  '^table',      -- Lua
-  '^try',
-  '^while',
- }
-
-local filetype_exclude = {
- 'fzf',
- 'floatline',
- 'git',
- 'help',
- 'man',
- 'markdown',
- 'nerdtree',
- 'NERDTree',
- 'NERD_tree_',
- 'NvimTree',
- 'packer',
- 'text',
- 'terminal',
- 'scheme',
-}
-
-require("indent_blankline").setup {
-  use_treesitter = true,
-  char = '▏',                             -- Use U+258F 'left one eigth block' glyph in Iosevka NerdFont
-  show_current_context = true,            -- Expand indentlines down to the end of a method for example
-  show_current_context_start = false,     -- Underline first line of context?
-  show_first_indent_level = true,         -- Hide for the first column
-  show_trailing_blankline_indent = false, -- Show on blank lines?
-  context_patterns = context_patterns,
-  filetype_exclude = filetype_exclude,
+require("ibl").setup {
+  -- Use U+258F 'left one eigth block' glyph in Iosevka NerdFont
+  indent = { char = "▏" },
 }
 EOF
 
