@@ -495,9 +495,6 @@ require'nvim-treesitter.configs'.setup {
   autotag = {                   -- autoclose HTML tags
     enable = true,
   },
-  context_commentstring = {     -- enable comments based on context
-    enable = true,
-  },
   ensure_installed = {          -- "all" or a list of languages
     "bash", "c", "c_sharp", "clojure", "css",
     "dockerfile", "go", "html", "http",
