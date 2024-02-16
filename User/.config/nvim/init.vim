@@ -1135,7 +1135,7 @@ nnoremap <silent> <leader>cc :execute "set colorcolumn=" . (&colorcolumn == "" ?
 " Toggle line numbers and gutter (signcolumn) for easier Tmux copy
 nnoremap <leader>l :call ToggleLineNumsAndGutter()<CR>
 " Toggle display of indent guides
-nnoremap <leader>i :IndentBlanklineToggle<CR>
+nnoremap <leader>i :IBLToggle<CR>
 " Find and replace word under cursor (mnemonic: c_u_rsor)
 " ToggleZoom first to avoid resetting split layout
 " nnoremap <leader>u :%s/<c-r><c-w>//g<left><left>
