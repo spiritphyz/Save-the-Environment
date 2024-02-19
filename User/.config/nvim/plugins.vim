@@ -163,6 +163,26 @@ Plug 'andymass/vim-matchup'
 " Autoclose and autorename HTML tags using TreeSitter syntax
 Plug 'windwp/nvim-ts-autotag'
 
+" Provide 'sticky scroll', showing enclosing function at top
+Plug 'nvim-treesitter/nvim-treesitter-context'
+
+" Provide private AI-based autocompletion
+Plug 'codota/tabnine-nvim', { 'do': './dl_binaries.sh' }
+
+" Toggle full-pane windows like Tmux
+" Use C-w m to toggle. Provides zoom#statusline() API
+" Plug 'dhruvasagar/vim-zoom'
+
+" FZF fuzzy finder
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+
+" Restore unnamed buffers like Sublime, Notepad++
+" Doesn't seem to have much utlity right now
+" Plug 'abdalrahman-ali/vim-remembers'
+
+
+
 " Allows fancy icon glyphs in lightline tabs and NERDTree.
 " Should be loaded as last plugin.
 Plug 'ryanoasis/vim-devicons'
