@@ -27,6 +27,9 @@ call plug#begin('~/.local/share/nvim/plugged')
 "Plug 'olimorris/onedarkpro.nvim'
 Plug 'navarasu/onedark.nvim'
 
+" Use TokyoNight Neovim theme for colorscheme
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+
 " Use fancy status bar, more lightweight than vim-airline
 Plug 'itchyny/lightline.vim'
 
