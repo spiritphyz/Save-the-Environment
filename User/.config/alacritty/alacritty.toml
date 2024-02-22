@@ -1,0 +1,59 @@
+import = ["/Users/ktonyle/.config/alacritty/colors/colors.toml", "/Users/ktonyle/.config/alacritty/keys.toml"]
+live_config_reload = true
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[cursor]
+blink_interval = 250
+unfocused_hollow = true
+
+[cursor.style]
+blinking = "Always"
+shape = "Block"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 15.76
+#use_thin_strokes = false
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+[font.normal]
+family = "Iosevka Nerd Font"
+
+[font.offset]
+x = 0
+y = 0
+
+[mouse]
+hide_when_typing = false
+
+[selection]
+save_to_clipboard = true
+semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
+
+[shell]
+args = ["--login"]
+program = "/bin/zsh"
+
+[window]
+decorations = "full"
+dynamic_padding = true
+startup_mode = "Windowed"
+
+[window.dimensions]
+columns = 163
+lines = 73
+
+[window.padding]
+x = 0
+y = 0
+
+[window.position]
+x = 1348
+y = 70
