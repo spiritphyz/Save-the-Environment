@@ -36,8 +36,8 @@ Plug 'itchyny/lightline.vim'
 " Simulate a tab bar at top for open buffers
 Plug 'mengelbrecht/lightline-bufferline'
 
-" Show file explorer on left side
-Plug 'scrooloose/nerdtree'
+" Show file explorer on left side, delay loading
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 " disabling nvim-tree because not much faster
 " and resizes window splits when toggled open
 " Plug 'kyazdani42/nvim-web-devicons' " for file icons
