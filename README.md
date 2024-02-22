@@ -125,3 +125,14 @@ highlight vimLineComment cterm=italic gui=italic
      set -g default-terminal 'tmux-256color'            # Use screen colors inside Tmux
      set -as terminal-overrides ',xterm*:Tc:sitm=\E[3m' # Enable true colors, italics
   ```
+
+# Installation problems
+Encountering strange issues with missing dynamic libraries? Try these techniques.
+```bash
+# Upgrade Xcode to latest version
+
+# Update brew
+brew update
+brew upgrade
+brew doctor
+```
