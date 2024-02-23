@@ -21,11 +21,7 @@ endif
 call plug#begin('~/.local/share/nvim/plugged')
 
 " Use Atom One Dark theme for colorscheme
-"Plug 'rakr/vim-one'
-"Plug 'mhartington/oceanic-next'
-"Plug 'christianchiarulli/nvcode-color-schemes.vim'
-"Plug 'olimorris/onedarkpro.nvim'
-Plug 'navarasu/onedark.nvim'
+" Plug 'navarasu/onedark.nvim'
 
 " Use TokyoNight Neovim theme for colorscheme
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
