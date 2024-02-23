@@ -786,13 +786,25 @@ let $FZF_PREVIEW_COMMAND="COLORTERM=truecolor bat --theme='base16' style=numbers
 " Colorscheme settings need to occur before loading scheme
 lua <<EOF
 require("tokyonight").setup({
-  style = "moon", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
-  transparent = true, -- Enable this to disable setting the background color
+  style = "moon", -- Four styles: `storm`, `moon`, `night` and `day`
+  transparent = false, -- Enable this to disable setting the background color
 })
+EOF
+
+" Configure ondark colorscheme
+lua <<EOF
+  -- vim.g.onedark_style = 'dark'
+  -- vim.g.onedark_italic_comment = true
+  -- vim.g.onedark_diagnostics_undercurl = false
+  -- vim.g.onedark_darker_diagnostics = true
+  -- require('onedark').setup()
 EOF
 
 " Use color syntax highlighting
 syntax on
+
+" Use dark background
+set background=dark
 
 " Enable true color support.
 " Note: macOS Terminal app doesn't support true color,
@@ -800,54 +812,10 @@ syntax on
 if !has('gui_running')
   if (has("termguicolors"))
     set termguicolors
-    colorscheme onedark
-    " colorscheme tokyonight
+    colorscheme tokyonight
+    " colorscheme onedark
   endif
 endif
-
-" Use color syntax highlighting
-syntax on
-
-" Use cool color scheme
-set background=dark
-"colorscheme one
-"colorscheme OceanicNext
-"colorscheme onedark
-"let g:oceanic_next_terminal_bold = 1
-"let g:oceanic_next_terminal_italic = 1
-" configure nvcode-color-schemes
-" let g:nvcode_termcolors=256
-"let g:onedark_style = 'darker'  " We need add the configs before colorscheme line
-" colorscheme onedark
-
-" === rakr/vim-one options ===
-" We need add the configs before colorscheme line
-" for newer version of vim-one that's not released yet
-" lua <<EOF
-" require('onedark').setup {
-"   style = 'darker',
-"   diagnostics = {
-"     darker = true,        -- darker colors for diagnostic
-"     undercurl = true,     -- use undercurl for diagnostics
-"     background = true,    -- use background color for virtual text
-"   },
-" }
-" EOF
-lua <<EOF
-  vim.g.onedark_style = 'dark'
-  vim.g.onedark_italic_comment = true
-  vim.g.onedark_diagnostics_undercurl = false
-  vim.g.onedark_darker_diagnostics = true
-  require('onedark').setup()
-EOF
-
-" === rakr/vim-one options ===
-" Change visually selected text to white for easier reading
-" call one#highlight('Visual', 'ffffff', 'e06c75', 'none')
-" Make Vim comments and general comments be lighter gray for readability
-" call one#highlight('vimLineComment', '888888', '', 'none')
-" call one#highlight('Comment', '888888', '', 'none')
-
 
 " === indentBlankline options ===
 lua <<EOF
