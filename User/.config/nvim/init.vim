@@ -791,52 +791,9 @@ require("tokyonight").setup({
 })
 EOF
 
-" Enable true color support.
-" Note: macOS Terminal app doesn't support true color,
-" set notermguicolors later in this file.
-if !has('gui_running')
-  if (has("termguicolors"))
-    set termguicolors
-    " colorscheme onedark
-    colorscheme tokyonight
-  endif
-endif
-
 " Use color syntax highlighting
 syntax on
 
-" Use cool color scheme
-set background=dark
-"colorscheme one
-"colorscheme OceanicNext
-"colorscheme onedark
-"let g:oceanic_next_terminal_bold = 1
-"let g:oceanic_next_terminal_italic = 1
-" configure nvcode-color-schemes
-" let g:nvcode_termcolors=256
-"let g:onedark_style = 'darker'  " We need add the configs before colorscheme line
-" colorscheme onedark
-
-" === rakr/vim-one options ===
-" We need add the configs before colorscheme line
-" for newer version of vim-one that's not released yet
-" lua <<EOF
-" require('onedark').setup {
-"   style = 'darker',
-"   diagnostics = {
-"     darker = true,        -- darker colors for diagnostic
-"     undercurl = true,     -- use undercurl for diagnostics
-"     background = true,    -- use background color for virtual text
-"   },
-" }
-" EOF
-lua <<EOF
-  vim.g.onedark_style = 'dark'
-  vim.g.onedark_italic_comment = true
-  vim.g.onedark_diagnostics_undercurl = false
-  vim.g.onedark_darker_diagnostics = true
-  require('onedark').setup()
-EOF
 " Enable true color support.
 " Note: macOS Terminal app doesn't support true color,
 " set notermguicolors later in this file.
