@@ -83,8 +83,8 @@ set backspace=indent,eol,start
 " set foldexpr=nvim_treesitter#foldexpr()
 
 " When opening files, default to all folds open, not closed
-" autocmd BufReadPost,FileReadPost * normal zR
-" set nofoldenable
+autocmd BufReadPost,FileReadPost * normal zR
+set nofoldenable
 
 
 " ============================================================================ "
