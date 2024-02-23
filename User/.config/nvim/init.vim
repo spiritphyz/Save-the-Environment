@@ -800,8 +800,8 @@ syntax on
 if !has('gui_running')
   if (has("termguicolors"))
     set termguicolors
-    " colorscheme onedark
-    colorscheme tokyonight
+    colorscheme onedark
+    " colorscheme tokyonight
   endif
 endif
 
