@@ -5,14 +5,6 @@ if has('multi_byte')
   setglobal fileencodings=utf-8
 endif
 
-" Avoid slow startup time on cold starts
-" Linux:
-"let g:python_host_prog  = '/usr/bin/python2'
-"let g:python3_host_prog = '/usr/bin/python3'
-" macOS with Homebrew:
-"let g:python_host_prog  = '/usr/local/opt/python/libexec/bin/python'
-let g:python3_host_prog = '/usr/local/bin/python3'
-
 " Load plugins
 source ~/.config/nvim/plugins.vim
 
