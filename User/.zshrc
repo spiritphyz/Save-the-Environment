@@ -97,6 +97,12 @@ source ~/.androidrc
 # Run fnm NodeJS helper
 #eval "$(fnm env --use-on-cd)"
 
+# Rely on pyenv to manage multiple globally-installed Python and pip
+# https://opensource.com/article/19/5/python-3-default-mac
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
 # Start zoxide utility to change directories easily
 # Needs installation first:
 #   macOS  - brew install zoxide
