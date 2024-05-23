@@ -99,6 +99,10 @@ source ~/.androidrc
 
 # Rely on pyenv to manage multiple globally-installed Python and pip
 # https://opensource.com/article/19/5/python-3-default-mac
+# Install pyenv:
+#   brew install pyenv
+#   pyenv install 3.12.3
+#   pyenv version
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
