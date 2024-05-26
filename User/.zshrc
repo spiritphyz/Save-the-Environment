@@ -1,17 +1,10 @@
-# Needs 'brew install antigen' first
-# Use antigen as zsh plugin manager.
-source /usr/local/share/antigen/antigen.zsh
-
-# Use zsh-nvm plugin, defer loading
-#export NVM_LAZY_LOAD=true
-#antigen bundle lukechilds/zsh-nvm
-
-# Tell antigen we're done
-antigen apply
-
 if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
 fi
+
+# Add MacPorts executables
+# MacPorts always installs as root user
+#export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 
 # Ignore commands with leading space from history
 setopt histignorespace
