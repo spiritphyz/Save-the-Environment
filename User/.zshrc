@@ -82,10 +82,10 @@ fd() {
 }
 
 #  Get settings for tiny-care-terminal
-source ~/.tinyrc
+#source ~/.tinyrc
 
 #  Get settings for Android Studio
-source ~/.androidrc
+#source ~/.androidrc
 
 # Run fnm NodeJS helper
 #eval "$(fnm env --use-on-cd)"
@@ -100,11 +100,18 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
+# MacPorts doesn't have pyenv, so we'll use direct installer for ZSH
+# https://github.com/pyenv/pyenv?tab=readme-ov-file#automatic-installer
+# git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+#export PYENV_ROOT="$HOME/.pyenv"
+#[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+#eval "$(pyenv init -)"
+
 # Start zoxide utility to change directories easily
 # Needs installation first:
 #   macOS  - brew install zoxide
 #   Ubuntu - apt install zoxide
-eval "$(zoxide init zsh)"
+#eval "$(zoxide init zsh)"
 
 # Look up command options for Unix utilities
 # cheat tar
