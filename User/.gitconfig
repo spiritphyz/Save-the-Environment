@@ -1,6 +1,6 @@
 [user]
-	email = 
-	name = 
+	email =
+	name =
 
 [core]
   pager = delta
@@ -9,15 +9,18 @@
   diffFilter = delta --color-only
 
 [delta]
-  navigate = true       # use n and N to move between diff sections
-  light = false         # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
-  true-color = always   # enable 24-bit color
-  #syntax-theme = Solarized (dark)
-  syntax-theme = Visual Studio Dark+
-  # For removed lines, set foreground color to syntax colors, background color to hex
+  side-by-side = true
+  features = colibri                  # group of settings, not syntax theme
+  syntax-theme = Coldark-Dark         # list themes with: bat --list-themes
+  line-numbers-left-format = {nm:^0}│ # delta --help for examples
+  line-numbers-right-format = ""      # allow more width for side-by-side
+  navigate = true                     # use n and N to move between sections
+  light = false                       # set true for terminals w/ light bg color
+  true-color = always                 # enable 24-bit color
+  # For removed lines, set fg color to syntax colors, background color to hex
   minus-style = syntax "#300e2f"
-  # For added lines, set foreground color to syntax colors, background color to hex
-  plus-style = syntax "#0e1e30"
+  # For added lines, set fg color to syntax colors, background color to hex
+  plus-style = syntax "#1b2246"
 
 [merge]
   conflictstyle = diff3
