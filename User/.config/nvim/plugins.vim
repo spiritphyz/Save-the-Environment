@@ -114,7 +114,7 @@ Plug 'Shougo/neosnippet-snippets'
 Plug 'mattn/emmet-vim', { 'for': ['css', 'html', 'javascriptreact', 'typescriptreact'] }
 
 " Denite - Fuzzy finding, buffer management
-Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " Intellisense Engine, uses VS Code's language servers
 " Needs 'npm i -g neovim' and recent version of NodeJS
