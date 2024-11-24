@@ -668,8 +668,11 @@ EOF
 " [Buffers] Jump to the existing window if possible
 let g:fzf_buffers_jump = 0
 " Enable highlight of found phrase in preview pane. All themes are buggy except base16
-" let $FZF_PREVIEW_COMMAND="COLORTERM=truecolor bat --theme='Coldark-Dark' --style=numbers --color=always {}"
-let $FZF_PREVIEW_COMMAND="COLORTERM=truecolor bat --theme='base16' style=numbers --color=always --line-range :900 {}"
+
+" Increase layout of FZF UI and preview window
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
+let $FZF_DEFAULT_OPTS="--preview-window 'right,50%' --layout reverse --margin=0,1,0,1 --padding=0"
+
 
 " === vim-remembers options ===
 " let g:remembers_always_create = 1
