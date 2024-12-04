@@ -669,9 +669,10 @@ EOF
 let g:fzf_buffers_jump = 0
 " Enable highlight of found phrase in preview pane. All themes are buggy except base16
 
-" Increase layout of FZF UI and preview window
+" Increase layout of FZF UI and preview window; highlight the match
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
 let $FZF_DEFAULT_OPTS="--preview-window 'right,50%' --layout reverse --margin=0,1,0,1 --padding=0"
+let $FZF_PREVIEW_COMMAND="COLORTERM=truecolor bat --theme='base16' --style=numbers --color=always --highlight-line 1:1 {}"
 
 
 " === vim-remembers options ===
