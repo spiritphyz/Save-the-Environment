@@ -1,4 +1,5 @@
 font-family = Iosevka Nerd Font
+font-size = 16
 
 # Disable ligatures
 font-feature = -calt
@@ -6,6 +7,7 @@ font-feature = -liga
 font-feature = -dlig
 
 window-padding-y = 2
+window-padding-x = 0
 
 keybind = alt+super+'=new_split:down
 keybind = alt+super+5=new_split:right
