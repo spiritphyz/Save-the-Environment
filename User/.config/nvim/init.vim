@@ -1006,7 +1006,8 @@ nnoremap <silent> <leader>f :Files<CR>
 nmap <leader>t :DeniteProjectDir file/rec<CR>i
 nnoremap <leader>g :Rg<CR>
 nnoremap <leader>j :call ToggleZoom(v:true)<CR>:DeniteCursorWord grep:.<CR>
-nnoremap <leader>: :Denite command_history<CR>
+" nnoremap <leader>: :Denite command_history<CR>
+nnoremap <leader>: :History:<CR>
 
 " Define Denite mappings while in 'filter' mode
 "   <C-o>          - Switch to normal mode inside of search results
