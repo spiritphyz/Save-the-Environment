@@ -991,86 +991,13 @@ nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1
 nnoremap <leader>P :Prettier<CR>
 
 
-" === Denite shortcuts === "
-"   <leader>; - Fuzzy search open buffers (like FZF or Ctrl-P)
-"   <leader>f - Browse list of files in current directory
-"   <leader>t - Search for files in project directory
-"   <leader>g - Search curr directory for given term, close window if no results
-"   <leader>j - Search curr directory for occurrences of word under cursor
-"   <leader>: - Fuzzy search command history (non-fuzzy default is q:)
-"           i - After triggers above, press 'i' to enter fuzzy filter mode
-"nmap <leader>; :Denite buffer<CR>
+" === FZF shortcuts ===
 nmap <leader>; :Buffers<CR>
-" nmap <leader>f :Denite file/rec<CR>
 nnoremap <silent> <leader>f :Files<CR>
-nmap <leader>t :DeniteProjectDir file/rec<CR>i
+"nmap <leader>t :DeniteProjectDir file/rec<CR>i
 nnoremap <leader>g :Rg<CR>
-nnoremap <leader>j :call ToggleZoom(v:true)<CR>:DeniteCursorWord grep:.<CR>
-" nnoremap <leader>: :Denite command_history<CR>
 nnoremap <leader>: :History:<CR>
-
-" Define Denite mappings while in 'filter' mode
-"   <C-o>          - Switch to normal mode inside of search results
-"   <Esc> or <C-c> - Exit denite window in any mode
-"   <CR>           - Open currently selected file in any mode
-"   <C-t>          - Open currently selected file in a new tab
-"   <C-v>          - Open currently selected file a vertical split
-"   <C-h>          - Open currently selected file in a horizontal split
-autocmd FileType denite-filter call s:denite_filter_my_settings()
-function! s:denite_filter_my_settings() abort
-  imap <silent><buffer> <C-o>
-  \ <Plug>(denite_filter_quit)
-  nnoremap <silent><buffer><expr> <Esc>
-  \ denite#do_map('quit')
-  inoremap <silent><buffer><expr> <C-c>
-  \ denite#do_map('quit')
-  inoremap <silent><buffer><expr> <CR>
-  \ denite#do_map('do_action')
-  inoremap <silent><buffer><expr> <C-t>
-  \ denite#do_map('do_action', 'tabopen')
-  inoremap <silent><buffer><expr> <C-v>
-  \ denite#do_map('do_action', 'vsplit')
-  inoremap <silent><buffer><expr> <C-h>
-  \ denite#do_map('do_action', 'split')
-endfunction
-
-" Define mappings while in Denite window
-"   o or <CR>             - Opens currently selected file
-"   q or <Esc> or <C-c>   - Quit Denite window
-"   d                     - Delete currenly selected file
-"   p                     - Preview currently selected file
-"   <C-o> or i            - Switch to insert mode for filtering buffer
-"   <C-t>                 - Open currently selected file in a new tab
-"   <C-v>                 - Open currently selected file a vertical split
-"   <C-h>                 - Open currently selected file in a horizontal split
-autocmd FileType denite call s:denite_my_settings()
-function! s:denite_my_settings() abort
-  nnoremap <silent><buffer><expr> <CR>
-  \ denite#do_map('do_action')
-  nnoremap <silent><buffer><expr> o
-  \ denite#do_map('do_action')
-  nnoremap <silent><buffer><expr> q
-  \ denite#do_map('quit')
-  nnoremap <silent><buffer><expr> <Esc>
-  \ denite#do_map('quit')
-  nnoremap <silent><buffer><expr> <C-c>
-  \ denite#do_map('quit')
-  nnoremap <silent><buffer><expr> d
-  \ denite#do_map('do_action', 'delete')
-  nnoremap <silent><buffer><expr> p
-  \ denite#do_map('do_action', 'preview')
-  nnoremap <silent><buffer><expr> i
-  \ denite#do_map('open_filter_buffer')
-  nnoremap <silent><buffer><expr> <C-o>
-  \ denite#do_map('open_filter_buffer')
-  nnoremap <silent><buffer><expr> <C-t>
-  \ denite#do_map('do_action', 'tabopen')
-  nnoremap <silent><buffer><expr> <C-v>
-  \ denite#do_map('do_action', 'vsplit')
-  nnoremap <silent><buffer><expr> <C-h>
-  \ denite#do_map('do_action', 'split')
-endfunction
-
+"nnoremap <leader>j :call ToggleZoom(v:true)<CR>:DeniteCursorWord grep:.<CR>
 
 " Ctrl-hjkl for quick window switching (Vim split panes)
 nmap <C-h> <C-w>h
