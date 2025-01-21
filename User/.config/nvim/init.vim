@@ -384,7 +384,7 @@ let g:neosnippet#enable_conceal_markers = 0
 " All directories and files will trigger Rooter
 let g:rooter_targets = '/,*'
 " Root has these directories or filenames
-let g:rooter_patterns = ['.git', 'Makefile', 'node_modules', 'package.json']
+let g:rooter_patterns = ['.git', 'Makefile', '.editorconfig']
 
 
 " === Nvim-Treesitter ===
