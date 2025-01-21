@@ -165,8 +165,15 @@ Plug 'windwp/nvim-ts-autotag'
 " Provide 'sticky scroll', showing enclosing function at top
 Plug 'nvim-treesitter/nvim-treesitter-context'
 
-" Provide private AI-based autocompletion
-Plug 'codota/tabnine-nvim', { 'do': './dl_binaries.sh' }
+" Use AI completions
+" Needs g:copilot_proxy_strict_ssl = v:false in init.vim.
+" Also needs NODE_TLS_REJECT_UNAUTHORIZED=0 in ~/.zshrc.
+" See --> :help g:copilot_proxy_strict_ssl
+"
+" To disable virtual text and rely on coc-copilot panel, needs hack in:
+" ~/.local/share/nvim/plugged/copilot.vim/autoload/copilot.vim
+" See -> https://github.com/hexh250786313/coc-copilot/issues/12
+Plug 'github/copilot.vim'
 
 " Toggle full-pane windows like Tmux
 " Use C-w m to toggle. Provides zoom#statusline() API
