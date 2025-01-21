@@ -652,24 +652,25 @@ autocmd FileType javascript.jsx JsPreTmpl
 " Change mappings from meta-based to control-based
 "let g:AutoPairsCompatibleMaps = 0
 
-" === tabnine options ===
-lua <<EOF
-require('tabnine').setup({
-  disable_auto_comment=true,
-  accept_keymap="<Tab>",
-  dismiss_keymap = "<C-]>",
-  debounce_ms = 800,
-  suggestion_color = {gui = "#808080", cterm = 244},
-  exclude_filetypes = {"TelescopePrompt"}
-})
-EOF
+
+" === Github Copilot options ===
+" Disable SSL certificate verificaiton for Zscaler VPN.
+" Also needs NODE_TLS_REJECT_UNAUTHORIZED=0 in ~/.zshrc.
+" See --> :help g:copilot_proxy_strict_ssl
+let g:copilot_proxy_strict_ssl = v:false
+
+" Workspace folders to improve quality of suggestions.
+let g:copilot_workspace_folders = [
+  \ "~/kode/creativestudios-brc-backend"
+  \]
+
 
 " === fzf options ===
 " [Buffers] Jump to the existing window if possible
 let g:fzf_buffers_jump = 0
-" Enable highlight of found phrase in preview pane. All themes are buggy except base16
 
-" Increase layout of FZF UI and preview window; highlight the match
+" Enable highlight of found phrase in preview pane. All themes are buggy except base16.
+" Also increase layout of FZF UI and preview window; highlight the match.
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
 let $FZF_DEFAULT_OPTS="--preview-window 'right,50%' --layout reverse --margin=0,1,0,1 --padding=0"
 let $FZF_PREVIEW_COMMAND="COLORTERM=truecolor bat --theme='base16' --style=numbers --color=always --highlight-line 1:1 {}"
