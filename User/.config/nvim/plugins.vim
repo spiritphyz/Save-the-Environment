@@ -173,6 +173,8 @@ Plug 'nvim-treesitter/nvim-treesitter-context'
 " To disable virtual text and rely on coc-copilot panel, needs hack in:
 " ~/.local/share/nvim/plugged/copilot.vim/autoload/copilot.vim
 " See -> https://github.com/hexh250786313/coc-copilot/issues/12
+"
+" Run :Copilot setup to authenticate on first install.
 Plug 'github/copilot.vim'
 
 " Chat with Copilot in Neovim
