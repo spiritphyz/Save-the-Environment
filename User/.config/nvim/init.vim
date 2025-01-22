@@ -639,7 +639,6 @@ augroup matchup_matchparen_highlight
   autocmd ColorScheme * hi MatchParen guifg=black guibg=darkgray
 augroup END
 
-
 " === vim-js-pretty-template ===
 " Register tag name associated the filetype
 call jspretmpl#register_tag('gql', 'graphql')
@@ -647,11 +646,9 @@ call jspretmpl#register_tag('gql', 'graphql')
 autocmd FileType javascript JsPreTmpl
 autocmd FileType javascript.jsx JsPreTmpl
 
-
 " === LunarWatcher/auto-pairs options ===
 " Change mappings from meta-based to control-based
 "let g:AutoPairsCompatibleMaps = 0
-
 
 " === Github Copilot options ===
 " Disable SSL certificate verificaiton for Zscaler VPN.
@@ -661,9 +658,37 @@ let g:copilot_proxy_strict_ssl = v:false
 
 " Workspace folders to improve quality of suggestions.
 let g:copilot_workspace_folders = [
-  \ "~/kode/creativestudios-brc-backend"
+  \ "~/kode"
   \]
 
+" === coc-copilot options ===
+" Need to manually update completion panel because
+" async completion makes coc update too slowly.
+" https://github.com/neoclide/coc.nvim/issues/5028
+inoremap <silent><expr><c-l> coc#refresh()
+
+" === CopilotChat.nvim options ===
+" For nvim < 0.11.0, improve experience, don't auto-accept first option.
+set completeopt=menuone,noinsert,noselect
+
+lua << EOF
+require("CopilotChat").setup {
+  -- model = 'gpt-4o', -- Default model to use, see ':CopilotChatModels' for available models (can be specified manually in prompt via $).
+  model = 'claude-3.5-sonnet',
+  mappings = {
+    accept_diff = {
+      -- Avoid <C-y> binding for "scroll up"
+      normal = '<C-g>',
+      insert = '<C-g>',
+    },
+    reset = {
+      -- Avoid <C-l> binding for "activate righthand split"
+      normal = '<C-r>',
+      insert = '<C-r>',
+    },
+  },
+}
+EOF
 
 " === fzf options ===
 " [Buffers] Jump to the existing window if possible
@@ -1156,3 +1181,13 @@ map <leader>s :call ToggleZoom(v:true)<CR>:%s/
 " === vim-matchup shorcuts ===
 "  <leader>? - show position in code as breadcrumb outline
 nnoremap <leader>? :<c-u>MatchupWhereAmI??<cr>
+
+" === AI shorcuts ===
+" Toggle chat window, mnemonic is "AI Chat"
+nnoremap <leader>ac :CopilotChatToggle<CR>
+" Open chat window with input, mnemonic is "AI Chat Input"
+nnoremap <leader>aci :CopilotChat<SPACE>
+" Open chat window with input using Claude model
+nnoremap <leader>acc :CopilotChat<SPACE>$claude-3.5-sonnet<SPACE>
+" Open chat window with input using gpt-4o model
+nnoremap <leader>aco :CopilotChat<SPACE>$gpt-4o<SPACE>
