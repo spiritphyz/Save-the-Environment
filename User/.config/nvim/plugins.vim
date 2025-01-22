@@ -175,6 +175,16 @@ Plug 'nvim-treesitter/nvim-treesitter-context'
 " See -> https://github.com/hexh250786313/coc-copilot/issues/12
 Plug 'github/copilot.vim'
 
+" Chat with Copilot in Neovim
+" For more accurate token counts, install tiktoken.
+" Install Lua 5.1 --> brew install luajit
+" Install luarocks --> brew install luarocks
+" Non-sudo home install --> luarocks install --lua-version 5.1 tiktoken_core
+" cp ~/.luarocks/lib/lua/5.1/tiktoken_core.so /usr/local/lib/lua/5.1/
+" checkhealth CopilotChat --> OK tiktoken_core: installed
+Plug 'nvim-lua/plenary.nvim'
+Plug 'CopilotC-Nvim/CopilotChat.nvim'
+
 " Toggle full-pane windows like Tmux
 " Use C-w m to toggle. Provides zoom#statusline() API
 " Plug 'dhruvasagar/vim-zoom'
