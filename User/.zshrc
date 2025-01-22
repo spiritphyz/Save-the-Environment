@@ -119,6 +119,9 @@ function cheat() {
   curl cht.sh/$1
 }
 
+# Avoid SSL certificate error with Copilot and VPN software
+export NODE_TLS_REJECT_UNAUTHORIZED=0
+
 # Save command history; helps to put at end of file
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000000
