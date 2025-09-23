@@ -27,6 +27,7 @@ keybind = super+k=goto_split:top
 keybind = super+j=goto_split:bottom
 keybind = super+h=goto_split:left
 keybind = super+l=goto_split:right
+keybind = alt+super+m=toggle_split_zoom
 
 # Equalize splits with cmd+alt+w, then press 'e'
 keybind = shift+super+k=resize_split:up,10
