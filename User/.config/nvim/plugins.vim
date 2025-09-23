@@ -74,9 +74,10 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend upda
 Plug 'elzr/vim-json'
 
 " -- Markdown helpers --
-Plug 'godlygeek/tabular', { 'for': 'markdown' }   " allows table formatting
-"Plug 'plasticboy/vim-markdown'                   " disable, breaks vim-one
-Plug 'gabrielelana/vim-markdown'                  " doesn't have code folding
+" Plug 'godlygeek/tabular', { 'for': 'markdown' }   " allows table formatting
+" Plug 'plasticboy/vim-markdown'                    " disable, breaks vim-one
+" Plug 'gabrielelana/vim-markdown'                  " doesn't have code folding
+Plug 'MeanderingProgrammer/render-markdown.nvim'  " for code fenced CopilotChat
 
 " -- Git helpers --
 " ]c and [c to move between changed git chunks
@@ -84,7 +85,7 @@ Plug 'mhinz/vim-signify'      " Show symbols in gutter column, :SignifyHunkDiff
 Plug 'tpope/vim-fugitive'     " Provides :Git commands, branch indicator
 
 " Live preview in browser with :MarkdownPreview
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug'], 'on': 'MarkdownPreview' }
+" Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug'], 'on': 'MarkdownPreview' }
 
 " Surround tag helper
 Plug 'tpope/vim-surround'
@@ -101,7 +102,7 @@ Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-commentary'
 
 " Snippet support
-" In insert mode, type snippet, then ctrl-k
+" In insert mode, type snippet, then alt-;
 " In command mode, ctrl-k is navigate to lower Vim split
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
@@ -198,8 +199,6 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Restore unnamed buffers like Sublime, Notepad++
 " Doesn't seem to have much utlity right now
 " Plug 'abdalrahman-ali/vim-remembers'
-
-
 
 " Allows fancy icon glyphs in lightline tabs and NERDTree.
 " Should be loaded as last plugin.
