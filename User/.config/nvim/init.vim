@@ -78,32 +78,35 @@ set backspace=indent,eol,start
 autocmd BufReadPost,FileReadPost * normal zR
 set nofoldenable
 
+" Automatically set PHP filetype without regex for <? at top of file
+autocmd BufNewFile,BufRead *.php set filetype=php
+
 
 " ============================================================================ "
 " ===                           PLUGIN OPTIONS                             === "
 " ============================================================================ "
 
 " === vim-markdown options ===
-let g:markdown_enable_mappings = 0
-let g:vim_markdown_folding_disabled = 1
-let g:markdown_enable_spell_checking = 0
-let g:vim_markdown_fenced_languages = ['bash=sh', 'c', 'css', 'go', 'html', 'javascript', 'python', 'ruby', 'scss']
-let g:vim_markdown_frontmatter = 1           " highlight YAML front matter
-let g:vim_markdown_json_frontmatter = 1      " highlight JSON front matter
-let g:vim_markdown_conceal = 0
-let g:vim_markdown_new_list_item_indent = 2
-autocmd FileType markdown highlight htmlH1 cterm=none ctermfg=70
-autocmd BufNewFile,BufRead *.md set filetype=markdown
+" let g:markdown_enable_mappings = 0
+" let g:vim_markdown_folding_disabled = 1
+" let g:markdown_enable_spell_checking = 0
+" let g:vim_markdown_fenced_languages = ['bash=sh', 'c', 'css', 'go', 'html', 'javascript', 'python', 'ruby', 'scss']
+" let g:vim_markdown_frontmatter = 1           " highlight YAML front matter
+" let g:vim_markdown_json_frontmatter = 1      " highlight JSON front matter
+" let g:vim_markdown_conceal = 0
+" let g:vim_markdown_new_list_item_indent = 2
+" autocmd FileType markdown highlight htmlH1 cterm=none ctermfg=70
+" autocmd BufNewFile,BufRead *.md set filetype=markdown
 
 
 " === markdown-preview-nvim options ===
 " set to 1, preview server available to others in your network
 " by default, the server listens on localhost (127.0.0.1)
 " default: 0
-let g:mkdp_open_to_the_world = 1
+" let g:mkdp_open_to_the_world = 1
 
 " use a custom port to start server or random for empty
-let g:mkdp_port = '8090'
+" let g:mkdp_port = '8090'
 
 
 " === Lightline options ===
@@ -333,6 +336,16 @@ function! CheckBackspace() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
+" Remap <C-j> and <C-k> to scroll float windows/popups
+if has('nvim-0.4.0') || has('patch-8.2.0750')
+  nnoremap <silent><nowait><expr> <C-j> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-j>"
+  nnoremap <silent><nowait><expr> <C-k> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-k>"
+  inoremap <silent><nowait><expr> <C-j> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-k> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  vnoremap <silent><nowait><expr> <C-j> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-j>"
+  vnoremap <silent><nowait><expr> <C-k> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-k>"
+endif
+
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin.
 " Check with --> :verbose imap <cr>
@@ -366,12 +379,12 @@ endif
 
 
 " === NeoSnippet options ===
-" Map <C-k> as shortcut to activate snippet in insert mode
-" Type snippet's alias, then ctrl-k to circulate through insertion areas
-" In command mode, ctrl-k is my Vim shortcut to navigate to lower split pane
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-xmap <C-k> <Plug>(neosnippet_expand_target)
+" Bind alt-; as shortcut to activate snippet in insert mode.
+" Type snippet's alias, then alt-; to circulate through insertion areas.
+" In command mode, ctrl-k is my Vim shortcut to navigate to lower split pane.
+imap <M-;> <Plug>(neosnippet_expand_or_jump)
+smap <M-;> <Plug>(neosnippet_expand_or_jump)
+xmap <M-;> <Plug>(neosnippet_expand_target)
 
 " Load custom snippets from snippets folder
 let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
@@ -397,14 +410,14 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = {          -- "all" or a list of languages
     "bash", "c", "c_sharp", "clojure", "css",
     "dockerfile", "go", "html", "http",
-    "java", "javascript", "json", "julia", "lua", "nix",
-    "php", "python", "regex", "scheme", "scss",
-    "toml", "tsx", "typescript", "vim", "vue", "yaml",
+    "java", "javascript", "json", "julia", "lua",
+    "markdown", "markdown_inline", "nix",
+    "php", "php_only", "python", "regex", "scheme", "scss",
+    "toml", "tsx", "typescript", "twig", "vim", "vue", "yaml",
   },
   highlight = {
     enable = true,              -- false will disable the whole extension
     disable = {                 -- list of language that will be disabled
-      "c", "markdown", "rust"
     },
   },
   indent = {                    -- indent based on = operator, experimental feature
@@ -613,6 +626,26 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 
+" === Configure render-markdown.nvim ===
+" Needs markdown filetype for copilot-chat filetype in copilot settings.
+" https://github.com/jellydn/lazy-nvim-ide/blob/main/lua/plugins/extras/copilot-chat-v2.lua
+lua << EOF
+require('render-markdown').setup({
+    enabled = false,
+    completions = { lsp = { enabled = true } },
+    opts = {
+      file_types = { "markdown", "copilot-chat" },
+    },
+    ft = { "markdown", "copilot-chat" },
+    code = {
+      style = 'normal',
+    },
+    heading = {
+      atx = false,
+    },
+})
+EOF
+
 " === vim-matchup ===
 " Place offscreen match as popup at top of screen with syntax highlighting.
 " Highlighting popup cause performance degradation because Neovim doesn't provide relative line number
@@ -651,14 +684,17 @@ autocmd FileType javascript.jsx JsPreTmpl
 "let g:AutoPairsCompatibleMaps = 0
 
 " === Github Copilot options ===
-" Disable SSL certificate verificaiton for Zscaler VPN.
+" Disable SSL certificate verification for Zscaler VPN.
 " Also needs NODE_TLS_REJECT_UNAUTHORIZED=0 in ~/.zshrc.
 " See --> :help g:copilot_proxy_strict_ssl
 let g:copilot_proxy_strict_ssl = v:false
 
 " Workspace folders to improve quality of suggestions.
 let g:copilot_workspace_folders = [
-  \ "~/kode"
+  \ "~/kode/creativestudios-brc-backend",
+  \ "~/kode/creativestudios-brc-frontend",
+  \ "~/kode/creativestudios-misp-external-site",
+  \ "~/kode/creativestudios-semapp-site"
   \]
 
 " === coc-copilot options ===
@@ -673,13 +709,21 @@ set completeopt=menuone,noinsert,noselect
 
 lua << EOF
 require("CopilotChat").setup {
-  -- model = 'gpt-4o', -- Default model to use, see ':CopilotChatModels' for available models (can be specified manually in prompt via $).
-  model = 'claude-3.5-sonnet',
+  -- Default model to use, see ':CopilotChatModels' for available models
+  -- (can be specified manually in prompt via $).
+  -- model = 'gpt-4o',
+  -- model = 'claude-3.7-sonnet',
+  model = 'claude-sonnet-4',
   mappings = {
     accept_diff = {
       -- Avoid <C-y> binding for "scroll up"
       normal = '<C-g>',
       insert = '<C-g>',
+    },
+    -- Avoid <C-c> to close chat window
+    close = {
+      normal = 'q',
+      insert = '<C-q>',
     },
     reset = {
       -- Avoid <C-l> binding for "activate righthand split"
@@ -688,6 +732,20 @@ require("CopilotChat").setup {
     },
   },
 }
+-- Custom buffer for CopilotChat
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = "copilot-*",
+  callback = function()
+    vim.opt_local.relativenumber = true
+    vim.opt_local.number = true
+
+    -- Get current filetype and set it to markdown if the current filetype is copilot-chat
+    local ft = vim.bo.filetype
+    if ft == "copilot-chat" then
+      vim.bo.filetype = "markdown"
+    end
+  end,
+})
 EOF
 
 " === fzf options ===
@@ -697,7 +755,7 @@ let g:fzf_buffers_jump = 0
 " Enable highlight of found phrase in preview pane. All themes are buggy except base16.
 " Also increase layout of FZF UI and preview window; highlight the match.
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
-let $FZF_DEFAULT_OPTS="--preview-window 'right,50%' --layout reverse --margin=0,1,0,1 --padding=0"
+let $FZF_DEFAULT_OPTS="--preview-window 'top,80%' --layout reverse --margin=0,1,0,1 --padding=0"
 let $FZF_PREVIEW_COMMAND="COLORTERM=truecolor bat --theme='base16' --style=numbers --color=always --highlight-line 1:1 {}"
 
 
@@ -800,7 +858,8 @@ set inccommand=split
 
 " Use F2 key to enable paste mode before pasting in large amount of text
 " to avoid auto-formatting. Press F2 again to exit paste mode.
-set pastetoggle=<F4>
+" This option doesn't work in Neovim 0.11.x for some reason.
+"set pastetoggle=<F4>
 
 " Reload file after disk change, then notify.
 " Guard against command history window errors: https://unix.stackexchange.com/questions/149209
@@ -855,6 +914,14 @@ set smartcase                   " when already has one capital letter
 
 " Show hybrid line numbers (relative except for current line)
 set number relativenumber
+
+" Better behavior with opening splits, like CopilotChatToggle
+" https://github.com/CopilotC-Nvim/CopilotChat.nvim/discussions/124
+lua <<EOF
+  -- vim.opt.splitright=false
+  vim.opt.splitright=true
+  vim.opt.splitbelow=true
+EOF
 
 " For non-focused buffers, show absolute line numbers
 function! ToggleLineNumsAndGutter()
@@ -963,13 +1030,22 @@ endif
 " Don't automatically resize window splits when creating or closing windows.
 " Helps NERDTreeToggle not clobber current widths of horizontal splits.
 " https://stackoverflow.com/a/61732698
-set noequalalways
+"set noequalalways
 
 " === Miscellaneous ===
 " Enable spellcheck for markdown files
 "autocmd BufRead,BufNewFile *.md setlocal spell
 set spelllang=en
 set spellfile=$HOME/.config/nvim/spell/en.utf-8.add
+
+" Display current Neovim file in Ghostty terminal emulator tab title
+lua << EOF
+  -- %F: Full path to the current file
+  -- %f: Relative path to file in the buffer
+  -- %t: Current filename
+  vim.opt.title = true
+  vim.opt.titlestring = "%t"
+EOF
 
 
 " ============================================================================ "
@@ -984,6 +1060,8 @@ let mapleader="\<Space>"
 " Save file [can't put this comment at end of line or else cursor jumps]
 " https://vi.stackexchange.com/a/6922
 nnoremap <leader>w :w!<CR>
+" Close tab
+nnoremap <silent> <leader>c :tabclose<CR>
 " Toggle highlight at column 80
 nnoremap <silent> <leader>cc :execute "set colorcolumn=" . (&colorcolumn == "" ? "80" : "")<CR>
 " Toggle line numbers and gutter (signcolumn) for easier Tmux copy
@@ -1017,13 +1095,22 @@ nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1
 nnoremap <leader>P :Prettier<CR>
 
 
-" === FZF shortcuts ===
+" === Denite shortcuts === "
+"   <leader>; - Fuzzy search open buffers (like FZF or Ctrl-P)
+"   <leader>f - Browse list of files in current directory
+"   <leader>t - Search for files in project directory
+"   <leader>g - Search curr directory for given term, close window if no results
+"   <leader>j - Search curr directory for occurrences of word under cursor
+"   <leader>: - Fuzzy search command history (non-fuzzy default is q:)
+"           i - After triggers above, press 'i' to enter fuzzy filter mode
+"nmap <leader>; :Denite buffer<CR>
 nmap <leader>; :Buffers<CR>
+" nmap <leader>f :Denite file/rec<CR>
 nnoremap <silent> <leader>f :Files<CR>
 "nmap <leader>t :DeniteProjectDir file/rec<CR>i
 nnoremap <leader>g :Rg<CR>
-nnoremap <leader>: :History:<CR>
 "nnoremap <leader>j :call ToggleZoom(v:true)<CR>:DeniteCursorWord grep:.<CR>
+nnoremap <leader>: :History:<CR>
 
 " Ctrl-hjkl for quick window switching (Vim split panes)
 nmap <C-h> <C-w>h
@@ -1102,7 +1189,7 @@ nnoremap tc :tabclose<CR>
 " === NERDTree key mappings ===
 "  <leader>r - Toggle NERDTree panel (<leader>n is next buffer)
 "  <leader>e - Show current file in containing folder
-map <leader>r :NERDTreeToggle<CR>
+map <leader>r :tabedit<CR>:NERDTreeToggle<CR>
 map <leader>e :NERDTreeFind<CR>
 
 
@@ -1171,7 +1258,6 @@ if has('nvim-0.4.0') || has('patch-8.2.0750')
   inoremap <silent><nowait><expr> <C-y> coc#pum#visible() ? coc#pum#confirm() : "\<C-y>"
 endif
 
-
 " === Search shorcuts ===
 "  <leader>s - For all lines in file, search and replace
 " Call ToggleZoom first to avoid resetting split layout
@@ -1184,10 +1270,17 @@ nnoremap <leader>? :<c-u>MatchupWhereAmI??<cr>
 
 " === AI shorcuts ===
 " Toggle chat window, mnemonic is "AI Chat"
-nnoremap <leader>ac :CopilotChatToggle<CR>
+"nnoremap <leader>ac :CopilotChatToggle<CR><C-w>=
+nnoremap <leader>ac :tabedit %<CR>:CopilotChatToggle<CR><C-w>=
+" Toggle chat window while loading last chat, mnemonic is "AI Chat Load"
+nnoremap <leader>acl :CopilotChatLoad<CR>
 " Open chat window with input, mnemonic is "AI Chat Input"
 nnoremap <leader>aci :CopilotChat<SPACE>
 " Open chat window with input using Claude model
-nnoremap <leader>acc :CopilotChat<SPACE>$claude-3.5-sonnet<SPACE>
+nnoremap <leader>acc :CopilotChat<SPACE>$claude-3.7-sonnet<SPACE>
 " Open chat window with input using gpt-4o model
 nnoremap <leader>aco :CopilotChat<SPACE>$gpt-4o<SPACE>
+
+" === Window splitting shorcuts ===
+nnoremap <leader>sp :sp<CR><C-w>=
+nnoremap <leader>vsp :vsp<CR><C-w>=
