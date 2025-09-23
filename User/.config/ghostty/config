@@ -15,18 +15,17 @@ font-feature = -dlig
 window-padding-y = 2
 window-padding-x = 4
 
-# Follow Tmux convention for horiz, vert splits
+# Follow Tmux convention for horiz, vert splits.
 keybind = alt+super+'=new_split:down
 keybind = alt+super+5=new_split:right
 
-keybind = alt+ctrl+super+k=goto_split:top
-keybind = alt+ctrl+super+j=goto_split:bottom
-keybind = alt+ctrl+super+h=goto_split:left
-keybind = alt+ctrl+super+l=goto_split:right
+keybind = super+k=goto_split:top
+keybind = super+j=goto_split:bottom
+keybind = super+h=goto_split:left
+keybind = super+l=goto_split:right
 
 # Equalize splits with cmd+alt+w, then press 'e'
-keybind = alt+super+w>e=equalize_splits
-keybind = shift+alt+super+k=resize_split:up,10
-keybind = shift+alt+super+j=resize_split:down,10
-keybind = shift+alt+super+h=resize_split:left,10
-keybind = shift+alt+super+l=resize_split:right,10
+keybind = shift+super+k=resize_split:up,10
+keybind = shift+super+j=resize_split:down,10
+keybind = shift+super+h=resize_split:left,10
+keybind = shift+super+l=resize_split:right,10
