@@ -1,5 +1,9 @@
-# custom-shader = shaders/bloom1.glsl
+#custom-shader   = shaders/just-snow.glsl
+custom-shader   = shaders/cursor_blaze.glsl
 theme           = Monokai Pro Ristretto
+
+# Use prerelease builds
+auto-update-channel = tip
 
 copy-on-select          = clipboard
 mouse-hide-while-typing = true
@@ -15,7 +19,7 @@ font-feature = -dlig
 window-padding-y = 2
 window-padding-x = 4
 
-# Follow Tmux convention for horiz, vert splits.
+# Follow Tmux convention for horiz, vert splits
 keybind = alt+super+'=new_split:down
 keybind = alt+super+5=new_split:right
 
