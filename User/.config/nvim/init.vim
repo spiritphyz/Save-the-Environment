@@ -382,9 +382,11 @@ endif
 " Bind alt-; as shortcut to activate snippet in insert mode.
 " Type snippet's alias, then alt-; to circulate through insertion areas.
 " In command mode, ctrl-k is my Vim shortcut to navigate to lower split pane.
-imap <M-;> <Plug>(neosnippet_expand_or_jump)
-smap <M-;> <Plug>(neosnippet_expand_or_jump)
-xmap <M-;> <Plug>(neosnippet_expand_target)
+"
+" Plugin is abandoned, need to find another snippet plugin.
+" imap <M-;> <Plug>(neosnippet_expand_or_jump)
+" smap <M-;> <Plug>(neosnippet_expand_or_jump)
+" xmap <M-;> <Plug>(neosnippet_expand_target)
 
 " Load custom snippets from snippets folder
 let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
