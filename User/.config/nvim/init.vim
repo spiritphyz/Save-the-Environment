@@ -409,6 +409,7 @@ require'nvim-treesitter.configs'.setup {
   autotag = {                   -- autoclose HTML tags
     enable = true,
   },
+  auto_install = true,
   ensure_installed = {          -- "all" or a list of languages
     "bash", "c", "c_sharp", "clojure", "css",
     "dockerfile", "go", "html", "http",
@@ -715,7 +716,10 @@ require("CopilotChat").setup {
   -- (can be specified manually in prompt via $).
   -- model = 'gpt-4o',
   -- model = 'claude-3.7-sonnet',
-  model = 'claude-sonnet-4',
+  -- model = 'claude-sonnet-4',
+  -- model = 'gpt-5-codex', <-- only on VSCode, not CLI
+  -- model = 'claude-sonnet-4.5',
+  model = 'claude-sonnet-4.5',
   mappings = {
     accept_diff = {
       -- Avoid <C-y> binding for "scroll up"
@@ -1076,6 +1080,7 @@ nnoremap <leader>i :IBLToggle<CR>
 nnoremap <leader>u :call ToggleZoom(v:true)<CR>:%s/<c-r><c-w>//g<left><left>
 " Close buffer w/o closing split
 nnoremap <leader>q :Bwipeout<CR>
+nnoremap <leader>Q :Bwipeout!<CR>
 " Show hunk diff in gutter
 nnoremap <leader>h :SignifyHunkDiff<CR>
 " Switch to next buffer
@@ -1185,7 +1190,7 @@ nmap <leader>/ gcc
 
 " === key mappings for tab pages ===
 nnoremap t. :tabedit %<CR>
-nnoremap tc :tabclose<CR>
+nnoremap tt :tabclose<CR>
 
 
 " === NERDTree key mappings ===
@@ -1273,11 +1278,11 @@ nnoremap <leader>? :<c-u>MatchupWhereAmI??<cr>
 " === AI shorcuts ===
 " Toggle chat window, mnemonic is "AI Chat"
 "nnoremap <leader>ac :CopilotChatToggle<CR><C-w>=
-nnoremap <leader>ac :tabedit %<CR>:CopilotChatToggle<CR><C-w>=
+nnoremap <leader>aa :tabedit %<CR>:CopilotChatToggle<CR><C-w>=
 " Toggle chat window while loading last chat, mnemonic is "AI Chat Load"
 nnoremap <leader>acl :CopilotChatLoad<CR>
 " Open chat window with input, mnemonic is "AI Chat Input"
-nnoremap <leader>aci :CopilotChat<SPACE>
+nnoremap <leader>aai :CopilotChat<SPACE>
 " Open chat window with input using Claude model
 nnoremap <leader>acc :CopilotChat<SPACE>$claude-3.7-sonnet<SPACE>
 " Open chat window with input using gpt-4o model
