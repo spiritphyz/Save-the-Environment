@@ -104,8 +104,17 @@ Plug 'tpope/vim-commentary'
 " Snippet support
 " In insert mode, type snippet, then alt-;
 " In command mode, ctrl-k is navigate to lower Vim split
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
+" Requires deplete plugin for completion.
+" if has('nvim')
+"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" else
+"   Plug 'Shougo/deoplete.nvim'
+"   Plug 'roxma/nvim-yarp'
+"   Plug 'roxma/vim-hug-neovim-rpc'
+" endif
+" let g:deoplete#enable_at_startup = 1
+" Plug 'Shougo/neosnippet'
+" Plug 'Shougo/neosnippet-snippets'
 
 " HTML and CSS selector snippets
 " Trigger completion with C-y,
