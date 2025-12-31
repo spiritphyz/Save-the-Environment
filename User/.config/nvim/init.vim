@@ -71,12 +71,12 @@ set backspace=indent,eol,start
 "set virtualedit=all
 
 " Allow folding based on TreeSitter syntax
-" set foldmethod=expr
-" set foldexpr=nvim_treesitter#foldexpr()
+"set foldmethod=expr
+"set foldexpr=nvim_treesitter#foldexpr()
 
 " When opening files, default to all folds open, not closed
-autocmd BufReadPost,FileReadPost * normal zR
-set nofoldenable
+"autocmd BufReadPost,FileReadPost * normal zR
+"set nofoldenable
 
 " Automatically set PHP filetype without regex for <? at top of file
 autocmd BufNewFile,BufRead *.php set filetype=php
@@ -200,20 +200,9 @@ function! LightlineCocHints() abort
   return s:lightline_coc_diagnostic('hints', 'hint')
 endfunction
 
-" function! LightlineVimZoomStatus() abort
-  " let status = g:zoom#statusline()
-  " if status == 'zoomed'
-  "   return '🔎'
-  " else
-  "   return ''
-" endfunction
-
 autocmd User CocDiagnosticChange call lightline#update()
 
 " Configure statusline
-" Old colorscheme was ayu_mirage
-" \   'zoomstate'         : 'LightlineVimZoomStatus'
-" \             [ 'zoomstate', 'gitbranch', 'readonly', 'filename', 'coc_error', 'coc_warning', 'coc_hint', 'coc_info' ] ]
 let g:lightline = {
       \ 'colorscheme': 'tokyonight',
       \ 'component': {
@@ -378,23 +367,6 @@ if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
 endif
 
 
-" === NeoSnippet options ===
-" Bind alt-; as shortcut to activate snippet in insert mode.
-" Type snippet's alias, then alt-; to circulate through insertion areas.
-" In command mode, ctrl-k is my Vim shortcut to navigate to lower split pane.
-"
-" Plugin is abandoned, need to find another snippet plugin.
-" imap <M-;> <Plug>(neosnippet_expand_or_jump)
-" smap <M-;> <Plug>(neosnippet_expand_or_jump)
-" xmap <M-;> <Plug>(neosnippet_expand_target)
-
-" Load custom snippets from snippets folder
-let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
-
-" Hide conceal markers
-let g:neosnippet#enable_conceal_markers = 0
-
-
 " === Rooter options ===
 " All directories and files will trigger Rooter
 let g:rooter_targets = '/,*'
@@ -403,15 +375,51 @@ let g:rooter_patterns = ['.git', 'Makefile', '.editorconfig']
 
 
 " === Nvim-Treesitter ===
-" configure treesitter
 lua << EOF
+-- Register blade parser BEFORE config setup
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+parser_config.blade = {
+  install_info = {
+    url = "https://github.com/EmranMR/tree-sitter-blade",
+    files = {"src/parser.c", "src/scanner.c"},  -- Add scanner.c
+    branch = "main",
+  },
+  filetype = "blade"
+}
+
+-- Set up filetype detection
+vim.filetype.add({
+  extension = {
+    ['blade.php'] = 'blade',
+  },
+  pattern = {
+    ['.*%.blade%.php'] = 'blade',
+  },
+})
+
+-- Also add this autocmd to ensure blade filetype takes precedence
+-- over Neovim's php filetype detection.
+vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
+  pattern = "*.blade.php",
+  command = "set filetype=blade",
+})
+
+-- Enable treesitter for blade files
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "blade",
+  callback = function()
+    vim.treesitter.start()
+  end,
+})
+
+-- Continue to configure Tree-sitter
 require'nvim-treesitter.configs'.setup {
   autotag = {                   -- autoclose HTML tags
     enable = true,
   },
   auto_install = true,
   ensure_installed = {          -- "all" or a list of languages
-    "bash", "c", "c_sharp", "clojure", "css",
+    "bash", "blade", "c", "c_sharp", "clojure", "css",
     "dockerfile", "go", "html", "http",
     "java", "javascript", "json", "julia", "lua",
     "markdown", "markdown_inline", "nix",
@@ -419,9 +427,10 @@ require'nvim-treesitter.configs'.setup {
     "toml", "tsx", "typescript", "twig", "vim", "vue", "yaml",
   },
   highlight = {
-    enable = true,              -- false will disable the whole extension
-    disable = {                 -- list of language that will be disabled
-    },
+    enable = true,                  -- false will disable the whole extension
+    disable = function(lang, bufnr) -- Disable in files with more than 5K
+      return vim.api.nvim_buf_line_count(bufnr) > 5000
+    end,
   },
   indent = {                    -- indent based on = operator, experimental feature
     enable = true,
@@ -471,8 +480,8 @@ EOF
 lua <<EOF
 -- Configure 'sticky scroll'
 require'treesitter-context'.setup {
-  -- enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
   enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+  enable_autocmd = false,  -- Important for performance
   max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
   trim_scope = 'outer', -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
   min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
@@ -634,28 +643,37 @@ EOF
 " https://github.com/jellydn/lazy-nvim-ide/blob/main/lua/plugins/extras/copilot-chat-v2.lua
 lua << EOF
 require('render-markdown').setup({
-    enabled = false,
-    completions = { lsp = { enabled = true } },
-    opts = {
-      file_types = { "markdown", "copilot-chat" },
-    },
-    ft = { "markdown", "copilot-chat" },
-    code = {
-      style = 'normal',
-    },
-    heading = {
-      atx = false,
-    },
-})
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown", "copilot-chat" },
+  once = true,
+  callback = function()
+    require('render-markdown').setup({
+        enabled = false,
+        completions = { lsp = { enabled = true } },
+        opts = {
+          file_types = { "markdown", "copilot-chat" },
+        },
+        ft = { "markdown", "copilot-chat" },
+        code = {
+          style = 'normal',
+        },
+        heading = {
+          atx = false,
+        },
+    })
+  end,
 EOF
 
 " === vim-matchup ===
 " Place offscreen match as popup at top of screen with syntax highlighting.
 " Highlighting popup cause performance degradation because Neovim doesn't provide relative line number
 " in popup, https://github.com/andymass/vim-matchup/issues/253
+"
 " popup is still buggy inside splits, disabling it
 " let g:matchup_matchparen_offscreen = {'method': 'popup', 'fullwidth': 1, 'syntax_hl': 1}
-let g:matchup_matchparen_offscreen = {'method': 'status'}
+
+" https://vim.fandom.com/wiki/Xterm256_color_names_for_console_Vim
+" let g:matchup_matchparen_offscreen = {'method': 'status'}
 let g:matchup_matchparen_deferred = 1
 
 lua <<EOF
@@ -671,8 +689,9 @@ EOF
 " Change color of matched words and brackets
 augroup matchup_matchparen_highlight
   autocmd!
-  autocmd ColorScheme * hi MatchWord guifg=black guibg=darkgray
-  autocmd ColorScheme * hi MatchParen guifg=black guibg=darkgray
+  " autocmd ColorScheme * hi MatchWord guifg=black guibg=darkgray
+  autocmd ColorScheme * hi MatchWord guibg=#3a3a3a gui=bold,underdotted
+  autocmd ColorScheme * hi MatchParen guifg=black guibg=darkgray gui=bold,underdotted
 augroup END
 
 " === vim-js-pretty-template ===
@@ -694,7 +713,7 @@ let g:copilot_proxy_strict_ssl = v:false
 
 " Workspace folders to improve quality of suggestions.
 let g:copilot_workspace_folders = [
-  \ "~/kode/creativestudios-brc-backend",
+  \ "~/kode/creativestudios-misp-v2-external-site",
   \ "~/kode/creativestudios-brc-frontend",
   \ "~/kode/creativestudios-misp-external-site",
   \ "~/kode/creativestudios-semapp-site"
@@ -711,47 +730,75 @@ inoremap <silent><expr><c-l> coc#refresh()
 set completeopt=menuone,noinsert,noselect
 
 lua << EOF
-require("CopilotChat").setup {
-  -- Default model to use, see ':CopilotChatModels' for available models
-  -- (can be specified manually in prompt via $).
-  -- model = 'gpt-4o',
-  -- model = 'claude-3.7-sonnet',
-  -- model = 'claude-sonnet-4',
-  -- model = 'gpt-5-codex', <-- only on VSCode, not CLI
-  -- model = 'claude-sonnet-4.5',
-  model = 'claude-sonnet-4.5',
-  mappings = {
-    accept_diff = {
-      -- Avoid <C-y> binding for "scroll up"
-      normal = '<C-g>',
-      insert = '<C-g>',
-    },
-    -- Avoid <C-c> to close chat window
-    close = {
-      normal = 'q',
-      insert = '<C-q>',
-    },
-    reset = {
-      -- Avoid <C-l> binding for "activate righthand split"
-      normal = '<C-r>',
-      insert = '<C-r>',
-    },
-  },
-}
--- Custom buffer for CopilotChat
-vim.api.nvim_create_autocmd("BufEnter", {
-  pattern = "copilot-*",
-  callback = function()
-    vim.opt_local.relativenumber = true
-    vim.opt_local.number = true
+local copilotchat_loaded = false
+local function load_copilotchat()
+  if copilotchat_loaded then
+    return
+  end
+  copilotchat_loaded = true
 
-    -- Get current filetype and set it to markdown if the current filetype is copilot-chat
-    local ft = vim.bo.filetype
-    if ft == "copilot-chat" then
-      vim.bo.filetype = "markdown"
-    end
-  end,
-})
+  vim.fn['plug#load']('CopilotChat.nvim')
+
+  -- Configure only after plugin is in runtimepath.
+  -- Using require().setup() outside the loader will cause eager loading.
+  require("CopilotChat").setup({
+    -- Default model to use, see ':CopilotChatModels' for available models
+    -- (can be specified manually in prompt via $).
+    -- model = 'gpt-4o',
+    -- model = 'claude-3.7-sonnet',
+    -- model = 'claude-sonnet-4',
+    -- model = 'gpt-5-codex', <-- only on VSCode, not CLI
+    -- model = 'claude-sonnet-4.5',
+    model = 'claude-sonnet-4.5',
+    mappings = {
+      accept_diff = {
+        -- Avoid <C-y> binding for "scroll up"
+        normal = '<C-g>',
+        insert = '<C-g>',
+      },
+      -- Avoid <C-c> to close chat window
+      close = {
+        normal = 'q',
+        insert = '<C-q>',
+      },
+      reset = {
+        -- Avoid <C-l> binding for "activate righthand split"
+        normal = '<C-r>',
+        insert = '<C-r>',
+      },
+    },
+  })
+  -- Custom buffer for CopilotChat
+  vim.api.nvim_create_autocmd("BufEnter", {
+    pattern = "copilot-*",
+    callback = function()
+      vim.opt_local.relativenumber = true
+      vim.opt_local.number = true
+
+      -- Get current filetype and set it to markdown if the current filetype is copilot-chat
+      local ft = vim.bo.filetype
+      if ft == "copilot-chat" then
+        vim.bo.filetype = "markdown"
+      end
+    end,
+  })
+end
+
+
+local function lazy_cmd(name)
+  vim.api.nvim_create_user_command(name, function(opts)
+    load_copilotchat()
+    vim.cmd(name .. " " .. opts.args)
+  end, { nargs = "*" })
+end
+
+lazy_cmd("CopilotChat")
+lazy_cmd("CopilotChatToggle")
+lazy_cmd("CopilotChatExplain")
+lazy_cmd("CopilotChatReview")
+lazy_cmd("CopilotChatFix")
+lazy_cmd("CopilotChatDocs")
+lazy_cmd("CopilotChatTests")
 EOF
 
 " === fzf options ===
@@ -784,15 +831,6 @@ require("tokyonight").setup({
 })
 EOF
 
-" Configure ondark colorscheme
-lua <<EOF
-  -- vim.g.onedark_style = 'dark'
-  -- vim.g.onedark_italic_comment = true
-  -- vim.g.onedark_diagnostics_undercurl = false
-  -- vim.g.onedark_darker_diagnostics = true
-  -- require('onedark').setup()
-EOF
-
 " Use color syntax highlighting
 syntax on
 
@@ -806,9 +844,18 @@ if !has('gui_running')
   if (has("termguicolors"))
     set termguicolors
     colorscheme tokyonight
-    " colorscheme onedark
   endif
 endif
+
+" Use tokyonight's cyan color for better visibility in PHP blade files
+highlight @variable guifg=#82aaff
+highlight @variable.php_only guifg=#82aaff
+
+" Remove italics from Blade keywords, customize the colors
+highlight @keyword.blade gui=NONE guibg=#3a3a3a
+highlight @keyword.directive.blade gui=NONE guibg=#3a3a3a
+highlight Keyword gui=NONE guibg=#3a3a3a
+
 
 " === indentBlankline options ===
 lua <<EOF
@@ -1053,6 +1100,55 @@ lua << EOF
   vim.opt.titlestring = "%t"
 EOF
 
+" Fold all HTML <path> tags when opening buffer.
+" Use `zj` to move to next fold, `za` to toggle open.
+lua << EOF
+local function fold_path_tags()
+  vim.opt_local.foldmethod = "manual"
+  vim.cmd("normal! zE")
+
+  local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+
+  local i = 1
+  while i <= #lines do
+    -- Look for opening <path (possibly with whitespace before 'path')
+    if lines[i]:match("<%s*path%s*$") or lines[i]:match("<%s*path%s") then
+      local start_line = i
+      local end_line = i
+      local found_end = false
+
+      -- Look for self-closing /> or closing </path>
+      while end_line <= #lines do
+        local line = lines[end_line]
+        if line:match("/>") or line:match("</path>") then
+          found_end = true
+          break
+        end
+        end_line = end_line + 1
+      end
+
+      if found_end and end_line > start_line then
+        vim.cmd(start_line .. "," .. end_line .. "fold")
+      end
+
+      i = end_line + 1
+    else
+      i = i + 1
+    end
+  end
+end
+
+-- Fold HTML path tags on open.
+-- vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
+--   pattern = {"*.blade.php", "*.html", "*.htm", "*.vue", "*.jsx", "*.tsx"},
+--   callback = fold_path_tags,
+-- })
+
+vim.api.nvim_create_user_command('FoldHTMLPathTags', fold_path_tags, {})
+-- Use leader capital D to fold paths
+vim.keymap.set('n', '<leader>D', ':FoldHTMLPathTags<CR>', { desc = 'Fold HTML path tags' })
+EOF
+
 
 " ============================================================================ "
 " ===                             KEY MAPPINGS                             === "
@@ -1092,7 +1188,7 @@ nnoremap <leader>b :bp<CR>
 " Toggle folds
 nnoremap <leader>a za
 " Delete buffer (capital D)
-nnoremap <leader>D :bd<CR>
+" nnoremap <leader>D :bd<CR>
 " Toggle hidden characters (capital H)
 nnoremap <silent> <leader>H :set nolist!<CR>
 " Insert empty line before and after
@@ -1102,15 +1198,7 @@ nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1
 nnoremap <leader>P :Prettier<CR>
 
 
-" === Denite shortcuts === "
-"   <leader>; - Fuzzy search open buffers (like FZF or Ctrl-P)
-"   <leader>f - Browse list of files in current directory
-"   <leader>t - Search for files in project directory
-"   <leader>g - Search curr directory for given term, close window if no results
-"   <leader>j - Search curr directory for occurrences of word under cursor
-"   <leader>: - Fuzzy search command history (non-fuzzy default is q:)
-"           i - After triggers above, press 'i' to enter fuzzy filter mode
-"nmap <leader>; :Denite buffer<CR>
+" === FZF shortcuts === "
 nmap <leader>; :Buffers<CR>
 " nmap <leader>f :Denite file/rec<CR>
 nnoremap <silent> <leader>f :Files<CR>
@@ -1185,8 +1273,34 @@ nmap <leader>k :e #<CR>
 " without yanking it
 vnoremap <leader>p "_dP
 
-" Comment line using nvim-ts-context-commentstring
+" Comment line using nvim-ts-context-commentstring.
+" Neovim 0.10+ has native commenting.
+lua << EOF
+require('ts_context_commentstring').setup {
+  enable_autocmd = false,
+  config = {
+    blade = {
+      __default = '{{-- %s --}}',
+      html = '<!-- %s -->',
+      php = '// %s',
+      php_block = '/* %s */',
+      javascript = '// %s',
+      css = '/* %s */',
+    },
+  },
+}
+
+local get_option = vim.filetype.get_option
+vim.filetype.get_option = function(filetype, option)
+  return option == "commentstring"
+    and require("ts_context_commentstring.internal").calculate_commentstring()
+    or get_option(filetype, option)
+end
+EOF
+
+" Use gcc for commenting
 nmap <leader>/ gcc
+vmap <leader>/ gc
 
 " === key mappings for tab pages ===
 nnoremap t. :tabedit %<CR>
@@ -1198,33 +1312,6 @@ nnoremap tt :tabclose<CR>
 "  <leader>e - Show current file in containing folder
 map <leader>r :tabedit<CR>:NERDTreeToggle<CR>
 map <leader>e :NERDTreeFind<CR>
-
-
-" === nvim-tree key mappings ===
-" disabling because it keeps resizing window splits when open
-" nnoremap <leader>r :NvimTreeToggle<CR>
-" nnoremap <leader>e :NvimTreeFindFile<CR>
-" " NvimTreeRefresh, NvimTreeOpen, NvimTreeClose, NvimTreeFocus and NvimTreeResize are also available if you need them
-" let g:nvim_tree_ignore = [ '.git', 'node_modules', '.cache' ] "empty by default
-" let g:nvim_tree_quit_on_open = 1 "0 by default, closes the tree when you open a file
-" let g:nvim_tree_gitignore = 1 "0 by default
-" let g:nvim_tree_indent_markers = 0 "0 by default, this option shows indent markers when folders are open
-" let g:nvim_tree_highlight_opened_files = 1 "0 by default, will enable folder and file icon highlight for opened files/directories.
-" let g:nvim_tree_show_icons = {
-"     \ 'git': 0,
-"     \ 'folders': 1,
-"     \ 'files': 1,
-"     \ 'folder_arrows': 1,
-"     \ }
-" let g:nvim_tree_icon_padding = ' ' "one space by default, used for rendering the space between the icon and the filename. Use with caution, it could break rendering if you set an empty string depending on your font.
-" lua << EOF
-" require'nvim-tree'.setup({
-"   view = {
-"     width = 30,
-"     auto_resize = false
-"   }
-" })
-" EOF
 
 
 " === coc-prettier key mappings ===
