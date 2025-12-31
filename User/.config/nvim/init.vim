@@ -1281,11 +1281,25 @@ require('ts_context_commentstring').setup {
   config = {
     blade = {
       __default = '{{-- %s --}}',
-      html = '<!-- %s -->',
-      php = '// %s',
-      php_block = '/* %s */',
-      javascript = '// %s',
-      css = '/* %s */',
+      -- HTML contexts
+      element = '<!-- %s -->',
+      start_tag = '<!-- %s -->',
+      end_tag = '<!-- %s -->',
+      attribute = '<!-- %s -->',
+      text = '<!-- %s -->',
+      -- Blade directive contexts
+      directive = '{{-- %s --}}',
+      directive_start = '{{-- %s --}}',
+      directive_end = '{{-- %s --}}',
+      parameter = '{{-- %s --}}',
+      -- PHP contexts
+      php = '{{-- %s --}}',
+      php_only = '// %s',
+      -- CSS/JS contexts
+      stylesheet = '/* %s */',
+      style_element = '/* %s */',
+      script = '// %s',
+      script_element = '// %s',
     },
   },
 }
