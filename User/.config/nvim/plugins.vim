@@ -20,7 +20,8 @@ endif
 
 call plug#begin('~/.local/share/nvim/plugged')
 
-" Use TokyoNight Neovim theme for colorscheme
+" Use TokyoNight Neovim coiorscheme, supports Tree-sitter.
+" Has 4 variants: Moon, Storm, Night, Day.
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
 " Use fancy status bar, more lightweight than vim-airline
@@ -30,7 +31,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
 
 " Show file explorer on left side, delay loading
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
 
 " Close braces in insert mode like Sublime, VSCode
 " Press alt-p to toggle Auto Pairs
@@ -45,31 +46,23 @@ Plug 'sickill/vim-pasta'
 " https://github.com/sheerun/vim-polyglot/issues/392#issuecomment-597891075
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
-" More advanced syntax highlighting
-" Disabling for now because indenting is worse than polyglot.
-" Supposedly faster than polyglot, but I don't see a difference in scrolling
-" long files with lots of syntax highlighting.
-" On new installs, also do:
-" :TSInstall bash
-" :TSInstall css
-" :TSInstall javascript
-" :TSInstall html
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+" Advanced grammar and syntax highlighting.
+" Avoids vim's slow regex patterns for highlighting.
+" 'do' updates parsers on plugin install.
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " -- JSON helpers --
 " allow front matter highlighting
 Plug 'elzr/vim-json'
 
 " -- Markdown helpers --
-Plug 'MeanderingProgrammer/render-markdown.nvim'
+" For codefenced regions in CopilotChat. Use lazy loading.
+Plug 'MeanderingProgrammer/render-markdown.nvim', { 'for': ['markdown', 'copilot-chat'] }
 
 " -- Git helpers --
 " ]c and [c to move between changed git chunks
 Plug 'mhinz/vim-signify'      " Show symbols in gutter column, :SignifyHunkDiff
 Plug 'tpope/vim-fugitive'     " Provides :Git commands, branch indicator
-
-" Live preview in browser with :MarkdownPreview
-" Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug'], 'on': 'MarkdownPreview' }
 
 " Surround tag helper
 Plug 'tpope/vim-surround'
@@ -77,28 +70,13 @@ Plug 'tpope/vim-surround'
 " Automatically save sessions
 " :Obsession              save session to 'Session.vim' to current folder
 " :Obsession name.vim     save custom name for multiple sessions
-" :source Session.vim     reload session
+" :source session.vim     reload session
 Plug 'tpope/vim-obsession'
 
 " Syntax-sensitive comment block helper
 " gcc to toggle line comment
 " gcip to toggle commenting out inner paragraph
 Plug 'tpope/vim-commentary'
-
-" Snippet support
-" In insert mode, type snippet, then alt-;
-" In command mode, ctrl-k is navigate to lower Vim split
-" Requires deplete plugin for completion.
-" if has('nvim')
-"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" else
-"   Plug 'Shougo/deoplete.nvim'
-"   Plug 'roxma/nvim-yarp'
-"   Plug 'roxma/vim-hug-neovim-rpc'
-" endif
-" let g:deoplete#enable_at_startup = 1
-" Plug 'Shougo/neosnippet'
-" Plug 'Shougo/neosnippet-snippets'
 
 " HTML and CSS selector snippets
 " Trigger completion with C-y,
@@ -107,15 +85,12 @@ Plug 'tpope/vim-commentary'
 " Using coc-emmet for now, trigger completion with ctrl-e
 Plug 'mattn/emmet-vim', { 'for': ['css', 'html', 'javascriptreact', 'typescriptreact'] }
 
-" Denite - Fuzzy finding, buffer management
-"Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
-
 " Intellisense Engine, uses VS Code's language servers
 " Needs 'npm i -g neovim' and recent version of NodeJS
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Golang support
-Plug 'fatih/vim-go', { 'for': 'markdown' }
+Plug 'fatih/vim-go', { 'for': 'go' }
 
 " Angular language service
 Plug 'iamcco/coc-angular'
@@ -169,7 +144,9 @@ Plug 'nvim-treesitter/nvim-treesitter-context'
 " See -> https://github.com/hexh250786313/coc-copilot/issues/12
 "
 " Run :Copilot setup to authenticate on first install.
-Plug 'github/copilot.vim'
+" Plug 'github/copilot.vim'
+" Ensure Copilot itself is lazy-loaded.
+Plug 'github/copilot.vim', { 'on': 'Copilot' }
 
 " Chat with Copilot in Neovim
 " For more accurate token counts, install tiktoken.
@@ -179,7 +156,20 @@ Plug 'github/copilot.vim'
 " cp ~/.luarocks/lib/lua/5.1/tiktoken_core.so /usr/local/lib/lua/5.1/
 " checkhealth CopilotChat --> OK tiktoken_core: installed
 Plug 'nvim-lua/plenary.nvim'
-Plug 'CopilotC-Nvim/CopilotChat.nvim'
+" Make vim-plug avoid adding CopilotChat to runtimepath on app start.
+" Only load plugin on first run of any of the listed commands.
+Plug 'CopilotC-Nvim/CopilotChat.nvim',
+      " 'canary' is the experimental branch.
+      " \ { 'branch': 'canary', 'on': [
+      \ { 'branch': 'main', 'on': [
+      \   'CopilotChat',
+      \   'CopilotChatToggle',
+      \   'CopilotChatExplain',
+      \   'CopilotChatReview',
+      \   'CopilotChatFix',
+      \   'CopilotChatDocs',
+      \   'CopilotChatTests'
+      \ ] }
 
 " Toggle full-pane windows like Tmux
 " Use C-w m to toggle. Provides zoom#statusline() API
@@ -192,6 +182,9 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Restore unnamed buffers like Sublime, Notepad++
 " Doesn't seem to have much utlity right now
 " Plug 'abdalrahman-ali/vim-remembers'
+
+" Syntax highlighting for PHP Blade templates
+Plug 'jwalton512/vim-blade'
 
 " Allows fancy icon glyphs in lightline tabs and NERDTree.
 " Should be loaded as last plugin.
