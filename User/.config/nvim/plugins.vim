@@ -20,9 +20,6 @@ endif
 
 call plug#begin('~/.local/share/nvim/plugged')
 
-" Use Atom One Dark theme for colorscheme
-" Plug 'navarasu/onedark.nvim'
-
 " Use TokyoNight Neovim theme for colorscheme
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
@@ -34,10 +31,6 @@ Plug 'mengelbrecht/lightline-bufferline'
 
 " Show file explorer on left side, delay loading
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-" disabling nvim-tree because not much faster
-" and resizes window splits when toggled open
-" Plug 'kyazdani42/nvim-web-devicons' " for file icons
-" Plug 'kyazdani42/nvim-tree.lua'
 
 " Close braces in insert mode like Sublime, VSCode
 " Press alt-p to toggle Auto Pairs
@@ -51,12 +44,6 @@ Plug 'sickill/vim-pasta'
 " Needs to be before vim-polyglot or else breaks JavaScript indentation
 " https://github.com/sheerun/vim-polyglot/issues/392#issuecomment-597891075
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-
-" Syntax highlighting for many languages
-" Must configure polyglot options before loading plugin
-" Disable polyglot for markdown, interferes with vim-markdown
-" let g:polyglot_disabled = ['md', 'markdown']
-"Plug 'sheerun/vim-polyglot'
 
 " More advanced syntax highlighting
 " Disabling for now because indenting is worse than polyglot.
@@ -74,10 +61,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend upda
 Plug 'elzr/vim-json'
 
 " -- Markdown helpers --
-" Plug 'godlygeek/tabular', { 'for': 'markdown' }   " allows table formatting
-" Plug 'plasticboy/vim-markdown'                    " disable, breaks vim-one
-" Plug 'gabrielelana/vim-markdown'                  " doesn't have code folding
-Plug 'MeanderingProgrammer/render-markdown.nvim'  " for code fenced CopilotChat
+Plug 'MeanderingProgrammer/render-markdown.nvim'
 
 " -- Git helpers --
 " ]c and [c to move between changed git chunks
