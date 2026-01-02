@@ -1116,32 +1116,52 @@ EOF
 " Fold all HTML <path> tags when opening buffer.
 " Use `zj` to move to next fold, `za` to toggle open.
 lua << EOF
-local function fold_path_tags()
+  -- Skip if buffer is being deleted
+  if vim.api.nvim_get_current_buf() == 0 or not vim.api.nvim_buf_is_valid(0) then
+    return
+  end
+
   vim.opt_local.foldmethod = "manual"
   vim.cmd("normal! zE")
 
   local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
-
   local i = 1
+
   while i <= #lines do
-    -- Look for opening <path (possibly with whitespace before 'path')
-    if lines[i]:match("<%s*path%s*$") or lines[i]:match("<%s*path%s") then
+    local line = lines[i]
+
+    -- Look for opening <path tag (improved pattern)
+    if line:match("<%s*path[%s>]") or line:match("<%s*path$") then
       local start_line = i
       local end_line = i
       local found_end = false
+      local accumulated_text = line
 
-      -- Look for self-closing /> or closing </path>
-      while end_line <= #lines do
-        local line = lines[end_line]
-        if line:match("/>") or line:match("</path>") then
-          found_end = true
-          break
-        end
+      -- Check if the path tag closes on the same line
+      if line:match("/>") or line:match("</path>") then
+        found_end = true
+      else
+        -- Multi-line path tag: search forward for closing
         end_line = end_line + 1
+        while end_line <= #lines do
+          accumulated_text = accumulated_text .. lines[end_line]
+          if lines[end_line]:match("/>") or lines[end_line]:match("</path>") then
+            found_end = true
+            break
+          end
+          end_line = end_line + 1
+        end
       end
 
-      if found_end and end_line > start_line then
-        vim.cmd(start_line .. "," .. end_line .. "fold")
+      -- Fold if:
+      -- 1. Multi-line: end_line > start_line
+      -- 2. Single long line: line length > character threshold
+      if found_end then
+        local should_fold = end_line > start_line or #accumulated_text > 70
+
+        if should_fold then
+          vim.cmd(start_line .. "," .. end_line .. "fold")
+        end
       end
 
       i = end_line + 1
@@ -1151,14 +1171,14 @@ local function fold_path_tags()
   end
 end
 
--- Fold HTML path tags on open.
--- vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
---   pattern = {"*.blade.php", "*.html", "*.htm", "*.vue", "*.jsx", "*.tsx"},
---   callback = fold_path_tags,
--- })
+-- Fold HTML path tags on open
+vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
+  pattern = {"*.blade.php", "*.html", "*.htm", "*.vue", "*.jsx", "*.tsx"},
+  callback = fold_path_tags,
+})
 
-vim.api.nvim_create_user_command('FoldHTMLPathTags', fold_path_tags, {})
 -- Use leader capital D to fold paths
+vim.api.nvim_create_user_command('FoldHTMLPathTags', fold_path_tags, {})
 vim.keymap.set('n', '<leader>D', ':FoldHTMLPathTags<CR>', { desc = 'Fold HTML path tags' })
 EOF
 
