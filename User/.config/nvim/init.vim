@@ -1207,9 +1207,9 @@ nnoremap <leader>i :IBLToggle<CR>
 " ToggleZoom first to avoid resetting split layout
 " nnoremap <leader>u :%s/<c-r><c-w>//g<left><left>
 nnoremap <leader>u :call ToggleZoom(v:true)<CR>:%s/<c-r><c-w>//g<left><left>
-" Close buffer w/o closing split
-nnoremap <leader>q :Bwipeout<CR>
-nnoremap <leader>Q :Bwipeout!<CR>
+" Fast closing of buffer w/o closing split
+nnoremap <leader>q :noautocmd Bwipeout<CR>
+nnoremap <leader>Q :noautocmd Bwipeout!<CR>
 " Show hunk diff in gutter
 nnoremap <leader>h :SignifyHunkDiff<CR>
 " Switch to next buffer
