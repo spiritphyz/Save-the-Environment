@@ -1349,6 +1349,7 @@ EOF
 nmap <leader>/ gcc
 vmap <leader>/ gc
 
+
 " === key mappings for tab pages ===
 nnoremap t. :tabedit %<CR>
 nnoremap tt :tabclose<CR>
@@ -1412,7 +1413,7 @@ nnoremap <leader>? :<c-u>MatchupWhereAmI??<cr>
 " === AI shorcuts ===
 " Toggle chat window, mnemonic is "AI Chat"
 "nnoremap <leader>ac :CopilotChatToggle<CR><C-w>=
-nnoremap <leader>aa :tabedit %<CR>:CopilotChatToggle<CR><C-w>=
+nnoremap <leader>aa :tabedit %<CR>:CopilotChatToggle<CR>
 " Toggle chat window while loading last chat, mnemonic is "AI Chat Load"
 nnoremap <leader>acl :CopilotChatLoad<CR>
 " Open chat window with input, mnemonic is "AI Chat Input"
