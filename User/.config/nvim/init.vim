@@ -864,6 +864,11 @@ highlight @keyword.blade gui=NONE guibg=#3a3a3a
 highlight @keyword.directive.blade gui=NONE guibg=#3a3a3a
 highlight Keyword gui=NONE guibg=#3a3a3a
 
+" Italicize inline comments, set after colorscheme and one#highlight
+highlight Comment cterm=italic gui=italic
+" Italicize whole line comments
+highlight vimLineComment cterm=italic gui=italic
+
 
 " === indentBlankline options ===
 lua <<EOF
