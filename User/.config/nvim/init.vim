@@ -694,6 +694,14 @@ augroup matchup_matchparen_highlight
   autocmd ColorScheme * hi MatchParen guifg=black guibg=darkgray gui=bold,underdotted
 augroup END
 
+highlight! OffscreenPopup guibg=#5f005f gui=bold
+let g:matchup_matchparen_offscreen
+      \ = {'method': 'popup', 'highlight': 'OffscreenPopup'}
+
+highlight! OffscreenPopup guibg=#5f005f gui=bold
+let g:matchup_matchparen_offscreen
+      \ = {'method': 'popup', 'highlight': 'OffscreenPopup'}
+
 " === vim-js-pretty-template ===
 " Register tag name associated the filetype
 call jspretmpl#register_tag('gql', 'graphql')
