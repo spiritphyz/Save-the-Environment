@@ -642,20 +642,35 @@ EOF
 " Needs markdown filetype for copilot-chat filetype in copilot settings.
 " https://github.com/jellydn/lazy-nvim-ide/blob/main/lua/plugins/extras/copilot-chat-v2.lua
 lua << EOF
-require('render-markdown').setup {
-  enabled = true,
-  file_types = { "markdown", "copilot-chat" },
-  code = {
+local render_markdown_loaded = false
+local function load_render_markdown()
+  if render_markdown_loaded then
+    return
+  end
+  render_markdown_loaded = true
+
+  require('render-markdown').setup {
     enabled = true,
-    conceal_delimiters = true,
-    language = false,
-    border = 'none',
-    style = 'normal',
-  },
-  heading = {
-    atx = false,
-  },
-}
+    file_types = { "markdown", "copilot-chat" },
+    code = {
+      enabled = true,
+      conceal_delimiters = true,
+      language = false,
+      border = 'none',
+      style = 'normal',
+    },
+    heading = {
+      atx = false,
+    },
+  }
+end
+
+-- Load when entering markdown or copilot-chat buffers
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown", "copilot-chat" },
+  callback = load_render_markdown,
+  once = false,
+})
 EOF
 
 " === vim-matchup ===
