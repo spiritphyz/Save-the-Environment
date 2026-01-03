@@ -642,26 +642,20 @@ EOF
 " Needs markdown filetype for copilot-chat filetype in copilot settings.
 " https://github.com/jellydn/lazy-nvim-ide/blob/main/lua/plugins/extras/copilot-chat-v2.lua
 lua << EOF
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "markdown", "copilot-chat" },
-  once = true,
-  callback = function()
-    require('render-markdown').setup({
-        enabled = false,
-        completions = { lsp = { enabled = true } },
-        opts = {
-          file_types = { "markdown", "copilot-chat" },
-        },
-        ft = { "markdown", "copilot-chat" },
-        code = {
-          style = 'normal',
-        },
-        heading = {
-          atx = false,
-        },
-    })
-  end,
-})
+require('render-markdown').setup {
+  enabled = true,
+  file_types = { "markdown", "copilot-chat" },
+  code = {
+    enabled = true,
+    conceal_delimiters = true,
+    language = false,
+    border = 'none',
+    style = 'normal',
+  },
+  heading = {
+    atx = false,
+  },
+}
 EOF
 
 " === vim-matchup ===
@@ -1419,6 +1413,7 @@ nnoremap <leader>? :<c-u>MatchupWhereAmI??<cr>
 " === AI shorcuts ===
 " Toggle chat window, mnemonic is "AI Chat"
 "nnoremap <leader>ac :CopilotChatToggle<CR><C-w>=
+" nnoremap <leader>aa :tabedit %<CR>:CopilotChatToggle<CR>
 nnoremap <leader>aa :tabedit %<CR>:lua lazy_copilot_toggle()<CR>
 " Toggle chat window while loading last chat, mnemonic is "AI Chat Load"
 nnoremap <leader>acl :CopilotChatLoad<CR>
