@@ -381,7 +381,7 @@ local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 parser_config.blade = {
   install_info = {
     url = "https://github.com/EmranMR/tree-sitter-blade",
-    files = {"src/parser.c", "src/scanner.c"},  -- Add scanner.c
+    files = {"src/parser.c"},
     branch = "main",
   },
   filetype = "blade"
@@ -874,11 +874,6 @@ require("ibl").setup {
 }
 EOF
 
-
-" Italicize inline comments, set after colorscheme and one#highlight
-highlight Comment cterm=italic gui=italic
-" Italicize whole line comments
-highlight vimLineComment cterm=italic gui=italic
 
 " Remove the current line highlight in unfocused windows
 "au VimEnter,WinEnter,BufWinEnter,FocusGained,CmdwinEnter * set cul
