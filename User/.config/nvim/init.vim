@@ -731,7 +731,8 @@ inoremap <silent><expr><c-l> coc#refresh()
 
 " === CopilotChat.nvim options ===
 " For nvim < 0.11.0, improve experience, don't auto-accept first option.
-set completeopt=menuone,noinsert,noselect
+" For nvim > 0.11, add popup to autocomplete experience.
+set completeopt=noinsert,noselect,popup
 
 lua << EOF
 local copilotchat_loaded = false
@@ -754,6 +755,8 @@ local function load_copilotchat()
     -- model = 'gpt-5-codex', <-- only on VSCode, not CLI
     -- model = 'claude-sonnet-4.5',
     model = 'claude-sonnet-4.5',
+    -- Always include open buffers in context window
+    sticky = {"#buffer:listed"},
     mappings = {
       accept_diff = {
         -- Avoid <C-y> binding for "scroll up"
@@ -792,7 +795,9 @@ end
 local function lazy_cmd(name)
   vim.api.nvim_create_user_command(name, function(opts)
     load_copilotchat()
-    vim.cmd(name .. " " .. opts.args)
+    vim.schedule(function()
+      vim.cmd(name .. " " .. opts.args)
+    end)
   end, { nargs = "*" })
 end
 
@@ -803,6 +808,15 @@ lazy_cmd("CopilotChatReview")
 lazy_cmd("CopilotChatFix")
 lazy_cmd("CopilotChatDocs")
 lazy_cmd("CopilotChatTests")
+
+
+-- Helper function for lazy-loaded mappings
+_G.lazy_copilot_toggle = function()
+  load_copilotchat()
+  vim.defer_fn(function()
+    vim.cmd('CopilotChatToggle')
+  end, 100)
+end
 EOF
 
 " === fzf options ===
@@ -1107,6 +1121,7 @@ EOF
 " Fold all HTML <path> tags when opening buffer.
 " Use `zj` to move to next fold, `za` to toggle open.
 lua << EOF
+local function fold_path_tags()
   -- Skip if buffer is being deleted
   if vim.api.nvim_get_current_buf() == 0 or not vim.api.nvim_buf_is_valid(0) then
     return
@@ -1404,7 +1419,7 @@ nnoremap <leader>? :<c-u>MatchupWhereAmI??<cr>
 " === AI shorcuts ===
 " Toggle chat window, mnemonic is "AI Chat"
 "nnoremap <leader>ac :CopilotChatToggle<CR><C-w>=
-nnoremap <leader>aa :tabedit %<CR>:CopilotChatToggle<CR>
+nnoremap <leader>aa :tabedit %<CR>:lua lazy_copilot_toggle()<CR>
 " Toggle chat window while loading last chat, mnemonic is "AI Chat Load"
 nnoremap <leader>acl :CopilotChatLoad<CR>
 " Open chat window with input, mnemonic is "AI Chat Input"
