@@ -14,13 +14,3 @@
 ; Inject HTML into the document
 ((text) @injection.content
   (#set! injection.language "html"))
-
-; Inject JavaScript into script_element nodes (handles @push('scripts'))
-((script_element
-  (raw_text) @injection.content)
- (#set! injection.language "javascript"))
-
-; Inject CSS into style_element nodes
-((style_element
-  (raw_text) @injection.content)
- (#set! injection.language "css"))
