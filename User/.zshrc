@@ -24,6 +24,13 @@ setopt PROMPT_SUBST
 autoload -Uz vcs_info
 precmd() { vcs_info }
 
+# Autocomplete git branches
+autoload -Uz compinit
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
+# compinit -C   # skip security checks if you trust your $fpath
+compinit
+
 # Format the vcs_info_msg_0_ variable
 # %b will be git branch name
 # %F{147} color start is lightsteelblue, end with %f
