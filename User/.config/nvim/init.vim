@@ -34,11 +34,11 @@ nnoremap \ <Esc>:set hls!<CR>
 autocmd InsertEnter * :let @/=""
 
 " Tab key behavior
-set expandtab         " use spaces instead of tabs
+set noexpandtab       " use tabs, not spaces
 set smarttab          " insert tab according to rules below
-set softtabstop=2     " # of spaces counted as tab during editing
-set shiftwidth=2      " # of spaces for indentation
-set tabstop=2
+set tabstop=2         " define 1 indentation level
+set shiftwidth=2      " define 1 indentation level
+set softtabstop=2     " # of stops considered as tab during editing
 set autoindent
 set smartindent
 
