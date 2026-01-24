@@ -176,8 +176,10 @@ Plug 'CopilotC-Nvim/CopilotChat.nvim',
 " Plug 'dhruvasagar/vim-zoom'
 
 " FZF fuzzy finder
-Plug 'junegunn/fzf.vim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Needs both junegunn lines below for fzf.vim
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'junegunn/fzf.vim'
+Plug 'ibhagwan/fzf-lua'
 
 " Restore unnamed buffers like Sublime, Notepad++
 " Doesn't seem to have much utlity right now
