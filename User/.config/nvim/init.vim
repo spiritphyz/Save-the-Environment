@@ -764,8 +764,8 @@ local function load_copilotchat()
     -- model = 'gpt-5-codex', <-- only on VSCode, not CLI
     -- model = 'claude-sonnet-4.5',
     model = 'claude-sonnet-4.5',
-    -- Always include open buffers in context window
-    sticky = {"#buffer:listed"},
+    -- Always include last-used buffer in context window
+    sticky = {"#buffer:active"},
     mappings = {
       accept_diff = {
         -- Avoid <C-y> binding for "scroll up"
