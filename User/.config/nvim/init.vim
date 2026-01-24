@@ -838,6 +838,38 @@ let $FZF_DEFAULT_OPTS="--preview-window 'top,80%' --layout reverse --margin=0,1,
 let $FZF_PREVIEW_COMMAND="COLORTERM=truecolor bat --theme='base16' --style=numbers --color=always --highlight-line 1:1 {}"
 
 
+" === fzf-lua options ===
+lua << EOF
+require('fzf-lua').setup({
+	{ 'fzf-vim' },
+	winopts={
+		preview={
+			-- default='bat',
+			hidden=false,
+			layout="vertical",
+			vertical="up:70%",
+		},
+		width=1.00,
+		height=0.90,
+	},
+	buffers = {
+		winopts={
+			preview={
+				hidden=true,
+			}
+		},
+	},
+	grep = {
+		winopts={
+			preview={
+				hidden=false,
+			}
+		},
+	},
+})
+EOF
+
+
 " === vim-remembers options ===
 " let g:remembers_always_create = 1
 " let g:remembers_always_reload = 0
@@ -1247,10 +1279,9 @@ nnoremap <leader>P :Prettier<CR>
 
 " === FZF shortcuts === "
 nmap <leader>; :Buffers<CR>
-" nmap <leader>f :Denite file/rec<CR>
 nnoremap <silent> <leader>f :Files<CR>
-"nmap <leader>t :DeniteProjectDir file/rec<CR>i
-nnoremap <leader>g :Rg<CR>
+"nnoremap <leader>g :Rg<CR>
+nnoremap <leader>g :FzfLua live_grep_native<CR>
 "nnoremap <leader>j :call ToggleZoom(v:true)<CR>:DeniteCursorWord grep:.<CR>
 nnoremap <leader>: :History:<CR>
 
