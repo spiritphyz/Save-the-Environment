@@ -1318,7 +1318,7 @@ nmap <leader>k :e #<CR>
 
 " replace currently selected text with default register
 " without yanking it
-vnoremap <leader>p "_dp
+vnoremap <leader>p "_dP
 
 " Comment line using nvim-ts-context-commentstring.
 " Neovim 0.10+ has native commenting.
