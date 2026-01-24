@@ -818,13 +818,12 @@ lazy_cmd("CopilotChatFix")
 lazy_cmd("CopilotChatDocs")
 lazy_cmd("CopilotChatTests")
 
-
 -- Helper function for lazy-loaded mappings
 _G.lazy_copilot_toggle = function()
   load_copilotchat()
   vim.defer_fn(function()
     vim.cmd('CopilotChatToggle')
-  end, 100)
+  end, 200)
 end
 EOF
 
@@ -1429,7 +1428,7 @@ nnoremap <leader>? :<c-u>MatchupWhereAmI??<cr>
 " Toggle chat window, mnemonic is "AI Chat"
 "nnoremap <leader>ac :CopilotChatToggle<CR><C-w>=
 " nnoremap <leader>aa :tabedit %<CR>:CopilotChatToggle<CR>
-nnoremap <leader>aa :tabedit %<CR>:lua lazy_copilot_toggle()<CR>
+nnoremap <leader>aa :tabedit %<CR><C-o><CR>:lua lazy_copilot_toggle()<CR>
 " Toggle chat window while loading last chat, mnemonic is "AI Chat Load"
 nnoremap <leader>acl :CopilotChatLoad<CR>
 " Open chat window with input, mnemonic is "AI Chat Input"
