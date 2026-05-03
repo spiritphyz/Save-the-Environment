@@ -1,20 +1,14 @@
 import type { ExtensionAPI } from '@mariozechner/pi-coding-agent';
 
-/* Preventing shell command injection when passing pattern to fzf.
- *
- * The cleanest way with pi.bash() is to Base64-encode the inputs so no shell
- * metacharacters ever appear in the command.
- *
- * Both pattern and path are now Base64-encoded in Node before being embedded in the command string.
- * Since Base64 output only contains [A-Za-z0-9+/=], it's completely safe inside single quotes —
- * no shell injection is possible regardless of what the input contains. The values are decoded back
- * at runtime via base64 -d in subshells.
+/* Prevent shell injection when passing pattern to rg.
+ * Base64 only outputs [A-Za-z0-9+/=]
+ * Values decoded back with base64 -d in subshells.
  */
 
 export default function (pi: ExtensionAPI) {
   pi.registerTool({
     name: 'find',
-    description: 'Find files by name using fzf in non-interactive filter mode.',
+    description: 'Safely find files by fuzzy matching using ripgrep and fzf',
     parameters: {
       type: 'object',
       properties: {
@@ -26,13 +20,13 @@ export default function (pi: ExtensionAPI) {
       },
       required: ['pattern'],
     },
-    async execute({ pattern, path }) {
-      const dir = path || '.';
+    async execute(_toolCallId: string, { pattern, path }: { pattern: string; path?: string }) {
+      const dir = path ?? '.';
       const b64Pattern = Buffer.from(pattern).toString('base64');
       const b64Dir = Buffer.from(dir).toString('base64');
-      const { stdout, stderr } = await pi.bash(
-        `cd "$(printf '%s' '${b64Dir}' | base64 -d)" && fzf --filter="$(printf '%s' '${b64Pattern}' | base64 -d)"`
-      );
+      const { stdout, stderr } = await pi.exec('bash', ['-c',
+        `cd "$(printf '%s' '${b64Dir}' | base64 -d)" && rg --files --hidden --no-follow --glob '!{**/node_modules/*,**/.git/*,**/dist/*,**/cache/*,**/storage/*,**/*.DS_Store}' | fzf --filter="$(printf '%s' '${b64Pattern}' | base64 -d)"`
+      ]);
       return stdout || stderr || 'No matches found.';
     },
   });
