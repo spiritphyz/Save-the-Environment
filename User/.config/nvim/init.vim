@@ -424,10 +424,10 @@ vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
 ;(function()
   local ensureInstalled = {
     "bash", "blade", "c", "c_sharp", "clojure", "css",
-    "diff", "dockerfile", "go", "html", "http",
+    "diff", "dockerfile", "ecma", "go", "html", "html_tags", "http",
     "java", "javascript", "json", "julia", "lua",
     "markdown", "markdown_inline", "nix",
-    "php", "python", "regex", "scheme", "scss",
+    "php", "php_only", "python", "regex", "scheme", "scss",
     "toml", "tsx", "typescript", "twig", "vim", "vue", "yaml",
   }
   local alreadyInstalled = require('nvim-treesitter.config').get_installed()
