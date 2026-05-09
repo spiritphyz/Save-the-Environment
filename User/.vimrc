@@ -288,9 +288,6 @@ else
   colorscheme one
 endif
 
-" Darken the empty tabline background
-highlight TabLineFill guibg=#282c34 ctermbg=235
-
 " Italicize comments
 highlight Comment cterm=italic gui=italic
 highlight vimLineComment cterm=italic gui=italic
