@@ -376,16 +376,22 @@ let g:rooter_patterns = ['.git', 'Makefile', '.editorconfig']
 
 " === Nvim-Treesitter ===
 lua << EOF
--- Register blade parser BEFORE config setup
-local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
-parser_config.blade = {
-  install_info = {
-    url = "https://github.com/EmranMR/tree-sitter-blade",
-    files = {"src/parser.c"},
-    branch = "main",
-  },
-  filetype = "blade"
-}
+-- New neovim-treesitter org and nvim-treesitter repo for Nvim 0.12.
+vim.api.nvim_create_autocmd('FileType', {
+	callback = function()
+		if vim.api.nvim_buf_line_count(0) <= 5000 then
+			-- Enable highlighting and disable regex syntax.
+			-- Protected call catches errors instead of crashing nvim if
+			-- no parser found for current filetype.
+			pcall(vim.treesitter.start)
+		end
+		-- Enable folding
+		vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+		vim.wo.foldmethod = 'expr'
+		-- Enable indentation
+		vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+	end,
+})
 
 -- Set up filetype detection
 vim.filetype.add({
@@ -405,237 +411,258 @@ vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
 })
 
 -- Enable treesitter for blade files
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "blade",
-  callback = function()
-    vim.treesitter.start()
-  end,
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = "blade",
+--   callback = function()
+--     vim.treesitter.start()
+--   end,
+-- })
 
--- Continue to configure Tree-sitter
-require'nvim-treesitter.configs'.setup {
-  autotag = {                   -- autoclose HTML tags
-    enable = true,
-  },
-  auto_install = true,
-  ensure_installed = {          -- "all" or a list of languages
+-- IIFE that diffs against alread-installed parsers so it doesn't
+-- reinstall everything on startup.
+-- https://www.qu8n.com/posts/treesitter-migration-guide-for-nvim-0-12
+;(function()
+  local ensureInstalled = {
     "bash", "blade", "c", "c_sharp", "clojure", "css",
-    "dockerfile", "go", "html", "http",
+    "diff", "dockerfile", "go", "html", "http",
     "java", "javascript", "json", "julia", "lua",
     "markdown", "markdown_inline", "nix",
-    "php", "php_only", "python", "regex", "scheme", "scss",
+    "php", "python", "regex", "scheme", "scss",
     "toml", "tsx", "typescript", "twig", "vim", "vue", "yaml",
-  },
-  highlight = {
-    enable = true,                  -- false will disable the whole extension
-    disable = function(lang, bufnr) -- Disable in files with more than 5K
-      return vim.api.nvim_buf_line_count(bufnr) > 5000
-    end,
-  },
-  indent = {                    -- indent based on = operator, experimental feature
-    enable = true,
-  },
-  textobjects = {
-    select = {
-      enable = true,
-      lookahead = true,
-      keymaps = {
-        ['ab'] = '@block.outer',
-        ['ib'] = '@block.inner',
-        ['af'] = '@function.outer',
-        ['if'] = '@function.inner',
-        ['ac'] = '@class.outer',
-        ['ic'] = '@class.inner',
-      }
-    },
-  },
-}
+  }
+  local alreadyInstalled = require('nvim-treesitter.config').get_installed()
+  local parsersToInstall = vim.iter(ensureInstalled)
+    :filter(function(parser)
+      return not vim.tbl_contains(alreadyInstalled, parser)
+    end)
+    :totable()
+  require('nvim-treesitter').install(parsersToInstall)
+end)()
+
+-- Continue to configure Tree-sitter
+-- require'nvim-treesitter.configs'.setup {
+--   autotag = {  -- autoclose HTML tags
+--     enable = true,
+--   },
+--   auto_install = true,
+--   ensure_installed = { -- "all" or a list of languages
+--     "bash", "blade", "c", "c_sharp", "clojure", "css",
+--     "dockerfile", "go", "html", "http",
+--     "java", "javascript", "json", "julia", "lua",
+--     "markdown", "markdown_inline", "nix",
+--     "php", "php_only", "python", "regex", "scheme", "scss",
+--     "toml", "tsx", "typescript", "twig", "vim", "vue", "yaml",
+--   },
+--   highlight = {
+--     enable = true, -- false will disable the whole extension
+--     disable = function(lang, bufnr) -- Disable in files with more than 5K
+--       return vim.api.nvim_buf_line_count(bufnr) > 5000
+--     end,
+--   },
+--   indent = {  -- indent based on = operator, experimental feature
+--     enable = true,
+--   },
+--   textobjects = {
+--     select = {
+--       enable = true,
+--       lookahead = true,
+--       keymaps = {
+--         ['ab'] = '@block.outer',
+--         ['ib'] = '@block.inner',
+--         ['af'] = '@function.outer',
+--         ['if'] = '@function.inner',
+--         ['ac'] = '@class.outer',
+--         ['ic'] = '@class.inner',
+--       }
+--     },
+--   },
+-- }
 EOF
 
 " === Configure Nvim-Treesitter-Playground ===
 lua <<EOF
-require "nvim-treesitter.configs".setup {
-  playground = {
-    enable = true,
-    disable = {},
-    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
-    persist_queries = false, -- Whether the query persists across vim sessions
-    keybindings = {
-      toggle_query_editor = 'o',
-      toggle_hl_groups = 'i',
-      toggle_injected_languages = 't',
-      toggle_anonymous_nodes = 'a',
-      toggle_language_display = 'I',
-      focus_language = 'f',
-      unfocus_language = 'F',
-      update = 'R',
-      goto_node = '<cr>',
-      show_help = '?',
-    },
-  }
-}
+-- require "nvim-treesitter.configs".setup {
+--   playground = {
+--     enable = true,
+--     disable = {},
+--     updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+--     persist_queries = false, -- Whether the query persists across vim sessions
+--     keybindings = {
+--       toggle_query_editor = 'o',
+--       toggle_hl_groups = 'i',
+--       toggle_injected_languages = 't',
+--       toggle_anonymous_nodes = 'a',
+--       toggle_language_display = 'I',
+--       focus_language = 'f',
+--       unfocus_language = 'F',
+--       update = 'R',
+--       goto_node = '<cr>',
+--       show_help = '?',
+--     },
+--   }
+-- }
 EOF
 
 " === Configure Nvim-Treesitter-Context ===
 lua <<EOF
--- Configure 'sticky scroll'
-require'treesitter-context'.setup {
-  enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
-  enable_autocmd = false,  -- Important for performance
-  max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
-  trim_scope = 'outer', -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
-  min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
-  patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
-    -- For all filetypes
-    -- Note that setting an entry here replaces all other patterns for this entry.
-    -- By setting the 'default' entry below, you can control which nodes you want to
-    -- appear in the context window.
-    default = {
-      'class',
-      'function',
-      'method',
-      'for',
-      'while',
-      'if',
-      'switch',
-      'case',
-			'interface',
-			'struct',
-			'enum',
-    },
-    -- Patterns for specific filetypes
-    -- If a pattern is missing, *open a PR* so everyone can benefit.
-    tex = {
-      'chapter',
-      'section',
-      'subsection',
-      'subsubsection',
-    },
-    haskell = {
-      'adt'
-    },
-    rust = {
-      'impl_item',
-    },
-    terraform = {
-      'block',
-      'object_elem',
-      'attribute',
-    },
-    scala = {
-      'object_definition',
-    },
-    vhdl = {
-      'process_statement',
-      'architecture_body',
-      'entity_declaration',
-    },
-    markdown = {
-      'section',
-    },
-    elixir = {
-      'anonymous_function',
-      'arguments',
-      'block',
-      'do_block',
-      'list',
-      'map',
-      'tuple',
-      'quoted_content',
-    },
-    json = {
-      'pair',
-    },
-    typescript = {
-      'export_statement',
-    },
-    yaml = {
-      'block_mapping_pair',
-    },
-    javascript = {
-      'else_clause',
-      'try_statement',
-      'catch_clause',
-    },
-    vue = {
-      -- works inside <template> tag
-      'element',
-      'start_tag',
-      -- below doesn't work, trying for <script> tag
-      'script_element',
-      'raw_text',
-      'export_statement',
-      'pair',
-      'method_definition',
-      'property_identifier',
-      'if_statement',
-      'else_clause',
-    },
-  },
-  exact_patterns = {
-    -- Example for a specific filetype with Lua patterns
-    -- Treat patterns.rust as a Lua pattern (i.e "^impl_item$" will
-    -- exactly match "impl_item" only)
-    -- rust = true,
-  },
+-- -- Configure 'sticky scroll'
+-- require'treesitter-context'.setup {
+--   enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+--   enable_autocmd = false,  -- Important for performance
+--   max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+--   trim_scope = 'outer', -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
+--   min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
+--   patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
+--     -- For all filetypes
+--     -- Note that setting an entry here replaces all other patterns for this entry.
+--     -- By setting the 'default' entry below, you can control which nodes you want to
+--     -- appear in the context window.
+--     default = {
+--       'class',
+--       'function',
+--       'method',
+--       'for',
+--       'while',
+--       'if',
+--       'switch',
+--       'case',
+-- 			'interface',
+-- 			'struct',
+-- 			'enum',
+--     },
+--     -- Patterns for specific filetypes
+--     -- If a pattern is missing, *open a PR* so everyone can benefit.
+--     tex = {
+--       'chapter',
+--       'section',
+--       'subsection',
+--       'subsubsection',
+--     },
+--     haskell = {
+--       'adt'
+--     },
+--     rust = {
+--       'impl_item',
+--     },
+--     terraform = {
+--       'block',
+--       'object_elem',
+--       'attribute',
+--     },
+--     scala = {
+--       'object_definition',
+--     },
+--     vhdl = {
+--       'process_statement',
+--       'architecture_body',
+--       'entity_declaration',
+--     },
+--     markdown = {
+--       'section',
+--     },
+--     elixir = {
+--       'anonymous_function',
+--       'arguments',
+--       'block',
+--       'do_block',
+--       'list',
+--       'map',
+--       'tuple',
+--       'quoted_content',
+--     },
+--     json = {
+--       'pair',
+--     },
+--     typescript = {
+--       'export_statement',
+--     },
+--     yaml = {
+--       'block_mapping_pair',
+--     },
+--     javascript = {
+--       'else_clause',
+--       'try_statement',
+--       'catch_clause',
+--     },
+--     vue = {
+--       -- works inside <template> tag
+--       'element',
+--       'start_tag',
+--       -- below doesn't work, trying for <script> tag
+--       'script_element',
+--       'raw_text',
+--       'export_statement',
+--       'pair',
+--       'method_definition',
+--       'property_identifier',
+--       'if_statement',
+--       'else_clause',
+--     },
+--   },
+--   exact_patterns = {
+--     -- Example for a specific filetype with Lua patterns
+--     -- Treat patterns.rust as a Lua pattern (i.e "^impl_item$" will
+--     -- exactly match "impl_item" only)
+--     -- rust = true,
+--   },
 
-  -- [!] The options below are exposed but shouldn't require your attention,
-  --     you can safely ignore them.
+--   -- [!] The options below are exposed but shouldn't require your attention,
+--   --     you can safely ignore them.
 
-  zindex = 20, -- The Z-index of the context window
-  mode = 'cursor',  -- Line used to calculate context. Choices: 'cursor', 'topline'
-  -- Separator between context and content. Should be a single character string, like '-'.
-  -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
-  separator = nil,
-}
+--   zindex = 20, -- The Z-index of the context window
+--   mode = 'cursor',  -- Line used to calculate context. Choices: 'cursor', 'topline'
+--   -- Separator between context and content. Should be a single character string, like '-'.
+--   -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
+--   separator = nil,
+-- }
 EOF
 
 " === Configure Nvim-Treesitter-Textobjects ===
 lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  textobjects = {
-    select = {
-      enable = true,
+-- require'nvim-treesitter.configs'.setup {
+--   textobjects = {
+--     select = {
+--       enable = true,
 
-      -- Automatically jump forward to textobj, similar to targets.vim
-      lookahead = true,
+--       -- Automatically jump forward to textobj, similar to targets.vim
+--       lookahead = true,
 
-      keymaps = {
-        -- You can use the capture groups defined in textobjects.scm
-        ["af"] = "@function.outer",
-        ["if"] = "@function.inner",
-        ["ac"] = "@class.outer",
-        -- You can optionally set descriptions to the mappings (used in the desc parameter of
-        -- nvim_buf_set_keymap) which plugins like which-key display
-        ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
-        -- You can also use captures from other query groups like `locals.scm`
-        ["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
-      },
-      -- You can choose the select mode (default is charwise 'v')
-      --
-      -- Can also be a function which gets passed a table with the keys
-      -- * query_string: eg '@function.inner'
-      -- * method: eg 'v' or 'o'
-      -- and should return the mode ('v', 'V', or '<c-v>') or a table
-      -- mapping query_strings to modes.
-      selection_modes = {
-        ['@parameter.outer'] = 'v', -- charwise
-        ['@function.outer'] = 'V', -- linewise
-        ['@class.outer'] = '<c-v>', -- blockwise
-      },
-      -- If you set this to `true` (default is `false`) then any textobject is
-      -- extended to include preceding or succeeding whitespace. Succeeding
-      -- whitespace has priority in order to act similarly to eg the built-in
-      -- `ap`.
-      --
-      -- Can also be a function which gets passed a table with the keys
-      -- * query_string: eg '@function.inner'
-      -- * selection_mode: eg 'v'
-      -- and should return true of false
-      include_surrounding_whitespace = true,
-    },
-  },
-}
+--       keymaps = {
+--         -- You can use the capture groups defined in textobjects.scm
+--         ["af"] = "@function.outer",
+--         ["if"] = "@function.inner",
+--         ["ac"] = "@class.outer",
+--         -- You can optionally set descriptions to the mappings (used in the desc parameter of
+--         -- nvim_buf_set_keymap) which plugins like which-key display
+--         ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+--         -- You can also use captures from other query groups like `locals.scm`
+--         ["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
+--       },
+--       -- You can choose the select mode (default is charwise 'v')
+--       --
+--       -- Can also be a function which gets passed a table with the keys
+--       -- * query_string: eg '@function.inner'
+--       -- * method: eg 'v' or 'o'
+--       -- and should return the mode ('v', 'V', or '<c-v>') or a table
+--       -- mapping query_strings to modes.
+--       selection_modes = {
+--         ['@parameter.outer'] = 'v', -- charwise
+--         ['@function.outer'] = 'V', -- linewise
+--         ['@class.outer'] = '<c-v>', -- blockwise
+--       },
+--       -- If you set this to `true` (default is `false`) then any textobject is
+--       -- extended to include preceding or succeeding whitespace. Succeeding
+--       -- whitespace has priority in order to act similarly to eg the built-in
+--       -- `ap`.
+--       --
+--       -- Can also be a function which gets passed a table with the keys
+--       -- * query_string: eg '@function.inner'
+--       -- * selection_mode: eg 'v'
+--       -- and should return true of false
+--       include_surrounding_whitespace = true,
+--     },
+--   },
+-- }
 EOF
 
 " === Configure render-markdown.nvim ===
