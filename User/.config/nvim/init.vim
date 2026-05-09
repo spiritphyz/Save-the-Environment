@@ -5,7 +5,8 @@ if has('multi_byte')
   setglobal fileencodings=utf-8
 endif
 
-" Load plugins
+" Load plugins with vim-plug. Setting colorscheme should happen after
+" plug#end() function call (occurs at end of plugins.vim).
 source ~/.config/nvim/plugins.vim
 
 " Load custom NodeJS version to address incompatibility
@@ -75,8 +76,8 @@ set backspace=indent,eol,start
 "set foldexpr=nvim_treesitter#foldexpr()
 
 " When opening files, default to all folds open, not closed
-"autocmd BufReadPost,FileReadPost * normal zR
-"set nofoldenable
+autocmd BufReadPost,FileReadPost * normal zR
+set nofoldenable
 
 " Automatically set PHP filetype without regex for <? at top of file
 autocmd BufNewFile,BufRead *.php set filetype=php
@@ -700,14 +701,20 @@ EOF
 " let g:matchup_matchparen_offscreen = {'method': 'status'}
 let g:matchup_matchparen_deferred = 1
 
+" vim-matchup is enabled by default on Neovim. Uses Tree-sitter for matches.
+let g:matchup_treesitter_enabled = v:true
+
+" with vim-surround, enable delete surrounding ds%) and change surround cs%)
+let g:matchup_surround_enabled = 1
+
 lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  matchup = {
-    enable = true,              -- mandatory, false will disable the whole extension
-    disable = { "c", "ruby" },  -- optional, list of language that will be disabled
-    -- [options]
-  },
-}
+-- require'nvim-treesitter.configs'.setup {
+--   matchup = {
+--     enable = true,              -- mandatory, false will disable the whole extension
+--     disable = { "c", "ruby" },  -- optional, list of language that will be disabled
+--     -- [options]
+--   },
+-- }
 EOF
 
 " Change color of matched words and brackets
@@ -778,7 +785,7 @@ local function load_copilotchat()
     -- model = 'claude-sonnet-4',
     -- model = 'gpt-5-codex', <-- only on VSCode, not CLI
     -- model = 'claude-sonnet-4.5',
-    model = 'claude-sonnet-4.5',
+    model = 'claude-sonnet-4.6',
     -- Always include last-used buffer in context window
     sticky = {"#buffer:active"},
     mappings = {
@@ -794,8 +801,9 @@ local function load_copilotchat()
       },
       reset = {
         -- Avoid <C-l> binding for "activate righthand split"
-        normal = '<C-r>',
-        insert = '<C-r>',
+        -- Avoid <C-r> binding for "undo/redo"
+        normal = '<C-t>',
+        insert = '<C-t>',
       },
     },
   })
@@ -842,9 +850,6 @@ _G.lazy_copilot_toggle = function()
 end
 EOF
 
-" === fzf options ===
-" [Buffers] Jump to the existing window if possible
-let g:fzf_buffers_jump = 0
 
 " Enable highlight of found phrase in preview pane. All themes are buggy except base16.
 " Also increase layout of FZF UI and preview window; highlight the match.
@@ -871,7 +876,9 @@ require('fzf-lua').setup({
 		winopts={
 			preview={
 				hidden=true,
-			}
+			},
+			width=0.66,
+			height=0.60,
 		},
 	},
 	grep = {
@@ -879,6 +886,12 @@ require('fzf-lua').setup({
 			preview={
 				hidden=false,
 			}
+		},
+	},
+	command_history = {
+		winopts={
+			width=0.80,
+			height=0.60,
 		},
 	},
 })
@@ -900,12 +913,16 @@ EOF
 lua <<EOF
 require("tokyonight").setup({
   style = "moon", -- Four styles: `storm`, `moon`, `night` and `day`
-  transparent = false, -- Enable this to disable setting the background color
+  transparent = false, -- false disables setting the background color
 })
 EOF
 
 " Use color syntax highlighting
-syntax on
+" Rely on Neovim's Treesitter setting later in this config file to guard
+" against very slow file saving when total lines are greater than 5000 lines.
+if !has('nvim')
+  syntax on
+endif
 
 " Use dark background
 set background=dark
@@ -980,7 +997,8 @@ set incsearch
 " leader-0                zoom the current split
 " :%s//                   run incremental substitution
 " leader-0                restore splits to former sizes
-set inccommand=split
+" set inccommand=split
+set inccommand=nosplit
 
 " Use F2 key to enable paste mode before pasting in large amount of text
 " to avoid auto-formatting. Press F2 again to exit paste mode.
@@ -1100,12 +1118,14 @@ hi! link CocInfoSign Type
 hi! CocUnderline term=underline
 
 " Make background transparent for many things
-hi! Normal ctermbg=NONE guibg=NONE " removes 'hazy' bg color from termguicolors
+" hi! Normal ctermbg=NONE guibg=NONE " removes 'hazy' bg color from termguicolors
+hi! Normal ctermbg=10 guibg=#1b1b1b " almost black background on active pane
 hi! NonText ctermbg=NONE guibg=NONE
 hi! LineNr ctermfg=NONE guibg=NONE
 hi! SignColumn ctermfg=NONE guibg=NONE
 hi! StatusLine guifg=#16252b guibg=#6699CC
 hi! StatusLineNC guifg=#16252b guibg=#16252b
+hi! ColorColumn ctermbg=20 guibg=#242124
 
 " Make background color transparent for git changes
 hi! SignifySignAdd guibg=NONE
@@ -1256,8 +1276,8 @@ let mapleader="\<Space>"
 " Save file [can't put this comment at end of line or else cursor jumps]
 " https://vi.stackexchange.com/a/6922
 nnoremap <leader>w :w!<CR>
-" Close tab
-nnoremap <silent> <leader>c :tabclose<CR>
+" Show [c]ontext ('sticky' HTML tags at top)
+nnoremap <silent> <leader>c :TSContext toggle<CR>
 " Toggle highlight at column 80
 nnoremap <silent> <leader>cc :execute "set colorcolumn=" . (&colorcolumn == "" ? "80" : "")<CR>
 " Toggle line numbers and gutter (signcolumn) for easier Tmux copy
@@ -1295,7 +1315,7 @@ nnoremap <leader>P :Prettier<CR>
 " === FZF shortcuts === "
 nmap <leader>; :Buffers<CR>
 nnoremap <silent> <leader>f :Files<CR>
-"nnoremap <leader>g :Rg<CR>
+" nnoremap <leader>g :Rg<CR>
 nnoremap <leader>g :FzfLua live_grep_native<CR>
 "nnoremap <leader>j :call ToggleZoom(v:true)<CR>:DeniteCursorWord grep:.<CR>
 nnoremap <leader>: :History:<CR>
@@ -1311,6 +1331,10 @@ imap <C-b> <Left>
 imap <C-f> <Right>
 imap <C-e> <End>
 imap <C-a> <Home>
+
+" Ex mode (command-line mode) shortcuts
+" <C-r><C-w> will insert the word under cursor in command-line mode.
+cnoremap <C-a> <Home>
 
 " Ctrl-arrow keys to resize Vim split panes
 nmap <C-right> :vertical resize +1<CR>
@@ -1464,7 +1488,8 @@ endif
 "  <leader>s - For all lines in file, search and replace
 " Call ToggleZoom first to avoid resetting split layout
 " map <leader>s :%s/
-map <leader>s :call ToggleZoom(v:true)<CR>:%s/
+" map <leader>s :call ToggleZoom(v:true)<CR>:%s/
+map <leader>s :%s/
 
 " === vim-matchup shorcuts ===
 "  <leader>? - show position in code as breadcrumb outline
