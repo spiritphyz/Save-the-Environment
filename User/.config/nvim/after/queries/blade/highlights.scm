@@ -1,4 +1,4 @@
-; Blade-specific highlighting (minimal inheritance of html,php to avoid conflicts)
+; Blade-specific highlighting
 ;extends
 
 ; Blade directives
@@ -22,12 +22,12 @@
 (conditional) @conditional
 
 ; HTML tags
-; (tag_name) @tag
-; (attribute_name) @property
-; (attribute_value) @string
-; (start_tag) @tag
-; (end_tag) @tag
+(tag_name) @tag
+(attribute_name) @property
+(attribute_value) @string
+(start_tag) @tag
+(end_tag) @tag
 
 ; Content
 (text) @none
-; (entity) @constant
+(entity) @constant
