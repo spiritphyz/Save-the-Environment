@@ -794,8 +794,10 @@ local function load_copilotchat()
     -- model = 'gpt-5-codex', <-- only on VSCode, not CLI
     -- model = 'claude-sonnet-4.5',
     model = 'claude-sonnet-4.6',
-    -- Always include last-used buffer in context window
-    sticky = {"#buffer:active"},
+
+	-- Allow turns of tool calling.
+    -- Always include last-used buffer in context window.
+    sticky = {"@copilot", "#buffer:active"},
     mappings = {
       complete = {
         detail = 'Use @<Tab> or /<Tab> for options.',
