@@ -307,14 +307,22 @@ endif
 
 
 " === coc options ===
-" Use tab for trigger completion with characters ahead and navigate.
+" Use tab to trigger completion with characters ahead or moving down
+" in completion list.
+
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
+
+" Don't remap Tab inside copilot-chat file types.
 inoremap <silent><expr> <TAB>
+  \ &filetype == 'copilot-chat' ? "\<TAB>" :
   \ coc#pum#visible() ? coc#pum#next(1):
   \ CheckBackspace() ? "\<Tab>" :
   \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make Shift-Tab move up in completion list. Also don't allow remaps
+" later in this config file.
+" inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
 " Make <CR> to accept selected completion item or notify coc.nvim to format
 " <C-g>u breaks current undo, please make your own choice.
@@ -789,6 +797,10 @@ local function load_copilotchat()
     -- Always include last-used buffer in context window
     sticky = {"#buffer:active"},
     mappings = {
+      complete = {
+        detail = 'Use @<Tab> or /<Tab> for options.',
+        insert ='<Tab>',
+      },
       accept_diff = {
         -- Avoid <C-y> binding for "scroll up"
         normal = '<C-g>',
