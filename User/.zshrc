@@ -26,10 +26,16 @@ precmd() { vcs_info }
 
 # Autocomplete git branches
 autoload -Uz compinit
+if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
+# Running `compinit` without `-C` on every shell start rescans all `$fpath`
+# directories for completions, so rebuild it once per day.
+ compinit
+else
+	# compinit -C   # skip security checks if you trust your $fpath
+ compinit -C
+fi
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
-# compinit -C   # skip security checks if you trust your $fpath
-compinit
 
 # Format the vcs_info_msg_0_ variable
 # %b will be git branch name
@@ -58,8 +64,11 @@ autoload edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
+# Allow image.nvim to find imagemagick
+#export DYLD_FALLBACK_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_FALLBACK_LIBRARY_PATH"
+
 # Use ripgrep to find hidden files (but ignore node_modules and .git folder)
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!*node_modules*" -g "!*.git*" -g "!*.DS_Store"'
+export FZF_DEFAULT_COMMAND='rg --files --hidden --no-follow --glob "!{**/node_modules/*,**/.git/*,**/dist/*,**/cache/*,**/storage/*,**/*.DS_Store}"'
 export FZF_DEFAULT_OPTS="--height=40% --layout=reverse  --info=inline --margin=1 --padding=0 --preview-window 'up,70%,border-bottom'"
 
 # FZF customizations
@@ -94,17 +103,28 @@ fd() {
 #  Get settings for Android Studio
 #source ~/.androidrc
 
-# Run fnm NodeJS helper
-#eval "$(fnm env --use-on-cd)"
-
 # Rely on pyenv to manage multiple globally-installed Python and pip
 # https://opensource.com/article/19/5/python-3-default-mac
 # Install pyenv:
 #   brew install pyenv
 #   pyenv install 3.12.3
 #   pyenv version
+# Lazy-load pyenv: only initialize when pyenv or python/pip are first used
 if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+
+  _pyenv_lazy_load() {
+    unfunction python python3 pip pip3 pyenv 2>/dev/null
+    eval "$(pyenv init -)"
+  }
+
+  for _cmd in python python3 pip pip3 pyenv; do
+    if ! command -v $_cmd 1>/dev/null 2>&1; then
+      eval "function $_cmd() { _pyenv_lazy_load; $_cmd \"\$@\"; }"
+    fi
+  done
+  unset _cmd
 fi
 
 # MacPorts doesn't have pyenv, so we'll use direct installer for ZSH
@@ -118,7 +138,8 @@ fi
 # Needs installation first:
 #   macOS  - brew install zoxide
 #   Ubuntu - apt install zoxide
-#eval "$(zoxide init zsh)"
+# Adds delay to startup time.
+eval "$(zoxide init zsh)"
 
 # Look up command options for Unix utilities
 # cheat tar
@@ -126,8 +147,46 @@ function cheat() {
   curl cht.sh/$1
 }
 
-# Avoid SSL certificate error with Copilot and VPN software
-export NODE_TLS_REJECT_UNAUTHORIZED=0
+# Avoid SSL certificate error with Copilot and VPN software.
+# Causes Node to complain:
+#   Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0'
+#   makes TLS connections and HTTPS requests insecure by disabling certificate verification.
+# export NODE_TLS_REJECT_UNAUTHORIZED=0
+
+# pnpm: add global install path for "pnpm i -g"
+export PNPM_HOME="/Users/letuan/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# Herd injected PHP 8.1 configuration.
+export HERD_PHP_81_INI_SCAN_DIR="/Users/letuan/Library/Application Support/Herd/config/php/81/"
+
+# Herd injected PHP 8.4 configuration.
+export HERD_PHP_84_INI_SCAN_DIR="/Users/letuan/Library/Application Support/Herd/config/php/84/"
+
+# Herd injected NVM configuration
+# lazy_load_nvm() {
+#   export NVM_DIR="/Users/letuan/Library/Application Support/Herd/config/nvm"
+#   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+#   [[ -f "/Applications/Herd.app/Contents/Resources/config/shell/zshrc.zsh" ]] && builtin source "/Applications/Herd.app/Contents/Resources/config/shell/zshrc.zsh"
+# }
+
+# node() {
+#   lazy_load_nvm
+#   node $@
+# }
+
+# Run fnm NodeJS helper
+# Adds delay to startup time.
+eval "$(fnm env --use-on-cd)"
+
+# Herd injected PHP binary.
+export PATH="/Users/letuan/Library/Application Support/Herd/bin/":$PATH
+
 
 # Save command history; helps to put at end of file
 HISTFILE="$HOME/.zsh_history"
