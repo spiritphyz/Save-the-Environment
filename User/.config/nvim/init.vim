@@ -690,6 +690,70 @@ require('render-markdown').setup({
 })
 EOF
 
+" === Configure image.nvim ===
+lua << EOF
+rocks = {
+	-- Using 'luarocks --lua-version=5.1 install magick'
+	hererocks = true,  -- recommended if you do not have global installation of Lua 5.1.
+}
+
+require('image').setup({
+	backend = "kitty", -- "kitty", "ueberzug" or "sixel"
+  processor = "magick_cli", -- "magic_cli" or "magick_rock" (couldn't get rock to work)
+	integrations = {
+		markdown = {
+      enabled = true,
+      clear_in_insert_mode = true,
+      download_remote_images = true,
+      only_render_image_at_cursor = true,
+      only_render_image_at_cursor_mode = "inline", -- "popup" or "inline"
+      floating_windows = false, -- if true, images will be rendered in floating markdown windows
+      filetypes = { "markdown", "copilot-chat" }, -- markdown extensions (ie. quarto) can go here
+    },
+		html = {
+			enabled = true,
+      clear_in_insert_mode = true,
+      download_remote_images = true,
+      only_render_image_at_cursor = true,
+      only_render_image_at_cursor_mode = "inline", -- "popup" or "inline"
+      filetypes = { "html", "blade" },
+      resolve_image_path = function(document_path, image_path, fallback)
+        -- document_path is the path to the file that contains the image
+        -- image_path is the potentially relative path to the image. for
+        -- markdown it's `![](this text)`
+
+				-- Laravel blade: src paths are relative to public/
+				if document_path:match("resources/views")
+					and not image_path:match("^/")
+					and not image_path:match("^https?://")
+				then
+					return vim.fn.getcwd() .. "/public/" .. image_path
+				end
+        -- you can call the fallback function to get the default behavior
+				return fallback(document_path, image_path)
+      end,
+		},
+		css = {
+			enabled = true,
+      clear_in_insert_mode = true,
+      download_remote_images = true,
+      only_render_image_at_cursor = true,
+      only_render_image_at_cursor_mode = "inline",
+		},
+	},
+  max_width = nil,
+  max_height = nil,
+  max_width_window_percentage = 80,
+  max_height_window_percentage = 80,
+  scale_factor = 1.0,
+  window_overlap_clear_enabled = false, -- toggles images when windows are overlapped
+  window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "snacks_notif", "scrollview", "scrollview_sign" },
+  editor_only_render_when_focused = false, -- auto show/hide images when the editor gains/looses focus
+  tmux_show_only_in_active_window = true, -- auto show/hide images in the correct Tmux window (needs visual-activity off)
+  hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.avif" }, -- render image files as images when opened
+})
+EOF
+
 " === vim-matchup ===
 " Place offscreen match as popup at top of screen with syntax highlighting.
 " Highlighting popup cause performance degradation because Neovim doesn't provide relative line number
@@ -750,7 +814,7 @@ autocmd FileType javascript.jsx JsPreTmpl
 " Workspace folders to improve quality of suggestions.
 let g:copilot_workspace_folders = [
   \ "~/kode/creativestudios-misp-v2-external-site",
-  \ "~/kode/creativestudios-brc-frontend",
+  \ "~/kode/creativestudios-brc-v2-site"
   \]
 
 " === coc-copilot options ===
@@ -786,14 +850,14 @@ local function load_copilotchat()
     -- model = 'claude-sonnet-4.5',
     model = 'claude-sonnet-4.6',
 
-	-- Allow turns of tool calling.
+		-- Allow turns of tool calling.
     -- Always include last-used buffer in context window.
     sticky = {"@copilot", "#buffer:active"},
     mappings = {
-      complete = {
-        detail = 'Use @<Tab> or /<Tab> for options.',
-        insert ='<Tab>',
-      },
+			complete = {
+				detail = 'Use @<Tab> or /<Tab> for options.',
+				insert ='<Tab>',
+			},
       accept_diff = {
         -- Avoid <C-y> binding for "scroll up"
         normal = '<C-g>',
@@ -810,6 +874,7 @@ local function load_copilotchat()
         normal = '<C-t>',
         insert = '<C-t>',
       },
+    },
 		window = {
 			layout = 'vertical',         -- 'vertical', 'horizontal', 'float'
 			width= 0.45,                  -- 50% of screen width
@@ -834,8 +899,8 @@ local function load_copilotchat()
 			-- trust every enabled tool call
 			-- trusted_tools = true,
 		},
-    },
   })
+
   -- Custom buffer for CopilotChat
   vim.api.nvim_create_autocmd("BufEnter", {
     pattern = "copilot-*",
@@ -847,7 +912,7 @@ local function load_copilotchat()
     -- Gives treesitter motions (]], [[) and syntax highlighting
     -- while keeping filetype=copilot-chat so CopilotChat can
     -- still track its own window state.
-	-- [[ and ]] still not working to navigate between headings. Can use { and } to find blank lines.
+			-- [[ and ]] still not working to navigate between headings. Can use { and } to find blank lines.
     pcall(vim.treesitter.start, 0, "markdown")
     vim.bo.syntax = "markdown"
     end,
@@ -882,6 +947,7 @@ _G.lazy_copilot_toggle = function()
       vim.cmd('CopilotChatToggle')
     end, 200)
   end
+end
 EOF
 
 
