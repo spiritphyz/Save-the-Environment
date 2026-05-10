@@ -419,14 +419,6 @@ vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
   command = "set filetype=blade",
 })
 
--- Enable treesitter for blade files
--- vim.api.nvim_create_autocmd("FileType", {
---   pattern = "blade",
---   callback = function()
---     vim.treesitter.start()
---   end,
--- })
-
 -- IIFE that diffs against alread-installed parsers so it doesn't
 -- reinstall everything on startup.
 -- https://www.qu8n.com/posts/treesitter-migration-guide-for-nvim-0-12
@@ -693,6 +685,7 @@ require('render-markdown').setup({
 	heading = {
 		enabled = true,
 		position = 'inline',
+		sign = false, -- don't show arrow symbol in gutter
 	},
 })
 EOF
@@ -752,14 +745,12 @@ autocmd FileType javascript.jsx JsPreTmpl
 " Disable SSL certificate verification for Zscaler VPN.
 " Also needs NODE_TLS_REJECT_UNAUTHORIZED=0 in ~/.zshrc.
 " See --> :help g:copilot_proxy_strict_ssl
-let g:copilot_proxy_strict_ssl = v:false
+"let g:copilot_proxy_strict_ssl = v:false
 
 " Workspace folders to improve quality of suggestions.
 let g:copilot_workspace_folders = [
   \ "~/kode/creativestudios-misp-v2-external-site",
   \ "~/kode/creativestudios-brc-frontend",
-  \ "~/kode/creativestudios-misp-external-site",
-  \ "~/kode/creativestudios-semapp-site"
   \]
 
 " === coc-copilot options ===
@@ -810,8 +801,8 @@ local function load_copilotchat()
       },
       -- Avoid <C-c> to close chat window
       close = {
-        normal = 'q',
-        insert = '<C-q>',
+        normal = '<C-[>',
+        insert = '<C-[>',
       },
       reset = {
         -- Avoid <C-l> binding for "activate righthand split"
@@ -819,6 +810,30 @@ local function load_copilotchat()
         normal = '<C-t>',
         insert = '<C-t>',
       },
+		window = {
+			layout = 'vertical',         -- 'vertical', 'horizontal', 'float'
+			width= 0.45,                  -- 50% of screen width
+			auto_insert_mode = true,     -- Enter insert mode when opening
+		},
+		headers = {
+			user = '👤 You',
+			assistant = '🤖 Copilot',
+			tool = '🔧 Tool',
+		},
+		{
+			-- trusted_tools = nil, -- default: require approval for all tool calls
+
+			-- trust all functions in a group
+			trusted_tools = 'copilot',
+
+			-- trust specific functions by name or groups by name.
+			-- doesn't require manual approvals.
+			-- 'file', 'glob', and 'grep' are safe read-only tools.
+			trusted_tools = { 'file', 'glob', 'grep' },
+
+			-- trust every enabled tool call
+			-- trusted_tools = true,
+		},
     },
   })
   -- Custom buffer for CopilotChat
@@ -828,11 +843,13 @@ local function load_copilotchat()
       vim.opt_local.relativenumber = true
       vim.opt_local.number = true
 
-      -- Get current filetype and set it to markdown if the current filetype is copilot-chat
-      local ft = vim.bo.filetype
-      if ft == "copilot-chat" then
-        vim.bo.filetype = "markdown"
-      end
+    -- Parse buffer as markdown without changing filetype.
+    -- Gives treesitter motions (]], [[) and syntax highlighting
+    -- while keeping filetype=copilot-chat so CopilotChat can
+    -- still track its own window state.
+	-- [[ and ]] still not working to navigate between headings. Can use { and } to find blank lines.
+    pcall(vim.treesitter.start, 0, "markdown")
+    vim.bo.syntax = "markdown"
     end,
   })
 end
@@ -857,11 +874,14 @@ lazy_cmd("CopilotChatTests")
 
 -- Helper function for lazy-loaded mappings
 _G.lazy_copilot_toggle = function()
-  load_copilotchat()
-  vim.defer_fn(function()
+  if copilotchat_loaded then
     vim.cmd('CopilotChatToggle')
-  end, 200)
-end
+  else
+    load_copilotchat()
+    vim.defer_fn(function()
+      vim.cmd('CopilotChatToggle')
+    end, 200)
+  end
 EOF
 
 
@@ -1510,18 +1530,18 @@ map <leader>s :%s/
 nnoremap <leader>? :<c-u>MatchupWhereAmI??<cr>
 
 " === AI shorcuts ===
-" Toggle chat window, mnemonic is "AI Chat"
-"nnoremap <leader>ac :CopilotChatToggle<CR><C-w>=
-" nnoremap <leader>aa :tabedit %<CR>:CopilotChatToggle<CR>
-nnoremap <leader>aa :tabedit %<CR><C-o><CR>:lua lazy_copilot_toggle()<CR>
-" Toggle chat window while loading last chat, mnemonic is "AI Chat Load"
-nnoremap <leader>acl :CopilotChatLoad<CR>
+" Open current buffer in tabedit left split w/ sticky prompt in right split.
+" If current buffer is empty, then just toggle the chat window without tabs.
+" "aa" mnemonic is for "ai".
+nnoremap <leader>aa :lua if vim.fn.expand('%') ~= '' then vim.cmd('tabedit %') end; vim.schedule(lazy_copilot_toggle)<CR>
+" Load loading last saved chat session
+nnoremap <leader>aal :CopilotChatLoad last-chat-session<CR>
+" Save current chat session
+nnoremap <leader>aas :CopilotChatSave last-chat-session<CR>
 " Open chat window with input, mnemonic is "AI Chat Input"
 nnoremap <leader>aai :CopilotChat<SPACE>
-" Open chat window with input using Claude model
-nnoremap <leader>acc :CopilotChat<SPACE>$claude-3.7-sonnet<SPACE>
-" Open chat window with input using gpt-4o model
-nnoremap <leader>aco :CopilotChat<SPACE>$gpt-4o<SPACE>
+" Toggle chat window without opening a tab split like <leader>aa
+nnoremap <leader>aat :CopilotChatToggle<CR>
 
 " === Window splitting shorcuts ===
 nnoremap <leader>sp :sp<CR><C-w>=
