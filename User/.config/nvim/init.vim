@@ -1,8 +1,8 @@
 " Use Unicode characters. Has to be at the top of the file.
 if has('multi_byte')
-  set encoding=utf-8
-  scriptencoding utf-8
-  setglobal fileencodings=utf-8
+	set encoding=utf-8
+	scriptencoding utf-8
+	setglobal fileencodings=utf-8
 endif
 
 " Load plugins with vim-plug. Setting colorscheme should happen after
@@ -116,40 +116,40 @@ set laststatus=2
 
 " Define functions
 function! s:lightline_coc_diagnostic(kind, sign) abort
-  let info = get(b:, 'coc_diagnostic_info', 0)
-  if empty(info) || get(info, a:kind, 0) == 0
-    return ''
-  endif
-  try
-    let s = g:coc_user_config['diagnostic'][a:sign . 'Sign']
-  catch
-    let s = ''
-  endtry
-  return printf('%s %d', s, info[a:kind])
+	let info = get(b:, 'coc_diagnostic_info', 0)
+	if empty(info) || get(info, a:kind, 0) == 0
+		return ''
+	endif
+	try
+		let s = g:coc_user_config['diagnostic'][a:sign . 'Sign']
+	catch
+		let s = ''
+	endtry
+	return printf('%s %d', s, info[a:kind])
 endfunction
 
 function! LightlineCocErrors() abort
-  return s:lightline_coc_diagnostic('error', 'error')
+	return s:lightline_coc_diagnostic('error', 'error')
 endfunction
 
 function! LightlineCocWarnings() abort
-  return s:lightline_coc_diagnostic('warning', 'warning')
+	return s:lightline_coc_diagnostic('warning', 'warning')
 endfunction
 
 function! LightlineCocInfos() abort
-  return s:lightline_coc_diagnostic('information', 'info')
+	return s:lightline_coc_diagnostic('information', 'info')
 endfunction
 
 function! LightlineFilename()
-  let shortfilename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
-  "let filename = expand('%:t') !=# '' ? expand('%:p:h:t') . '/' . expand('%:t') : '[No Name]'
-  " show relative path
-  " let filename = expand('%:t') !=# '' ? expand('%') : '[No Name]'
-  let modified = &modified ? ' 🍄' : ''
+	let shortfilename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+	"let filename = expand('%:t') !=# '' ? expand('%:p:h:t') . '/' . expand('%:t') : '[No Name]'
+	" show relative path
+	" let filename = expand('%:t') !=# '' ? expand('%') : '[No Name]'
+	let modified = &modified ? ' 🍄' : ''
 
-  " show relative path trimmed to 4 characters per folder
-  let name = ""
-  let subs = split(expand('%'), "/")
+	" show relative path trimmed to 4 characters per folder
+	let name = ""
+	let subs = split(expand('%'), "/")
 	let i = 1
 	for s in subs
 		let parent = name
@@ -163,96 +163,96 @@ function! LightlineFilename()
 		let i += 1
 	endfor
 
-  if winwidth(0) < 86
-    return shortfilename . modified
-  else
-    " return filename . modified
-    return name . modified
-  endif
+	if winwidth(0) < 86
+		return shortfilename . modified
+	else
+		" return filename . modified
+		return name . modified
+	endif
 endfunction
 
 " Ex: unix
 function! LightlineFileformat()
-  return winwidth(0) > 95 ? &fileformat : ''
+	return winwidth(0) > 95 ? &fileformat : ''
 endfunction
 
 " Ex: utf-8
 function! LightlineFileencoding()
-  return winwidth(0) > 115 ? &fileencoding : ''
+	return winwidth(0) > 115 ? &fileencoding : ''
 endfunction
 
 " Ex: reactjavascript
 function! LightlineFiletype()
-  return winwidth(0) > 85 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+	return winwidth(0) > 85 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
 endfunction
 
 function! LightlineGitBranch()
-  if exists ('*FugitiveHead')
-    let branch = FugitiveHead()
-    if winwidth(0) > 54
-      return branch !=# '' ? ' '.branch : ''
-    else
-      return branch !=# '' ? '' : ''
-    endif
-  endif
+	if exists ('*FugitiveHead')
+		let branch = FugitiveHead()
+		if winwidth(0) > 54
+			return branch !=# '' ? ' '.branch : ''
+		else
+			return branch !=# '' ? '' : ''
+		endif
+	endif
 endfunction
 
 function! LightlineCocHints() abort
-  return s:lightline_coc_diagnostic('hints', 'hint')
+	return s:lightline_coc_diagnostic('hints', 'hint')
 endfunction
 
 autocmd User CocDiagnosticChange call lightline#update()
 
 " Configure statusline
 let g:lightline = {
-      \ 'colorscheme': 'tokyonight',
-      \ 'component': {
-      \   'fileformat': '%3l:%-2v%<',
-      \   'filetype': '%3l:%-2v%<',
-      \ },
-      \ 'component_function': {
-      \   'filename'          : 'LightlineFilename',
-      \   'fileencoding'      : 'LightlineFileencoding',
-      \   'fileformat'        : 'LightlineFileformat',
-      \   'filetype'          : 'LightlineFiletype',
-      \   'gitbranch'         : 'LightlineGitBranch',
-      \ },
-      \ 'active': {
-      \   'right': [ [ 'lineinfo' ],
-      \              [ 'percent' ],
-      \              [ 'fileformat', 'fileencoding', 'filetype' ] ],
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'coc_error', 'coc_warning', 'coc_hint', 'coc_info' ] ]
-      \ },
-      \ 'mode_map': {
-        \ 'n': '🦋 N',
-        \ 'i': 'I',
-        \ 'v': 'V',
-        \ 'V': 'VL',
-        \ },
-      \ }
+			\ 'colorscheme': 'tokyonight',
+			\ 'component': {
+			\   'fileformat': '%3l:%-2v%<',
+			\   'filetype': '%3l:%-2v%<',
+			\ },
+			\ 'component_function': {
+			\   'filename'          : 'LightlineFilename',
+			\   'fileencoding'      : 'LightlineFileencoding',
+			\   'fileformat'        : 'LightlineFileformat',
+			\   'filetype'          : 'LightlineFiletype',
+			\   'gitbranch'         : 'LightlineGitBranch',
+			\ },
+			\ 'active': {
+			\   'right': [ [ 'lineinfo' ],
+			\              [ 'percent' ],
+			\              [ 'fileformat', 'fileencoding', 'filetype' ] ],
+			\   'left': [ [ 'mode', 'paste' ],
+			\             [ 'gitbranch', 'readonly', 'filename', 'coc_error', 'coc_warning', 'coc_hint', 'coc_info' ] ]
+			\ },
+			\ 'mode_map': {
+				\ 'n': '🦋 N',
+				\ 'i': 'I',
+				\ 'v': 'V',
+				\ 'V': 'VL',
+				\ },
+			\ }
 
 let g:lightline.component_expand = {
-      \   'buffers'          : 'lightline#bufferline#buffers',
-      \   'coc_error'        : 'LightlineCocErrors',
-      \   'coc_warning'      : 'LightlineCocWarnings',
-      \   'coc_info'         : 'LightlineCocInfos',
-      \   'coc_hint'         : 'LightlineCocHints',
-      \   'coc_fix'          : 'LightlineCocFixes'
-      \ }
+			\   'buffers'          : 'lightline#bufferline#buffers',
+			\   'coc_error'        : 'LightlineCocErrors',
+			\   'coc_warning'      : 'LightlineCocWarnings',
+			\   'coc_info'         : 'LightlineCocInfos',
+			\   'coc_hint'         : 'LightlineCocHints',
+			\   'coc_fix'          : 'LightlineCocFixes'
+			\ }
 
 let g:lightline.component_type = {
-      \   'buffers'          : 'tabsel',
-      \   'coc_error'        : 'error',
-      \   'coc_warning'      : 'warning',
-      \   'coc_info'         : 'tabsel',
-      \   'coc_hint'         : 'middle',
-      \   'coc_fix'          : 'middle',
-      \   'linter_checking'  : 'left',
-      \   'linter_warnings'  : 'warning',
-      \   'linter_errors'    : 'error',
-      \   'linter_ok'        : 'left',
-      \ }
+			\   'buffers'          : 'tabsel',
+			\   'coc_error'        : 'error',
+			\   'coc_warning'      : 'warning',
+			\   'coc_info'         : 'tabsel',
+			\   'coc_hint'         : 'middle',
+			\   'coc_fix'          : 'middle',
+			\   'linter_checking'  : 'left',
+			\   'linter_warnings'  : 'warning',
+			\   'linter_errors'    : 'error',
+			\   'linter_ok'        : 'left',
+			\ }
 
 
 " === Lightline-bufferline options ===
@@ -300,9 +300,9 @@ let NERDTreeMinimalUI=1
 " === netrw options ===
 " Open files in prev window unless we're opening the current dir
 if argv(0) ==# '.'
-    let g:netrw_browse_split = 0
+		let g:netrw_browse_split = 0
 else
-    let g:netrw_browse_split = 4
+		let g:netrw_browse_split = 4
 endif
 
 
@@ -315,10 +315,10 @@ endif
 
 " Don't remap Tab inside copilot-chat file types.
 inoremap <silent><expr> <TAB>
-  \ &filetype == 'copilot-chat' ? "\<TAB>" :
-  \ coc#pum#visible() ? coc#pum#next(1):
-  \ CheckBackspace() ? "\<Tab>" :
-  \ coc#refresh()
+	\ &filetype == 'copilot-chat' ? "\<TAB>" :
+	\ coc#pum#visible() ? coc#pum#next(1):
+	\ CheckBackspace() ? "\<Tab>" :
+	\ coc#refresh()
 
 " Make Shift-Tab move up in completion list. Also don't allow remaps
 " later in this config file.
@@ -327,21 +327,21 @@ inoremap <silent><expr> <TAB>
 " Make <CR> to accept selected completion item or notify coc.nvim to format
 " <C-g>u breaks current undo, please make your own choice.
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-  \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+	\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 function! CheckBackspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 " Remap <C-j> and <C-k> to scroll float windows/popups
 if has('nvim-0.4.0') || has('patch-8.2.0750')
-  nnoremap <silent><nowait><expr> <C-j> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-j>"
-  nnoremap <silent><nowait><expr> <C-k> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-k>"
-  inoremap <silent><nowait><expr> <C-j> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-  inoremap <silent><nowait><expr> <C-k> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-  vnoremap <silent><nowait><expr> <C-j> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-j>"
-  vnoremap <silent><nowait><expr> <C-k> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-k>"
+	nnoremap <silent><nowait><expr> <C-j> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-j>"
+	nnoremap <silent><nowait><expr> <C-k> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-k>"
+	inoremap <silent><nowait><expr> <C-j> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+	inoremap <silent><nowait><expr> <C-k> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+	vnoremap <silent><nowait><expr> <C-j> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-j>"
+	vnoremap <silent><nowait><expr> <C-k> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-k>"
 endif
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
@@ -351,28 +351,28 @@ endif
 " https://github.com/LunarWatcher/auto-pairs/issues/66
 " Instead of <CR>, try ctrl-y to accept the current selection.
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-  \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+	\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " These plugins will automatically be installed and updated by CoC
 " :CocInstall to install the first time
 " :CocUpdate to update the plugins
 let g:coc_global_extensions = [
-  \ "coc-css",
-  \ "coc-emmet",
-  \ "coc-eslint",
-  \ "coc-format-json",
-  \ "coc-html",
-  \ "coc-json",
-  \ "coc-prettier",
-  \ "coc-python",
-  \ "coc-styled-components",
-  \ "coc-tslint",
-  \ "coc-tsserver",
-  \ "coc-vetur"
-  \]
+	\ "coc-css",
+	\ "coc-emmet",
+	\ "coc-eslint",
+	\ "coc-format-json",
+	\ "coc-html",
+	\ "coc-json",
+	\ "coc-prettier",
+	\ "coc-python",
+	\ "coc-styled-components",
+	\ "coc-tslint",
+	\ "coc-tsserver",
+	\ "coc-vetur"
+	\]
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
-  let g:coc_global_extensions += ['coc-eslint']
+	let g:coc_global_extensions += ['coc-eslint']
 endif
 
 
@@ -404,40 +404,40 @@ vim.api.nvim_create_autocmd('FileType', {
 
 -- Set up filetype detection
 vim.filetype.add({
-  extension = {
-    ['blade.php'] = 'blade',
-  },
-  pattern = {
-    ['.*%.blade%.php'] = 'blade',
-  },
+	extension = {
+		['blade.php'] = 'blade',
+	},
+	pattern = {
+		['.*%.blade%.php'] = 'blade',
+	},
 })
 
 -- Also add this autocmd to ensure blade filetype takes precedence
 -- over Neovim's php filetype detection.
 vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
-  pattern = "*.blade.php",
-  command = "set filetype=blade",
+	pattern = "*.blade.php",
+	command = "set filetype=blade",
 })
 
 -- IIFE that diffs against alread-installed parsers so it doesn't
 -- reinstall everything on startup.
 -- https://www.qu8n.com/posts/treesitter-migration-guide-for-nvim-0-12
 ;(function()
-  local ensureInstalled = {
-    "bash", "blade", "c", "c_sharp", "clojure", "css",
-    "diff", "dockerfile", "ecma", "go", "html", "html_tags", "http",
-    "java", "javascript", "json", "julia", "lua",
-    "markdown", "markdown_inline", "nix",
-    "php", "php_only", "python", "regex", "scheme", "scss",
-    "toml", "tsx", "typescript", "twig", "vim", "vue", "yaml",
-  }
-  local alreadyInstalled = require('nvim-treesitter.config').get_installed()
-  local parsersToInstall = vim.iter(ensureInstalled)
-    :filter(function(parser)
-      return not vim.tbl_contains(alreadyInstalled, parser)
-    end)
-    :totable()
-  require('nvim-treesitter').install(parsersToInstall)
+	local ensureInstalled = {
+		"bash", "blade", "c", "c_sharp", "clojure", "css",
+		"diff", "dockerfile", "ecma", "go", "html", "html_tags", "http",
+		"java", "javascript", "json", "julia", "lua",
+		"markdown", "markdown_inline", "nix",
+		"php", "php_only", "python", "regex", "scheme", "scss",
+		"toml", "tsx", "typescript", "twig", "vim", "vue", "yaml",
+	}
+	local alreadyInstalled = require('nvim-treesitter.config').get_installed()
+	local parsersToInstall = vim.iter(ensureInstalled)
+		:filter(function(parser)
+			return not vim.tbl_contains(alreadyInstalled, parser)
+		end)
+		:totable()
+	require('nvim-treesitter').install(parsersToInstall)
 end)()
 
 -- Continue to configure Tree-sitter
@@ -699,28 +699,28 @@ rocks = {
 
 require('image').setup({
 	backend = "kitty", -- "kitty", "ueberzug" or "sixel"
-  processor = "magick_cli", -- "magic_cli" or "magick_rock" (couldn't get rock to work)
+	processor = "magick_cli", -- "magic_cli" or "magick_rock" (couldn't get rock to work)
 	integrations = {
 		markdown = {
-      enabled = true,
-      clear_in_insert_mode = true,
-      download_remote_images = true,
-      only_render_image_at_cursor = true,
-      only_render_image_at_cursor_mode = "inline", -- "popup" or "inline"
-      floating_windows = false, -- if true, images will be rendered in floating markdown windows
-      filetypes = { "markdown", "copilot-chat" }, -- markdown extensions (ie. quarto) can go here
-    },
+			enabled = true,
+			clear_in_insert_mode = true,
+			download_remote_images = true,
+			only_render_image_at_cursor = true,
+			only_render_image_at_cursor_mode = "inline", -- "popup" or "inline"
+			floating_windows = false, -- if true, images will be rendered in floating markdown windows
+			filetypes = { "markdown", "copilot-chat" }, -- markdown extensions (ie. quarto) can go here
+		},
 		html = {
 			enabled = true,
-      clear_in_insert_mode = true,
-      download_remote_images = true,
-      only_render_image_at_cursor = true,
-      only_render_image_at_cursor_mode = "inline", -- "popup" or "inline"
-      filetypes = { "html", "blade" },
-      resolve_image_path = function(document_path, image_path, fallback)
-        -- document_path is the path to the file that contains the image
-        -- image_path is the potentially relative path to the image. for
-        -- markdown it's `![](this text)`
+			clear_in_insert_mode = true,
+			download_remote_images = true,
+			only_render_image_at_cursor = true,
+			only_render_image_at_cursor_mode = "inline", -- "popup" or "inline"
+			filetypes = { "html", "blade" },
+			resolve_image_path = function(document_path, image_path, fallback)
+				-- document_path is the path to the file that contains the image
+				-- image_path is the potentially relative path to the image. for
+				-- markdown it's `![](this text)`
 
 				-- Laravel blade: src paths are relative to public/
 				if document_path:match("resources/views")
@@ -729,28 +729,28 @@ require('image').setup({
 				then
 					return vim.fn.getcwd() .. "/public/" .. image_path
 				end
-        -- you can call the fallback function to get the default behavior
+				-- you can call the fallback function to get the default behavior
 				return fallback(document_path, image_path)
-      end,
+			end,
 		},
 		css = {
 			enabled = true,
-      clear_in_insert_mode = true,
-      download_remote_images = true,
-      only_render_image_at_cursor = true,
-      only_render_image_at_cursor_mode = "inline",
+			clear_in_insert_mode = true,
+			download_remote_images = true,
+			only_render_image_at_cursor = true,
+			only_render_image_at_cursor_mode = "inline",
 		},
 	},
-  max_width = nil,
-  max_height = nil,
-  max_width_window_percentage = 80,
-  max_height_window_percentage = 80,
-  scale_factor = 1.0,
-  window_overlap_clear_enabled = false, -- toggles images when windows are overlapped
-  window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "snacks_notif", "scrollview", "scrollview_sign" },
-  editor_only_render_when_focused = false, -- auto show/hide images when the editor gains/looses focus
-  tmux_show_only_in_active_window = true, -- auto show/hide images in the correct Tmux window (needs visual-activity off)
-  hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.avif" }, -- render image files as images when opened
+	max_width = nil,
+	max_height = nil,
+	max_width_window_percentage = 80,
+	max_height_window_percentage = 80,
+	scale_factor = 1.0,
+	window_overlap_clear_enabled = false, -- toggles images when windows are overlapped
+	window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "snacks_notif", "scrollview", "scrollview_sign" },
+	editor_only_render_when_focused = false, -- auto show/hide images when the editor gains/looses focus
+	tmux_show_only_in_active_window = true, -- auto show/hide images in the correct Tmux window (needs visual-activity off)
+	hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.avif" }, -- render image files as images when opened
 })
 EOF
 
@@ -791,28 +791,28 @@ lua << EOF
 require('img-clip').setup({
 	default = {
 			-- writes the file to an absolute path (so it always goes to `{cwd}/temp-images/`)
-      use_absolute_path = true, ---@type boolean
-      relative_to_current_file = false, ---@type boolean
+			use_absolute_path = true, ---@type boolean
+			relative_to_current_file = false, ---@type boolean
 
 			-- Save images in project root at "{cwd}/temp-images/" folder.
-      dir_path = "temp-images",
+			dir_path = "temp-images",
 
-      -- If you want to get prompted for the filename when pasting an image
-      -- This is the actual name that the physical file will have
-      -- If you set it to true, enter the name without spaces or extension `test-image-1`
-      -- Remember we specified the extension above
-      --
-      -- I don't want to give my images a name, but instead autofill it using
-      -- the date and time as shown on `file_name` below
-      prompt_for_file_name = false,
-      show_dir_path_in_prompt = false,
-      file_name = "%Y-%m-%d-at-%H-%M-%S",
-      -- Strip cwd from absolute path so inserted path starts with "temp-images/..."
-      template = function(context)
-        local cwd = vim.fn.getcwd() .. "/"
-        local path = context.file_path:gsub("^" .. vim.pesc(cwd), "")
-        return "![$FILE_NAME](" .. path .. ")"
-      end,
+			-- If you want to get prompted for the filename when pasting an image
+			-- This is the actual name that the physical file will have
+			-- If you set it to true, enter the name without spaces or extension `test-image-1`
+			-- Remember we specified the extension above
+			--
+			-- I don't want to give my images a name, but instead autofill it using
+			-- the date and time as shown on `file_name` below
+			prompt_for_file_name = false,
+			show_dir_path_in_prompt = false,
+			file_name = "%Y-%m-%d-at-%H-%M-%S",
+			-- Strip cwd from absolute path so inserted path starts with "temp-images/..."
+			template = function(context)
+				local cwd = vim.fn.getcwd() .. "/"
+				local path = context.file_path:gsub("^" .. vim.pesc(cwd), "")
+				return "![$FILE_NAME](" .. path .. ")"
+			end,
 		},
 		-- filetype specific options
 		filetypes = {
@@ -868,15 +868,15 @@ EOF
 
 " Change color of matched words and brackets
 augroup matchup_matchparen_highlight
-  autocmd!
-  " autocmd ColorScheme * hi MatchWord guifg=black guibg=darkgray
-  autocmd ColorScheme * hi MatchWord guibg=#3a3a3a gui=bold,underdotted
-  autocmd ColorScheme * hi MatchParen guifg=black guibg=darkgray gui=bold,underdotted
+	autocmd!
+	" autocmd ColorScheme * hi MatchWord guifg=black guibg=darkgray
+	autocmd ColorScheme * hi MatchWord guibg=#3a3a3a gui=bold,underdotted
+	autocmd ColorScheme * hi MatchParen guifg=black guibg=darkgray gui=bold,underdotted
 augroup END
 
 highlight! OffscreenPopup guibg=#5f005f gui=bold
 let g:matchup_matchparen_offscreen
-      \ = {'method': 'popup', 'highlight': 'OffscreenPopup'}
+			\ = {'method': 'popup', 'highlight': 'OffscreenPopup'}
 
 " === vim-js-pretty-template ===
 " Register tag name associated the filetype
@@ -897,9 +897,9 @@ autocmd FileType javascript.jsx JsPreTmpl
 
 " Workspace folders to improve quality of suggestions.
 let g:copilot_workspace_folders = [
-  \ "~/kode/creativestudios-misp-v2-external-site",
-  \ "~/kode/creativestudios-brc-v2-site"
-  \]
+	\ "~/kode/creativestudios-misp-v2-external-site",
+	\ "~/kode/creativestudios-brc-v2-site"
+	\]
 
 " === coc-copilot options ===
 " Need to manually update completion panel because
@@ -915,50 +915,50 @@ set completeopt=noinsert,noselect,popup
 lua << EOF
 local copilotchat_loaded = false
 local function load_copilotchat()
-  if copilotchat_loaded then
-    return
-  end
-  copilotchat_loaded = true
+	if copilotchat_loaded then
+		return
+	end
+	copilotchat_loaded = true
 
-  vim.fn['plug#load']('CopilotChat.nvim')
+	vim.fn['plug#load']('CopilotChat.nvim')
 
-  -- Configure only after plugin is in runtimepath.
-  -- Using require().setup() outside the loader will cause eager loading.
-  require("CopilotChat").setup({
-    -- Default model to use, see ':CopilotChatModels' for available models
-    -- (can be specified manually in prompt via $).
-    -- model = 'gpt-4o',
-    -- model = 'claude-3.7-sonnet',
-    -- model = 'claude-sonnet-4',
-    -- model = 'gpt-5-codex', <-- only on VSCode, not CLI
-    -- model = 'claude-sonnet-4.5',
-    model = 'claude-sonnet-4.6',
+	-- Configure only after plugin is in runtimepath.
+	-- Using require().setup() outside the loader will cause eager loading.
+	require("CopilotChat").setup({
+		-- Default model to use, see ':CopilotChatModels' for available models
+		-- (can be specified manually in prompt via $).
+		-- model = 'gpt-4o',
+		-- model = 'claude-3.7-sonnet',
+		-- model = 'claude-sonnet-4',
+		-- model = 'gpt-5-codex', <-- only on VSCode, not CLI
+		-- model = 'claude-sonnet-4.5',
+		model = 'claude-sonnet-4.6',
 
 		-- Allow turns of tool calling.
-    -- Always include last-used buffer in context window.
-    sticky = {"@copilot", "#buffer:active"},
-    mappings = {
+		-- Always include last-used buffer in context window.
+		sticky = {"@copilot", "#buffer:active"},
+		mappings = {
 			complete = {
 				detail = 'Use @<Tab> or /<Tab> for options.',
 				insert ='<Tab>',
 			},
-      accept_diff = {
-        -- Avoid <C-y> binding for "scroll up"
-        normal = '<C-g>',
-        insert = '<C-g>',
-      },
-      -- Avoid <C-c> to close chat window
-      close = {
-        normal = '<C-[>',
-        insert = '<C-[>',
-      },
-      reset = {
-        -- Avoid <C-l> binding for "activate righthand split"
-        -- Avoid <C-r> binding for "undo/redo"
-        normal = '<C-t>',
-        insert = '<C-t>',
-      },
-    },
+			accept_diff = {
+				-- Avoid <C-y> binding for "scroll up"
+				normal = '<C-g>',
+				insert = '<C-g>',
+			},
+			-- Avoid <C-c> to close chat window
+			close = {
+				normal = '<C-[>',
+				insert = '<C-[>',
+			},
+			reset = {
+				-- Avoid <C-l> binding for "activate righthand split"
+				-- Avoid <C-r> binding for "undo/redo"
+				normal = '<C-t>',
+				insert = '<C-t>',
+			},
+		},
 		window = {
 			layout = 'vertical',         -- 'vertical', 'horizontal', 'float'
 			width= 0.45,                  -- 50% of screen width
@@ -971,26 +971,26 @@ local function load_copilotchat()
 		},
 		-- 'file', 'glob', and 'grep' are safe read-only tools.
 		trusted_tools = { 'file', 'glob', 'grep' },
-  })
+	})
 
-  -- Custom buffer for CopilotChat
-  vim.api.nvim_create_autocmd("BufEnter", {
-    pattern = "copilot-*",
-    callback = function()
-      vim.opt_local.relativenumber = true
-      vim.opt_local.number = true
-    end,
-  })
+	-- Custom buffer for CopilotChat
+	vim.api.nvim_create_autocmd("BufEnter", {
+		pattern = "copilot-*",
+		callback = function()
+			vim.opt_local.relativenumber = true
+			vim.opt_local.number = true
+		end,
+	})
 end
 
 
 local function lazy_cmd(name)
-  vim.api.nvim_create_user_command(name, function(opts)
-    load_copilotchat()
-    vim.schedule(function()
-      vim.cmd(name .. " " .. opts.args)
-    end)
-  end, { nargs = "*" })
+	vim.api.nvim_create_user_command(name, function(opts)
+		load_copilotchat()
+		vim.schedule(function()
+			vim.cmd(name .. " " .. opts.args)
+		end)
+	end, { nargs = "*" })
 end
 
 lazy_cmd("CopilotChat")
@@ -1003,14 +1003,14 @@ lazy_cmd("CopilotChatTests")
 
 -- Helper function for lazy-loaded mappings
 _G.lazy_copilot_toggle = function()
-  if copilotchat_loaded then
-    vim.cmd('CopilotChatToggle')
-  else
-    load_copilotchat()
-    vim.defer_fn(function()
-      vim.cmd('CopilotChatToggle')
-    end, 200)
-  end
+	if copilotchat_loaded then
+		vim.cmd('CopilotChatToggle')
+	else
+		load_copilotchat()
+		vim.defer_fn(function()
+			vim.cmd('CopilotChatToggle')
+		end, 200)
+	end
 end
 EOF
 
@@ -1076,8 +1076,8 @@ EOF
 " Colorscheme settings need to occur before loading scheme
 lua <<EOF
 require("tokyonight").setup({
-  style = "moon", -- Four styles: `storm`, `moon`, `night` and `day`
-  transparent = false, -- false disables setting the background color
+	style = "moon", -- Four styles: `storm`, `moon`, `night` and `day`
+	transparent = false, -- false disables setting the background color
 })
 EOF
 
@@ -1085,7 +1085,7 @@ EOF
 " Rely on Neovim's Treesitter setting later in this config file to guard
 " against very slow file saving when total lines are greater than 5000 lines.
 if !has('nvim')
-  syntax on
+	syntax on
 endif
 
 " Use dark background
@@ -1095,10 +1095,10 @@ set background=dark
 " Note: macOS Terminal app doesn't support true color,
 " set notermguicolors later in this file.
 if !has('gui_running')
-  if (has("termguicolors"))
-    set termguicolors
-    colorscheme tokyonight
-  endif
+	if (has("termguicolors"))
+		set termguicolors
+		colorscheme tokyonight
+	endif
 endif
 
 " Use tokyonight's cyan color for better visibility in PHP blade files
@@ -1119,8 +1119,8 @@ highlight vimLineComment cterm=italic gui=italic
 " === indentBlankline options ===
 lua <<EOF
 require("ibl").setup {
-  -- Use U+258F 'left one eigth block' glyph in Iosevka NerdFont
-  indent = { char = "▏" },
+	-- Use U+258F 'left one eigth block' glyph in Iosevka NerdFont
+	indent = { char = "▏" },
 }
 EOF
 
@@ -1173,9 +1173,9 @@ set inccommand=nosplit
 " Guard against command history window errors: https://unix.stackexchange.com/questions/149209
 " /refresh-changed-content-of-file-opened-in-vim/383044#comment1045364_383044
 autocmd FocusGained,BufEnter,CursorHold,CursorHoldI *
-            \ if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif
+						\ if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif
 autocmd FileChangedShellPost *
-  \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
+	\ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 
 " Faster redraw
 " http://dougblack.io/words/a-good-vimrc.html
@@ -1226,41 +1226,41 @@ set number relativenumber
 " Better behavior with opening splits, like CopilotChatToggle
 " https://github.com/CopilotC-Nvim/CopilotChat.nvim/discussions/124
 lua <<EOF
-  -- vim.opt.splitright=false
-  vim.opt.splitright=true
-  vim.opt.splitbelow=true
+	-- vim.opt.splitright=false
+	vim.opt.splitright=true
+	vim.opt.splitbelow=true
 EOF
 
 " For non-focused buffers, show absolute line numbers
 function! ToggleLineNumsAndGutter()
-  " Switch the toggle variable
-  let g:toggle_linenum = !get(g:, 'toggle_linenum', 1)
+	" Switch the toggle variable
+	let g:toggle_linenum = !get(g:, 'toggle_linenum', 1)
 
-  " Reset group
-  augroup numbertoggle
-    set nonumber
-    set norelativenumber
-    set signcolumn=no
-    autocmd!
-  augroup END
+	" Reset group
+	augroup numbertoggle
+		set nonumber
+		set norelativenumber
+		set signcolumn=no
+		autocmd!
+	augroup END
 
-  " Enable if toggled on
-  if g:toggle_linenum
-    set number relativenumber
-    set relativenumber
+	" Enable if toggled on
+	if g:toggle_linenum
+		set number relativenumber
+		set relativenumber
 
-    if has("patch-8.1.1564")
-      " Recently vim can merge signcolumn and number column into one
-      set signcolumn=number
-    else
-      set signcolumn=yes
-    endif
+		if has("patch-8.1.1564")
+			" Recently vim can merge signcolumn and number column into one
+			set signcolumn=number
+		else
+			set signcolumn=yes
+		endif
 
-    augroup numbertoggle
-      autocmd BufEnter,FocusGained,InsertLeave,WinEnter * set relativenumber
-      autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * set norelativenumber
-    augroup END
-  endif
+		augroup numbertoggle
+			autocmd BufEnter,FocusGained,InsertLeave,WinEnter * set relativenumber
+			autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * set norelativenumber
+		augroup END
+	endif
 endfunction
 
 " Better menu completion in command mode
@@ -1304,8 +1304,8 @@ hi! SignifySignChange guifg=#c594c5
 " Disable True Color support on macOS Terminal
 " Needs to be set after custom transparent color changes
 if $TERM_PROGRAM ==# 'Apple_Terminal'
-  set notermguicolors
-  colorscheme desert
+	set notermguicolors
+	colorscheme desert
 endif
 
 " Always show the signcolumn (for git gutter), otherwise it will shift
@@ -1314,15 +1314,15 @@ set signcolumn=yes
 
 " Call method on window enter
 augroup WindowManagement
-  autocmd!
-  autocmd WinEnter * call Handle_Win_Enter()
+	autocmd!
+	autocmd WinEnter * call Handle_Win_Enter()
 augroup END
 
 " Change highlight group of preview window when open
 function! Handle_Win_Enter()
-  if &previewwindow
-    setlocal winhighlight=Normal:MarkdownError
-  endif
+	if &previewwindow
+		setlocal winhighlight=Normal:MarkdownError
+	endif
 endfunction
 
 " Change Signify deleted line symbol
@@ -1330,7 +1330,7 @@ let g:signify_sign_delete = '-'
 
 " Reload dev-icons after init source
 if exists('g:loaded_webdevicons')
-  call webdevicons#refresh()
+	call webdevicons#refresh()
 endif
 
 " Automatically change current working directory to same as current buffer
@@ -1350,76 +1350,76 @@ set spellfile=$HOME/.config/nvim/spell/en.utf-8.add
 
 " Display current Neovim file in Ghostty terminal emulator tab title
 lua << EOF
-  -- %F: Full path to the current file
-  -- %f: Relative path to file in the buffer
-  -- %t: Current filename
-  vim.opt.title = true
-  vim.opt.titlestring = "%t"
+	-- %F: Full path to the current file
+	-- %f: Relative path to file in the buffer
+	-- %t: Current filename
+	vim.opt.title = true
+	vim.opt.titlestring = "%t"
 EOF
 
 " Fold all HTML <path> tags when opening buffer.
 " Use `zj` to move to next fold, `za` to toggle open.
 lua << EOF
 local function fold_path_tags()
-  -- Skip if buffer is being deleted
-  if vim.api.nvim_get_current_buf() == 0 or not vim.api.nvim_buf_is_valid(0) then
-    return
-  end
+	-- Skip if buffer is being deleted
+	if vim.api.nvim_get_current_buf() == 0 or not vim.api.nvim_buf_is_valid(0) then
+		return
+	end
 
-  vim.opt_local.foldmethod = "manual"
-  vim.cmd("normal! zE")
+	vim.opt_local.foldmethod = "manual"
+	vim.cmd("normal! zE")
 
-  local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
-  local i = 1
+	local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+	local i = 1
 
-  while i <= #lines do
-    local line = lines[i]
+	while i <= #lines do
+		local line = lines[i]
 
-    -- Look for opening <path tag (improved pattern)
-    if line:match("<%s*path[%s>]") or line:match("<%s*path$") then
-      local start_line = i
-      local end_line = i
-      local found_end = false
-      local accumulated_text = line
+		-- Look for opening <path tag (improved pattern)
+		if line:match("<%s*path[%s>]") or line:match("<%s*path$") then
+			local start_line = i
+			local end_line = i
+			local found_end = false
+			local accumulated_text = line
 
-      -- Check if the path tag closes on the same line
-      if line:match("/>") or line:match("</path>") then
-        found_end = true
-      else
-        -- Multi-line path tag: search forward for closing
-        end_line = end_line + 1
-        while end_line <= #lines do
-          accumulated_text = accumulated_text .. lines[end_line]
-          if lines[end_line]:match("/>") or lines[end_line]:match("</path>") then
-            found_end = true
-            break
-          end
-          end_line = end_line + 1
-        end
-      end
+			-- Check if the path tag closes on the same line
+			if line:match("/>") or line:match("</path>") then
+				found_end = true
+			else
+				-- Multi-line path tag: search forward for closing
+				end_line = end_line + 1
+				while end_line <= #lines do
+					accumulated_text = accumulated_text .. lines[end_line]
+					if lines[end_line]:match("/>") or lines[end_line]:match("</path>") then
+						found_end = true
+						break
+					end
+					end_line = end_line + 1
+				end
+			end
 
-      -- Fold if:
-      -- 1. Multi-line: end_line > start_line
-      -- 2. Single long line: line length > character threshold
-      if found_end then
-        local should_fold = end_line > start_line or #accumulated_text > 70
+			-- Fold if:
+			-- 1. Multi-line: end_line > start_line
+			-- 2. Single long line: line length > character threshold
+			if found_end then
+				local should_fold = end_line > start_line or #accumulated_text > 70
 
-        if should_fold then
-          vim.cmd(start_line .. "," .. end_line .. "fold")
-        end
-      end
+				if should_fold then
+					vim.cmd(start_line .. "," .. end_line .. "fold")
+				end
+			end
 
-      i = end_line + 1
-    else
-      i = i + 1
-    end
-  end
+			i = end_line + 1
+		else
+			i = i + 1
+		end
+	end
 end
 
 -- Fold HTML path tags on open
 vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
-  pattern = {"*.blade.php", "*.html", "*.htm", "*.vue", "*.jsx", "*.tsx"},
-  callback = fold_path_tags,
+	pattern = {"*.blade.php", "*.html", "*.htm", "*.vue", "*.jsx", "*.tsx"},
+	callback = fold_path_tags,
 })
 
 -- Use leader capital D to fold paths
@@ -1512,17 +1512,17 @@ nmap <C-down> :resize -1<CR>
 " Awesome toggle function written by stackoverflow user 'ata':
 " https://stackoverflow.com/a/60639802
 function! ToggleZoom(zoom)
-  if exists("t:restore_zoom") && (a:zoom == v:true || t:restore_zoom.win != winnr())
-      exec t:restore_zoom.cmd
-      unlet t:restore_zoom
-  elseif a:zoom
-      let t:restore_zoom = { 'win': winnr(), 'cmd': winrestcmd() }
-      exec "normal \<C-W>\|\<C-W>_"
-  endif
+	if exists("t:restore_zoom") && (a:zoom == v:true || t:restore_zoom.win != winnr())
+			exec t:restore_zoom.cmd
+			unlet t:restore_zoom
+	elseif a:zoom
+			let t:restore_zoom = { 'win': winnr(), 'cmd': winrestcmd() }
+			exec "normal \<C-W>\|\<C-W>_"
+	endif
 endfunction
 
 augroup restorezoom
-    au WinEnter * silent! :call ToggleZoom(v:false)
+		au WinEnter * silent! :call ToggleZoom(v:false)
 augroup END
 
 " Save folds
@@ -1558,38 +1558,38 @@ vnoremap <leader>p "_dP
 " Neovim 0.10+ has native commenting.
 lua << EOF
 require('ts_context_commentstring').setup {
-  enable_autocmd = false,
-  config = {
-    blade = {
-      __default = '{{-- %s --}}',
-      -- HTML contexts
-      element = '<!-- %s -->',
-      start_tag = '<!-- %s -->',
-      end_tag = '<!-- %s -->',
-      attribute = '<!-- %s -->',
-      text = '<!-- %s -->',
-      -- Blade directive contexts
-      directive = '{{-- %s --}}',
-      directive_start = '{{-- %s --}}',
-      directive_end = '{{-- %s --}}',
-      parameter = '{{-- %s --}}',
-      -- PHP contexts
-      php = '{{-- %s --}}',
-      php_only = '// %s',
-      -- CSS/JS contexts
-      stylesheet = '/* %s */',
-      style_element = '/* %s */',
-      script = '// %s',
-      script_element = '// %s',
-    },
-  },
+	enable_autocmd = false,
+	config = {
+		blade = {
+			__default = '{{-- %s --}}',
+			-- HTML contexts
+			element = '<!-- %s -->',
+			start_tag = '<!-- %s -->',
+			end_tag = '<!-- %s -->',
+			attribute = '<!-- %s -->',
+			text = '<!-- %s -->',
+			-- Blade directive contexts
+			directive = '{{-- %s --}}',
+			directive_start = '{{-- %s --}}',
+			directive_end = '{{-- %s --}}',
+			parameter = '{{-- %s --}}',
+			-- PHP contexts
+			php = '{{-- %s --}}',
+			php_only = '// %s',
+			-- CSS/JS contexts
+			stylesheet = '/* %s */',
+			style_element = '/* %s */',
+			script = '// %s',
+			script_element = '// %s',
+		},
+	},
 }
 
 local get_option = vim.filetype.get_option
 vim.filetype.get_option = function(filetype, option)
-  return option == "commentstring"
-    and require("ts_context_commentstring.internal").calculate_commentstring()
-    or get_option(filetype, option)
+	return option == "commentstring"
+		and require("ts_context_commentstring.internal").calculate_commentstring()
+		or get_option(filetype, option)
 end
 EOF
 
@@ -1637,15 +1637,15 @@ nmap <leader>rn <Plug>(coc-rename)
 
 " Remap <C-n> and <C-p> for selecting item in scrolling popup window
 if has('nvim-0.4.0') || has('patch-8.2.0750')
-  inoremap <silent><nowait><expr> <C-n> coc#pum#visible() ? coc#pum#next(1) : "\<C-n>"
-  inoremap <silent><nowait><expr> <C-p> coc#pum#visible() ? coc#pum#prev(1) : "\<C-p>"
-  inoremap <silent><nowait><expr> <down> coc#pum#visible() ? coc#pum#next(0) : "\<down>"
-  inoremap <silent><nowait><expr> <up> coc#pum#visible() ? coc#pum#prev(0) : "\<up>"
-  inoremap <silent><nowait><expr> <PageDown> coc#pum#visible() ? coc#pum#scroll(1) : "\<PageDown>"
-  inoremap <silent><nowait><expr> <PageUp> coc#pum#visible() ? coc#pum#scroll(0) : "\<PageUp>"
-  " Use <C-e> and <C-y> to cancel and confirm completion
-  inoremap <silent><nowait><expr> <C-e> coc#pum#visible() ? coc#pum#cancel() : "\<C-e>"
-  inoremap <silent><nowait><expr> <C-y> coc#pum#visible() ? coc#pum#confirm() : "\<C-y>"
+	inoremap <silent><nowait><expr> <C-n> coc#pum#visible() ? coc#pum#next(1) : "\<C-n>"
+	inoremap <silent><nowait><expr> <C-p> coc#pum#visible() ? coc#pum#prev(1) : "\<C-p>"
+	inoremap <silent><nowait><expr> <down> coc#pum#visible() ? coc#pum#next(0) : "\<down>"
+	inoremap <silent><nowait><expr> <up> coc#pum#visible() ? coc#pum#prev(0) : "\<up>"
+	inoremap <silent><nowait><expr> <PageDown> coc#pum#visible() ? coc#pum#scroll(1) : "\<PageDown>"
+	inoremap <silent><nowait><expr> <PageUp> coc#pum#visible() ? coc#pum#scroll(0) : "\<PageUp>"
+	" Use <C-e> and <C-y> to cancel and confirm completion
+	inoremap <silent><nowait><expr> <C-e> coc#pum#visible() ? coc#pum#cancel() : "\<C-e>"
+	inoremap <silent><nowait><expr> <C-y> coc#pum#visible() ? coc#pum#confirm() : "\<C-y>"
 endif
 
 " === Search shorcuts ===
