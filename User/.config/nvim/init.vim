@@ -754,6 +754,90 @@ require('image').setup({
 })
 EOF
 
+" === Configure img-clip ===
+" ┌─────────────────────────────┐
+" │  macOS Screen               │
+" │                             │
+" │   ┌─────────────────┐       │
+" │   │  Screen Region  │       │
+" │   └────────┬────────┘       │
+" └────────────│────────────────┘
+"              │
+"     ⇧⌘4 capture & copy
+"              │
+"              ▼
+" ┌────────────────────────────┐
+" │     System Clipboard       │
+" │     (image data)           │
+" └────────────┬───────────────┘
+"              │
+"       :PasteImage (nvim)
+"              │
+"              ▼
+" ┌────────────────────────────┐
+" │     temp-images/           │──── writes ────► image.png
+" │     (directory)            │
+" └────────────┬───────────────┘
+"              │
+"       generate md reference
+"              │
+"              ▼
+" ┌────────────────────────────┐
+" │     Neovim Buffer          │
+" │                            │
+" │  ![](temp-images/img.png)  │◄── pasted text
+" └────────────────────────────┘
+lua << EOF
+require('img-clip').setup({
+	default = {
+			-- writes the file to an absolute path (so it always goes to `{cwd}/temp-images/`)
+      use_absolute_path = true, ---@type boolean
+      relative_to_current_file = false, ---@type boolean
+
+			-- Save images in project root at "{cwd}/temp-images/" folder.
+      dir_path = "temp-images",
+
+      -- If you want to get prompted for the filename when pasting an image
+      -- This is the actual name that the physical file will have
+      -- If you set it to true, enter the name without spaces or extension `test-image-1`
+      -- Remember we specified the extension above
+      --
+      -- I don't want to give my images a name, but instead autofill it using
+      -- the date and time as shown on `file_name` below
+      prompt_for_file_name = false,
+      show_dir_path_in_prompt = false,
+      file_name = "%Y-%m-%d-at-%H-%M-%S",
+      -- Strip cwd from absolute path so inserted path starts with "temp-images/..."
+      template = function(context)
+        local cwd = vim.fn.getcwd() .. "/"
+        local path = context.file_path:gsub("^" .. vim.pesc(cwd), "")
+        return "![$FILE_NAME](" .. path .. ")"
+      end,
+		},
+		-- filetype specific options
+		filetypes = {
+			markdown = {
+				-- encode spaces and special characters in file path
+				url_encode_path = true, ---@type boolean
+
+				-- $CURSOR will paste the image and place your cursor in that part so
+				-- you can type the "alternative text", keep in mind that this will
+				-- not affect the name that the image physically has
+				-- template = "![$CURSOR]($FILE_PATH)", ---@type string
+				--
+				-- This will just statically type "Image" in the alternative text
+				-- template = "![Image]($FILE_PATH)", ---@type string
+				--
+				-- This will dynamically configure the alternative text to show the
+				-- same that you configured as the "file_name" above
+				template = "![$FILE_NAME]($FILE_PATH)", ---@type string
+			},
+		},
+})
+
+vim.keymap.set('n', '<leader>vv', '<cmd>PasteImage<cr>', { desc = 'Paste image from system clipboard' })
+EOF
+
 " === vim-matchup ===
 " Place offscreen match as popup at top of screen with syntax highlighting.
 " Highlighting popup cause performance degradation because Neovim doesn't provide relative line number
@@ -885,20 +969,8 @@ local function load_copilotchat()
 			assistant = '🤖 Copilot',
 			tool = '🔧 Tool',
 		},
-		{
-			-- trusted_tools = nil, -- default: require approval for all tool calls
-
-			-- trust all functions in a group
-			trusted_tools = 'copilot',
-
-			-- trust specific functions by name or groups by name.
-			-- doesn't require manual approvals.
-			-- 'file', 'glob', and 'grep' are safe read-only tools.
-			trusted_tools = { 'file', 'glob', 'grep' },
-
-			-- trust every enabled tool call
-			-- trusted_tools = true,
-		},
+		-- 'file', 'glob', and 'grep' are safe read-only tools.
+		trusted_tools = { 'file', 'glob', 'grep' },
   })
 
   -- Custom buffer for CopilotChat
@@ -907,14 +979,6 @@ local function load_copilotchat()
     callback = function()
       vim.opt_local.relativenumber = true
       vim.opt_local.number = true
-
-    -- Parse buffer as markdown without changing filetype.
-    -- Gives treesitter motions (]], [[) and syntax highlighting
-    -- while keeping filetype=copilot-chat so CopilotChat can
-    -- still track its own window state.
-			-- [[ and ]] still not working to navigate between headings. Can use { and } to find blank lines.
-    pcall(vim.treesitter.start, 0, "markdown")
-    vim.bo.syntax = "markdown"
     end,
   })
 end
