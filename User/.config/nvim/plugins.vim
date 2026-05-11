@@ -38,7 +38,7 @@ Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
 Plug 'LunarWatcher/auto-pairs'
 
 " Paste and indent to match destination context
-Plug 'sickill/vim-pasta'
+" Plug 'sickill/vim-pasta'
 
 " Allows syntax highlighting of CSS inside styled component template strings
 " 2021-02-17: Project is unmaintained
@@ -49,7 +49,8 @@ Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 " Advanced grammar and syntax highlighting.
 " Avoids vim's slow regex patterns for highlighting.
 " 'do' updates parsers on plugin install.
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'neovim-treesitter/treesitter-parser-registry'
+Plug 'neovim-treesitter/nvim-treesitter', { 'branch': 'main', 'do': ':TSUpdate' }
 
 " -- JSON helpers --
 " allow front matter highlighting
@@ -57,7 +58,16 @@ Plug 'elzr/vim-json'
 
 " -- Markdown helpers --
 " For codefenced regions in CopilotChat. Use lazy loading.
-Plug 'MeanderingProgrammer/render-markdown.nvim', { 'for': ['markdown', 'copilot-chat'] }
+" Plug 'MeanderingProgrammer/render-markdown.nvim', { 'for': ['markdown', 'copilot-chat'] }
+Plug 'MeanderingProgrammer/render-markdown.nvim'
+
+" -- image.nvim --
+" Renders images inside Neovim
+Plug '3rd/image.nvim'
+
+" -- image.nvim --
+" Paste images from system clipboard into Neovim
+Plug 'HakonHarnes/img-clip.nvim'
 
 " -- Git helpers --
 " ]c and [c to move between changed git chunks
@@ -78,15 +88,30 @@ Plug 'tpope/vim-obsession'
 " gcip to toggle commenting out inner paragraph
 Plug 'tpope/vim-commentary'
 
+" Snippet support
+" In insert mode, type snippet, then alt-;
+" In command mode, ctrl-k is navigate to lower Vim split.
+" Requires deplete plugin for completion.
+" if has('nvim')
+"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" else
+"   Plug 'Shougo/deoplete.nvim'
+"   Plug 'roxma/nvim-yarp'
+"   Plug 'roxma/vim-hug-neovim-rpc'
+" endif
+" let g:deoplete#enable_at_startup = 1
+" Plug 'Shougo/neosnippet'
+" Plug 'Shougo/neosnippet-snippets'
+
 " HTML and CSS selector snippets
 " Trigger completion with C-y,
 " https://docs.emmet.io/cheat-sheet/
 "
-" Using coc-emmet for now, trigger completion with ctrl-e
-Plug 'mattn/emmet-vim', { 'for': ['css', 'html', 'javascriptreact', 'typescriptreact'] }
+" Using coc-emmet for now, trigger completion with ctrl-y
+" Plug 'mattn/emmet-vim', { 'for': ['css', 'html', 'javascriptreact', 'typescriptreact'] }
 
-" Intellisense Engine, uses VS Code's language servers
-" Needs 'npm i -g neovim' and recent version of NodeJS
+" Intellisense Engine, uses VS Code's language servers.
+" Needs 'npm i -g neovim' and recent version of NodeJS.
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Golang support
@@ -170,10 +195,6 @@ Plug 'CopilotC-Nvim/CopilotChat.nvim',
       \   'CopilotChatDocs',
       \   'CopilotChatTests'
       \ ] }
-
-" Toggle full-pane windows like Tmux
-" Use C-w m to toggle. Provides zoom#statusline() API
-" Plug 'dhruvasagar/vim-zoom'
 
 " FZF fuzzy finder
 " Needs both junegunn lines below for fzf.vim
