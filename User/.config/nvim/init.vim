@@ -426,7 +426,7 @@ vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
 	local ensureInstalled = {
 		"bash", "blade", "c", "c_sharp", "clojure", "css",
 		"diff", "dockerfile", "ecma", "go", "html", "html_tags", "http",
-		"java", "javascript", "json", "julia", "lua",
+		"java", "javascript", "json", "jsx", "julia", "lua",
 		"markdown", "markdown_inline", "nix",
 		"php", "php_only", "python", "regex", "scheme", "scss",
 		"toml", "tsx", "typescript", "twig", "vim", "vue", "yaml",
