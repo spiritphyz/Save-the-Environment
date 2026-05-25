@@ -426,7 +426,7 @@ vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
 	local ensureInstalled = {
 		"bash", "blade", "c", "c_sharp", "clojure", "css",
 		"diff", "dockerfile", "ecma", "go", "html", "html_tags", "http",
-		"java", "javascript", "json", "jsx", "julia", "lua",
+		"java", "javascript", "json", "julia", "lua",
 		"markdown", "markdown_inline", "nix",
 		"php", "php_only", "python", "regex", "scheme", "scss",
 		"toml", "tsx", "typescript", "twig", "vim", "vue", "yaml",
@@ -790,23 +790,18 @@ EOF
 lua << EOF
 require('img-clip').setup({
 	default = {
-			-- writes the file to an absolute path (so it always goes to `{cwd}/temp-images/`)
+			-- Writes the file to an absolute path (always saves to `{cwd}/temp-images/`).
 			use_absolute_path = true, ---@type boolean
 			relative_to_current_file = false, ---@type boolean
 
 			-- Save images in project root at "{cwd}/temp-images/" folder.
 			dir_path = "temp-images",
-
-			-- If you want to get prompted for the filename when pasting an image
-			-- This is the actual name that the physical file will have
-			-- If you set it to true, enter the name without spaces or extension `test-image-1`
-			-- Remember we specified the extension above
-			--
-			-- I don't want to give my images a name, but instead autofill it using
-			-- the date and time as shown on `file_name` below
-			prompt_for_file_name = false,
 			show_dir_path_in_prompt = false,
+
+			-- Use timestamp for default filename.
+			prompt_for_file_name = false,
 			file_name = "%Y-%m-%d-at-%H-%M-%S",
+
 			-- Strip cwd from absolute path so inserted path starts with "temp-images/..."
 			template = function(context)
 				local cwd = vim.fn.getcwd() .. "/"
@@ -814,22 +809,15 @@ require('img-clip').setup({
 				return "![$FILE_NAME](" .. path .. ")"
 			end,
 		},
-		-- filetype specific options
+
 		filetypes = {
 			markdown = {
-				-- encode spaces and special characters in file path
+				-- Encode spaces and special characters in file path.
 				url_encode_path = true, ---@type boolean
 
-				-- $CURSOR will paste the image and place your cursor in that part so
-				-- you can type the "alternative text", keep in mind that this will
-				-- not affect the name that the image physically has
-				-- template = "![$CURSOR]($FILE_PATH)", ---@type string
-				--
-				-- This will just statically type "Image" in the alternative text
-				-- template = "![Image]($FILE_PATH)", ---@type string
-				--
-				-- This will dynamically configure the alternative text to show the
-				-- same that you configured as the "file_name" above
+				-- Insert $FILE_NAME as alt text (set as timestamp above for file_name).
+				-- Put $CURSOR inside square brackets to type alt text in insert mode.
+				-- Use "Image" inside square brackets for static alt text.
 				template = "![$FILE_NAME]($FILE_PATH)", ---@type string
 			},
 		},
@@ -965,9 +953,11 @@ local function load_copilotchat()
 			auto_insert_mode = true,     -- Enter insert mode when opening
 		},
 		headers = {
-			user = '👤 You',
+			-- user = '👤 You',
+			user = '>> You',
 			assistant = '🤖 Copilot',
-			tool = '🔧 Tool',
+			assistant = '>> Copilot',
+			tool = '>> Tool',
 		},
 		-- 'file', 'glob', and 'grep' are safe read-only tools.
 		trusted_tools = { 'file', 'glob', 'grep' },
