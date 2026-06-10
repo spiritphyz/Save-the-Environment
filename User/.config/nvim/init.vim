@@ -422,6 +422,8 @@ vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
 -- IIFE that diffs against alread-installed parsers so it doesn't
 -- reinstall everything on startup.
 -- https://www.qu8n.com/posts/treesitter-migration-guide-for-nvim-0-12
+-- Need to install tree-sitter-cli first (not tree-sitter!) for
+-- parsers to compile on Neovim startup.
 ;(function()
 	local ensureInstalled = {
 		"bash", "blade", "c", "c_sharp", "clojure", "css",
