@@ -16,7 +16,7 @@ if has('multi_byte')
   setglobal fileencodings=utf-8
 endif
 
-" Load plugins
+" Load minimal set of plugins
 source ~/.config/nvim/plugins.min-git.vim
 
 
