@@ -49,8 +49,7 @@ Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 " Advanced grammar and syntax highlighting.
 " Avoids vim's slow regex patterns for highlighting.
 " 'do' updates parsers on plugin install.
-Plug 'neovim-treesitter/treesitter-parser-registry'
-Plug 'neovim-treesitter/nvim-treesitter', { 'branch': 'main', 'do': ':TSUpdate' }
+Plug 'nvim-treesitter/nvim-treesitter', { 'branch': 'main', 'do': ':TSUpdate' }
 
 " -- JSON helpers --
 " allow front matter highlighting
