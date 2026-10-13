@@ -5,6 +5,6 @@
   "defaultModel": "claude-sonnet-4.6",
   "defaultThinkingLevel": "medium",
   "packages": [
-    "/path/to/pi-cache-graph"
+    "/Users/user/.pi/agent/packages/pi-cache-graph"
   ]
 }
